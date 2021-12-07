@@ -1,6 +1,6 @@
 --- 
 title: "TMIM Compendio R"
-author: "Roberto Gil"
+author: "Roberto Gil-Saura"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
