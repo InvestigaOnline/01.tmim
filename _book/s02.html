@@ -416,21 +416,21 @@ div.csl-indent {
 <div id="s02" class="section level1" number="6">
 <h1><span class="header-section-number">Parte 6</span> Inferencia - Sesiones 1 y 2</h1>
 <p>El siguiente documento muestra todos los cálculos estadísticos que entre la primera y la segunda sesión de la asignatura <em>Técnicas multivariantes en Investigación de Mercados</em> dentro del máster oficial en Marketing e Investigación de mercados se observan. Este documento intenta ser una guía ilustrativa y demostrativa de como se trabaja con R, magnificando todas las virtudes de este software.</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="s02.html#cb256-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> gssft1<span class="sc">$</span>hrs1 <span class="do">## asociamos a vector para no repetir el nombre de variable</span></span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="s02.html#cb232-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> gssft1<span class="sc">$</span>hrs1 <span class="do">## asociamos a vector para no repetir el nombre de variable</span></span></code></pre></div>
 <div id="inferencia-paramétrica" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Inferencia paramétrica</h2>
 <p>Pruebas inferenciales realizadas con variables que cumplen los crirerios de nromalidad y/o homoscedasticidad.</p>
 <div id="test-t-student-para-la-media-de-una-muestra" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Test t Student para la media de una muestra</h3>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="s02.html#cb257-1" aria-hidden="true" tabindex="-1"></a>test_t <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
-<span id="cb257-2"><a href="s02.html#cb257-2" aria-hidden="true" tabindex="-1"></a>    x,</span>
-<span id="cb257-3"><a href="s02.html#cb257-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu =</span> <span class="dv">40</span>, <span class="do">##  debe ser un parámetro abierto, es el valor de control</span></span>
-<span id="cb257-4"><a href="s02.html#cb257-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb257-5"><a href="s02.html#cb257-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="do">##  alternativas cerradas: &quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;</span></span>
-<span id="cb257-6"><a href="s02.html#cb257-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">paired =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb257-7"><a href="s02.html#cb257-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">var.equal =</span> <span class="cn">FALSE</span>, <span class="do">##  alternativas TRUE / FALSE</span></span>
-<span id="cb257-8"><a href="s02.html#cb257-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">conf.level =</span> <span class="fl">0.95</span>) <span class="do">##  se deben dar alternativas 0.90, 0.95, 0.9545, 0.99, 0.9975</span></span>
-<span id="cb257-9"><a href="s02.html#cb257-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(test_t)</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="s02.html#cb233-1" aria-hidden="true" tabindex="-1"></a>test_t <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
+<span id="cb233-2"><a href="s02.html#cb233-2" aria-hidden="true" tabindex="-1"></a>    x,</span>
+<span id="cb233-3"><a href="s02.html#cb233-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu =</span> <span class="dv">40</span>, <span class="do">##  debe ser un parámetro abierto, es el valor de control</span></span>
+<span id="cb233-4"><a href="s02.html#cb233-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb233-5"><a href="s02.html#cb233-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="do">##  alternativas cerradas: &quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;</span></span>
+<span id="cb233-6"><a href="s02.html#cb233-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">paired =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb233-7"><a href="s02.html#cb233-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">var.equal =</span> <span class="cn">FALSE</span>, <span class="do">##  alternativas TRUE / FALSE</span></span>
+<span id="cb233-8"><a href="s02.html#cb233-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">conf.level =</span> <span class="fl">0.95</span>) <span class="do">##  se deben dar alternativas 0.90, 0.95, 0.9545, 0.99, 0.9975</span></span>
+<span id="cb233-9"><a href="s02.html#cb233-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(test_t)</span></code></pre></div>
 <pre><code>
     One Sample t-test
 
@@ -453,26 +453,26 @@ mean of x
 </ul>
 <div id="varianzas-iguales" class="section level4" number="6.1.2.1">
 <h4><span class="header-section-number">6.1.2.1</span> Varianzas iguales</h4>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="s02.html#cb259-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> gssnet2<span class="sc">$</span>emailhrs</span>
-<span id="cb259-2"><a href="s02.html#cb259-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> gssnet2<span class="sc">$</span>webhrs</span>
-<span id="cb259-3"><a href="s02.html#cb259-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> gssnet2<span class="sc">$</span>sex</span>
-<span id="cb259-4"><a href="s02.html#cb259-4" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">factor</span>(z, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;hombre&quot;</span>, <span class="st">&quot;mujer&quot;</span>))</span>
-<span id="cb259-5"><a href="s02.html#cb259-5" aria-hidden="true" tabindex="-1"></a>output.levene <span class="ot">&lt;-</span> <span class="fu">leveneTest</span>(x <span class="sc">~</span> z, <span class="at">data =</span> gssnet2, <span class="at">center =</span> mean) </span>
-<span id="cb259-6"><a href="s02.html#cb259-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(output.levene)</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="s02.html#cb235-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> gssnet2<span class="sc">$</span>emailhrs</span>
+<span id="cb235-2"><a href="s02.html#cb235-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> gssnet2<span class="sc">$</span>webhrs</span>
+<span id="cb235-3"><a href="s02.html#cb235-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> gssnet2<span class="sc">$</span>sex</span>
+<span id="cb235-4"><a href="s02.html#cb235-4" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">factor</span>(z, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;hombre&quot;</span>, <span class="st">&quot;mujer&quot;</span>))</span>
+<span id="cb235-5"><a href="s02.html#cb235-5" aria-hidden="true" tabindex="-1"></a>output.levene <span class="ot">&lt;-</span> <span class="fu">leveneTest</span>(x <span class="sc">~</span> z, <span class="at">data =</span> gssnet2, <span class="at">center =</span> mean) </span>
+<span id="cb235-6"><a href="s02.html#cb235-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(output.levene)</span></code></pre></div>
 <pre><code>Levene&#39;s Test for Homogeneity of Variance (center = mean)
        Df F value Pr(&gt;F)
 group   1  0.5016  0.479
       982               </code></pre>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="s02.html#cb261-1" aria-hidden="true" tabindex="-1"></a>conflevel <span class="ot">=</span> <span class="fl">0.95</span> <span class="do">##  se deben dar alternativas 0.90, 0.95, 0.9545, 0.99, 0.9975</span></span>
-<span id="cb261-2"><a href="s02.html#cb261-2" aria-hidden="true" tabindex="-1"></a>pctrl <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> conflevel <span class="do">## cálculo del valor de control</span></span>
-<span id="cb261-3"><a href="s02.html#cb261-3" aria-hidden="true" tabindex="-1"></a>test_true <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
-<span id="cb261-4"><a href="s02.html#cb261-4" aria-hidden="true" tabindex="-1"></a>        x <span class="sc">~</span> z, <span class="do">## atención al cambo, desaparace mu y cambia la forma de X que es formula x ~ z</span></span>
-<span id="cb261-5"><a href="s02.html#cb261-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb261-6"><a href="s02.html#cb261-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="do">##  alternativas cerradas: &quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;</span></span>
-<span id="cb261-7"><a href="s02.html#cb261-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">paired =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb261-8"><a href="s02.html#cb261-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">var.equal =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb261-9"><a href="s02.html#cb261-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">conf.level =</span> conflevel)</span>
-<span id="cb261-10"><a href="s02.html#cb261-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(test_true)</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="s02.html#cb237-1" aria-hidden="true" tabindex="-1"></a>conflevel <span class="ot">=</span> <span class="fl">0.95</span> <span class="do">##  se deben dar alternativas 0.90, 0.95, 0.9545, 0.99, 0.9975</span></span>
+<span id="cb237-2"><a href="s02.html#cb237-2" aria-hidden="true" tabindex="-1"></a>pctrl <span class="ot">=</span> <span class="dv">1</span> <span class="sc">-</span> conflevel <span class="do">## cálculo del valor de control</span></span>
+<span id="cb237-3"><a href="s02.html#cb237-3" aria-hidden="true" tabindex="-1"></a>test_true <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
+<span id="cb237-4"><a href="s02.html#cb237-4" aria-hidden="true" tabindex="-1"></a>        x <span class="sc">~</span> z, <span class="do">## atención al cambo, desaparace mu y cambia la forma de X que es formula x ~ z</span></span>
+<span id="cb237-5"><a href="s02.html#cb237-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb237-6"><a href="s02.html#cb237-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="do">##  alternativas cerradas: &quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;</span></span>
+<span id="cb237-7"><a href="s02.html#cb237-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">paired =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb237-8"><a href="s02.html#cb237-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">var.equal =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb237-9"><a href="s02.html#cb237-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">conf.level =</span> conflevel)</span>
+<span id="cb237-10"><a href="s02.html#cb237-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(test_true)</span></code></pre></div>
 <pre><code>
     Two Sample t-test
 
@@ -484,26 +484,26 @@ alternative hypothesis: true difference in means between group hombre and group 
 sample estimates:
 mean in group hombre  mean in group mujer 
             3.371057             3.262282 </code></pre>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="s02.html#cb263-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> test_true[[<span class="st">&quot;statistic&quot;</span>]][[<span class="st">&quot;t&quot;</span>]]</span>
-<span id="cb263-2"><a href="s02.html#cb263-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t1)</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="s02.html#cb239-1" aria-hidden="true" tabindex="-1"></a>t1 <span class="ot">&lt;-</span> test_true[[<span class="st">&quot;statistic&quot;</span>]][[<span class="st">&quot;t&quot;</span>]]</span>
+<span id="cb239-2"><a href="s02.html#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t1)</span></code></pre></div>
 <pre><code>[1] 0.2083198</code></pre>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="s02.html#cb265-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> test_true[[<span class="st">&quot;parameter&quot;</span>]][[<span class="st">&quot;df&quot;</span>]]</span>
-<span id="cb265-2"><a href="s02.html#cb265-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df1)</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="s02.html#cb241-1" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> test_true[[<span class="st">&quot;parameter&quot;</span>]][[<span class="st">&quot;df&quot;</span>]]</span>
+<span id="cb241-2"><a href="s02.html#cb241-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df1)</span></code></pre></div>
 <pre><code>[1] 982</code></pre>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="s02.html#cb267-1" aria-hidden="true" tabindex="-1"></a>effect.size.true <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((t1 <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> ((t1 <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span> df1))</span>
-<span id="cb267-2"><a href="s02.html#cb267-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(effect.size.true)</span></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="s02.html#cb243-1" aria-hidden="true" tabindex="-1"></a>effect.size.true <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((t1 <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> ((t1 <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span> df1))</span>
+<span id="cb243-2"><a href="s02.html#cb243-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(effect.size.true)</span></code></pre></div>
 <pre><code>[1] 0.006647606</code></pre>
 </div>
 <div id="varianzas-no-iguales" class="section level4" number="6.1.2.2">
 <h4><span class="header-section-number">6.1.2.2</span> Varianzas no iguales</h4>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="s02.html#cb269-1" aria-hidden="true" tabindex="-1"></a>test_false <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
-<span id="cb269-2"><a href="s02.html#cb269-2" aria-hidden="true" tabindex="-1"></a>        x <span class="sc">~</span> z,</span>
-<span id="cb269-3"><a href="s02.html#cb269-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb269-4"><a href="s02.html#cb269-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
-<span id="cb269-5"><a href="s02.html#cb269-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">paired =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb269-6"><a href="s02.html#cb269-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">var.equal =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb269-7"><a href="s02.html#cb269-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">conf.level =</span> conflevel)</span>
-<span id="cb269-8"><a href="s02.html#cb269-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(test_false)</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="s02.html#cb245-1" aria-hidden="true" tabindex="-1"></a>test_false <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
+<span id="cb245-2"><a href="s02.html#cb245-2" aria-hidden="true" tabindex="-1"></a>        x <span class="sc">~</span> z,</span>
+<span id="cb245-3"><a href="s02.html#cb245-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb245-4"><a href="s02.html#cb245-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb245-5"><a href="s02.html#cb245-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">paired =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb245-6"><a href="s02.html#cb245-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">var.equal =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb245-7"><a href="s02.html#cb245-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">conf.level =</span> conflevel)</span>
+<span id="cb245-8"><a href="s02.html#cb245-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(test_false)</span></code></pre></div>
 <pre><code>
     Welch Two Sample t-test
 
@@ -515,73 +515,73 @@ alternative hypothesis: true difference in means between group hombre and group 
 sample estimates:
 mean in group hombre  mean in group mujer 
             3.371057             3.262282 </code></pre>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="s02.html#cb271-1" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> test_false[[<span class="st">&quot;statistic&quot;</span>]][[<span class="st">&quot;t&quot;</span>]]</span>
-<span id="cb271-2"><a href="s02.html#cb271-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t2)</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="s02.html#cb247-1" aria-hidden="true" tabindex="-1"></a>t2 <span class="ot">&lt;-</span> test_false[[<span class="st">&quot;statistic&quot;</span>]][[<span class="st">&quot;t&quot;</span>]]</span>
+<span id="cb247-2"><a href="s02.html#cb247-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t2)</span></code></pre></div>
 <pre><code>[1] 0.2068209</code></pre>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="s02.html#cb273-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> test_false[[<span class="st">&quot;parameter&quot;</span>]][[<span class="st">&quot;df&quot;</span>]]</span>
-<span id="cb273-2"><a href="s02.html#cb273-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df2)</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="s02.html#cb249-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> test_false[[<span class="st">&quot;parameter&quot;</span>]][[<span class="st">&quot;df&quot;</span>]]</span>
+<span id="cb249-2"><a href="s02.html#cb249-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df2)</span></code></pre></div>
 <pre><code>[1] 893.8837</code></pre>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="s02.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="do">## calculo del efecto</span></span>
-<span id="cb275-2"><a href="s02.html#cb275-2" aria-hidden="true" tabindex="-1"></a>effect.size.false <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((t2 <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> ((t2 <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span> df2))</span>
-<span id="cb275-3"><a href="s02.html#cb275-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(effect.size.false)</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="s02.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="do">## calculo del efecto</span></span>
+<span id="cb251-2"><a href="s02.html#cb251-2" aria-hidden="true" tabindex="-1"></a>effect.size.false <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((t2 <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> ((t2 <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span> df2))</span>
+<span id="cb251-3"><a href="s02.html#cb251-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(effect.size.false)</span></code></pre></div>
 <pre><code>[1] 0.00691741</code></pre>
 </div>
 </div>
 <div id="test-t-student-para-la-media-de-una-muestra-en-grupos-dependientes" class="section level3" number="6.1.3">
 <h3><span class="header-section-number">6.1.3</span> Test t Student para la media de una muestra en grupos dependientes</h3>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="s02.html#cb277-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> endorph1<span class="sc">$</span>before</span>
-<span id="cb277-2"><a href="s02.html#cb277-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> endorph1<span class="sc">$</span>after</span>
-<span id="cb277-3"><a href="s02.html#cb277-3" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(x <span class="sc">-</span> y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb277-4"><a href="s02.html#cb277-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(media)</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="s02.html#cb253-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> endorph1<span class="sc">$</span>before</span>
+<span id="cb253-2"><a href="s02.html#cb253-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> endorph1<span class="sc">$</span>after</span>
+<span id="cb253-3"><a href="s02.html#cb253-3" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(x <span class="sc">-</span> y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb253-4"><a href="s02.html#cb253-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(media)</span></code></pre></div>
 <pre><code>[1] -18.73636</code></pre>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="s02.html#cb279-1" aria-hidden="true" tabindex="-1"></a>desviacion <span class="ot">&lt;-</span> <span class="fu">sd</span>(x <span class="sc">-</span> y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb279-2"><a href="s02.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(desviacion)</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="s02.html#cb255-1" aria-hidden="true" tabindex="-1"></a>desviacion <span class="ot">&lt;-</span> <span class="fu">sd</span>(x <span class="sc">-</span> y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb255-2"><a href="s02.html#cb255-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(desviacion)</span></code></pre></div>
 <pre><code>[1] 8.329739</code></pre>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="s02.html#cb281-1" aria-hidden="true" tabindex="-1"></a>errormedia <span class="ot">&lt;-</span> <span class="fu">sd</span>(x <span class="sc">-</span> y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="fu">length</span>(x)))</span>
-<span id="cb281-2"><a href="s02.html#cb281-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(errormedia)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="s02.html#cb257-1" aria-hidden="true" tabindex="-1"></a>errormedia <span class="ot">&lt;-</span> <span class="fu">sd</span>(x <span class="sc">-</span> y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> (<span class="fu">sqrt</span>(<span class="fu">length</span>(x)))</span>
+<span id="cb257-2"><a href="s02.html#cb257-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(errormedia)</span></code></pre></div>
 <pre><code>[1] 2.511511</code></pre>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="s02.html#cb283-1" aria-hidden="true" tabindex="-1"></a>int_inf <span class="ot">&lt;-</span> media <span class="sc">-</span> (<span class="dv">2</span> <span class="sc">*</span> errormedia)</span>
-<span id="cb283-2"><a href="s02.html#cb283-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(int_inf)</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="s02.html#cb259-1" aria-hidden="true" tabindex="-1"></a>int_inf <span class="ot">&lt;-</span> media <span class="sc">-</span> (<span class="dv">2</span> <span class="sc">*</span> errormedia)</span>
+<span id="cb259-2"><a href="s02.html#cb259-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(int_inf)</span></code></pre></div>
 <pre><code>[1] -23.75939</code></pre>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="s02.html#cb285-1" aria-hidden="true" tabindex="-1"></a>int_sup <span class="ot">&lt;-</span> media <span class="sc">+</span> (<span class="dv">2</span> <span class="sc">*</span> errormedia)</span>
-<span id="cb285-2"><a href="s02.html#cb285-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(int_sup)</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="s02.html#cb261-1" aria-hidden="true" tabindex="-1"></a>int_sup <span class="ot">&lt;-</span> media <span class="sc">+</span> (<span class="dv">2</span> <span class="sc">*</span> errormedia)</span>
+<span id="cb261-2"><a href="s02.html#cb261-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(int_sup)</span></code></pre></div>
 <pre><code>[1] -13.71334</code></pre>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="s02.html#cb287-1" aria-hidden="true" tabindex="-1"></a>lillieforsx <span class="ot">&lt;-</span> <span class="fu">lillie.test</span>(x) <span class="do">##  kolgomorov-smirnov con la correción de lilliefors</span></span>
-<span id="cb287-2"><a href="s02.html#cb287-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lillieforsx)</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="s02.html#cb263-1" aria-hidden="true" tabindex="-1"></a>lillieforsx <span class="ot">&lt;-</span> <span class="fu">lillie.test</span>(x) <span class="do">##  kolgomorov-smirnov con la correción de lilliefors</span></span>
+<span id="cb263-2"><a href="s02.html#cb263-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lillieforsx)</span></code></pre></div>
 <pre><code>
     Lilliefors (Kolmogorov-Smirnov) normality test
 
 data:  x
 D = 0.17365, p-value = 0.4668</code></pre>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="s02.html#cb289-1" aria-hidden="true" tabindex="-1"></a>lillieforsy <span class="ot">&lt;-</span> <span class="fu">lillie.test</span>(y)</span>
-<span id="cb289-2"><a href="s02.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lillieforsy)</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="s02.html#cb265-1" aria-hidden="true" tabindex="-1"></a>lillieforsy <span class="ot">&lt;-</span> <span class="fu">lillie.test</span>(y)</span>
+<span id="cb265-2"><a href="s02.html#cb265-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lillieforsy)</span></code></pre></div>
 <pre><code>
     Lilliefors (Kolmogorov-Smirnov) normality test
 
 data:  y
 D = 0.12988, p-value = 0.87</code></pre>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="s02.html#cb291-1" aria-hidden="true" tabindex="-1"></a>shapirox <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(x) <span class="do">##  shapiro - wilk</span></span>
-<span id="cb291-2"><a href="s02.html#cb291-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(shapirox)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="s02.html#cb267-1" aria-hidden="true" tabindex="-1"></a>shapirox <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(x) <span class="do">##  shapiro - wilk</span></span>
+<span id="cb267-2"><a href="s02.html#cb267-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(shapirox)</span></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
 data:  x
 W = 0.86876, p-value = 0.07472</code></pre>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="s02.html#cb293-1" aria-hidden="true" tabindex="-1"></a>shapiroy <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(y)</span>
-<span id="cb293-2"><a href="s02.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(shapiroy)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="s02.html#cb269-1" aria-hidden="true" tabindex="-1"></a>shapiroy <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(y)</span>
+<span id="cb269-2"><a href="s02.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(shapiroy)</span></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
 data:  y
 W = 0.96441, p-value = 0.8252</code></pre>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="s02.html#cb295-1" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
-<span id="cb295-2"><a href="s02.html#cb295-2" aria-hidden="true" tabindex="-1"></a>    x,</span>
-<span id="cb295-3"><a href="s02.html#cb295-3" aria-hidden="true" tabindex="-1"></a>    y,</span>
-<span id="cb295-4"><a href="s02.html#cb295-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb295-5"><a href="s02.html#cb295-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="do">##  alternativas cerradas: &quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;</span></span>
-<span id="cb295-6"><a href="s02.html#cb295-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="do">##  nótese que aquí es TRUE porque estamos en muestras pareadas</span></span>
-<span id="cb295-7"><a href="s02.html#cb295-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb295-8"><a href="s02.html#cb295-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(test)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="s02.html#cb271-1" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
+<span id="cb271-2"><a href="s02.html#cb271-2" aria-hidden="true" tabindex="-1"></a>    x,</span>
+<span id="cb271-3"><a href="s02.html#cb271-3" aria-hidden="true" tabindex="-1"></a>    y,</span>
+<span id="cb271-4"><a href="s02.html#cb271-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb271-5"><a href="s02.html#cb271-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="do">##  alternativas cerradas: &quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;</span></span>
+<span id="cb271-6"><a href="s02.html#cb271-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="do">##  nótese que aquí es TRUE porque estamos en muestras pareadas</span></span>
+<span id="cb271-7"><a href="s02.html#cb271-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb271-8"><a href="s02.html#cb271-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(test)</span></code></pre></div>
 <pre><code>
     Paired t-test
 
@@ -593,32 +593,32 @@ alternative hypothesis: true difference in means is not equal to 0
 sample estimates:
 mean of the differences 
               -18.73636 </code></pre>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="s02.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="do">##  cálculo del efecto tamaño</span></span>
-<span id="cb297-2"><a href="s02.html#cb297-2" aria-hidden="true" tabindex="-1"></a>t3 <span class="ot">&lt;-</span> test[[<span class="st">&quot;statistic&quot;</span>]][[<span class="st">&quot;t&quot;</span>]]</span>
-<span id="cb297-3"><a href="s02.html#cb297-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t3)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="s02.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="do">##  cálculo del efecto tamaño</span></span>
+<span id="cb273-2"><a href="s02.html#cb273-2" aria-hidden="true" tabindex="-1"></a>t3 <span class="ot">&lt;-</span> test[[<span class="st">&quot;statistic&quot;</span>]][[<span class="st">&quot;t&quot;</span>]]</span>
+<span id="cb273-3"><a href="s02.html#cb273-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t3)</span></code></pre></div>
 <pre><code>[1] -7.460197</code></pre>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="s02.html#cb299-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> test[[<span class="st">&quot;parameter&quot;</span>]][[<span class="st">&quot;df&quot;</span>]]</span>
-<span id="cb299-2"><a href="s02.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df3)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="s02.html#cb275-1" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> test[[<span class="st">&quot;parameter&quot;</span>]][[<span class="st">&quot;df&quot;</span>]]</span>
+<span id="cb275-2"><a href="s02.html#cb275-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df3)</span></code></pre></div>
 <pre><code>[1] 10</code></pre>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="s02.html#cb301-1" aria-hidden="true" tabindex="-1"></a>effect_size3 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((t3 <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> ((t3 <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span> df3))</span>
-<span id="cb301-2"><a href="s02.html#cb301-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(effect_size3)</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="s02.html#cb277-1" aria-hidden="true" tabindex="-1"></a>effect_size3 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((t3 <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">/</span> ((t3 <span class="sc">^</span> <span class="dv">2</span>) <span class="sc">+</span> df3))</span>
+<span id="cb277-2"><a href="s02.html#cb277-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(effect_size3)</span></code></pre></div>
 <pre><code>[1] 0.9206995</code></pre>
 </div>
 <div id="correlación-paramétrica-de-pearson" class="section level3" number="6.1.4">
 <h3><span class="header-section-number">6.1.4</span> Correlación paramétrica de Pearson</h3>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="s02.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="do">##  correlaciones</span></span>
-<span id="cb303-2"><a href="s02.html#cb303-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> anxiety<span class="sc">$</span>horas</span>
-<span id="cb303-3"><a href="s02.html#cb303-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> anxiety<span class="sc">$</span>nota</span>
-<span id="cb303-4"><a href="s02.html#cb303-4" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> anxiety<span class="sc">$</span>ansiedad</span>
-<span id="cb303-5"><a href="s02.html#cb303-5" aria-hidden="true" tabindex="-1"></a>pearson<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(</span>
-<span id="cb303-6"><a href="s02.html#cb303-6" aria-hidden="true" tabindex="-1"></a>        x,</span>
-<span id="cb303-7"><a href="s02.html#cb303-7" aria-hidden="true" tabindex="-1"></a>        y,</span>
-<span id="cb303-8"><a href="s02.html#cb303-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,<span class="do">##  alternativas cerradas: &quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;</span></span>
-<span id="cb303-9"><a href="s02.html#cb303-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>,<span class="do">##  alternativas cerradas: &quot;pearson&quot;, &quot;kendall&quot;, &quot;spearman&quot;</span></span>
-<span id="cb303-10"><a href="s02.html#cb303-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">exact =</span> <span class="cn">NULL</span>,</span>
-<span id="cb303-11"><a href="s02.html#cb303-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
-<span id="cb303-12"><a href="s02.html#cb303-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">continuity =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb303-13"><a href="s02.html#cb303-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pearson<span class="fl">.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="s02.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="do">##  correlaciones</span></span>
+<span id="cb279-2"><a href="s02.html#cb279-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> anxiety<span class="sc">$</span>horas</span>
+<span id="cb279-3"><a href="s02.html#cb279-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> anxiety<span class="sc">$</span>nota</span>
+<span id="cb279-4"><a href="s02.html#cb279-4" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> anxiety<span class="sc">$</span>ansiedad</span>
+<span id="cb279-5"><a href="s02.html#cb279-5" aria-hidden="true" tabindex="-1"></a>pearson<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(</span>
+<span id="cb279-6"><a href="s02.html#cb279-6" aria-hidden="true" tabindex="-1"></a>        x,</span>
+<span id="cb279-7"><a href="s02.html#cb279-7" aria-hidden="true" tabindex="-1"></a>        y,</span>
+<span id="cb279-8"><a href="s02.html#cb279-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,<span class="do">##  alternativas cerradas: &quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;</span></span>
+<span id="cb279-9"><a href="s02.html#cb279-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>,<span class="do">##  alternativas cerradas: &quot;pearson&quot;, &quot;kendall&quot;, &quot;spearman&quot;</span></span>
+<span id="cb279-10"><a href="s02.html#cb279-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">exact =</span> <span class="cn">NULL</span>,</span>
+<span id="cb279-11"><a href="s02.html#cb279-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
+<span id="cb279-12"><a href="s02.html#cb279-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">continuity =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb279-13"><a href="s02.html#cb279-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(pearson<span class="fl">.1</span>)</span></code></pre></div>
 <pre><code>
     Pearson&#39;s product-moment correlation
 
@@ -630,39 +630,39 @@ alternative hypothesis: true correlation is not equal to 0
 sample estimates:
       cor 
 0.3967207 </code></pre>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="s02.html#cb305-1" aria-hidden="true" tabindex="-1"></a>anxiety.filter <span class="ot">&lt;-</span> <span class="fu">select</span>(anxiety, horas, nota, ansiedad)</span>
-<span id="cb305-2"><a href="s02.html#cb305-2" aria-hidden="true" tabindex="-1"></a><span class="do">## p.coef &lt;-cor(anxiety.filter, use = &quot;complete.obs&quot;, method = &quot;pearson&quot;)</span></span>
-<span id="cb305-3"><a href="s02.html#cb305-3" aria-hidden="true" tabindex="-1"></a><span class="do">## p.cor &lt;- cor(anxiety.filter, use = &quot;pairwise.complete.obs&quot;) </span></span>
-<span id="cb305-4"><a href="s02.html#cb305-4" aria-hidden="true" tabindex="-1"></a>p.pvalue <span class="ot">&lt;-</span> <span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(anxiety.filter), <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>) <span class="do">## se obtiene la matriz de correlación</span></span>
-<span id="cb305-5"><a href="s02.html#cb305-5" aria-hidden="true" tabindex="-1"></a>p.pvalue[[<span class="st">&quot;r&quot;</span>]] <span class="do">##  matriz de correlación</span></span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="s02.html#cb281-1" aria-hidden="true" tabindex="-1"></a>anxiety.filter <span class="ot">&lt;-</span> <span class="fu">select</span>(anxiety, horas, nota, ansiedad)</span>
+<span id="cb281-2"><a href="s02.html#cb281-2" aria-hidden="true" tabindex="-1"></a><span class="do">## p.coef &lt;-cor(anxiety.filter, use = &quot;complete.obs&quot;, method = &quot;pearson&quot;)</span></span>
+<span id="cb281-3"><a href="s02.html#cb281-3" aria-hidden="true" tabindex="-1"></a><span class="do">## p.cor &lt;- cor(anxiety.filter, use = &quot;pairwise.complete.obs&quot;) </span></span>
+<span id="cb281-4"><a href="s02.html#cb281-4" aria-hidden="true" tabindex="-1"></a>p.pvalue <span class="ot">&lt;-</span> <span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(anxiety.filter), <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>) <span class="do">## se obtiene la matriz de correlación</span></span>
+<span id="cb281-5"><a href="s02.html#cb281-5" aria-hidden="true" tabindex="-1"></a>p.pvalue[[<span class="st">&quot;r&quot;</span>]] <span class="do">##  matriz de correlación</span></span></code></pre></div>
 <pre><code>              horas       nota   ansiedad
 horas     1.0000000  0.3967207 -0.7092493
 nota      0.3967207  1.0000000 -0.4409934
 ansiedad -0.7092493 -0.4409934  1.0000000</code></pre>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="s02.html#cb307-1" aria-hidden="true" tabindex="-1"></a>p.pvalue[[<span class="st">&quot;n&quot;</span>]] <span class="do">##  pares analizados</span></span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="s02.html#cb283-1" aria-hidden="true" tabindex="-1"></a>p.pvalue[[<span class="st">&quot;n&quot;</span>]] <span class="do">##  pares analizados</span></span></code></pre></div>
 <pre><code>         horas nota ansiedad
 horas      103  103      103
 nota       103  103      103
 ansiedad   103  103      103</code></pre>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="s02.html#cb309-1" aria-hidden="true" tabindex="-1"></a>p.pvalue[[<span class="st">&quot;P&quot;</span>]] <span class="do">##  pvalue de los coeficientes</span></span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="s02.html#cb285-1" aria-hidden="true" tabindex="-1"></a>p.pvalue[[<span class="st">&quot;P&quot;</span>]] <span class="do">##  pvalue de los coeficientes</span></span></code></pre></div>
 <pre><code>                horas         nota     ansiedad
 horas              NA 3.343451e-05 0.000000e+00
 nota     3.343451e-05           NA 3.127873e-06
 ansiedad 0.000000e+00 3.127873e-06           NA</code></pre>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="s02.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anxiety.filter) <span class="do">## se obtiene el gráfico de dispersión</span></span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="s02.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anxiety.filter) <span class="do">## se obtiene el gráfico de dispersión</span></span></code></pre></div>
 <p><img src="_main_files/figure-html/correlaciones-1.png" width="672" /></p>
 </div>
 <div id="análisis-de-varianza-de-un-factor-vía" class="section level3" number="6.1.5">
 <h3><span class="header-section-number">6.1.5</span> Análisis de varianza de un factor (vía)</h3>
 <p>Nota: la variable de grupos ha de ser factor; si no es así no funciona el análisis.</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="s02.html#cb312-1" aria-hidden="true" tabindex="-1"></a>hatco<span class="sc">$</span>x14f <span class="ot">&lt;-</span> <span class="fu">factor</span>(hatco<span class="sc">$</span>x14, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;nueva&quot;</span>, <span class="st">&quot;recompra modificada&quot;</span>, <span class="st">&quot;recompra&quot;</span>))</span>
-<span id="cb312-2"><a href="s02.html#cb312-2" aria-hidden="true" tabindex="-1"></a>hatco<span class="sc">$</span>x13f <span class="ot">&lt;-</span> <span class="fu">factor</span>(hatco<span class="sc">$</span>x13, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;tipo 1&quot;</span>, <span class="st">&quot;tipo2&quot;</span>))</span>
-<span id="cb312-3"><a href="s02.html#cb312-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(hatco<span class="sc">$</span>x10 <span class="sc">~</span> hatco<span class="sc">$</span>x14f, <span class="at">col =</span> <span class="st">&quot;lightgray&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="s02.html#cb288-1" aria-hidden="true" tabindex="-1"></a>hatco<span class="sc">$</span>x14f <span class="ot">&lt;-</span> <span class="fu">factor</span>(hatco<span class="sc">$</span>x14, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;nueva&quot;</span>, <span class="st">&quot;recompra modificada&quot;</span>, <span class="st">&quot;recompra&quot;</span>))</span>
+<span id="cb288-2"><a href="s02.html#cb288-2" aria-hidden="true" tabindex="-1"></a>hatco<span class="sc">$</span>x13f <span class="ot">&lt;-</span> <span class="fu">factor</span>(hatco<span class="sc">$</span>x13, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;tipo 1&quot;</span>, <span class="st">&quot;tipo2&quot;</span>))</span>
+<span id="cb288-3"><a href="s02.html#cb288-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(hatco<span class="sc">$</span>x10 <span class="sc">~</span> hatco<span class="sc">$</span>x14f, <span class="at">col =</span> <span class="st">&quot;lightgray&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/anova1-1.png" width="672" /></p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="s02.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(hatco<span class="sc">$</span>x10 <span class="sc">~</span> hatco<span class="sc">$</span>x13f, <span class="at">col =</span> <span class="st">&quot;lightgray&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="s02.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(hatco<span class="sc">$</span>x10 <span class="sc">~</span> hatco<span class="sc">$</span>x13f, <span class="at">col =</span> <span class="st">&quot;lightgray&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/anova1-2.png" width="672" /></p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="s02.html#cb314-1" aria-hidden="true" tabindex="-1"></a>anova1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(hatco<span class="sc">$</span>x10 <span class="sc">~</span> hatco<span class="sc">$</span>x14f)</span>
-<span id="cb314-2"><a href="s02.html#cb314-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova1)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="s02.html#cb290-1" aria-hidden="true" tabindex="-1"></a>anova1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(hatco<span class="sc">$</span>x10 <span class="sc">~</span> hatco<span class="sc">$</span>x14f)</span>
+<span id="cb290-2"><a href="s02.html#cb290-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova1)</span></code></pre></div>
 <pre><code>Call:
    aov(formula = hatco$x10 ~ hatco$x14f)
 
@@ -673,13 +673,13 @@ Deg. of Freedom          2        97
 
 Residual standard error: 0.5873152
 Estimated effects may be unbalanced</code></pre>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="s02.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova1)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="s02.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova1)</span></code></pre></div>
 <pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)    
 hatco$x14f   2  39.01  19.503   56.54 &lt;2e-16 ***
 Residuals   97  33.46   0.345                   
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="s02.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">model.tables</span>(anova1, <span class="st">&quot;means&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="s02.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">model.tables</span>(anova1, <span class="st">&quot;means&quot;</span>)</span></code></pre></div>
 <pre><code>Tables of means
 Grand mean
       
@@ -692,8 +692,8 @@ rep 34.000              32.000   34.000</code></pre>
 </div>
 <div id="análisis-de-varianza-de-dos-factores-vías" class="section level3" number="6.1.6">
 <h3><span class="header-section-number">6.1.6</span> Análisis de varianza de dos factores (vías)</h3>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="s02.html#cb320-1" aria-hidden="true" tabindex="-1"></a>anova2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(hatco<span class="sc">$</span>x10 <span class="sc">~</span> hatco<span class="sc">$</span>x14f <span class="sc">+</span> hatco<span class="sc">$</span>x13f)</span>
-<span id="cb320-2"><a href="s02.html#cb320-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova2)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="s02.html#cb296-1" aria-hidden="true" tabindex="-1"></a>anova2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(hatco<span class="sc">$</span>x10 <span class="sc">~</span> hatco<span class="sc">$</span>x14f <span class="sc">+</span> hatco<span class="sc">$</span>x13f)</span>
+<span id="cb296-2"><a href="s02.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova2)</span></code></pre></div>
 <pre><code>Call:
    aov(formula = hatco$x10 ~ hatco$x14f + hatco$x13f)
 
@@ -704,14 +704,14 @@ Deg. of Freedom          2          1        96
 
 Residual standard error: 0.5827849
 Estimated effects may be unbalanced</code></pre>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="s02.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova2)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="s02.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova2)</span></code></pre></div>
 <pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)    
 hatco$x14f   2  39.01  19.503  57.424 &lt;2e-16 ***
 hatco$x13f   1   0.85   0.854   2.514  0.116    
 Residuals   96  32.61   0.340                   
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="s02.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="fu">model.tables</span>(anova2, <span class="st">&quot;means&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="s02.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">model.tables</span>(anova2, <span class="st">&quot;means&quot;</span>)</span></code></pre></div>
 <pre><code>Tables of means
 Grand mean
       
@@ -735,10 +735,10 @@ rep 50.000 50.000</code></pre>
 <div id="prueba-chi2-de-una-muestra" class="section level4" number="6.2.1.1">
 <h4><span class="header-section-number">6.2.1.1</span> Prueba Chi2 de una muestra</h4>
 <p>El test chi2 para una muestra, compara los resultados de una distribución marginal con los resultados proporcionados de forma externa.</p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="s02.html#cb326-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">47</span>, <span class="dv">80</span>, <span class="dv">82</span>, <span class="dv">47</span>, <span class="dv">35</span>)</span>
-<span id="cb326-2"><a href="s02.html#cb326-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">50</span>, <span class="dv">75</span>, <span class="dv">75</span>, <span class="dv">50</span>, <span class="dv">30</span>)</span>
-<span id="cb326-3"><a href="s02.html#cb326-3" aria-hidden="true" tabindex="-1"></a>chisq000 <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(x, <span class="at">p =</span> y, <span class="at">rescale.p =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb326-4"><a href="s02.html#cb326-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(chisq000)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="s02.html#cb302-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">47</span>, <span class="dv">80</span>, <span class="dv">82</span>, <span class="dv">47</span>, <span class="dv">35</span>)</span>
+<span id="cb302-2"><a href="s02.html#cb302-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">50</span>, <span class="dv">75</span>, <span class="dv">75</span>, <span class="dv">50</span>, <span class="dv">30</span>)</span>
+<span id="cb302-3"><a href="s02.html#cb302-3" aria-hidden="true" tabindex="-1"></a>chisq000 <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(x, <span class="at">p =</span> y, <span class="at">rescale.p =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb302-4"><a href="s02.html#cb302-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(chisq000)</span></code></pre></div>
 <pre><code>
     Chi-squared test for given probabilities
 
@@ -747,23 +747,23 @@ X-squared = 1.9941, df = 5, p-value = 0.85</code></pre>
 </div>
 <div id="prueba-chi2-de-una-tabla" class="section level4" number="6.2.1.2">
 <h4><span class="header-section-number">6.2.1.2</span> Prueba Chi2 de una tabla</h4>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="s02.html#cb328-1" aria-hidden="true" tabindex="-1"></a>tabla001 <span class="ot">&lt;-</span>  <span class="fu">table</span>(data2<span class="sc">$</span>freedman, data2<span class="sc">$</span>sex)</span>
-<span id="cb328-2"><a href="s02.html#cb328-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tabla001)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="s02.html#cb304-1" aria-hidden="true" tabindex="-1"></a>tabla001 <span class="ot">&lt;-</span>  <span class="fu">table</span>(data2<span class="sc">$</span>freedman, data2<span class="sc">$</span>sex)</span>
+<span id="cb304-2"><a href="s02.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tabla001)</span></code></pre></div>
 <pre><code>                                                            
                                                              Male Female
   Don&#39;t know                                                   28     36
   No Answer                                                     1     10
   Allowing people freedom of expression/tolerate bad manners  268    232
   Enforcing good manners/limit freedom of expression          195    240</code></pre>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="s02.html#cb330-1" aria-hidden="true" tabindex="-1"></a>chisq001 <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(tabla001, <span class="at">correct =</span> <span class="cn">FALSE</span>) <span class="do">## prueba chi2 de tabla sin corrección de continuidad de Yates (solo en 2*2)</span></span>
-<span id="cb330-2"><a href="s02.html#cb330-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(chisq001)</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="s02.html#cb306-1" aria-hidden="true" tabindex="-1"></a>chisq001 <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(tabla001, <span class="at">correct =</span> <span class="cn">FALSE</span>) <span class="do">## prueba chi2 de tabla sin corrección de continuidad de Yates (solo en 2*2)</span></span>
+<span id="cb306-2"><a href="s02.html#cb306-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(chisq001)</span></code></pre></div>
 <pre><code>
     Pearson&#39;s Chi-squared test
 
 data:  tabla001
 X-squared = 14.951, df = 3, p-value = 0.001859</code></pre>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="s02.html#cb332-1" aria-hidden="true" tabindex="-1"></a>chisq002 <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(tabla001, <span class="at">correct =</span> <span class="cn">TRUE</span>) <span class="do">## prueba chi2 de tabla con corrección de continuidad, como es 2*2 aplica por defecto, si no fuera 2*2 no aplica la corrección</span></span>
-<span id="cb332-2"><a href="s02.html#cb332-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(chisq002)</span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="s02.html#cb308-1" aria-hidden="true" tabindex="-1"></a>chisq002 <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(tabla001, <span class="at">correct =</span> <span class="cn">TRUE</span>) <span class="do">## prueba chi2 de tabla con corrección de continuidad, como es 2*2 aplica por defecto, si no fuera 2*2 no aplica la corrección</span></span>
+<span id="cb308-2"><a href="s02.html#cb308-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(chisq002)</span></code></pre></div>
 <pre><code>
     Pearson&#39;s Chi-squared test
 
@@ -772,8 +772,8 @@ X-squared = 14.951, df = 3, p-value = 0.001859</code></pre>
 </div>
 <div id="otros-test-derivados" class="section level4" number="6.2.1.3">
 <h4><span class="header-section-number">6.2.1.3</span> Otros test derivados</h4>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="s02.html#cb334-1" aria-hidden="true" tabindex="-1"></a>otros <span class="ot">&lt;-</span> <span class="fu">assocstats</span>(tabla001)</span>
-<span id="cb334-2"><a href="s02.html#cb334-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(otros)</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="s02.html#cb310-1" aria-hidden="true" tabindex="-1"></a>otros <span class="ot">&lt;-</span> <span class="fu">assocstats</span>(tabla001)</span>
+<span id="cb310-2"><a href="s02.html#cb310-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(otros)</span></code></pre></div>
 <pre><code>                    X^2 df  P(&gt; X^2)
 Likelihood Ratio 16.138  3 0.0010623
 Pearson          14.951  3 0.0018586
@@ -787,29 +787,27 @@ Cramer&#39;s V        : 0.122 </code></pre>
 <h3><span class="header-section-number">6.2.2</span> Correlaciones no paramétricas</h3>
 <div id="correlación-de-spearman" class="section level4" number="6.2.2.1">
 <h4><span class="header-section-number">6.2.2.1</span> Correlación de Spearman</h4>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="s02.html#cb336-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> grades<span class="sc">$</span>Estadística</span>
-<span id="cb336-2"><a href="s02.html#cb336-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> grades<span class="sc">$</span>Selectivo</span>
-<span id="cb336-3"><a href="s02.html#cb336-3" aria-hidden="true" tabindex="-1"></a>spearman<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(</span>
-<span id="cb336-4"><a href="s02.html#cb336-4" aria-hidden="true" tabindex="-1"></a>        x,</span>
-<span id="cb336-5"><a href="s02.html#cb336-5" aria-hidden="true" tabindex="-1"></a>        y,</span>
-<span id="cb336-6"><a href="s02.html#cb336-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
-<span id="cb336-7"><a href="s02.html#cb336-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>,</span>
-<span id="cb336-8"><a href="s02.html#cb336-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">exact =</span> <span class="cn">NULL</span>,</span>
-<span id="cb336-9"><a href="s02.html#cb336-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
-<span id="cb336-10"><a href="s02.html#cb336-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">continuity =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>Warning in cor.test.default(x, y, alternative = &quot;two.sided&quot;, method = &quot;spearman&quot;, : Cannot compute exact p-value with ties</code></pre>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="s02.html#cb312-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> grades<span class="sc">$</span>Estadística</span>
+<span id="cb312-2"><a href="s02.html#cb312-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> grades<span class="sc">$</span>Selectivo</span>
+<span id="cb312-3"><a href="s02.html#cb312-3" aria-hidden="true" tabindex="-1"></a>spearman<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(</span>
+<span id="cb312-4"><a href="s02.html#cb312-4" aria-hidden="true" tabindex="-1"></a>        x,</span>
+<span id="cb312-5"><a href="s02.html#cb312-5" aria-hidden="true" tabindex="-1"></a>        y,</span>
+<span id="cb312-6"><a href="s02.html#cb312-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb312-7"><a href="s02.html#cb312-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>,</span>
+<span id="cb312-8"><a href="s02.html#cb312-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">exact =</span> <span class="cn">NULL</span>,</span>
+<span id="cb312-9"><a href="s02.html#cb312-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
+<span id="cb312-10"><a href="s02.html#cb312-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">continuity =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 <div id="correlación-de-kendall" class="section level4" number="6.2.2.2">
 <h4><span class="header-section-number">6.2.2.2</span> Correlación de Kendall</h4>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="s02.html#cb338-1" aria-hidden="true" tabindex="-1"></a>tau.b.kendall<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(</span>
-<span id="cb338-2"><a href="s02.html#cb338-2" aria-hidden="true" tabindex="-1"></a>        x,</span>
-<span id="cb338-3"><a href="s02.html#cb338-3" aria-hidden="true" tabindex="-1"></a>        y,</span>
-<span id="cb338-4"><a href="s02.html#cb338-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
-<span id="cb338-5"><a href="s02.html#cb338-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">method =</span> <span class="st">&quot;kendall&quot;</span>,</span>
-<span id="cb338-6"><a href="s02.html#cb338-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">exact =</span> <span class="cn">NULL</span>,</span>
-<span id="cb338-7"><a href="s02.html#cb338-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
-<span id="cb338-8"><a href="s02.html#cb338-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">continuity =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>Warning in cor.test.default(x, y, alternative = &quot;two.sided&quot;, method = &quot;kendall&quot;, : Cannot compute exact p-value with ties</code></pre>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="s02.html#cb313-1" aria-hidden="true" tabindex="-1"></a>tau.b.kendall<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(</span>
+<span id="cb313-2"><a href="s02.html#cb313-2" aria-hidden="true" tabindex="-1"></a>        x,</span>
+<span id="cb313-3"><a href="s02.html#cb313-3" aria-hidden="true" tabindex="-1"></a>        y,</span>
+<span id="cb313-4"><a href="s02.html#cb313-4" aria-hidden="true" tabindex="-1"></a>        <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,</span>
+<span id="cb313-5"><a href="s02.html#cb313-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">method =</span> <span class="st">&quot;kendall&quot;</span>,</span>
+<span id="cb313-6"><a href="s02.html#cb313-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">exact =</span> <span class="cn">NULL</span>,</span>
+<span id="cb313-7"><a href="s02.html#cb313-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
+<span id="cb313-8"><a href="s02.html#cb313-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">continuity =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="test-de-diferencias-de-una-muestra-en-grupos-independientes" class="section level3" number="6.2.3">
@@ -817,75 +815,75 @@ Cramer&#39;s V        : 0.122 </code></pre>
 <p>Probamos la normalidad de los grupos a comparar. Probamos la normalidad de cada grupo en cada variable y una vez probado que existen problemas de normalidad en algunos de los grupos, calculamos la prueba W de Wilcoxon.</p>
 <div id="lilliefors-y-shapiro-wilk" class="section level4" number="6.2.3.1">
 <h4><span class="header-section-number">6.2.3.1</span> Lilliefors y Shapiro-Wilk</h4>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="s02.html#cb340-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> bdi<span class="sc">$</span>sunbdi</span>
-<span id="cb340-2"><a href="s02.html#cb340-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> bdi<span class="sc">$</span>wedbdi</span>
-<span id="cb340-3"><a href="s02.html#cb340-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> bdi<span class="sc">$</span>droga</span>
-<span id="cb340-4"><a href="s02.html#cb340-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb340-5"><a href="s02.html#cb340-5" aria-hidden="true" tabindex="-1"></a>bdi.filter <span class="ot">&lt;-</span> <span class="fu">filter</span> (bdi, bdi<span class="sc">$</span>droga <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb340-6"><a href="s02.html#cb340-6" aria-hidden="true" tabindex="-1"></a>es <span class="ot">&lt;-</span> bdi.filter<span class="sc">$</span>sunbdi <span class="do">##  alcohol domingo</span></span>
-<span id="cb340-7"><a href="s02.html#cb340-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb340-8"><a href="s02.html#cb340-8" aria-hidden="true" tabindex="-1"></a>bdi.filter <span class="ot">&lt;-</span> <span class="fu">filter</span> (bdi, bdi<span class="sc">$</span>droga <span class="sc">==</span> <span class="dv">2</span>)</span>
-<span id="cb340-9"><a href="s02.html#cb340-9" aria-hidden="true" tabindex="-1"></a>as <span class="ot">&lt;-</span> bdi.filter<span class="sc">$</span>sunbdi <span class="do">##  extasis domingo</span></span>
-<span id="cb340-10"><a href="s02.html#cb340-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb340-11"><a href="s02.html#cb340-11" aria-hidden="true" tabindex="-1"></a>bdi.filter <span class="ot">&lt;-</span> <span class="fu">filter</span> (bdi, bdi<span class="sc">$</span>droga <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb340-12"><a href="s02.html#cb340-12" aria-hidden="true" tabindex="-1"></a>ew <span class="ot">&lt;-</span> bdi.filter<span class="sc">$</span>wedbdi <span class="do">##  alcohol miercoles</span></span>
-<span id="cb340-13"><a href="s02.html#cb340-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb340-14"><a href="s02.html#cb340-14" aria-hidden="true" tabindex="-1"></a>bdi.filter <span class="ot">&lt;-</span> <span class="fu">filter</span> (bdi, bdi<span class="sc">$</span>droga <span class="sc">==</span> <span class="dv">2</span>)</span>
-<span id="cb340-15"><a href="s02.html#cb340-15" aria-hidden="true" tabindex="-1"></a>aw <span class="ot">&lt;-</span> bdi.filter<span class="sc">$</span>wedbdi <span class="do">##  extasis miercoles</span></span>
-<span id="cb340-16"><a href="s02.html#cb340-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb340-17"><a href="s02.html#cb340-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(bdi.filter)</span>
-<span id="cb340-18"><a href="s02.html#cb340-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb340-19"><a href="s02.html#cb340-19" aria-hidden="true" tabindex="-1"></a>lillie.sun<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lillie.test</span>(es)</span>
-<span id="cb340-20"><a href="s02.html#cb340-20" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lillie.sun<span class="fl">.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="s02.html#cb314-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> bdi<span class="sc">$</span>sunbdi</span>
+<span id="cb314-2"><a href="s02.html#cb314-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> bdi<span class="sc">$</span>wedbdi</span>
+<span id="cb314-3"><a href="s02.html#cb314-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> bdi<span class="sc">$</span>droga</span>
+<span id="cb314-4"><a href="s02.html#cb314-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb314-5"><a href="s02.html#cb314-5" aria-hidden="true" tabindex="-1"></a>bdi.filter <span class="ot">&lt;-</span> <span class="fu">filter</span> (bdi, bdi<span class="sc">$</span>droga <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb314-6"><a href="s02.html#cb314-6" aria-hidden="true" tabindex="-1"></a>es <span class="ot">&lt;-</span> bdi.filter<span class="sc">$</span>sunbdi <span class="do">##  alcohol domingo</span></span>
+<span id="cb314-7"><a href="s02.html#cb314-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb314-8"><a href="s02.html#cb314-8" aria-hidden="true" tabindex="-1"></a>bdi.filter <span class="ot">&lt;-</span> <span class="fu">filter</span> (bdi, bdi<span class="sc">$</span>droga <span class="sc">==</span> <span class="dv">2</span>)</span>
+<span id="cb314-9"><a href="s02.html#cb314-9" aria-hidden="true" tabindex="-1"></a>as <span class="ot">&lt;-</span> bdi.filter<span class="sc">$</span>sunbdi <span class="do">##  extasis domingo</span></span>
+<span id="cb314-10"><a href="s02.html#cb314-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb314-11"><a href="s02.html#cb314-11" aria-hidden="true" tabindex="-1"></a>bdi.filter <span class="ot">&lt;-</span> <span class="fu">filter</span> (bdi, bdi<span class="sc">$</span>droga <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb314-12"><a href="s02.html#cb314-12" aria-hidden="true" tabindex="-1"></a>ew <span class="ot">&lt;-</span> bdi.filter<span class="sc">$</span>wedbdi <span class="do">##  alcohol miercoles</span></span>
+<span id="cb314-13"><a href="s02.html#cb314-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb314-14"><a href="s02.html#cb314-14" aria-hidden="true" tabindex="-1"></a>bdi.filter <span class="ot">&lt;-</span> <span class="fu">filter</span> (bdi, bdi<span class="sc">$</span>droga <span class="sc">==</span> <span class="dv">2</span>)</span>
+<span id="cb314-15"><a href="s02.html#cb314-15" aria-hidden="true" tabindex="-1"></a>aw <span class="ot">&lt;-</span> bdi.filter<span class="sc">$</span>wedbdi <span class="do">##  extasis miercoles</span></span>
+<span id="cb314-16"><a href="s02.html#cb314-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb314-17"><a href="s02.html#cb314-17" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(bdi.filter)</span>
+<span id="cb314-18"><a href="s02.html#cb314-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb314-19"><a href="s02.html#cb314-19" aria-hidden="true" tabindex="-1"></a>lillie.sun<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lillie.test</span>(es)</span>
+<span id="cb314-20"><a href="s02.html#cb314-20" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lillie.sun<span class="fl">.1</span>)</span></code></pre></div>
 <pre><code>
     Lilliefors (Kolmogorov-Smirnov) normality test
 
 data:  es
 D = 0.27585, p-value = 0.02986</code></pre>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="s02.html#cb342-1" aria-hidden="true" tabindex="-1"></a>shap.sun<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(es)</span>
-<span id="cb342-2"><a href="s02.html#cb342-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(shap.sun<span class="fl">.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="s02.html#cb316-1" aria-hidden="true" tabindex="-1"></a>shap.sun<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(es)</span>
+<span id="cb316-2"><a href="s02.html#cb316-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(shap.sun<span class="fl">.1</span>)</span></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
 data:  es
 W = 0.81064, p-value = 0.01952</code></pre>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="s02.html#cb344-1" aria-hidden="true" tabindex="-1"></a>lillie.sun<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">lillie.test</span>(as)</span>
-<span id="cb344-2"><a href="s02.html#cb344-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lillie.sun<span class="fl">.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="s02.html#cb318-1" aria-hidden="true" tabindex="-1"></a>lillie.sun<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">lillie.test</span>(as)</span>
+<span id="cb318-2"><a href="s02.html#cb318-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lillie.sun<span class="fl">.2</span>)</span></code></pre></div>
 <pre><code>
     Lilliefors (Kolmogorov-Smirnov) normality test
 
 data:  as
 D = 0.16992, p-value = 0.5687</code></pre>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="s02.html#cb346-1" aria-hidden="true" tabindex="-1"></a>shap.sun<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(as)</span>
-<span id="cb346-2"><a href="s02.html#cb346-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(shap.sun<span class="fl">.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="s02.html#cb320-1" aria-hidden="true" tabindex="-1"></a>shap.sun<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(as)</span>
+<span id="cb320-2"><a href="s02.html#cb320-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(shap.sun<span class="fl">.2</span>)</span></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
 data:  as
 W = 0.95947, p-value = 0.7798</code></pre>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="s02.html#cb348-1" aria-hidden="true" tabindex="-1"></a>lillie.wed<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lillie.test</span>(ew)</span>
-<span id="cb348-2"><a href="s02.html#cb348-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lillie.wed<span class="fl">.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="s02.html#cb322-1" aria-hidden="true" tabindex="-1"></a>lillie.wed<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">lillie.test</span>(ew)</span>
+<span id="cb322-2"><a href="s02.html#cb322-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lillie.wed<span class="fl">.1</span>)</span></code></pre></div>
 <pre><code>
     Lilliefors (Kolmogorov-Smirnov) normality test
 
 data:  ew
 D = 0.23469, p-value = 0.1226</code></pre>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="s02.html#cb350-1" aria-hidden="true" tabindex="-1"></a>shap.wed<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(ew)</span>
-<span id="cb350-2"><a href="s02.html#cb350-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(shap.wed<span class="fl">.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="s02.html#cb324-1" aria-hidden="true" tabindex="-1"></a>shap.wed<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(ew)</span>
+<span id="cb324-2"><a href="s02.html#cb324-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(shap.wed<span class="fl">.1</span>)</span></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
 data:  ew
 W = 0.94114, p-value = 0.5658</code></pre>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="s02.html#cb352-1" aria-hidden="true" tabindex="-1"></a>lillie.wed<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">lillie.test</span>(aw)</span>
-<span id="cb352-2"><a href="s02.html#cb352-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lillie.wed<span class="fl">.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="s02.html#cb326-1" aria-hidden="true" tabindex="-1"></a>lillie.wed<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">lillie.test</span>(aw)</span>
+<span id="cb326-2"><a href="s02.html#cb326-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lillie.wed<span class="fl">.2</span>)</span></code></pre></div>
 <pre><code>
     Lilliefors (Kolmogorov-Smirnov) normality test
 
 data:  aw
 D = 0.30502, p-value = 0.00894</code></pre>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="s02.html#cb354-1" aria-hidden="true" tabindex="-1"></a>shap.wed<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(aw)</span>
-<span id="cb354-2"><a href="s02.html#cb354-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(shap.wed<span class="fl">.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="s02.html#cb328-1" aria-hidden="true" tabindex="-1"></a>shap.wed<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(aw)</span>
+<span id="cb328-2"><a href="s02.html#cb328-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(shap.wed<span class="fl">.2</span>)</span></code></pre></div>
 <pre><code>
     Shapiro-Wilk normality test
 
@@ -895,10 +893,8 @@ W = 0.75347, p-value = 0.003933</code></pre>
 <div id="prueba-w-de-wilcoxon---u-mann-withney" class="section level4" number="6.2.3.2">
 <h4><span class="header-section-number">6.2.3.2</span> Prueba W de Wilcoxon - U Mann-Withney</h4>
 <p>Aunque la probabilidad no es exactamente la misma, es muy aproximada.</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="s02.html#cb356-1" aria-hidden="true" tabindex="-1"></a>wilcox.test<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(as, es, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">conf.int =</span> <span class="fl">0.95</span>)</span></code></pre></div>
-<pre><code>Warning in wilcox.test.default(as, es, paired = FALSE, alternative = &quot;two.sided&quot;, : cannot compute exact p-value with ties</code></pre>
-<pre><code>Warning in wilcox.test.default(as, es, paired = FALSE, alternative = &quot;two.sided&quot;, : cannot compute exact confidence intervals with ties</code></pre>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="s02.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wilcox.test<span class="fl">.1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="s02.html#cb330-1" aria-hidden="true" tabindex="-1"></a>wilcox.test<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(as, es, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">conf.int =</span> <span class="fl">0.95</span>)</span>
+<span id="cb330-2"><a href="s02.html#cb330-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wilcox.test<span class="fl">.1</span>)</span></code></pre></div>
 <pre><code>
     Wilcoxon rank sum test with continuity correction
 
@@ -910,10 +906,8 @@ alternative hypothesis: true location shift is not equal to 0
 sample estimates:
 difference in location 
              -1.000027 </code></pre>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="s02.html#cb361-1" aria-hidden="true" tabindex="-1"></a>wilcox.test<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(aw, ew, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">conf.int =</span> <span class="fl">0.95</span>)</span></code></pre></div>
-<pre><code>Warning in wilcox.test.default(aw, ew, paired = FALSE, alternative = &quot;two.sided&quot;, : cannot compute exact p-value with ties</code></pre>
-<pre><code>Warning in wilcox.test.default(aw, ew, paired = FALSE, alternative = &quot;two.sided&quot;, : cannot compute exact confidence intervals with ties</code></pre>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="s02.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wilcox.test<span class="fl">.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="s02.html#cb332-1" aria-hidden="true" tabindex="-1"></a>wilcox.test<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(aw, ew, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">conf.int =</span> <span class="fl">0.95</span>)</span>
+<span id="cb332-2"><a href="s02.html#cb332-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wilcox.test<span class="fl">.2</span>)</span></code></pre></div>
 <pre><code>
     Wilcoxon rank sum test with continuity correction
 
@@ -932,12 +926,8 @@ difference in location
 <div id="prueba-v-de-wilcoxon" class="section level4" number="6.2.4.1">
 <h4><span class="header-section-number">6.2.4.1</span> Prueba V de Wilcoxon</h4>
 <p>Atención, resultado de la prueba es suma de rangos negativos. no es el mismo resultado que SPSS el valor, pero si la probabilidad aproximada.</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="s02.html#cb366-1" aria-hidden="true" tabindex="-1"></a>wilcox.test<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(es, ew, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">conf.int =</span> <span class="fl">0.99</span>)</span></code></pre></div>
-<pre><code>Warning in wilcox.test.default(es, ew, paired = TRUE, alternative = &quot;two.sided&quot;, : cannot compute exact p-value with ties</code></pre>
-<pre><code>Warning in wilcox.test.default(es, ew, paired = TRUE, alternative = &quot;two.sided&quot;, : cannot compute exact confidence interval with ties</code></pre>
-<pre><code>Warning in wilcox.test.default(es, ew, paired = TRUE, alternative = &quot;two.sided&quot;, : cannot compute exact p-value with zeroes</code></pre>
-<pre><code>Warning in wilcox.test.default(es, ew, paired = TRUE, alternative = &quot;two.sided&quot;, : cannot compute exact confidence interval with zeroes</code></pre>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="s02.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wilcox.test<span class="fl">.3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="s02.html#cb334-1" aria-hidden="true" tabindex="-1"></a>wilcox.test<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(es, ew, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">conf.int =</span> <span class="fl">0.99</span>)</span>
+<span id="cb334-2"><a href="s02.html#cb334-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wilcox.test<span class="fl">.3</span>)</span></code></pre></div>
 <pre><code>
     Wilcoxon signed rank test with continuity correction
 
@@ -949,10 +939,8 @@ alternative hypothesis: true location shift is not equal to 0
 sample estimates:
 (pseudo)median 
      -15.67111 </code></pre>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="s02.html#cb373-1" aria-hidden="true" tabindex="-1"></a>wilcox.test<span class="fl">.4</span> <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(as, aw, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">conf.int =</span> <span class="fl">0.99</span>)</span></code></pre></div>
-<pre><code>Warning in wilcox.test.default(as, aw, paired = TRUE, alternative = &quot;two.sided&quot;, : cannot compute exact p-value with ties</code></pre>
-<pre><code>Warning in wilcox.test.default(as, aw, paired = TRUE, alternative = &quot;two.sided&quot;, : cannot compute exact confidence interval with ties</code></pre>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="s02.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wilcox.test<span class="fl">.4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="s02.html#cb336-1" aria-hidden="true" tabindex="-1"></a>wilcox.test<span class="fl">.4</span> <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(as, aw, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">conf.int =</span> <span class="fl">0.99</span>)</span>
+<span id="cb336-2"><a href="s02.html#cb336-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wilcox.test<span class="fl">.4</span>)</span></code></pre></div>
 <pre><code>
     Wilcoxon signed rank test with continuity correction
 

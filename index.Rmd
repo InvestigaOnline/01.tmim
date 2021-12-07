@@ -64,6 +64,7 @@ knitr::write_bib(
 )
 knitr::opts_chunk$set(
     echo = TRUE,
+    warning = FALSE,
     comment = NA,
     message = FALSE,
     fig.pos = "H"

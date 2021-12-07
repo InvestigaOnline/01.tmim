@@ -415,58 +415,13 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="s04" class="section level1" number="8">
 <h1><span class="header-section-number">Parte 8</span> Análisis de componentes principales - Sesión 04</h1>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="s04.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sesion 04</span></span>
-<span id="cb461-2"><a href="s04.html#cb461-2" aria-hidden="true" tabindex="-1"></a>hbat <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/hbat.sav&quot;</span>))</span></code></pre></div>
-<pre><code>Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
-
-Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE</code></pre>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="s04.html#cb463-1" aria-hidden="true" tabindex="-1"></a>data00 <span class="ot">&lt;-</span> <span class="fu">subset</span>(hbat, <span class="at">select =</span> <span class="fu">c</span>(x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18))</span></code></pre></div>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="s04.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sesion 04</span></span>
+<span id="cb420-2"><a href="s04.html#cb420-2" aria-hidden="true" tabindex="-1"></a>hbat <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/hbat.sav&quot;</span>))</span>
+<span id="cb420-3"><a href="s04.html#cb420-3" aria-hidden="true" tabindex="-1"></a>data00 <span class="ot">&lt;-</span> <span class="fu">subset</span>(hbat, <span class="at">select =</span> <span class="fu">c</span>(x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18))</span></code></pre></div>
 <div id="análisis-de-correlación" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Análisis de correlación</h2>
 <p>Calculamos la correlación. Si algún valor está en el MSA está por debajo de 0.5 lo eliminamos (por orden y solo uno en cada paso) y volvemos a hacer la correlación y cálculo de Kaiser-Meyer-Olkin; solo así quedarán las mejores variables.</p>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="s04.html#cb464-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(data00), <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="s04.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(data00), <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
 <pre><code>       x6    x7    x8    x9   x10   x11   x12   x13   x14   x15   x16   x17   x18
 x6   1.00 -0.14  0.10  0.11 -0.05  0.48 -0.15 -0.40  0.09  0.03  0.10 -0.49  0.03
 x7  -0.14  1.00  0.00  0.14  0.43 -0.05  0.79  0.23  0.05 -0.03  0.16  0.27  0.19
@@ -501,7 +456,7 @@ x16 0.3017 0.1208 0.4282 0.0000 0.0665 0.0000 0.0517 0.2564 0.0494 0.4980       
 x17 0.0000 0.0065 0.0638 0.0000 0.0007 0.0001 0.0003 0.0000 0.0904 0.3516 0.0000        0.0000
 x18 0.7843 0.0561 0.8016 0.0000 0.0055 0.0000 0.0063 0.4712 0.2786 0.2950 0.0000 0.0000       </code></pre>
 <p>Calculamos Kaiser - Meyer - Olkin y MSA</p>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="s04.html#cb466-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(data00)</span></code></pre></div>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="s04.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(data00)</span></code></pre></div>
 <pre><code>Kaiser-Meyer-Olkin factor adequacy
 Call: KMO(r = data00)
 Overall MSA =  0.61
@@ -509,8 +464,8 @@ MSA for each item =
   x6   x7   x8   x9  x10  x11  x12  x13  x14  x15  x16  x17  x18 
 0.87 0.62 0.53 0.89 0.81 0.45 0.59 0.88 0.53 0.31 0.86 0.44 0.53 </code></pre>
 <p>Quitamos X15, dado que su MSA es 0.31, y es el peor de todos los coeeficientes, estando por debajo de 0.5.</p>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="s04.html#cb468-1" aria-hidden="true" tabindex="-1"></a>data01 <span class="ot">&lt;-</span> <span class="fu">subset</span>(hbat, <span class="at">select =</span> <span class="fu">c</span>(x6, x7, x8, x9, x10, x11, x12, x13, x14, x16, x17, x18))</span>
-<span id="cb468-2"><a href="s04.html#cb468-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(data01), <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="s04.html#cb425-1" aria-hidden="true" tabindex="-1"></a>data01 <span class="ot">&lt;-</span> <span class="fu">subset</span>(hbat, <span class="at">select =</span> <span class="fu">c</span>(x6, x7, x8, x9, x10, x11, x12, x13, x14, x16, x17, x18))</span>
+<span id="cb425-2"><a href="s04.html#cb425-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(data01), <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
 <pre><code>       x6    x7    x8    x9   x10   x11   x12   x13   x14   x16   x17   x18
 x6   1.00 -0.14  0.10  0.11 -0.05  0.48 -0.15 -0.40  0.09  0.10 -0.49  0.03
 x7  -0.14  1.00  0.00  0.14  0.43 -0.05  0.79  0.23  0.05  0.16  0.27  0.19
@@ -543,7 +498,7 @@ x16 0.3017 0.1208 0.4282 0.0000 0.0665 0.0000 0.0517 0.2564 0.0494        0.0000
 x17 0.0000 0.0065 0.0638 0.0000 0.0007 0.0001 0.0003 0.0000 0.0904 0.0000        0.0000
 x18 0.7843 0.0561 0.8016 0.0000 0.0055 0.0000 0.0063 0.4712 0.2786 0.0000 0.0000       </code></pre>
 <p>Calculamos Kaiser - Meyer - Olkin y MSA</p>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="s04.html#cb470-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(data01)</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="s04.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(data01)</span></code></pre></div>
 <pre><code>Kaiser-Meyer-Olkin factor adequacy
 Call: KMO(r = data01)
 Overall MSA =  0.61
@@ -551,8 +506,8 @@ MSA for each item =
   x6   x7   x8   x9  x10  x11  x12  x13  x14  x16  x17  x18 
 0.88 0.62 0.53 0.89 0.80 0.45 0.59 0.88 0.53 0.86 0.44 0.53 </code></pre>
 <p>Quitamos X17, dado que su MSA es 0.44, y es el peor de todos los coeeficientes, estando por debajo de 0.5.</p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="s04.html#cb472-1" aria-hidden="true" tabindex="-1"></a>data02 <span class="ot">&lt;-</span> <span class="fu">subset</span>(hbat, <span class="at">select =</span> <span class="fu">c</span>(x6, x7, x8, x9, x10, x11, x12, x13, x14, x16, x18))</span>
-<span id="cb472-2"><a href="s04.html#cb472-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(data02), <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="s04.html#cb429-1" aria-hidden="true" tabindex="-1"></a>data02 <span class="ot">&lt;-</span> <span class="fu">subset</span>(hbat, <span class="at">select =</span> <span class="fu">c</span>(x6, x7, x8, x9, x10, x11, x12, x13, x14, x16, x18))</span>
+<span id="cb429-2"><a href="s04.html#cb429-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(data02), <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
 <pre><code>       x6    x7    x8    x9   x10   x11   x12   x13   x14   x16   x18
 x6   1.00 -0.14  0.10  0.11 -0.05  0.48 -0.15 -0.40  0.09  0.10  0.03
 x7  -0.14  1.00  0.00  0.14  0.43 -0.05  0.79  0.23  0.05  0.16  0.19
@@ -583,7 +538,7 @@ x14 0.3823 0.6081 0.0000 0.1635 0.9151 0.0060 0.2873 0.0140        0.0494 0.2786
 x16 0.3017 0.1208 0.4282 0.0000 0.0665 0.0000 0.0517 0.2564 0.0494        0.0000
 x18 0.7843 0.0561 0.8016 0.0000 0.0055 0.0000 0.0063 0.4712 0.2786 0.0000       </code></pre>
 <p>Calculamos Kaiser - Meyer - Olkin y MSA</p>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="s04.html#cb474-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(data02)</span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="s04.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(data02)</span></code></pre></div>
 <pre><code>Kaiser-Meyer-Olkin factor adequacy
 Call: KMO(r = data02)
 Overall MSA =  0.65
@@ -595,7 +550,7 @@ MSA for each item =
 </div>
 <div id="test-de-esfericidad-de-bartlett" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> Test de esfericidad de Bartlett</h2>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="s04.html#cb476-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(data02)</span></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="s04.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(data02)</span></code></pre></div>
 <pre><code>
     Bartlett test of homogeneity of variances
 
@@ -605,8 +560,8 @@ Bartlett&#39;s K-squared = 146.4, df = 10, p-value &lt; 2.2e-16</code></pre>
 </div>
 <div id="análisis-de-componentes-principales" class="section level2" number="8.3">
 <h2><span class="header-section-number">8.3</span> Análisis de componentes principales</h2>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="s04.html#cb478-1" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">principal</span>(data02, <span class="at">nfactors=</span><span class="dv">4</span>, <span class="at">rotate=</span><span class="st">&quot;varimax&quot;</span>)</span>
-<span id="cb478-2"><a href="s04.html#cb478-2" aria-hidden="true" tabindex="-1"></a>output</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="s04.html#cb435-1" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">principal</span>(data02, <span class="at">nfactors=</span><span class="dv">4</span>, <span class="at">rotate=</span><span class="st">&quot;varimax&quot;</span>)</span>
+<span id="cb435-2"><a href="s04.html#cb435-2" aria-hidden="true" tabindex="-1"></a>output</span></code></pre></div>
 <pre><code>Principal Components Analysis
 Call: principal(r = data02, nfactors = 4, rotate = &quot;varimax&quot;)
 Standardized loadings (pattern matrix) based upon correlation matrix
@@ -638,8 +593,8 @@ The root mean square of the residuals (RMSR) is  0.06
 
 Fit based upon off diagonal values = 0.97</code></pre>
 <p>Analizamos las comunalidades continuando con la adecuación de los datos al análisis, vemos que tenemos que eliminar X11pues mantiene cargas cruzadas superiores a 0.5 en dos componentes (0.59 en RC1 y 0.64 en RC4). Eliminamos esa variable del set de datos, y volvemos a lanzar las pruebas preliminares al análisis de componentes principales.</p>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="s04.html#cb480-1" aria-hidden="true" tabindex="-1"></a>data03 <span class="ot">&lt;-</span> <span class="fu">subset</span>(hbat, <span class="at">select =</span> <span class="fu">c</span>(x6, x7, x8, x9, x10, x12, x13, x14, x16, x18))</span>
-<span id="cb480-2"><a href="s04.html#cb480-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(data03), <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="s04.html#cb437-1" aria-hidden="true" tabindex="-1"></a>data03 <span class="ot">&lt;-</span> <span class="fu">subset</span>(hbat, <span class="at">select =</span> <span class="fu">c</span>(x6, x7, x8, x9, x10, x12, x13, x14, x16, x18))</span>
+<span id="cb437-2"><a href="s04.html#cb437-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(data03), <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
 <pre><code>       x6    x7    x8    x9   x10   x12   x13   x14   x16   x18
 x6   1.00 -0.14  0.10  0.11 -0.05 -0.15 -0.40  0.09  0.10  0.03
 x7  -0.14  1.00  0.00  0.14  0.43  0.79  0.23  0.05  0.16  0.19
@@ -668,7 +623,7 @@ x14 0.3823 0.6081 0.0000 0.1635 0.9151 0.2873 0.0140        0.0494 0.2786
 x16 0.3017 0.1208 0.4282 0.0000 0.0665 0.0517 0.2564 0.0494        0.0000
 x18 0.7843 0.0561 0.8016 0.0000 0.0055 0.0063 0.4712 0.2786 0.0000       </code></pre>
 <p>Analizamos Kaiser - Meyer - Olkin y MSA</p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="s04.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(data03)</span></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="s04.html#cb439-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(data03)</span></code></pre></div>
 <pre><code>Kaiser-Meyer-Olkin factor adequacy
 Call: KMO(r = data03)
 Overall MSA =  0.67
@@ -676,14 +631,14 @@ MSA for each item =
   x6   x7   x8   x9  x10  x12  x13  x14  x16  x18 
 0.61 0.64 0.52 0.69 0.81 0.63 0.74 0.53 0.83 0.72 </code></pre>
 <p>Consiguiendo de nuevo valores válidos en este caso para continuar con el proceso, donde volvemos a recalcular Bartlett.</p>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="s04.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(data03)</span></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="s04.html#cb441-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(data03)</span></code></pre></div>
 <pre><code>
     Bartlett test of homogeneity of variances
 
 data:  data03
 Bartlett&#39;s K-squared = 142.71, df = 9, p-value &lt; 2.2e-16</code></pre>
 <p>Es óptimo y analizamos el resultado de componentes …</p>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="s04.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(data03)</span></code></pre></div>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="s04.html#cb443-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(data03)</span></code></pre></div>
 <pre><code>Kaiser-Meyer-Olkin factor adequacy
 Call: KMO(r = data03)
 Overall MSA =  0.67
@@ -695,8 +650,8 @@ MSA for each item =
 <h2><span class="header-section-number">8.4</span> Resumen de resultados</h2>
 <div id="rotación-varimax-acp-psych" class="section level3" number="8.4.1">
 <h3><span class="header-section-number">8.4.1</span> Rotación Varimax (ACP, psych)</h3>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="s04.html#cb488-1" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">principal</span>(data03, <span class="at">nfactors=</span><span class="dv">4</span>, <span class="at">rotate=</span><span class="st">&quot;varimax&quot;</span>)</span>
-<span id="cb488-2"><a href="s04.html#cb488-2" aria-hidden="true" tabindex="-1"></a>output</span></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="s04.html#cb445-1" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">principal</span>(data03, <span class="at">nfactors=</span><span class="dv">4</span>, <span class="at">rotate=</span><span class="st">&quot;varimax&quot;</span>)</span>
+<span id="cb445-2"><a href="s04.html#cb445-2" aria-hidden="true" tabindex="-1"></a>output</span></code></pre></div>
 <pre><code>Principal Components Analysis
 Call: principal(r = data03, nfactors = 4, rotate = &quot;varimax&quot;)
 Standardized loadings (pattern matrix) based upon correlation matrix
@@ -731,13 +686,13 @@ Fit based upon off diagonal values = 0.96</code></pre>
 </div>
 <div id="gráficos-del-análisis" class="section level2" number="8.5">
 <h2><span class="header-section-number">8.5</span> Gráficos del análisis</h2>
-<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="s04.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot.psych</span>(output)</span></code></pre></div>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="s04.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot.psych</span>(output)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-214-1.png" width="1152" /></p>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="s04.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(output)</span></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="s04.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(output)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-214-2.png" width="1152" /></p>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="s04.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.plot</span>(output, <span class="at">numbers=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="s04.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.plot</span>(output, <span class="at">numbers=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-214-3.png" width="1152" /></p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="s04.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.diagram</span>(output)</span></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="s04.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.diagram</span>(output)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-214-4.png" width="1152" /></p>
 
 </div>
