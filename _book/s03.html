@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Parte 7 Análisis de correspondencias - Sesión 03 | TMIM Compendio R</title>
+  <meta name="description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Parte 7 Análisis de correspondencias - Sesión 03 | TMIM Compendio R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Parte 7 Análisis de correspondencias - Sesión 03 | TMIM Compendio R" />
+  
+  <meta name="twitter:description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
+  
+
+<meta name="author" content="Roberto Gil" />
+
+
+<meta name="date" content="2021-12-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="s02.html"/>
+<link rel="next" href="s04.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/proj4js-2.3.15/proj4.js"></script>
+<link href="libs/highcharts-8.1.2/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-8.1.2/highcharts.js"></script>
+<script src="libs/highcharts-8.1.2/highcharts-3d.js"></script>
+<script src="libs/highcharts-8.1.2/highcharts-more.js"></script>
+<script src="libs/highcharts-8.1.2/modules/stock.js"></script>
+<script src="libs/highcharts-8.1.2/modules/map.js"></script>
+<script src="libs/highcharts-8.1.2/modules/annotations.js"></script>
+<script src="libs/highcharts-8.1.2/modules/data.js"></script>
+<script src="libs/highcharts-8.1.2/modules/drilldown.js"></script>
+<script src="libs/highcharts-8.1.2/modules/item-series.js"></script>
+<script src="libs/highcharts-8.1.2/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-8.1.2/modules/overlapping-datalabels.js"></script>
+<script src="libs/highcharts-8.1.2/modules/exporting.js"></script>
+<script src="libs/highcharts-8.1.2/modules/export-data.js"></script>
+<script src="libs/highcharts-8.1.2/modules/funnel.js"></script>
+<script src="libs/highcharts-8.1.2/modules/heatmap.js"></script>
+<script src="libs/highcharts-8.1.2/modules/treemap.js"></script>
+<script src="libs/highcharts-8.1.2/modules/sankey.js"></script>
+<script src="libs/highcharts-8.1.2/modules/dependency-wheel.js"></script>
+<script src="libs/highcharts-8.1.2/modules/organization.js"></script>
+<script src="libs/highcharts-8.1.2/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-8.1.2/modules/streamgraph.js"></script>
+<script src="libs/highcharts-8.1.2/modules/sunburst.js"></script>
+<script src="libs/highcharts-8.1.2/modules/vector.js"></script>
+<script src="libs/highcharts-8.1.2/modules/wordcloud.js"></script>
+<script src="libs/highcharts-8.1.2/modules/xrange.js"></script>
+<script src="libs/highcharts-8.1.2/modules/tilemap.js"></script>
+<script src="libs/highcharts-8.1.2/modules/venn.js"></script>
+<script src="libs/highcharts-8.1.2/modules/gantt.js"></script>
+<script src="libs/highcharts-8.1.2/modules/timeline.js"></script>
+<script src="libs/highcharts-8.1.2/modules/parallel-coordinates.js"></script>
+<script src="libs/highcharts-8.1.2/modules/bullet.js"></script>
+<script src="libs/highcharts-8.1.2/modules/coloraxis.js"></script>
+<script src="libs/highcharts-8.1.2/modules/dumbbell.js"></script>
+<script src="libs/highcharts-8.1.2/modules/lollipop.js"></script>
+<script src="libs/highcharts-8.1.2/modules/series-label.js"></script>
+<script src="libs/highcharts-8.1.2/plugins/motion.js"></script>
+<script src="libs/highcharts-8.1.2/custom/reset.js"></script>
+<script src="libs/highcharts-8.1.2/modules/boost.js"></script>
+<script src="libs/highchart-binding-0.8.2/highchart.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.20/datatables.js"></script>
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">TMIM Compendio R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Presentación</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#la-asignatura"><i class="fa fa-check"></i><b>1.1</b> La asignatura</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i><b>1.2</b> Objetivos</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introducción</a></li>
+<li class="chapter" data-level="3" data-path="r1.html"><a href="r1.html"><i class="fa fa-check"></i><b>3</b> Sesión R1</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r1.html"><a href="r1.html#introducción"><i class="fa fa-check"></i><b>3.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r1.html"><a href="r1.html#instalar-r"><i class="fa fa-check"></i><b>3.1.1</b> Instalar R</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r1.html"><a href="r1.html#instalar-rstudio"><i class="fa fa-check"></i><b>3.1.2</b> Instalar RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="r1.html"><a href="r1.html#preguntas-y-respuestas-antes-de-comenzar"><i class="fa fa-check"></i><b>3.2</b> Preguntas y respuestas antes de comenzar …</a></li>
+<li class="chapter" data-level="3.3" data-path="r1.html"><a href="r1.html#instalar-y-cargar-paquetes-básicos"><i class="fa fa-check"></i><b>3.3</b> Instalar y cargar paquetes básicos</a></li>
+<li class="chapter" data-level="3.4" data-path="r1.html"><a href="r1.html#practicando-el-scripting"><i class="fa fa-check"></i><b>3.4</b> Practicando el <em>scripting</em></a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r1.html"><a href="r1.html#ejercicio-script-01"><i class="fa fa-check"></i><b>3.4.1</b> Ejercicio: <em>script</em> 01</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r1.html"><a href="r1.html#ejercicio-script-02"><i class="fa fa-check"></i><b>3.4.2</b> Ejercicio: <em>script</em> 02</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r1.html"><a href="r1.html#ejercicio-script-03"><i class="fa fa-check"></i><b>3.4.3</b> Ejercicio: <em>script</em> 03</a></li>
+<li class="chapter" data-level="3.4.4" data-path="r1.html"><a href="r1.html#ejercicio-script-04"><i class="fa fa-check"></i><b>3.4.4</b> Ejercicio: <em>script</em> 04</a></li>
+<li class="chapter" data-level="3.4.5" data-path="r1.html"><a href="r1.html#ejercicio-script-05"><i class="fa fa-check"></i><b>3.4.5</b> Ejercicio: <em>script</em> 05</a></li>
+<li class="chapter" data-level="3.4.6" data-path="r1.html"><a href="r1.html#ejercicio-creación-de-un-script-rmarkdown"><i class="fa fa-check"></i><b>3.4.6</b> Ejercicio: Creación de un <em>script</em> <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="3.4.7" data-path="r1.html"><a href="r1.html#ejercicio-script-05a-y-05b"><i class="fa fa-check"></i><b>3.4.7</b> Ejercicio: <em>script</em> 05a y 05b</a></li>
+<li class="chapter" data-level="3.4.8" data-path="r1.html"><a href="r1.html#ejercicio-script-06"><i class="fa fa-check"></i><b>3.4.8</b> Ejercicio: <em>script</em> 06</a></li>
+<li class="chapter" data-level="3.4.9" data-path="r1.html"><a href="r1.html#ejercicio-script-07a"><i class="fa fa-check"></i><b>3.4.9</b> Ejercicio: <em>script</em> 07a</a></li>
+<li class="chapter" data-level="3.4.10" data-path="r1.html"><a href="r1.html#ejercicio-script-07b"><i class="fa fa-check"></i><b>3.4.10</b> Ejercicio: <em>script</em> 07b</a></li>
+<li class="chapter" data-level="3.4.11" data-path="r1.html"><a href="r1.html#ejercicio-script-08"><i class="fa fa-check"></i><b>3.4.11</b> Ejercicio: <em>script</em> 08</a></li>
+<li class="chapter" data-level="3.4.12" data-path="r1.html"><a href="r1.html#ejercicio-script-09"><i class="fa fa-check"></i><b>3.4.12</b> Ejercicio: <em>script</em> 09</a></li>
+<li class="chapter" data-level="3.4.13" data-path="r1.html"><a href="r1.html#ejercicio-script-10"><i class="fa fa-check"></i><b>3.4.13</b> Ejercicio: <em>script</em> 10</a></li>
+<li class="chapter" data-level="3.4.14" data-path="r1.html"><a href="r1.html#ejercicio-script-11"><i class="fa fa-check"></i><b>3.4.14</b> Ejercicio: <em>script</em> 11</a></li>
+<li class="chapter" data-level="3.4.15" data-path="r1.html"><a href="r1.html#ejercicio-script-12"><i class="fa fa-check"></i><b>3.4.15</b> Ejercicio: <em>script</em> 12</a></li>
+<li class="chapter" data-level="3.4.16" data-path="r1.html"><a href="r1.html#ejercicio-script-13"><i class="fa fa-check"></i><b>3.4.16</b> Ejercicio: <em>script</em> 13</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="r1.html"><a href="r1.html#conclusión"><i class="fa fa-check"></i><b>3.5</b> Conclusión</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r2.html"><a href="r2.html"><i class="fa fa-check"></i><b>4</b> Sesión R2</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r2.html"><a href="r2.html#proceso-de-datos-con-tablas-y-cuadros"><i class="fa fa-check"></i><b>4.1</b> Proceso de datos con tablas y cuadros</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="r2.html"><a href="r2.html#términos-básicos-de-proceso-de-datos"><i class="fa fa-check"></i><b>4.1.1</b> Términos básicos de proceso de datos</a></li>
+<li class="chapter" data-level="4.1.2" data-path="r2.html"><a href="r2.html#términos-básicos-de-tabulación"><i class="fa fa-check"></i><b>4.1.2</b> Términos básicos de tabulación</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="r2.html"><a href="r2.html#carga-de-datos-para-la-sesión"><i class="fa fa-check"></i><b>4.2</b> Carga de datos para la sesión</a></li>
+<li class="chapter" data-level="4.3" data-path="r2.html"><a href="r2.html#tse03"><i class="fa fa-check"></i><b>4.3</b> Tablas marginales</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="r2.html"><a href="r2.html#tablas-de-frecuencia"><i class="fa fa-check"></i><b>4.3.1</b> Tablas de frecuencia</a></li>
+<li class="chapter" data-level="4.3.2" data-path="r2.html"><a href="r2.html#estadísticos"><i class="fa fa-check"></i><b>4.3.2</b> Estadísticos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="r2.html"><a href="r2.html#tse04"><i class="fa fa-check"></i><b>4.4</b> Tablas cruzadas</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="r2.html"><a href="r2.html#básica-con-variables-simples"><i class="fa fa-check"></i><b>4.4.1</b> Básica con variables simples</a></li>
+<li class="chapter" data-level="4.4.2" data-path="r2.html"><a href="r2.html#básica-con-múltiples"><i class="fa fa-check"></i><b>4.4.2</b> Básica con múltiples</a></li>
+<li class="chapter" data-level="4.4.3" data-path="r2.html"><a href="r2.html#básica-con-estadísticos"><i class="fa fa-check"></i><b>4.4.3</b> Básica con estadísticos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="r2.html"><a href="r2.html#conclusión-1"><i class="fa fa-check"></i><b>4.5</b> Conclusión</a></li>
+<li class="chapter" data-level="4.6" data-path="r2.html"><a href="r2.html#tse07"><i class="fa fa-check"></i><b>4.6</b> Pruebas inferenciales</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="r2.html"><a href="r2.html#prueba-de-dependencia"><i class="fa fa-check"></i><b>4.6.1</b> Prueba de dependencia</a></li>
+<li class="chapter" data-level="4.6.2" data-path="r2.html"><a href="r2.html#pruebas-de-diferencias"><i class="fa fa-check"></i><b>4.6.2</b> Pruebas de diferencias</a></li>
+<li class="chapter" data-level="4.6.3" data-path="r2.html"><a href="r2.html#parámetros-posibles-en-las-pruebas-de-significación"><i class="fa fa-check"></i><b>4.6.3</b> Parámetros posibles en las pruebas de significación</a></li>
+<li class="chapter" data-level="4.6.4" data-path="r2.html"><a href="r2.html#conclusión-2"><i class="fa fa-check"></i><b>4.6.4</b> Conclusión</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="r2.html"><a href="r2.html#tse08"><i class="fa fa-check"></i><b>4.7</b> Visualización gráfica</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="r2.html"><a href="r2.html#highcharter-introducción"><i class="fa fa-check"></i><b>4.7.1</b> highcharteR, introducción</a></li>
+<li class="chapter" data-level="4.7.2" data-path="r2.html"><a href="r2.html#mi-primer-gráfico"><i class="fa fa-check"></i><b>4.7.2</b> Mi primer gráfico</a></li>
+<li class="chapter" data-level="4.7.3" data-path="r2.html"><a href="r2.html#gráfico-de-barras"><i class="fa fa-check"></i><b>4.7.3</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="4.7.4" data-path="r2.html"><a href="r2.html#gráfico-de-columna"><i class="fa fa-check"></i><b>4.7.4</b> Gráfico de columna</a></li>
+<li class="chapter" data-level="4.7.5" data-path="r2.html"><a href="r2.html#diagramas-de-secciones"><i class="fa fa-check"></i><b>4.7.5</b> Diagramas de secciones</a></li>
+<li class="chapter" data-level="4.7.6" data-path="r2.html"><a href="r2.html#gráfico-de-línea"><i class="fa fa-check"></i><b>4.7.6</b> Gráfico de línea</a></li>
+<li class="chapter" data-level="4.7.7" data-path="r2.html"><a href="r2.html#gráficos-de-columnas-o-barras-con-apilamiento"><i class="fa fa-check"></i><b>4.7.7</b> Gráficos de columnas o barras con apilamiento</a></li>
+<li class="chapter" data-level="4.7.8" data-path="r2.html"><a href="r2.html#gráfico-de-área"><i class="fa fa-check"></i><b>4.7.8</b> Gráfico de área</a></li>
+<li class="chapter" data-level="4.7.9" data-path="r2.html"><a href="r2.html#gráfico-de-puntos-o-scatterplot"><i class="fa fa-check"></i><b>4.7.9</b> Gráfico de puntos o <em>scatterplot</em></a></li>
+<li class="chapter" data-level="4.7.10" data-path="r2.html"><a href="r2.html#histograma-o-gráfico-de-densidad"><i class="fa fa-check"></i><b>4.7.10</b> Histograma o gráfico de densidad</a></li>
+<li class="chapter" data-level="4.7.11" data-path="r2.html"><a href="r2.html#gráficos-indicadores"><i class="fa fa-check"></i><b>4.7.11</b> Gráficos indicadores</a></li>
+<li class="chapter" data-level="4.7.12" data-path="r2.html"><a href="r2.html#gráfico-o-boxplot"><i class="fa fa-check"></i><b>4.7.12</b> Gráfico o <em>boxplot</em></a></li>
+<li class="chapter" data-level="4.7.13" data-path="r2.html"><a href="r2.html#gráfico-de-barras-de-error"><i class="fa fa-check"></i><b>4.7.13</b> Gráfico de barras de error</a></li>
+<li class="chapter" data-level="4.7.14" data-path="r2.html"><a href="r2.html#gráficos-de-transiciones"><i class="fa fa-check"></i><b>4.7.14</b> Gráficos de transiciones</a></li>
+<li class="chapter" data-level="4.7.15" data-path="r2.html"><a href="r2.html#conclusión-3"><i class="fa fa-check"></i><b>4.7.15</b> Conclusión</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="s01.html"><a href="s01.html"><i class="fa fa-check"></i><b>5</b> EDA (exploratory data analysis) - Sesiones 1 y 2</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="s01.html"><a href="s01.html#carga-de-paquetes"><i class="fa fa-check"></i><b>5.1</b> Carga de paquetes</a></li>
+<li class="chapter" data-level="5.2" data-path="s01.html"><a href="s01.html#carga-de-datos"><i class="fa fa-check"></i><b>5.2</b> Carga de datos</a></li>
+<li class="chapter" data-level="5.3" data-path="s01.html"><a href="s01.html#frecuencias-e-histogramas"><i class="fa fa-check"></i><b>5.3</b> Frecuencias e histogramas</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="s01.html"><a href="s01.html#frecuencias"><i class="fa fa-check"></i><b>5.3.1</b> Frecuencias</a></li>
+<li class="chapter" data-level="5.3.2" data-path="s01.html"><a href="s01.html#histogramas"><i class="fa fa-check"></i><b>5.3.2</b> Histogramas</a></li>
+<li class="chapter" data-level="5.3.3" data-path="s01.html"><a href="s01.html#datos-descriptivos-básicos"><i class="fa fa-check"></i><b>5.3.3</b> Datos descriptivos básicos</a></li>
+<li class="chapter" data-level="5.3.4" data-path="s01.html"><a href="s01.html#histogramas-y-cajas"><i class="fa fa-check"></i><b>5.3.4</b> Histogramas y cajas</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="s01.html"><a href="s01.html#análisis-de-normalidad"><i class="fa fa-check"></i><b>5.4</b> Análisis de normalidad</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="s01.html"><a href="s01.html#kolgomorov---smirnov"><i class="fa fa-check"></i><b>5.4.1</b> Kolgomorov - Smirnov</a></li>
+<li class="chapter" data-level="5.4.2" data-path="s01.html"><a href="s01.html#shapiro---wilk"><i class="fa fa-check"></i><b>5.4.2</b> Shapiro - Wilk</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="s01.html"><a href="s01.html#homogeneidad-de-varianzas-homoscedasticidad"><i class="fa fa-check"></i><b>5.5</b> Homogeneidad de varianzas (homoscedasticidad)</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="s01.html"><a href="s01.html#test-de-levene"><i class="fa fa-check"></i><b>5.5.1</b> Test de Levene</a></li>
+<li class="chapter" data-level="5.5.2" data-path="s01.html"><a href="s01.html#diagramas-de-caja"><i class="fa fa-check"></i><b>5.5.2</b> Diagramas de caja</a></li>
+<li class="chapter" data-level="5.5.3" data-path="s01.html"><a href="s01.html#ratio-de-varianzas"><i class="fa fa-check"></i><b>5.5.3</b> Ratio de varianzas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="s02.html"><a href="s02.html"><i class="fa fa-check"></i><b>6</b> Inferencia - Sesiones 1 y 2</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="s02.html"><a href="s02.html#inferencia-paramétrica"><i class="fa fa-check"></i><b>6.1</b> Inferencia paramétrica</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="s02.html"><a href="s02.html#test-t-student-para-la-media-de-una-muestra"><i class="fa fa-check"></i><b>6.1.1</b> Test t Student para la media de una muestra</a></li>
+<li class="chapter" data-level="6.1.2" data-path="s02.html"><a href="s02.html#test-t-student-para-la-media-de-una-muestra-en-grupos-independientes"><i class="fa fa-check"></i><b>6.1.2</b> Test t Student para la media de una muestra en grupos independientes</a></li>
+<li class="chapter" data-level="6.1.3" data-path="s02.html"><a href="s02.html#test-t-student-para-la-media-de-una-muestra-en-grupos-dependientes"><i class="fa fa-check"></i><b>6.1.3</b> Test t Student para la media de una muestra en grupos dependientes</a></li>
+<li class="chapter" data-level="6.1.4" data-path="s02.html"><a href="s02.html#correlación-paramétrica-de-pearson"><i class="fa fa-check"></i><b>6.1.4</b> Correlación paramétrica de Pearson</a></li>
+<li class="chapter" data-level="6.1.5" data-path="s02.html"><a href="s02.html#análisis-de-varianza-de-un-factor-vía"><i class="fa fa-check"></i><b>6.1.5</b> Análisis de varianza de un factor (vía)</a></li>
+<li class="chapter" data-level="6.1.6" data-path="s02.html"><a href="s02.html#análisis-de-varianza-de-dos-factores-vías"><i class="fa fa-check"></i><b>6.1.6</b> Análisis de varianza de dos factores (vías)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="s02.html"><a href="s02.html#inferencia-no-paramétrica"><i class="fa fa-check"></i><b>6.2</b> Inferencia no paramétrica</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="s02.html"><a href="s02.html#prueba-chi"><i class="fa fa-check"></i><b>6.2.1</b> Prueba Chi</a></li>
+<li class="chapter" data-level="6.2.2" data-path="s02.html"><a href="s02.html#correlaciones-no-paramétricas"><i class="fa fa-check"></i><b>6.2.2</b> Correlaciones no paramétricas</a></li>
+<li class="chapter" data-level="6.2.3" data-path="s02.html"><a href="s02.html#test-de-diferencias-de-una-muestra-en-grupos-independientes"><i class="fa fa-check"></i><b>6.2.3</b> Test de diferencias de una muestra en grupos independientes</a></li>
+<li class="chapter" data-level="6.2.4" data-path="s02.html"><a href="s02.html#test-de-diferencias-de-una-muestra-en-grupos-dependientes"><i class="fa fa-check"></i><b>6.2.4</b> Test de diferencias de una muestra en grupos dependientes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="s03.html"><a href="s03.html"><i class="fa fa-check"></i><b>7</b> Análisis de correspondencias - Sesión 03</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="s03.html"><a href="s03.html#introducción-a-la-técnica"><i class="fa fa-check"></i><b>7.1</b> Introducción a la técnica</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="s03.html"><a href="s03.html#transformación-de-datos-cuantitativos-a-cualitativos"><i class="fa fa-check"></i><b>7.1.1</b> Transformación de datos cuantitativos a cualitativos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="s03.html"><a href="s03.html#prueba-chi2-de-homogeneidad"><i class="fa fa-check"></i><b>7.2</b> Prueba Chi^2 de homogeneidad</a></li>
+<li class="chapter" data-level="7.3" data-path="s03.html"><a href="s03.html#nuestro-ejemplo"><i class="fa fa-check"></i><b>7.3</b> Nuestro ejemplo</a></li>
+<li class="chapter" data-level="7.4" data-path="s03.html"><a href="s03.html#análisis-de-correspondencias-simple-michael-greenacre"><i class="fa fa-check"></i><b>7.4</b> Análisis de correspondencias simple (Michael Greenacre)</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="s03.html"><a href="s03.html#resumen-de-resultados"><i class="fa fa-check"></i><b>7.4.1</b> Resumen de resultados</a></li>
+<li class="chapter" data-level="7.4.2" data-path="s03.html"><a href="s03.html#representación-gráfica-los-mapas-de-puntos"><i class="fa fa-check"></i><b>7.4.2</b> Representación gráfica: los mapas de puntos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="s03.html"><a href="s03.html#análisis-de-correspondencias-ca-de-factominer"><i class="fa fa-check"></i><b>7.5</b> Análisis de correspondencias (CA de FactoMineR)</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="s03.html"><a href="s03.html#resultados"><i class="fa fa-check"></i><b>7.5.1</b> Resultados</a></li>
+<li class="chapter" data-level="7.5.2" data-path="s03.html"><a href="s03.html#calidad"><i class="fa fa-check"></i><b>7.5.2</b> Calidad</a></li>
+<li class="chapter" data-level="7.5.3" data-path="s03.html"><a href="s03.html#mapas-de-puntos"><i class="fa fa-check"></i><b>7.5.3</b> Mapas de puntos</a></li>
+<li class="chapter" data-level="7.5.4" data-path="s03.html"><a href="s03.html#otros-gráficos"><i class="fa fa-check"></i><b>7.5.4</b> Otros gráficos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="s04.html"><a href="s04.html"><i class="fa fa-check"></i><b>8</b> Análisis de componentes principales - Sesión 04</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="s04.html"><a href="s04.html#análisis-de-correlación"><i class="fa fa-check"></i><b>8.1</b> Análisis de correlación</a></li>
+<li class="chapter" data-level="8.2" data-path="s04.html"><a href="s04.html#test-de-esfericidad-de-bartlett"><i class="fa fa-check"></i><b>8.2</b> Test de esfericidad de Bartlett</a></li>
+<li class="chapter" data-level="8.3" data-path="s04.html"><a href="s04.html#análisis-de-componentes-principales"><i class="fa fa-check"></i><b>8.3</b> Análisis de componentes principales</a></li>
+<li class="chapter" data-level="8.4" data-path="s04.html"><a href="s04.html#resumen-de-resultados-1"><i class="fa fa-check"></i><b>8.4</b> Resumen de resultados</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="s04.html"><a href="s04.html#rotación-varimax-acp-psych"><i class="fa fa-check"></i><b>8.4.1</b> Rotación Varimax (ACP, psych)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="s04.html"><a href="s04.html#gráficos-del-análisis"><i class="fa fa-check"></i><b>8.5</b> Gráficos del análisis</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="s05.html"><a href="s05.html"><i class="fa fa-check"></i><b>9</b> Análisis de cluster - Sesión 05</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="s05.html"><a href="s05.html#cálculo-de-distancias"><i class="fa fa-check"></i><b>9.1</b> Cálculo de distancias</a></li>
+<li class="chapter" data-level="9.2" data-path="s05.html"><a href="s05.html#clúster-jerárquico"><i class="fa fa-check"></i><b>9.2</b> Clúster jerárquico</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="s05.html"><a href="s05.html#cálculo"><i class="fa fa-check"></i><b>9.2.1</b> Cálculo</a></li>
+<li class="chapter" data-level="9.2.2" data-path="s05.html"><a href="s05.html#creación-de-variables-de-grupo"><i class="fa fa-check"></i><b>9.2.2</b> Creación de variables de grupo</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="s05.html"><a href="s05.html#clúster-k-medias"><i class="fa fa-check"></i><b>9.3</b> Clúster K-medias</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="s05.html"><a href="s05.html#cálculo-1"><i class="fa fa-check"></i><b>9.3.1</b> Cálculo</a></li>
+<li class="chapter" data-level="9.3.2" data-path="s05.html"><a href="s05.html#creación-de-las-variables-de-grupo"><i class="fa fa-check"></i><b>9.3.2</b> Creación de las variables de grupo</a></li>
+<li class="chapter" data-level="9.3.3" data-path="s05.html"><a href="s05.html#perfil-de-los-grupos-contrastes-inferenciales"><i class="fa fa-check"></i><b>9.3.3</b> Perfil de los grupos, contrastes inferenciales</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="s06.html"><a href="s06.html"><i class="fa fa-check"></i><b>10</b> Análisis de regresión múltiple - Sesión 06</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="s06.html"><a href="s06.html#análisis-de-correlación-1"><i class="fa fa-check"></i><b>10.1</b> Análisis de correlación</a></li>
+<li class="chapter" data-level="10.2" data-path="s06.html"><a href="s06.html#modelo-de-regresión"><i class="fa fa-check"></i><b>10.2</b> Modelo de regresión</a></li>
+<li class="chapter" data-level="10.3" data-path="s06.html"><a href="s06.html#distancia-de-de-cook"><i class="fa fa-check"></i><b>10.3</b> Distancia de De Cook</a></li>
+<li class="chapter" data-level="10.4" data-path="s06.html"><a href="s06.html#fiabilidad-del-modelo"><i class="fa fa-check"></i><b>10.4</b> Fiabilidad del modelo</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="s06.html"><a href="s06.html#los-errores-deben-seguir-una-distribución-normal"><i class="fa fa-check"></i><b>10.4.1</b> 1: Los errores deben seguir una distribución normal</a></li>
+<li class="chapter" data-level="10.4.2" data-path="s06.html"><a href="s06.html#la-varianza-de-los-errores-es-constante.-se-hace-el-test-de-goldfeld-y-quandt."><i class="fa fa-check"></i><b>10.4.2</b> 2: La varianza de los errores es constante. Se hace el test de Goldfeld y Quandt.</a></li>
+<li class="chapter" data-level="10.4.3" data-path="s06.html"><a href="s06.html#la-independencia-de-los-errores"><i class="fa fa-check"></i><b>10.4.3</b> 3: La independencia de los errores</a></li>
+<li class="chapter" data-level="10.4.4" data-path="s06.html"><a href="s06.html#no-auto-correlación-de-los-términos-de-error."><i class="fa fa-check"></i><b>10.4.4</b> 4: No auto correlación de los términos de error.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>11</b> Conclusión</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://www.investigaonline.com" target="blank">InvestigaOnline.com</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">TMIM Compendio R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="s03" class="section level1" number="7">
+<h1><span class="header-section-number">Parte 7</span> Análisis de correspondencias - Sesión 03</h1>
+<div id="introducción-a-la-técnica" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> Introducción a la técnica</h2>
+<p>El análisis de correspondencias es una técnica de interdependencia cuyo objetivo es la representación de las relaciones bidimensionales derivadas de la relación entre dos variables o de un conjunto matricial de datos ordenados. Trabaja con variables no métricas aunque el contenido medido sea métrico (frecuencias, sumas, medias), pues realmente nos importan sus categorías o niveles, siendo posible utilizar la recodificación para obtener niveles de medida con los que trabajar. Se muestra para visualizar los diferentes niveles de medidas no métricas por lo que a menudo se le conoce como el análisis de representación de tablas de contingencia trabajando con el concepto de frecuencias relativas y distancias.</p>
+<div id="transformación-de-datos-cuantitativos-a-cualitativos" class="section level3" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> Transformación de datos cuantitativos a cualitativos</h3>
+<p>En muchos casos se hace necesario obtener la tabla de frecuencias de partida utilizando algunas estrategias de cálculo, disponiendo de esta forma adecuada los datos:</p>
+<ol style="list-style-type: decimal">
+<li>Cálculos de dicotomías</li>
+<li>Clasificación en intervalos</li>
+<li>Establecimiento de condiciones de corte</li>
+</ol>
+<p>Nuestro objetivo será la obtención de una tabla de doble entrada; en ocasiones la fuente de datos es ya elaborada de forma ajena a nuestro trabajo, es una tabla de un periódico o libro y se debe introducir al software usado. Para hacer esto, podemos crear un fichero con tres variables: variable fila, variable columna y peso en SPSS (ver siguiente) o la lectura de de la tabla o matriz de datos en R desde fichero texto, utilizando por ejemplo el paquete <code>readr</code>.</p>
+<p>Este es el método por el que optamos.</p>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="s03.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="co">#lectura de datos</span></span>
+<span id="cb378-2"><a href="s03.html#cb378-2" aria-hidden="true" tabindex="-1"></a>tabla.hatco <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_csv</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/tabla.hatco.anacor.csv&quot;</span>))</span>
+<span id="cb378-3"><a href="s03.html#cb378-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb378-4"><a href="s03.html#cb378-4" aria-hidden="true" tabindex="-1"></a><span class="co">#eliminamos la primera columna (específico de paquete `ca` con el que trabajaremos que necesita `rownames`)</span></span>
+<span id="cb378-5"><a href="s03.html#cb378-5" aria-hidden="true" tabindex="-1"></a>tabla.hatco.ca <span class="ot">&lt;-</span> <span class="fu">subset</span>(tabla.hatco, <span class="at">select =</span> <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb378-6"><a href="s03.html#cb378-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb378-7"><a href="s03.html#cb378-7" aria-hidden="true" tabindex="-1"></a><span class="co">#asignamos los nombres de fila con la propiedad rownames, pues así lo necesita el paquete `ca`.</span></span>
+<span id="cb378-8"><a href="s03.html#cb378-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(tabla.hatco.ca) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>, <span class="st">&quot;x3&quot;</span>, <span class="st">&quot;x4&quot;</span>, <span class="st">&quot;x5&quot;</span>, <span class="st">&quot;x6&quot;</span>, <span class="st">&quot;x7&quot;</span>, <span class="st">&quot;x8&quot;</span>)</span></code></pre></div>
+<pre><code>Warning: Setting row names on a tibble is deprecated.</code></pre>
+<p>El análisis de correspondencias no es exigente con las propiedades estadísticas de los datos. Como ya indicamos, utiliza variables no métricas en su forma más simple (tabla de contingencia), pero sin embargo hay que ser cuidadoso respecto al sentido del análisis en función de la representación de los datos.</p>
+<p>En nuestro ejemplo pensemos que …</p>
+<ol style="list-style-type: decimal">
+<li>Los poseedores de los atributos son comparables respecto a esos atributos.</li>
+<li>Confirmar que las empresas A,B, …, I son efectivamente competidoras de HATCO.</li>
+<li>Que basan su diferenciación en los atributos X1 a X8.</li>
+<li>El listado de atributos debe ser exhaustivo y no dejamos ninguno relevante para la caracterización de las empresas.</li>
+</ol>
+<p>Comenzamos por ver la relevancia de la tabla, validar si realmente hay un cierto nivel de dependencia entre las categorías de fila y las categorías de columna. Para ello utilizamos la prueba Chi^2.</p>
+</div>
+</div>
+<div id="prueba-chi2-de-homogeneidad" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Prueba Chi^2 de homogeneidad</h2>
+<p>Para disponer de un indicador del ajuste de dependencia u homogeneidad, utilizamos la prueba de Chi^2 que la vimos en anteriores análisis. Cuánto mayor es el valor de Chi^2 mayores son las discrepancias entre observado y esperado. Sin embargo, sólo somos capaces de dimensionar en valor relativo cuando vemos otros indicadores como Phi o V de Cramer, que también serían posibles si el objeto fuera tabla calculada, pero en nuestro caso es leída directa, por lo que aplicamos las transformaciones de fichero a <code>matrix</code> y de matriz a <code>table</code>. No calculamos Phi porque no es una tabla de 2*2.</p>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="s03.html#cb380-1" aria-hidden="true" tabindex="-1"></a>tabla.hatco.ca <span class="ot">&lt;-</span> <span class="fu">as.table</span>(<span class="fu">as.matrix</span>(tabla.hatco.ca))</span>
+<span id="cb380-2"><a href="s03.html#cb380-2" aria-hidden="true" tabindex="-1"></a><span class="fu">crosstable_statistics</span>(tabla.hatco.ca)</span></code></pre></div>
+<pre><code>
+# Measure of Association for Contingency Tables
+
+   Chi-squared: 122.6006
+    Cramer&#39;s V: 0.1435
+            df: 63
+       p-value: &lt; .001***
+  Observations: 851</code></pre>
+</div>
+<div id="nuestro-ejemplo" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Nuestro ejemplo</h2>
+<p>HATCO quiere identificar a sus principales competidores:</p>
+<ul>
+<li>Quiere hacerlo en función de su posición respecto a las principales variables de competencia:
+<ul>
+<li>X1 Rapidez del servicio</li>
+<li>X2 Nivel de precios</li>
+<li>X3 Flexibilidad de precios</li>
+<li>X4 Imagen del fabricante</li>
+<li>X5 Calidad del servicio</li>
+<li>X6 Imagen de los vendedores</li>
+<li>X7 Calidad del producto</li>
+<li>X8 Tamaño de la empresa</li>
+</ul></li>
+<li>La medida que se utiliza es la asociación de la característica con el competidor. Para ello se ha utilizado una transformación de la medición original a una caracterización (0/1).</li>
+<li>En nuestro ejemplo: en la tabla de contingencia, una frecuencia de 1 implica que ese competidor se ha señalado como “que dispone de la característica competitiva” en la característica o atributo de fila.</li>
+</ul>
+</div>
+<div id="análisis-de-correspondencias-simple-michael-greenacre" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Análisis de correspondencias simple (Michael Greenacre)</h2>
+<p>Calculamos utilizando el paquete <code>ca</code> de Michael Greenacre. Sus resultados son semejantes a SPSS pero el mapa sale invertido en cuadrantes, lo que no implica distinta interpretación.</p>
+<div id="resumen-de-resultados" class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Resumen de resultados</h3>
+<p>Obtenemos los resultados más característicos con la función <code>ca()</code>. Almacenamos el objeto para ir mostrando después más completos sus resultados</p>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="s03.html#cb382-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">ca</span>(tabla.hatco.ca)</span>
+<span id="cb382-2"><a href="s03.html#cb382-2" aria-hidden="true" tabindex="-1"></a>res</span></code></pre></div>
+<pre><code>
+ Principal inertias (eigenvalues):
+           1        2        3        4        5        6        7       
+Value      0.076541 0.047813 0.015291 0.002658 0.000806 0.000576 0.000381
+Percentage 53.13%   33.19%   10.61%   1.84%    0.56%    0.4%     0.26%   
+
+
+ Rows:
+               x1        x2        x3        x4        x5        x6        x7       x8
+Mass     0.146886  0.144536  0.098707  0.118684  0.123384  0.124559  0.081081 0.162162
+ChiDist  0.199723  0.088497  0.580707  0.400294  0.285309  0.386846  0.808039 0.139329
+Inertia  0.005859  0.001132  0.033286  0.019017  0.010044  0.018640  0.052940 0.003148
+Dim. 1  -0.388333 -0.219066 -0.083693  1.285544  0.383784  0.836930 -2.863462 0.153942
+Dim. 2  -0.524538  0.097621  2.641197 -0.610370 -1.073949 -0.211061 -0.636902 0.524856
+
+
+ Columns:
+            hatco         a        b         c         d         e         f         g        h         i
+Mass     0.108108  0.119859 0.089307  0.079906  0.078731  0.123384  0.113984  0.103408 0.076381  0.106933
+ChiDist  0.287008  0.321688 0.430028  0.569393  0.402272  0.184239  0.257577  0.532696 0.491456  0.274442
+Inertia  0.008905  0.012403 0.016515  0.025906  0.012740  0.004188  0.007562  0.029344 0.018448  0.008054
+Dim. 1   0.470333  1.021735 0.843200 -1.933384 -0.969935  0.449822  0.838114 -1.680687 0.392286 -0.233423
+Dim. 2  -0.626124 -0.580139 1.583295  0.793574  1.189113 -0.502451 -0.446827 -1.092070 1.944341 -0.784252</code></pre>
+<p>Para poder representar gráficamente los datos de la tabla, se debe reducir la dimensionalidad, puesto que solo vamos a ser capaces de ver los datos en mapas de dos dimensiones, o como mucho en tres.
+El mapa explica en sus dos primeras dimensiones el 86,3% de la información original (suma de las dos primeras dimensiones).</p>
+<p>Podemos luego combinar para otras dimensiones, 1-3, 2-5 pero es muy poco habitual, dado que la pérdida de información (y por tanto la dificultad de explicación) es muy alta.</p>
+<p>Analicemos ahora poco a poco los elementos que componen el análisis.</p>
+<p>Algunos datos relevantes son:</p>
+<ul>
+<li>Llamamos perfil al vector formado por los elementos de columna y/o fila.</li>
+<li>Llamamos perfil medio al perfil total de columna y/o al perfil total de columna.</li>
+</ul>
+<p>Otra forma de verlo:</p>
+<pre><code>* Las coordenadas en el mapa se calculan utilizando algunos conceptos típicos en el análisis multivariante:
+* La inercia total, o medida de dispersión entre los perfiles y el perfil promedio, es un indicador de la dispersión o falta de correspondencia entre un punto fila y/o columna. Se calcula como el valor de Chi-cuadrado cociente con el total de casos.</code></pre>
+<ul>
+<li>La hipótesis nula es una transformación de la estándar, <strong>el perfil medio sería la homogeneidad de los perfiles (Ho en Chi-cuadrado es la independencia)</strong>.
+<ul>
+<li>Homogeneidad = Independencia.</li>
+<li>Heterogeneidad = Dependencia.</li>
+</ul></li>
+</ul>
+<div id="valor-singular" class="section level5" number="7.4.1.0.1">
+<h5><span class="header-section-number">7.4.1.0.1</span> Valor singular</h5>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="s03.html#cb385-1" aria-hidden="true" tabindex="-1"></a>res[[<span class="st">&quot;sv&quot;</span>]] <span class="co">#extraemos el elemento llamado sv</span></span></code></pre></div>
+<pre><code>[1] 0.27666126 0.21866273 0.12365880 0.05155155 0.02838433 0.02400166 0.01951441</code></pre>
+</div>
+<div id="análisis-de-las-filas" class="section level4" number="7.4.1.1">
+<h4><span class="header-section-number">7.4.1.1</span> Análisis de las filas</h4>
+<div id="nombre-de-las-filas-atributos" class="section level5" number="7.4.1.1.1">
+<h5><span class="header-section-number">7.4.1.1.1</span> Nombre de las filas (atributos)</h5>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="s03.html#cb387-1" aria-hidden="true" tabindex="-1"></a>res[[<span class="st">&quot;rownames&quot;</span>]]</span></code></pre></div>
+<pre><code>[1] &quot;x1&quot; &quot;x2&quot; &quot;x3&quot; &quot;x4&quot; &quot;x5&quot; &quot;x6&quot; &quot;x7&quot; &quot;x8&quot;</code></pre>
+</div>
+<div id="masa-de-las-filas-perfil" class="section level5" number="7.4.1.1.2">
+<h5><span class="header-section-number">7.4.1.1.2</span> Masa de las filas (perfil)</h5>
+<p>Perfiles de las filas, son los porcentajes horizontales, aunque no se llaman así porque en muchos casos las columnas y/o filas de la tabla no son realmente categorías de una misma variable (frecuencias relativas). Llamados masa, es el cálculo de los porcentajes marginales (sin contar con la otra variable), denominado en algunos casos el perfil medio o también centroide o baricentro. Es decir el peso del atributo o de la empresa en el total marginal.</p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="s03.html#cb389-1" aria-hidden="true" tabindex="-1"></a>res[[<span class="st">&quot;rowmass&quot;</span>]]</span></code></pre></div>
+<pre><code>[1] 0.14688602 0.14453584 0.09870740 0.11868390 0.12338425 0.12455934 0.08108108 0.16216216</code></pre>
+</div>
+<div id="distancia-de-las-filas" class="section level5" number="7.4.1.1.3">
+<h5><span class="header-section-number">7.4.1.1.3</span> Distancia de las filas</h5>
+<p>La representación de los datos de la tabla en el mapa se hace atendiendo al cálculo de distancias. El concepto de distancia, en este caso la distancia Chi-cuadrado o cálculo de la distancia euclídea entre los vectores fila y su masa de fila.</p>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="s03.html#cb391-1" aria-hidden="true" tabindex="-1"></a>res[[<span class="st">&quot;rowdist&quot;</span>]]</span></code></pre></div>
+<pre><code>[1] 0.19972301 0.08849696 0.58070663 0.40029405 0.28530854 0.38684579 0.80803871 0.13932907</code></pre>
+</div>
+<div id="inercia-de-las-filas" class="section level5" number="7.4.1.1.4">
+<h5><span class="header-section-number">7.4.1.1.4</span> Inercia de las filas</h5>
+<p>La inercia de cada perfil se calcula como producto de la masa por el cuadrado de la distancia chi-cuadrado de ese perfil al promedio. La inercia mide lo lejos que se hallan los perfiles fila o columna de su perfil medio.</p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="s03.html#cb393-1" aria-hidden="true" tabindex="-1"></a>res[[<span class="st">&quot;rowinertia&quot;</span>]]</span></code></pre></div>
+<pre><code>[1] 0.005859178 0.001131963 0.033286129 0.019017354 0.010043597 0.018640264 0.052939991 0.003147988</code></pre>
+</div>
+<div id="coordenadas-de-las-filas" class="section level5" number="7.4.1.1.5">
+<h5><span class="header-section-number">7.4.1.1.5</span> Coordenadas de las filas</h5>
+<p>Punto de ubicación en el mapa de cada punto fila.</p>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="s03.html#cb395-1" aria-hidden="true" tabindex="-1"></a>res[[<span class="st">&quot;rowcoord&quot;</span>]]</span></code></pre></div>
+<pre><code>          Dim1        Dim2        Dim3       Dim4       Dim5       Dim6        Dim7
+x1 -0.38833337 -0.52453784 -0.48064888 -2.0327480  0.7993536 -0.3021486 -0.53731697
+x2 -0.21906639  0.09762105 -0.05138317  0.4795627  1.3748826  0.7323587  1.78938738
+x3 -0.08369285  2.64119673 -0.34019450 -0.2493870 -0.6347806 -1.2085960  0.32626826
+x4  1.28554439 -0.61037038 -0.89764463 -0.4026826 -1.7762794  0.8684848  0.72333444
+x5  0.38378371 -1.07394894 -0.73674199  1.3240795  0.2697071 -1.8311119 -0.28708482
+x6  0.83693026 -0.21106121  2.47591880 -0.1896399 -0.1476687 -0.2958822 -0.08839279
+x7 -2.86346220 -0.63690241  0.48320469  0.4465221 -1.4975360  0.2144778  0.08239776
+x8  0.15394237  0.52485592 -0.23761538  0.7752912  0.3939105  1.2342381 -1.59105249</code></pre>
+</div>
+</div>
+<div id="análisis-de-las-columnas" class="section level4" number="7.4.1.2">
+<h4><span class="header-section-number">7.4.1.2</span> Análisis de las columnas</h4>
+<div id="nombre-de-las-columnas-las-marcas" class="section level5" number="7.4.1.2.1">
+<h5><span class="header-section-number">7.4.1.2.1</span> Nombre de las columnas (las marcas)</h5>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="s03.html#cb397-1" aria-hidden="true" tabindex="-1"></a>res[[<span class="st">&quot;colnames&quot;</span>]]</span></code></pre></div>
+<pre><code> [1] &quot;hatco&quot; &quot;a&quot;     &quot;b&quot;     &quot;c&quot;     &quot;d&quot;     &quot;e&quot;     &quot;f&quot;     &quot;g&quot;     &quot;h&quot;     &quot;i&quot;    </code></pre>
+</div>
+<div id="masa-de-las-columnas-perfil" class="section level5" number="7.4.1.2.2">
+<h5><span class="header-section-number">7.4.1.2.2</span> Masa de las columnas (perfil)</h5>
+<p>Perfiles de las columnas, son los porcentajes verticales, aunque no se llaman así porque en muchos casos las columnas y/o filas de la tabla no son realmente categorías de una misma variable (frecuencias relativas). Llamados masa, es el cálculo de los porcentajes marginales (sin contar con la otra variable), denominado en algunos casos el perfil medio o también centroide o baricentro. Es decir el peso del atributo o de la empresa en el total marginal.</p>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="s03.html#cb399-1" aria-hidden="true" tabindex="-1"></a>res[[<span class="st">&quot;colmass&quot;</span>]]</span></code></pre></div>
+<pre><code> [1] 0.10810811 0.11985899 0.08930670 0.07990599 0.07873090 0.12338425 0.11398355 0.10340776 0.07638073 0.10693302</code></pre>
+</div>
+<div id="distancia-de-las-columnas" class="section level5" number="7.4.1.2.3">
+<h5><span class="header-section-number">7.4.1.2.3</span> Distancia de las columnas</h5>
+<p>La representación de los datos de la tabla en el mapa se hace atendiendo al cálculo de distancias. El concepto de distancia, en este caso la distancia Chi-cuadrado o cálculo de la distancia euclídea entre los vectores columna y su masa de columna.</p>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="s03.html#cb401-1" aria-hidden="true" tabindex="-1"></a>res[[<span class="st">&quot;coldist&quot;</span>]]</span></code></pre></div>
+<pre><code> [1] 0.2870082 0.3216884 0.4300280 0.5693934 0.4022721 0.1842392 0.2575766 0.5326961 0.4914556 0.2744416</code></pre>
+</div>
+<div id="inercia-de-las-columnas" class="section level5" number="7.4.1.2.4">
+<h5><span class="header-section-number">7.4.1.2.4</span> Inercia de las columnas</h5>
+<p>La inercia de cada perfil se calcula como producto de la masa por el cuadrado de la distancia chi-cuadrado de ese perfil al promedio. La inercia mide lo lejos que se hallan los perfiles fila o columna de su perfil medio.</p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="s03.html#cb403-1" aria-hidden="true" tabindex="-1"></a>res[[<span class="st">&quot;colinertia&quot;</span>]]</span></code></pre></div>
+<pre><code> [1] 0.008905264 0.012403421 0.016514959 0.025906232 0.012740460 0.004188165 0.007562317 0.029343514 0.018448129 0.008054000</code></pre>
+</div>
+<div id="coordenadas-de-las-columnas" class="section level5" number="7.4.1.2.5">
+<h5><span class="header-section-number">7.4.1.2.5</span> Coordenadas de las columnas</h5>
+<p>Punto de ubicación en el mapa de cada punto columna.</p>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="s03.html#cb405-1" aria-hidden="true" tabindex="-1"></a>res[[<span class="st">&quot;colcoord&quot;</span>]]</span></code></pre></div>
+<pre><code>            Dim1       Dim2       Dim3        Dim4       Dim5       Dim6       Dim7
+hatco  0.4703327 -0.6261240 -1.6935356 -0.29465670  1.7292066  0.4655331  0.4460250
+a      1.0217346 -0.5801388  0.5338336  0.07823246 -1.1100906  1.6894406  1.1173385
+b      0.8432000  1.5832948  0.7964316 -0.26209544 -0.2874627 -0.1659282 -1.3363279
+c     -1.9333842  0.7935744 -0.1648613 -1.59150233  0.5015929  1.0023065 -0.3955033
+d     -0.9699347  1.1891134  1.1762320 -0.24157388  0.3215290  0.1038722  1.4550986
+e      0.4498224 -0.5024514  0.2356379 -1.01941582 -0.2256877 -2.0473172  0.9157056
+f      0.8381141 -0.4468266 -0.2145714 -0.65967745 -0.3110986  0.1309981 -1.6885279
+g     -1.6806871 -1.0920696 -0.6758338  0.77145803 -1.5096436 -0.3224750 -0.4368324
+h      0.3922857  1.9443407 -1.6117961  1.83337906 -0.3985224 -0.4838085  0.4346288
+i     -0.2334232 -0.7842522  1.4674729  1.62005491  1.4611537 -0.1711086 -0.5078109</code></pre>
+</div>
+</div>
+</div>
+<div id="representación-gráfica-los-mapas-de-puntos" class="section level3" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Representación gráfica: los mapas de puntos</h3>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="s03.html#cb407-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="s03.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res, <span class="at">lines=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-167-2.png" width="672" /></p>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="s03.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res, <span class="at">arrows=</span><span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>))</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-167-3.png" width="672" /></p>
+</div>
+</div>
+<div id="análisis-de-correspondencias-ca-de-factominer" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Análisis de correspondencias (CA de FactoMineR)</h2>
+<p>Ahora hacemos el cálculo con el algoritmo <code>CA</code> (nótese diferencia por mayúsculas) del paquete <code>FactoMineR</code>. Generamos una salida de tabla en modo gráfico, donde visualmente el diámetro de la circunferencia es mayor cuanto mayor sea el valor de la celda</p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="s03.html#cb410-1" aria-hidden="true" tabindex="-1"></a>dtmatrix <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(tabla.hatco.ca)</span>
+<span id="cb410-2"><a href="s03.html#cb410-2" aria-hidden="true" tabindex="-1"></a>dttable <span class="ot">&lt;-</span> <span class="fu">as.table</span>(dtmatrix)</span>
+<span id="cb410-3"><a href="s03.html#cb410-3" aria-hidden="true" tabindex="-1"></a><span class="fu">balloonplot</span>(<span class="fu">t</span>(dttable),<span class="at">main =</span> <span class="st">&quot;Empresa * Atributo&quot;</span>,<span class="at">xlab =</span> <span class="st">&quot;Empresa&quot;</span>,<span class="at">ylab =</span> <span class="st">&quot;Atributo&quot;</span>,<span class="at">label =</span> <span class="cn">TRUE</span>,<span class="at">show.margins =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-168-1.png" width="1152" /></p>
+<div id="resultados" class="section level3" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Resultados</h3>
+<p>Calculamos el análisis de correspondencias del paquete <code>FactoMineR</code>. Se usa la tabla original.</p>
+<p><strong>Gráfico básico</strong></p>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="s03.html#cb411-1" aria-hidden="true" tabindex="-1"></a>res.ca <span class="ot">&lt;-</span> <span class="fu">CA</span>(tabla.hatco.ca, <span class="at">graph =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-169-1.png" width="1152" /></p>
+<p><strong>Valores propios</strong></p>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="s03.html#cb412-1" aria-hidden="true" tabindex="-1"></a>res.ca[[<span class="st">&quot;eig&quot;</span>]]</span></code></pre></div>
+<pre><code>        eigenvalue percentage of variance cumulative percentage of variance
+dim 1 0.0765414510             53.1292637                          53.12926
+dim 2 0.0478133897             33.1884248                          86.31769
+dim 3 0.0152914984             10.6141972                          96.93189
+dim 4 0.0026575621              1.8446778                          98.77656
+dim 5 0.0008056703              0.5592352                          99.33580
+dim 6 0.0005760795              0.3998706                          99.73567
+dim 7 0.0003808120              0.2643308                         100.00000</code></pre>
+<p><strong>Masa de las columnas</strong></p>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="s03.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(res.ca[[<span class="st">&quot;call&quot;</span>]][[<span class="st">&quot;marge.col&quot;</span>]], <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>hatco     a     b     c     d     e     f     g     h     i 
+0.108 0.120 0.089 0.080 0.079 0.123 0.114 0.103 0.076 0.107 </code></pre>
+<p><strong>Masa de las filas</strong></p>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="s03.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(res.ca[[<span class="st">&quot;call&quot;</span>]][[<span class="st">&quot;marge.row&quot;</span>]], <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>   x1    x2    x3    x4    x5    x6    x7    x8 
+0.147 0.145 0.099 0.119 0.123 0.125 0.081 0.162 </code></pre>
+<p><strong>Coordenadas de las filas</strong></p>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="s03.html#cb418-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(res.ca[[<span class="st">&quot;row&quot;</span>]][[<span class="st">&quot;coord&quot;</span>]], <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>    Dim 1  Dim 2  Dim 3  Dim 4  Dim 5
+x1  0.107 -0.115  0.059 -0.105  0.023
+x2  0.061  0.021  0.006  0.025  0.039
+x3  0.023  0.578  0.042 -0.013 -0.018
+x4 -0.356 -0.133  0.111 -0.021 -0.050
+x5 -0.106 -0.235  0.091  0.068  0.008
+x6 -0.232 -0.046 -0.306 -0.010 -0.004
+x7  0.792 -0.139 -0.060  0.023 -0.043
+x8 -0.043  0.115  0.029  0.040  0.011</code></pre>
+<p><strong>Contribuciones de las filas</strong></p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="s03.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(res.ca[[<span class="st">&quot;row&quot;</span>]][[<span class="st">&quot;contrib&quot;</span>]], <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>    Dim 1  Dim 2  Dim 3  Dim 4  Dim 5
+x1  2.215  4.041  3.393 60.694  9.386
+x2  0.694  0.138  0.038  3.324 27.322
+x3  0.069 68.857  1.142  0.614  3.977
+x4 19.614  4.422  9.563  1.924 37.447
+x5  1.817 14.231  6.697 21.632  0.898
+x6  8.725  0.555 76.357  0.448  0.272
+x7 66.482  3.289  1.893  1.617 18.183
+x8  0.384  4.467  0.916  9.747  2.516</code></pre>
+<p><strong>Calidad de las filas</strong></p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="s03.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(res.ca[[<span class="st">&quot;row&quot;</span>]][[<span class="st">&quot;cos2&quot;</span>]], <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>   Dim 1 Dim 2 Dim 3 Dim 4 Dim 5
+x1 0.289 0.330 0.089 0.275 0.013
+x2 0.469 0.058 0.005 0.078 0.194
+x3 0.002 0.989 0.005 0.000 0.001
+x4 0.789 0.111 0.077 0.003 0.016
+x5 0.138 0.677 0.102 0.057 0.001
+x6 0.358 0.014 0.626 0.001 0.000
+x7 0.961 0.030 0.005 0.001 0.003
+x8 0.093 0.678 0.044 0.082 0.006</code></pre>
+<p><strong>Inercia de las filas</strong></p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="s03.html#cb424-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(res.ca[[<span class="st">&quot;row&quot;</span>]][[<span class="st">&quot;inertia&quot;</span>]], <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>[1] 0.006 0.001 0.033 0.019 0.010 0.019 0.053 0.003</code></pre>
+<p><strong>Coordenadas de las columnas</strong></p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="s03.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(res.ca[[<span class="st">&quot;col&quot;</span>]][[<span class="st">&quot;coord&quot;</span>]], <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>       Dim 1  Dim 2  Dim 3  Dim 4  Dim 5
+hatco -0.130 -0.137  0.209 -0.015  0.049
+a     -0.283 -0.127 -0.066  0.004 -0.032
+b     -0.233  0.346 -0.098 -0.014 -0.008
+c      0.535  0.174  0.020 -0.082  0.014
+d      0.268  0.260 -0.145 -0.012  0.009
+e     -0.124 -0.110 -0.029 -0.053 -0.006
+f     -0.232 -0.098  0.027 -0.034 -0.009
+g      0.465 -0.239  0.084  0.040 -0.043
+h     -0.109  0.425  0.199  0.095 -0.011
+i      0.065 -0.171 -0.181  0.084  0.041</code></pre>
+<p><strong>Contribuciones de las columnas</strong></p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="s03.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(res.ca[[<span class="st">&quot;col&quot;</span>]][[<span class="st">&quot;contrib&quot;</span>]], <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>       Dim 1  Dim 2  Dim 3  Dim 4  Dim 5
+hatco  2.391  4.238 31.006  0.939 32.326
+a     12.513  4.034  3.416  0.073 14.770
+b      6.350 22.388  5.665  0.613  0.738
+c     29.869  5.032  0.217 20.239  2.010
+d      7.407 11.132 10.893  0.459  0.814
+e      2.497  3.115  0.685 12.822  0.628
+f      8.007  2.276  0.525  4.960  1.103
+g     29.210 12.333  4.723  6.154 23.567
+h      1.175 28.875 19.843 25.674  1.213
+i      0.583  6.577 23.028 28.065 22.830</code></pre>
+<p><strong>Calidad de las columnas</strong></p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="s03.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(res.ca[[<span class="st">&quot;col&quot;</span>]][[<span class="st">&quot;cos2&quot;</span>]], <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>      Dim 1 Dim 2 Dim 3 Dim 4 Dim 5
+hatco 0.206 0.228 0.532 0.003 0.029
+a     0.772 0.156 0.042 0.000 0.010
+b     0.294 0.648 0.052 0.001 0.000
+c     0.882 0.093 0.001 0.021 0.001
+d     0.445 0.418 0.131 0.001 0.001
+e     0.456 0.356 0.025 0.081 0.001
+f     0.810 0.144 0.011 0.017 0.001
+g     0.762 0.201 0.025 0.006 0.006
+h     0.049 0.748 0.164 0.037 0.001
+i     0.055 0.390 0.437 0.093 0.023</code></pre>
+<p><strong>Inercia de las columnas</strong></p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="s03.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(res.ca[[<span class="st">&quot;col&quot;</span>]][[<span class="st">&quot;inertia&quot;</span>]], <span class="dv">3</span>)</span></code></pre></div>
+<pre><code> [1] 0.009 0.012 0.017 0.026 0.013 0.004 0.008 0.029 0.018 0.008</code></pre>
+</div>
+<div id="calidad" class="section level3" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> Calidad</h3>
+<p>Calculamos el gráfico de las calidad de la varianza explicada por las dimensiones, descendente por representación.</p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="s03.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(</span>
+<span id="cb434-2"><a href="s03.html#cb434-2" aria-hidden="true" tabindex="-1"></a>    res.ca,</span>
+<span id="cb434-3"><a href="s03.html#cb434-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">choice =</span> <span class="fu">c</span>(<span class="st">&quot;variance&quot;</span>, <span class="st">&quot;eigenvalue&quot;</span>),</span>
+<span id="cb434-4"><a href="s03.html#cb434-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">geom =</span> <span class="fu">c</span>(<span class="st">&quot;bar&quot;</span>, <span class="st">&quot;line&quot;</span>),</span>
+<span id="cb434-5"><a href="s03.html#cb434-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">barfill =</span> <span class="st">&quot;grey&quot;</span>,</span>
+<span id="cb434-6"><a href="s03.html#cb434-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">barcolor =</span> <span class="st">&quot;grey&quot;</span>,</span>
+<span id="cb434-7"><a href="s03.html#cb434-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">linecolor =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb434-8"><a href="s03.html#cb434-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">addlabels =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb434-9"><a href="s03.html#cb434-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb434-10"><a href="s03.html#cb434-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;análisis de correspondencias&quot;</span>,</span>
+<span id="cb434-11"><a href="s03.html#cb434-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">&quot;Dimensiones&quot;</span>,</span>
+<span id="cb434-12"><a href="s03.html#cb434-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;% varianza&quot;</span>,</span>
+<span id="cb434-13"><a href="s03.html#cb434-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>(),</span>
+<span id="cb434-14"><a href="s03.html#cb434-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>),</span>
+<span id="cb434-15"><a href="s03.html#cb434-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">repel =</span> <span class="cn">FALSE</span></span>
+<span id="cb434-16"><a href="s03.html#cb434-16" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-181-1.png" width="1152" /></p>
+</div>
+<div id="mapas-de-puntos" class="section level3" number="7.5.3">
+<h3><span class="header-section-number">7.5.3</span> Mapas de puntos</h3>
+<p>Calculamos el mapa de filas y columnas en el mismo plano y los mapas conjuntos (mapa clásico y relacionados)</p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="s03.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_ca_biplot</span>(</span>
+<span id="cb435-2"><a href="s03.html#cb435-2" aria-hidden="true" tabindex="-1"></a>    res.ca,</span>
+<span id="cb435-3"><a href="s03.html#cb435-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">map =</span> <span class="st">&quot;symmetric&quot;</span>,</span>
+<span id="cb435-4"><a href="s03.html#cb435-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;análisis de correspondencias: simétrico&quot;</span>,</span>
+<span id="cb435-5"><a href="s03.html#cb435-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>),</span>
+<span id="cb435-6"><a href="s03.html#cb435-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">repel =</span> <span class="cn">TRUE</span></span>
+<span id="cb435-7"><a href="s03.html#cb435-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-182-1.png" width="1152" /></p>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="s03.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_ca_biplot</span>(</span>
+<span id="cb436-2"><a href="s03.html#cb436-2" aria-hidden="true" tabindex="-1"></a>    res.ca,</span>
+<span id="cb436-3"><a href="s03.html#cb436-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">map =</span> <span class="st">&quot;rowprincipal&quot;</span>,</span>
+<span id="cb436-4"><a href="s03.html#cb436-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;análisis de correspondencias: fila&quot;</span>,</span>
+<span id="cb436-5"><a href="s03.html#cb436-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>),</span>
+<span id="cb436-6"><a href="s03.html#cb436-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">repel =</span> <span class="cn">TRUE</span></span>
+<span id="cb436-7"><a href="s03.html#cb436-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-182-2.png" width="1152" /></p>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="s03.html#cb437-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_ca_biplot</span>(</span>
+<span id="cb437-2"><a href="s03.html#cb437-2" aria-hidden="true" tabindex="-1"></a>    res.ca,</span>
+<span id="cb437-3"><a href="s03.html#cb437-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">map =</span> <span class="st">&quot;colprincipal&quot;</span>,</span>
+<span id="cb437-4"><a href="s03.html#cb437-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;análisis de correspondencias: columna&quot;</span>,</span>
+<span id="cb437-5"><a href="s03.html#cb437-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>),</span>
+<span id="cb437-6"><a href="s03.html#cb437-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">repel =</span> <span class="cn">TRUE</span></span>
+<span id="cb437-7"><a href="s03.html#cb437-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-182-3.png" width="1152" /></p>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="s03.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_ca_biplot</span>(</span>
+<span id="cb438-2"><a href="s03.html#cb438-2" aria-hidden="true" tabindex="-1"></a>    res.ca,</span>
+<span id="cb438-3"><a href="s03.html#cb438-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">map =</span> <span class="st">&quot;rowgreen&quot;</span>,</span>
+<span id="cb438-4"><a href="s03.html#cb438-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;análisis de correspondencias: puntos fila más representativos&quot;</span>,</span>
+<span id="cb438-5"><a href="s03.html#cb438-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>),</span>
+<span id="cb438-6"><a href="s03.html#cb438-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">repel =</span> <span class="cn">TRUE</span></span>
+<span id="cb438-7"><a href="s03.html#cb438-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-182-4.png" width="1152" /></p>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="s03.html#cb439-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_ca_biplot</span>(</span>
+<span id="cb439-2"><a href="s03.html#cb439-2" aria-hidden="true" tabindex="-1"></a>    res.ca,</span>
+<span id="cb439-3"><a href="s03.html#cb439-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">map =</span> <span class="st">&quot;colgreen&quot;</span>,</span>
+<span id="cb439-4"><a href="s03.html#cb439-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;análisis de correspondencias: puntos columna más representativos&quot;</span>,</span>
+<span id="cb439-5"><a href="s03.html#cb439-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>),</span>
+<span id="cb439-6"><a href="s03.html#cb439-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">repel =</span> <span class="cn">TRUE</span></span>
+<span id="cb439-7"><a href="s03.html#cb439-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-182-5.png" width="1152" /></p>
+<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="s03.html#cb440-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_ca_biplot</span>(</span>
+<span id="cb440-2"><a href="s03.html#cb440-2" aria-hidden="true" tabindex="-1"></a>    res.ca,</span>
+<span id="cb440-3"><a href="s03.html#cb440-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">map =</span> <span class="st">&quot;symbiplot&quot;</span>,</span>
+<span id="cb440-4"><a href="s03.html#cb440-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;análisis de correspondencias: simétrico sin preservar métrica de filas y/o columnas&quot;</span>,</span>
+<span id="cb440-5"><a href="s03.html#cb440-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>),</span>
+<span id="cb440-6"><a href="s03.html#cb440-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">repel =</span> <span class="cn">TRUE</span></span>
+<span id="cb440-7"><a href="s03.html#cb440-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-182-6.png" width="1152" /></p>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="s03.html#cb441-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_ca_biplot</span>(</span>
+<span id="cb441-2"><a href="s03.html#cb441-2" aria-hidden="true" tabindex="-1"></a>    res.ca,</span>
+<span id="cb441-3"><a href="s03.html#cb441-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">map =</span> <span class="st">&quot;rowgab&quot;</span>,</span>
+<span id="cb441-4"><a href="s03.html#cb441-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;análisis de correspondencias: asimétrico filas&quot;</span>,</span>
+<span id="cb441-5"><a href="s03.html#cb441-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>),</span>
+<span id="cb441-6"><a href="s03.html#cb441-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">repel =</span> <span class="cn">TRUE</span></span>
+<span id="cb441-7"><a href="s03.html#cb441-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-182-7.png" width="1152" /></p>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="s03.html#cb442-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_ca_biplot</span>(</span>
+<span id="cb442-2"><a href="s03.html#cb442-2" aria-hidden="true" tabindex="-1"></a>    res.ca,</span>
+<span id="cb442-3"><a href="s03.html#cb442-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">map =</span> <span class="st">&quot;colgab&quot;</span>,</span>
+<span id="cb442-4"><a href="s03.html#cb442-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;análisis de correspondencias: asimétrico columnas&quot;</span>,</span>
+<span id="cb442-5"><a href="s03.html#cb442-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>),</span>
+<span id="cb442-6"><a href="s03.html#cb442-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">repel =</span> <span class="cn">TRUE</span></span>
+<span id="cb442-7"><a href="s03.html#cb442-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-182-8.png" width="1152" /></p>
+</div>
+<div id="otros-gráficos" class="section level3" number="7.5.4">
+<h3><span class="header-section-number">7.5.4</span> Otros gráficos</h3>
+<p>Calculamos otros gráficos de soporte a la comprensión del análisis</p>
+<p><strong>Mapa de filas</strong></p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="s03.html#cb443-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_ca_row</span>(res.ca, <span class="at">repel =</span> <span class="cn">TRUE</span>, <span class="at">col.row =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-183-1.png" width="1152" /></p>
+<p><strong>Mapa de columnas</strong></p>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="s03.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_ca_col</span>(res.ca, <span class="at">repel =</span> <span class="cn">TRUE</span>, <span class="at">col.col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-184-1.png" width="1152" /></p>
+<p><strong>Calidad de puntos columna</strong></p>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="s03.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_ca_row</span>(</span>
+<span id="cb445-2"><a href="s03.html#cb445-2" aria-hidden="true" tabindex="-1"></a>    res.ca,</span>
+<span id="cb445-3"><a href="s03.html#cb445-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.row =</span> <span class="st">&quot;cos2&quot;</span>,</span>
+<span id="cb445-4"><a href="s03.html#cb445-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>),</span>
+<span id="cb445-5"><a href="s03.html#cb445-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">repel =</span> <span class="cn">TRUE</span></span>
+<span id="cb445-6"><a href="s03.html#cb445-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-185-1.png" width="1152" /></p>
+<p><strong>Calidad de puntos fila</strong></p>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="s03.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_ca_col</span>(</span>
+<span id="cb446-2"><a href="s03.html#cb446-2" aria-hidden="true" tabindex="-1"></a>    res.ca,</span>
+<span id="cb446-3"><a href="s03.html#cb446-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.col =</span> <span class="st">&quot;cos2&quot;</span>,</span>
+<span id="cb446-4"><a href="s03.html#cb446-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>),</span>
+<span id="cb446-5"><a href="s03.html#cb446-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">repel =</span> <span class="cn">TRUE</span></span>
+<span id="cb446-6"><a href="s03.html#cb446-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-186-1.png" width="1152" /></p>
+<p><strong>Creamos un mapa de correlación entre calidad filas/columnas y dimensiones</strong></p>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="s03.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(res.ca[[<span class="st">&quot;row&quot;</span>]][[<span class="st">&quot;cos2&quot;</span>]], <span class="at">is.corr =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-187-1.png" width="1152" /></p>
+<p><strong>Calidad de representación</strong></p>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="s03.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(res.ca[[<span class="st">&quot;col&quot;</span>]][[<span class="st">&quot;cos2&quot;</span>]], <span class="at">is.corr =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-188-1.png" width="1152" /></p>
+<p><strong>Calidad de filas</strong></p>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="s03.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_cos2</span>(res.ca, <span class="at">choice =</span> <span class="st">&quot;row&quot;</span>, <span class="at">axes =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-189-1.png" width="1152" /></p>
+<p><strong>Calidad de columnas</strong></p>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="s03.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_cos2</span>(res.ca, <span class="at">choice =</span> <span class="st">&quot;col&quot;</span>, <span class="at">axes =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-190-1.png" width="1152" /></p>
+<p><strong>Correlación filas en dimensiones</strong></p>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="s03.html#cb451-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(res.ca[[<span class="st">&quot;row&quot;</span>]][[<span class="st">&quot;contrib&quot;</span>]], <span class="at">is.corr =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-191-1.png" width="1152" /></p>
+<p><strong>Correlación columnas en dimensiones</strong></p>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="s03.html#cb452-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(res.ca[[<span class="st">&quot;col&quot;</span>]][[<span class="st">&quot;contrib&quot;</span>]], <span class="at">is.corr =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-192-1.png" width="1152" /></p>
+<p><strong>Contribuciones de las filas a la primera dimensión</strong></p>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="s03.html#cb453-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_contrib</span>(res.ca,</span>
+<span id="cb453-2"><a href="s03.html#cb453-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">choice =</span> <span class="st">&quot;row&quot;</span>,</span>
+<span id="cb453-3"><a href="s03.html#cb453-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">axes =</span> <span class="dv">1</span>,</span>
+<span id="cb453-4"><a href="s03.html#cb453-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">top =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-193-1.png" width="1152" /></p>
+<p><strong>Contribuciones de las filas a la segunda dimensión</strong></p>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="s03.html#cb454-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_contrib</span>(res.ca,</span>
+<span id="cb454-2"><a href="s03.html#cb454-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">choice =</span> <span class="st">&quot;row&quot;</span>,</span>
+<span id="cb454-3"><a href="s03.html#cb454-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">axes =</span> <span class="dv">2</span>,</span>
+<span id="cb454-4"><a href="s03.html#cb454-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">top =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-194-1.png" width="1152" /></p>
+<p><strong>Contribuciones de las columnas a la primera dimensión</strong></p>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="s03.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_contrib</span>(res.ca,</span>
+<span id="cb455-2"><a href="s03.html#cb455-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">choice =</span> <span class="st">&quot;col&quot;</span>,</span>
+<span id="cb455-3"><a href="s03.html#cb455-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">axes =</span> <span class="dv">1</span>,</span>
+<span id="cb455-4"><a href="s03.html#cb455-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">top =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-195-1.png" width="1152" /></p>
+<p><strong>Contribuciones de las columnas a la segunda dimensión</strong></p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="s03.html#cb456-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_contrib</span>(res.ca,</span>
+<span id="cb456-2"><a href="s03.html#cb456-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">choice =</span> <span class="st">&quot;col&quot;</span>,</span>
+<span id="cb456-3"><a href="s03.html#cb456-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">axes =</span> <span class="dv">2</span>,</span>
+<span id="cb456-4"><a href="s03.html#cb456-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">top =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-196-1.png" width="1152" /></p>
+<p><strong>Contribuciones de fila con gradiente</strong></p>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="s03.html#cb457-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_ca_row</span>(</span>
+<span id="cb457-2"><a href="s03.html#cb457-2" aria-hidden="true" tabindex="-1"></a>    res.ca,</span>
+<span id="cb457-3"><a href="s03.html#cb457-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.row =</span> <span class="st">&quot;contrib&quot;</span>,</span>
+<span id="cb457-4"><a href="s03.html#cb457-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>),</span>
+<span id="cb457-5"><a href="s03.html#cb457-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">repel =</span> <span class="cn">TRUE</span></span>
+<span id="cb457-6"><a href="s03.html#cb457-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-197-1.png" width="1152" /></p>
+<p><strong>Calidad de fila con gradiente</strong></p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="s03.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_ca_row</span>(</span>
+<span id="cb458-2"><a href="s03.html#cb458-2" aria-hidden="true" tabindex="-1"></a>    res.ca,</span>
+<span id="cb458-3"><a href="s03.html#cb458-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.row =</span> <span class="st">&quot;cos2&quot;</span>,</span>
+<span id="cb458-4"><a href="s03.html#cb458-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>),</span>
+<span id="cb458-5"><a href="s03.html#cb458-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">repel =</span> <span class="cn">TRUE</span></span>
+<span id="cb458-6"><a href="s03.html#cb458-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-198-1.png" width="1152" /></p>
+<p><strong>Contribuciones de columna con gradiente</strong></p>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="s03.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_ca_col</span>(</span>
+<span id="cb459-2"><a href="s03.html#cb459-2" aria-hidden="true" tabindex="-1"></a>    res.ca,</span>
+<span id="cb459-3"><a href="s03.html#cb459-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.col =</span> <span class="st">&quot;contrib&quot;</span>,</span>
+<span id="cb459-4"><a href="s03.html#cb459-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>),</span>
+<span id="cb459-5"><a href="s03.html#cb459-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">repel =</span> <span class="cn">TRUE</span></span>
+<span id="cb459-6"><a href="s03.html#cb459-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-199-1.png" width="1152" /></p>
+<p><strong>Calidad de columna con gradiente</strong></p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="s03.html#cb460-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_ca_col</span>(</span>
+<span id="cb460-2"><a href="s03.html#cb460-2" aria-hidden="true" tabindex="-1"></a>    res.ca,</span>
+<span id="cb460-3"><a href="s03.html#cb460-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">col.col =</span> <span class="st">&quot;cos2&quot;</span>,</span>
+<span id="cb460-4"><a href="s03.html#cb460-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">&quot;#00AFBB&quot;</span>, <span class="st">&quot;#E7B800&quot;</span>, <span class="st">&quot;#FC4E07&quot;</span>),</span>
+<span id="cb460-5"><a href="s03.html#cb460-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">repel =</span> <span class="cn">TRUE</span></span>
+<span id="cb460-6"><a href="s03.html#cb460-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-200-1.png" width="1152" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="s02.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="s04.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

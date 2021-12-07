@@ -1,0 +1,308 @@
+# Inferencia - Sesiones 1 y 2 {#s02}
+
+El siguiente documento muestra todos los cálculos estadísticos que entre la primera y la segunda sesión de la asignatura _Técnicas multivariantes en Investigación de Mercados_ dentro del máster oficial en Marketing e Investigación de mercados se observan. Este documento intenta ser una guía ilustrativa y demostrativa de como se trabaja con R, magnificando todas las virtudes de este software.
+
+```{r carga1}
+x <- gssft1$hrs1 ## asociamos a vector para no repetir el nombre de variable
+```
+
+## Inferencia paramétrica
+
+Pruebas inferenciales realizadas con variables que cumplen los crirerios de nromalidad y/o homoscedasticidad.
+
+### Test t Student para la media de una muestra
+
+```{r test.t.valor}
+test_t <- t.test(
+    x,
+    mu = 40, ##  debe ser un parámetro abierto, es el valor de control
+    na.rm = TRUE,
+    alternative = "two.sided", ##  alternativas cerradas: "two.sided", "less", "greater"
+    paired = FALSE,
+    var.equal = FALSE, ##  alternativas TRUE / FALSE
+    conf.level = 0.95) ##  se deben dar alternativas 0.90, 0.95, 0.9545, 0.99, 0.9975
+print(test_t)
+```
+
+### Test t Student para la media de una muestra en grupos independientes
+
+El test puede hacerse con varianzas iguales o diferentes, x con z, varianzas iguales / diferentes; para saber si optamos por una u otra opción hacemos el test de Levene; este test necesita que la variable de grupos sea no numérica, por lo que creamos un factor para ella.
+
+* si la probabilidad es mayor que 0.05, escogemos la prueba t de varianzas iguales; 
+* si la probabilidad es menor o igual que 0.05, escogemos la prueba t de varianzas distintas; 
+* atención si el nivel de confianza es 0.95, el valor de comparación de Levene es 1-0.95=0.05
+
+#### Varianzas iguales
+
+```{r test.t.indep.var.eq}
+x <- gssnet2$emailhrs
+y <- gssnet2$webhrs
+z <- gssnet2$sex
+z <- factor(z, labels = c("hombre", "mujer"))
+output.levene <- leveneTest(x ~ z, data = gssnet2, center = mean) 
+print(output.levene)
+conflevel = 0.95 ##  se deben dar alternativas 0.90, 0.95, 0.9545, 0.99, 0.9975
+pctrl = 1 - conflevel ## cálculo del valor de control
+test_true <- t.test(
+        x ~ z, ## atención al cambo, desaparace mu y cambia la forma de X que es formula x ~ z
+        na.rm = TRUE,
+        alternative = "two.sided", ##  alternativas cerradas: "two.sided", "less", "greater"
+        paired = FALSE,
+        var.equal = TRUE, 
+        conf.level = conflevel)
+print(test_true)
+t1 <- test_true[["statistic"]][["t"]]
+print(t1)
+df1 <- test_true[["parameter"]][["df"]]
+print(df1)
+effect.size.true <- sqrt((t1 ^ 2) / ((t1 ^ 2) + df1))
+print(effect.size.true)
+```
+
+#### Varianzas no iguales
+
+```{r test.t.indep.var.noneq}
+test_false <- t.test(
+        x ~ z,
+        na.rm = TRUE,
+        alternative = "two.sided",
+        paired = FALSE,
+        var.equal = FALSE,
+        conf.level = conflevel)
+print(test_false)
+t2 <- test_false[["statistic"]][["t"]]
+print(t2)
+df2 <- test_false[["parameter"]][["df"]]
+print(df2)
+## calculo del efecto
+effect.size.false <- sqrt((t2 ^ 2) / ((t2 ^ 2) + df2))
+print(effect.size.false)
+```
+
+### Test t Student para la media de una muestra en grupos dependientes
+
+```{r test.t.dep}
+x <- endorph1$before
+y <- endorph1$after
+media <- mean(x - y, na.rm = TRUE)
+print(media)
+desviacion <- sd(x - y, na.rm = TRUE)
+print(desviacion)
+errormedia <- sd(x - y, na.rm = TRUE) / (sqrt(length(x)))
+print(errormedia)
+int_inf <- media - (2 * errormedia)
+print(int_inf)
+int_sup <- media + (2 * errormedia)
+print(int_sup)
+lillieforsx <- lillie.test(x) ##  kolgomorov-smirnov con la correción de lilliefors
+print(lillieforsx)
+lillieforsy <- lillie.test(y)
+print(lillieforsy)
+shapirox <- shapiro.test(x) ##  shapiro - wilk
+print(shapirox)
+shapiroy <- shapiro.test(y)
+print(shapiroy)
+test <- t.test(
+    x,
+    y,
+    na.rm = TRUE,
+    alternative = "two.sided", ##  alternativas cerradas: "two.sided", "less", "greater"
+    paired = TRUE, ##  nótese que aquí es TRUE porque estamos en muestras pareadas
+    conf.level = 0.95)
+print(test)
+##  cálculo del efecto tamaño
+t3 <- test[["statistic"]][["t"]]
+print(t3)
+df3 <- test[["parameter"]][["df"]]
+print(df3)
+effect_size3 <- sqrt((t3 ^ 2) / ((t3 ^ 2) + df3))
+print(effect_size3)
+```
+
+### Correlación paramétrica de Pearson
+
+```{r correlaciones}
+##  correlaciones
+x <- anxiety$horas
+y <- anxiety$nota
+z <- anxiety$ansiedad
+pearson.1 <- cor.test(
+        x,
+        y,
+        alternative = "two.sided",##  alternativas cerradas: "two.sided", "less", "greater"
+        method = "pearson",##  alternativas cerradas: "pearson", "kendall", "spearman"
+        exact = NULL,
+        conf.level = 0.95,
+        continuity = FALSE)
+print(pearson.1)
+anxiety.filter <- select(anxiety, horas, nota, ansiedad)
+## p.coef <-cor(anxiety.filter, use = "complete.obs", method = "pearson")
+## p.cor <- cor(anxiety.filter, use = "pairwise.complete.obs") 
+p.pvalue <- rcorr(as.matrix(anxiety.filter), type = "pearson") ## se obtiene la matriz de correlación
+p.pvalue[["r"]] ##  matriz de correlación
+p.pvalue[["n"]] ##  pares analizados
+p.pvalue[["P"]] ##  pvalue de los coeficientes
+plot(anxiety.filter) ## se obtiene el gráfico de dispersión
+```
+
+### Análisis de varianza de un factor (vía)
+
+Nota: la variable de grupos ha de ser factor; si no es así no funciona el análisis.
+
+```{r anova1}
+hatco$x14f <- factor(hatco$x14, labels = c("nueva", "recompra modificada", "recompra"))
+hatco$x13f <- factor(hatco$x13, labels = c("tipo 1", "tipo2"))
+boxplot(hatco$x10 ~ hatco$x14f, col = "lightgray")
+boxplot(hatco$x10 ~ hatco$x13f, col = "lightgray")
+anova1 <- aov(hatco$x10 ~ hatco$x14f)
+print(anova1)
+summary(anova1)
+model.tables(anova1, "means")
+```
+
+### Análisis de varianza de dos factores (vías)
+
+```{r anova2}
+anova2 <- aov(hatco$x10 ~ hatco$x14f + hatco$x13f)
+print(anova2)
+summary(anova2)
+model.tables(anova2, "means")
+```
+
+##  Inferencia no paramétrica
+
+### Prueba Chi
+
+#### Prueba Chi2 de una muestra
+
+El test chi2 para una muestra, compara los resultados de una distribución marginal con los resultados proporcionados de forma externa.
+
+```{r chi2}
+x <- c(28, 47, 80, 82, 47, 35)
+y <- c(30, 50, 75, 75, 50, 30)
+chisq000 <- chisq.test(x, p = y, rescale.p = TRUE)
+print(chisq000)
+```
+#### Prueba Chi2 de una tabla
+
+```{r chitabla}
+tabla001 <-  table(data2$freedman, data2$sex)
+print(tabla001)
+chisq001 <- chisq.test(tabla001, correct = FALSE) ## prueba chi2 de tabla sin corrección de continuidad de Yates (solo en 2*2)
+print(chisq001)
+chisq002 <- chisq.test(tabla001, correct = TRUE) ## prueba chi2 de tabla con corrección de continuidad, como es 2*2 aplica por defecto, si no fuera 2*2 no aplica la corrección
+print(chisq002)
+```
+
+#### Otros test derivados
+
+```{r otros}
+otros <- assocstats(tabla001)
+print(otros)
+```
+
+### Correlaciones no paramétricas
+
+#### Correlación de Spearman
+
+```{r spearman}
+x <- grades$Estadística
+y <- grades$Selectivo
+spearman.1 <- cor.test(
+        x,
+        y,
+        alternative = "two.sided",
+        method = "spearman",
+        exact = NULL,
+        conf.level = 0.95,
+        continuity = FALSE)
+```
+
+#### Correlación de Kendall
+
+```{r kendall}
+tau.b.kendall.1 <- cor.test(
+        x,
+        y,
+        alternative = "two.sided",
+        method = "kendall",
+        exact = NULL,
+        conf.level = 0.95,
+        continuity = FALSE)
+```
+
+### Test de diferencias de una muestra en grupos independientes
+
+Probamos la normalidad de los grupos a comparar. Probamos la normalidad de cada grupo en cada variable y una vez probado que existen problemas de normalidad en algunos de los grupos, calculamos la prueba W de Wilcoxon.
+
+#### Lilliefors y Shapiro-Wilk
+
+```{r lillie.shapiro}
+x <- bdi$sunbdi
+y <- bdi$wedbdi
+z <- bdi$droga
+
+bdi.filter <- filter (bdi, bdi$droga == 1)
+es <- bdi.filter$sunbdi ##  alcohol domingo
+
+bdi.filter <- filter (bdi, bdi$droga == 2)
+as <- bdi.filter$sunbdi ##  extasis domingo
+
+bdi.filter <- filter (bdi, bdi$droga == 1)
+ew <- bdi.filter$wedbdi ##  alcohol miercoles
+
+bdi.filter <- filter (bdi, bdi$droga == 2)
+aw <- bdi.filter$wedbdi ##  extasis miercoles
+
+rm(bdi.filter)
+
+lillie.sun.1 <- lillie.test(es)
+print(lillie.sun.1)
+
+shap.sun.1 <- shapiro.test(es)
+print(shap.sun.1)
+
+lillie.sun.2 <- lillie.test(as)
+print(lillie.sun.2)
+
+shap.sun.2 <- shapiro.test(as)
+print(shap.sun.2)
+
+lillie.wed.1 <- lillie.test(ew)
+print(lillie.wed.1)
+
+shap.wed.1 <- shapiro.test(ew)
+print(shap.wed.1)
+
+lillie.wed.2 <- lillie.test(aw)
+print(lillie.wed.2)
+
+shap.wed.2 <- shapiro.test(aw)
+print(shap.wed.2)
+```
+
+#### Prueba W de Wilcoxon - U Mann-Withney
+
+Aunque la probabilidad no es exactamente la misma, es muy aproximada.
+
+```{r wilcoxon.indep}
+wilcox.test.1 <- wilcox.test(as, es, paired = FALSE, alternative = "two.sided", mu = 0, conf.int = 0.95)
+print(wilcox.test.1)
+
+wilcox.test.2 <- wilcox.test(aw, ew, paired = FALSE, alternative = "two.sided", mu = 0, conf.int = 0.95)
+print(wilcox.test.2)
+```
+
+### Test de diferencias de una muestra en grupos dependientes
+
+#### Prueba V de Wilcoxon
+
+Atención, resultado de la prueba es suma de rangos negativos. no es el mismo resultado que SPSS el valor, pero si la probabilidad aproximada.
+
+```{r wilcoxon.dep}
+wilcox.test.3 <- wilcox.test(es, ew, paired = TRUE, alternative = "two.sided", mu = 0, conf.int = 0.99)
+print(wilcox.test.3)
+
+wilcox.test.4 <- wilcox.test(as, aw, paired = TRUE, alternative = "two.sided", mu = 0, conf.int = 0.99)
+print(wilcox.test.4)
+```

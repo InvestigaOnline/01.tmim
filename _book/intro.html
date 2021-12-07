@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Parte 2 Introducción | TMIM Compendio R</title>
+  <meta name="description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Parte 2 Introducción | TMIM Compendio R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Parte 2 Introducción | TMIM Compendio R" />
+  
+  <meta name="twitter:description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
+  
+
+<meta name="author" content="Roberto Gil" />
+
+
+<meta name="date" content="2021-12-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="r1.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/proj4js-2.3.15/proj4.js"></script>
+<link href="libs/highcharts-8.1.2/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-8.1.2/highcharts.js"></script>
+<script src="libs/highcharts-8.1.2/highcharts-3d.js"></script>
+<script src="libs/highcharts-8.1.2/highcharts-more.js"></script>
+<script src="libs/highcharts-8.1.2/modules/stock.js"></script>
+<script src="libs/highcharts-8.1.2/modules/map.js"></script>
+<script src="libs/highcharts-8.1.2/modules/annotations.js"></script>
+<script src="libs/highcharts-8.1.2/modules/data.js"></script>
+<script src="libs/highcharts-8.1.2/modules/drilldown.js"></script>
+<script src="libs/highcharts-8.1.2/modules/item-series.js"></script>
+<script src="libs/highcharts-8.1.2/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-8.1.2/modules/overlapping-datalabels.js"></script>
+<script src="libs/highcharts-8.1.2/modules/exporting.js"></script>
+<script src="libs/highcharts-8.1.2/modules/export-data.js"></script>
+<script src="libs/highcharts-8.1.2/modules/funnel.js"></script>
+<script src="libs/highcharts-8.1.2/modules/heatmap.js"></script>
+<script src="libs/highcharts-8.1.2/modules/treemap.js"></script>
+<script src="libs/highcharts-8.1.2/modules/sankey.js"></script>
+<script src="libs/highcharts-8.1.2/modules/dependency-wheel.js"></script>
+<script src="libs/highcharts-8.1.2/modules/organization.js"></script>
+<script src="libs/highcharts-8.1.2/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-8.1.2/modules/streamgraph.js"></script>
+<script src="libs/highcharts-8.1.2/modules/sunburst.js"></script>
+<script src="libs/highcharts-8.1.2/modules/vector.js"></script>
+<script src="libs/highcharts-8.1.2/modules/wordcloud.js"></script>
+<script src="libs/highcharts-8.1.2/modules/xrange.js"></script>
+<script src="libs/highcharts-8.1.2/modules/tilemap.js"></script>
+<script src="libs/highcharts-8.1.2/modules/venn.js"></script>
+<script src="libs/highcharts-8.1.2/modules/gantt.js"></script>
+<script src="libs/highcharts-8.1.2/modules/timeline.js"></script>
+<script src="libs/highcharts-8.1.2/modules/parallel-coordinates.js"></script>
+<script src="libs/highcharts-8.1.2/modules/bullet.js"></script>
+<script src="libs/highcharts-8.1.2/modules/coloraxis.js"></script>
+<script src="libs/highcharts-8.1.2/modules/dumbbell.js"></script>
+<script src="libs/highcharts-8.1.2/modules/lollipop.js"></script>
+<script src="libs/highcharts-8.1.2/modules/series-label.js"></script>
+<script src="libs/highcharts-8.1.2/plugins/motion.js"></script>
+<script src="libs/highcharts-8.1.2/custom/reset.js"></script>
+<script src="libs/highcharts-8.1.2/modules/boost.js"></script>
+<script src="libs/highchart-binding-0.8.2/highchart.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.20/datatables.js"></script>
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">TMIM Compendio R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Presentación</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#la-asignatura"><i class="fa fa-check"></i><b>1.1</b> La asignatura</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i><b>1.2</b> Objetivos</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introducción</a></li>
+<li class="chapter" data-level="3" data-path="r1.html"><a href="r1.html"><i class="fa fa-check"></i><b>3</b> Sesión R1</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r1.html"><a href="r1.html#introducción"><i class="fa fa-check"></i><b>3.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r1.html"><a href="r1.html#instalar-r"><i class="fa fa-check"></i><b>3.1.1</b> Instalar R</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r1.html"><a href="r1.html#instalar-rstudio"><i class="fa fa-check"></i><b>3.1.2</b> Instalar RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="r1.html"><a href="r1.html#preguntas-y-respuestas-antes-de-comenzar"><i class="fa fa-check"></i><b>3.2</b> Preguntas y respuestas antes de comenzar …</a></li>
+<li class="chapter" data-level="3.3" data-path="r1.html"><a href="r1.html#instalar-y-cargar-paquetes-básicos"><i class="fa fa-check"></i><b>3.3</b> Instalar y cargar paquetes básicos</a></li>
+<li class="chapter" data-level="3.4" data-path="r1.html"><a href="r1.html#practicando-el-scripting"><i class="fa fa-check"></i><b>3.4</b> Practicando el <em>scripting</em></a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r1.html"><a href="r1.html#ejercicio-script-01"><i class="fa fa-check"></i><b>3.4.1</b> Ejercicio: <em>script</em> 01</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r1.html"><a href="r1.html#ejercicio-script-02"><i class="fa fa-check"></i><b>3.4.2</b> Ejercicio: <em>script</em> 02</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r1.html"><a href="r1.html#ejercicio-script-03"><i class="fa fa-check"></i><b>3.4.3</b> Ejercicio: <em>script</em> 03</a></li>
+<li class="chapter" data-level="3.4.4" data-path="r1.html"><a href="r1.html#ejercicio-script-04"><i class="fa fa-check"></i><b>3.4.4</b> Ejercicio: <em>script</em> 04</a></li>
+<li class="chapter" data-level="3.4.5" data-path="r1.html"><a href="r1.html#ejercicio-script-05"><i class="fa fa-check"></i><b>3.4.5</b> Ejercicio: <em>script</em> 05</a></li>
+<li class="chapter" data-level="3.4.6" data-path="r1.html"><a href="r1.html#ejercicio-creación-de-un-script-rmarkdown"><i class="fa fa-check"></i><b>3.4.6</b> Ejercicio: Creación de un <em>script</em> <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="3.4.7" data-path="r1.html"><a href="r1.html#ejercicio-script-05a-y-05b"><i class="fa fa-check"></i><b>3.4.7</b> Ejercicio: <em>script</em> 05a y 05b</a></li>
+<li class="chapter" data-level="3.4.8" data-path="r1.html"><a href="r1.html#ejercicio-script-06"><i class="fa fa-check"></i><b>3.4.8</b> Ejercicio: <em>script</em> 06</a></li>
+<li class="chapter" data-level="3.4.9" data-path="r1.html"><a href="r1.html#ejercicio-script-07a"><i class="fa fa-check"></i><b>3.4.9</b> Ejercicio: <em>script</em> 07a</a></li>
+<li class="chapter" data-level="3.4.10" data-path="r1.html"><a href="r1.html#ejercicio-script-07b"><i class="fa fa-check"></i><b>3.4.10</b> Ejercicio: <em>script</em> 07b</a></li>
+<li class="chapter" data-level="3.4.11" data-path="r1.html"><a href="r1.html#ejercicio-script-08"><i class="fa fa-check"></i><b>3.4.11</b> Ejercicio: <em>script</em> 08</a></li>
+<li class="chapter" data-level="3.4.12" data-path="r1.html"><a href="r1.html#ejercicio-script-09"><i class="fa fa-check"></i><b>3.4.12</b> Ejercicio: <em>script</em> 09</a></li>
+<li class="chapter" data-level="3.4.13" data-path="r1.html"><a href="r1.html#ejercicio-script-10"><i class="fa fa-check"></i><b>3.4.13</b> Ejercicio: <em>script</em> 10</a></li>
+<li class="chapter" data-level="3.4.14" data-path="r1.html"><a href="r1.html#ejercicio-script-11"><i class="fa fa-check"></i><b>3.4.14</b> Ejercicio: <em>script</em> 11</a></li>
+<li class="chapter" data-level="3.4.15" data-path="r1.html"><a href="r1.html#ejercicio-script-12"><i class="fa fa-check"></i><b>3.4.15</b> Ejercicio: <em>script</em> 12</a></li>
+<li class="chapter" data-level="3.4.16" data-path="r1.html"><a href="r1.html#ejercicio-script-13"><i class="fa fa-check"></i><b>3.4.16</b> Ejercicio: <em>script</em> 13</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="r1.html"><a href="r1.html#conclusión"><i class="fa fa-check"></i><b>3.5</b> Conclusión</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r2.html"><a href="r2.html"><i class="fa fa-check"></i><b>4</b> Sesión R2</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r2.html"><a href="r2.html#proceso-de-datos-con-tablas-y-cuadros"><i class="fa fa-check"></i><b>4.1</b> Proceso de datos con tablas y cuadros</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="r2.html"><a href="r2.html#términos-básicos-de-proceso-de-datos"><i class="fa fa-check"></i><b>4.1.1</b> Términos básicos de proceso de datos</a></li>
+<li class="chapter" data-level="4.1.2" data-path="r2.html"><a href="r2.html#términos-básicos-de-tabulación"><i class="fa fa-check"></i><b>4.1.2</b> Términos básicos de tabulación</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="r2.html"><a href="r2.html#carga-de-datos-para-la-sesión"><i class="fa fa-check"></i><b>4.2</b> Carga de datos para la sesión</a></li>
+<li class="chapter" data-level="4.3" data-path="r2.html"><a href="r2.html#tse03"><i class="fa fa-check"></i><b>4.3</b> Tablas marginales</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="r2.html"><a href="r2.html#tablas-de-frecuencia"><i class="fa fa-check"></i><b>4.3.1</b> Tablas de frecuencia</a></li>
+<li class="chapter" data-level="4.3.2" data-path="r2.html"><a href="r2.html#estadísticos"><i class="fa fa-check"></i><b>4.3.2</b> Estadísticos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="r2.html"><a href="r2.html#tse04"><i class="fa fa-check"></i><b>4.4</b> Tablas cruzadas</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="r2.html"><a href="r2.html#básica-con-variables-simples"><i class="fa fa-check"></i><b>4.4.1</b> Básica con variables simples</a></li>
+<li class="chapter" data-level="4.4.2" data-path="r2.html"><a href="r2.html#básica-con-múltiples"><i class="fa fa-check"></i><b>4.4.2</b> Básica con múltiples</a></li>
+<li class="chapter" data-level="4.4.3" data-path="r2.html"><a href="r2.html#básica-con-estadísticos"><i class="fa fa-check"></i><b>4.4.3</b> Básica con estadísticos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="r2.html"><a href="r2.html#conclusión-1"><i class="fa fa-check"></i><b>4.5</b> Conclusión</a></li>
+<li class="chapter" data-level="4.6" data-path="r2.html"><a href="r2.html#tse07"><i class="fa fa-check"></i><b>4.6</b> Pruebas inferenciales</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="r2.html"><a href="r2.html#prueba-de-dependencia"><i class="fa fa-check"></i><b>4.6.1</b> Prueba de dependencia</a></li>
+<li class="chapter" data-level="4.6.2" data-path="r2.html"><a href="r2.html#pruebas-de-diferencias"><i class="fa fa-check"></i><b>4.6.2</b> Pruebas de diferencias</a></li>
+<li class="chapter" data-level="4.6.3" data-path="r2.html"><a href="r2.html#parámetros-posibles-en-las-pruebas-de-significación"><i class="fa fa-check"></i><b>4.6.3</b> Parámetros posibles en las pruebas de significación</a></li>
+<li class="chapter" data-level="4.6.4" data-path="r2.html"><a href="r2.html#conclusión-2"><i class="fa fa-check"></i><b>4.6.4</b> Conclusión</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="r2.html"><a href="r2.html#tse08"><i class="fa fa-check"></i><b>4.7</b> Visualización gráfica</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="r2.html"><a href="r2.html#highcharter-introducción"><i class="fa fa-check"></i><b>4.7.1</b> highcharteR, introducción</a></li>
+<li class="chapter" data-level="4.7.2" data-path="r2.html"><a href="r2.html#mi-primer-gráfico"><i class="fa fa-check"></i><b>4.7.2</b> Mi primer gráfico</a></li>
+<li class="chapter" data-level="4.7.3" data-path="r2.html"><a href="r2.html#gráfico-de-barras"><i class="fa fa-check"></i><b>4.7.3</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="4.7.4" data-path="r2.html"><a href="r2.html#gráfico-de-columna"><i class="fa fa-check"></i><b>4.7.4</b> Gráfico de columna</a></li>
+<li class="chapter" data-level="4.7.5" data-path="r2.html"><a href="r2.html#diagramas-de-secciones"><i class="fa fa-check"></i><b>4.7.5</b> Diagramas de secciones</a></li>
+<li class="chapter" data-level="4.7.6" data-path="r2.html"><a href="r2.html#gráfico-de-línea"><i class="fa fa-check"></i><b>4.7.6</b> Gráfico de línea</a></li>
+<li class="chapter" data-level="4.7.7" data-path="r2.html"><a href="r2.html#gráficos-de-columnas-o-barras-con-apilamiento"><i class="fa fa-check"></i><b>4.7.7</b> Gráficos de columnas o barras con apilamiento</a></li>
+<li class="chapter" data-level="4.7.8" data-path="r2.html"><a href="r2.html#gráfico-de-área"><i class="fa fa-check"></i><b>4.7.8</b> Gráfico de área</a></li>
+<li class="chapter" data-level="4.7.9" data-path="r2.html"><a href="r2.html#gráfico-de-puntos-o-scatterplot"><i class="fa fa-check"></i><b>4.7.9</b> Gráfico de puntos o <em>scatterplot</em></a></li>
+<li class="chapter" data-level="4.7.10" data-path="r2.html"><a href="r2.html#histograma-o-gráfico-de-densidad"><i class="fa fa-check"></i><b>4.7.10</b> Histograma o gráfico de densidad</a></li>
+<li class="chapter" data-level="4.7.11" data-path="r2.html"><a href="r2.html#gráficos-indicadores"><i class="fa fa-check"></i><b>4.7.11</b> Gráficos indicadores</a></li>
+<li class="chapter" data-level="4.7.12" data-path="r2.html"><a href="r2.html#gráfico-o-boxplot"><i class="fa fa-check"></i><b>4.7.12</b> Gráfico o <em>boxplot</em></a></li>
+<li class="chapter" data-level="4.7.13" data-path="r2.html"><a href="r2.html#gráfico-de-barras-de-error"><i class="fa fa-check"></i><b>4.7.13</b> Gráfico de barras de error</a></li>
+<li class="chapter" data-level="4.7.14" data-path="r2.html"><a href="r2.html#gráficos-de-transiciones"><i class="fa fa-check"></i><b>4.7.14</b> Gráficos de transiciones</a></li>
+<li class="chapter" data-level="4.7.15" data-path="r2.html"><a href="r2.html#conclusión-3"><i class="fa fa-check"></i><b>4.7.15</b> Conclusión</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="s01.html"><a href="s01.html"><i class="fa fa-check"></i><b>5</b> EDA (exploratory data analysis) - Sesiones 1 y 2</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="s01.html"><a href="s01.html#carga-de-paquetes"><i class="fa fa-check"></i><b>5.1</b> Carga de paquetes</a></li>
+<li class="chapter" data-level="5.2" data-path="s01.html"><a href="s01.html#carga-de-datos"><i class="fa fa-check"></i><b>5.2</b> Carga de datos</a></li>
+<li class="chapter" data-level="5.3" data-path="s01.html"><a href="s01.html#frecuencias-e-histogramas"><i class="fa fa-check"></i><b>5.3</b> Frecuencias e histogramas</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="s01.html"><a href="s01.html#frecuencias"><i class="fa fa-check"></i><b>5.3.1</b> Frecuencias</a></li>
+<li class="chapter" data-level="5.3.2" data-path="s01.html"><a href="s01.html#histogramas"><i class="fa fa-check"></i><b>5.3.2</b> Histogramas</a></li>
+<li class="chapter" data-level="5.3.3" data-path="s01.html"><a href="s01.html#datos-descriptivos-básicos"><i class="fa fa-check"></i><b>5.3.3</b> Datos descriptivos básicos</a></li>
+<li class="chapter" data-level="5.3.4" data-path="s01.html"><a href="s01.html#histogramas-y-cajas"><i class="fa fa-check"></i><b>5.3.4</b> Histogramas y cajas</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="s01.html"><a href="s01.html#análisis-de-normalidad"><i class="fa fa-check"></i><b>5.4</b> Análisis de normalidad</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="s01.html"><a href="s01.html#kolgomorov---smirnov"><i class="fa fa-check"></i><b>5.4.1</b> Kolgomorov - Smirnov</a></li>
+<li class="chapter" data-level="5.4.2" data-path="s01.html"><a href="s01.html#shapiro---wilk"><i class="fa fa-check"></i><b>5.4.2</b> Shapiro - Wilk</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="s01.html"><a href="s01.html#homogeneidad-de-varianzas-homoscedasticidad"><i class="fa fa-check"></i><b>5.5</b> Homogeneidad de varianzas (homoscedasticidad)</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="s01.html"><a href="s01.html#test-de-levene"><i class="fa fa-check"></i><b>5.5.1</b> Test de Levene</a></li>
+<li class="chapter" data-level="5.5.2" data-path="s01.html"><a href="s01.html#diagramas-de-caja"><i class="fa fa-check"></i><b>5.5.2</b> Diagramas de caja</a></li>
+<li class="chapter" data-level="5.5.3" data-path="s01.html"><a href="s01.html#ratio-de-varianzas"><i class="fa fa-check"></i><b>5.5.3</b> Ratio de varianzas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="s02.html"><a href="s02.html"><i class="fa fa-check"></i><b>6</b> Inferencia - Sesiones 1 y 2</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="s02.html"><a href="s02.html#inferencia-paramétrica"><i class="fa fa-check"></i><b>6.1</b> Inferencia paramétrica</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="s02.html"><a href="s02.html#test-t-student-para-la-media-de-una-muestra"><i class="fa fa-check"></i><b>6.1.1</b> Test t Student para la media de una muestra</a></li>
+<li class="chapter" data-level="6.1.2" data-path="s02.html"><a href="s02.html#test-t-student-para-la-media-de-una-muestra-en-grupos-independientes"><i class="fa fa-check"></i><b>6.1.2</b> Test t Student para la media de una muestra en grupos independientes</a></li>
+<li class="chapter" data-level="6.1.3" data-path="s02.html"><a href="s02.html#test-t-student-para-la-media-de-una-muestra-en-grupos-dependientes"><i class="fa fa-check"></i><b>6.1.3</b> Test t Student para la media de una muestra en grupos dependientes</a></li>
+<li class="chapter" data-level="6.1.4" data-path="s02.html"><a href="s02.html#correlación-paramétrica-de-pearson"><i class="fa fa-check"></i><b>6.1.4</b> Correlación paramétrica de Pearson</a></li>
+<li class="chapter" data-level="6.1.5" data-path="s02.html"><a href="s02.html#análisis-de-varianza-de-un-factor-vía"><i class="fa fa-check"></i><b>6.1.5</b> Análisis de varianza de un factor (vía)</a></li>
+<li class="chapter" data-level="6.1.6" data-path="s02.html"><a href="s02.html#análisis-de-varianza-de-dos-factores-vías"><i class="fa fa-check"></i><b>6.1.6</b> Análisis de varianza de dos factores (vías)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="s02.html"><a href="s02.html#inferencia-no-paramétrica"><i class="fa fa-check"></i><b>6.2</b> Inferencia no paramétrica</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="s02.html"><a href="s02.html#prueba-chi"><i class="fa fa-check"></i><b>6.2.1</b> Prueba Chi</a></li>
+<li class="chapter" data-level="6.2.2" data-path="s02.html"><a href="s02.html#correlaciones-no-paramétricas"><i class="fa fa-check"></i><b>6.2.2</b> Correlaciones no paramétricas</a></li>
+<li class="chapter" data-level="6.2.3" data-path="s02.html"><a href="s02.html#test-de-diferencias-de-una-muestra-en-grupos-independientes"><i class="fa fa-check"></i><b>6.2.3</b> Test de diferencias de una muestra en grupos independientes</a></li>
+<li class="chapter" data-level="6.2.4" data-path="s02.html"><a href="s02.html#test-de-diferencias-de-una-muestra-en-grupos-dependientes"><i class="fa fa-check"></i><b>6.2.4</b> Test de diferencias de una muestra en grupos dependientes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="s03.html"><a href="s03.html"><i class="fa fa-check"></i><b>7</b> Análisis de correspondencias - Sesión 03</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="s03.html"><a href="s03.html#introducción-a-la-técnica"><i class="fa fa-check"></i><b>7.1</b> Introducción a la técnica</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="s03.html"><a href="s03.html#transformación-de-datos-cuantitativos-a-cualitativos"><i class="fa fa-check"></i><b>7.1.1</b> Transformación de datos cuantitativos a cualitativos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="s03.html"><a href="s03.html#prueba-chi2-de-homogeneidad"><i class="fa fa-check"></i><b>7.2</b> Prueba Chi^2 de homogeneidad</a></li>
+<li class="chapter" data-level="7.3" data-path="s03.html"><a href="s03.html#nuestro-ejemplo"><i class="fa fa-check"></i><b>7.3</b> Nuestro ejemplo</a></li>
+<li class="chapter" data-level="7.4" data-path="s03.html"><a href="s03.html#análisis-de-correspondencias-simple-michael-greenacre"><i class="fa fa-check"></i><b>7.4</b> Análisis de correspondencias simple (Michael Greenacre)</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="s03.html"><a href="s03.html#resumen-de-resultados"><i class="fa fa-check"></i><b>7.4.1</b> Resumen de resultados</a></li>
+<li class="chapter" data-level="7.4.2" data-path="s03.html"><a href="s03.html#representación-gráfica-los-mapas-de-puntos"><i class="fa fa-check"></i><b>7.4.2</b> Representación gráfica: los mapas de puntos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="s03.html"><a href="s03.html#análisis-de-correspondencias-ca-de-factominer"><i class="fa fa-check"></i><b>7.5</b> Análisis de correspondencias (CA de FactoMineR)</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="s03.html"><a href="s03.html#resultados"><i class="fa fa-check"></i><b>7.5.1</b> Resultados</a></li>
+<li class="chapter" data-level="7.5.2" data-path="s03.html"><a href="s03.html#calidad"><i class="fa fa-check"></i><b>7.5.2</b> Calidad</a></li>
+<li class="chapter" data-level="7.5.3" data-path="s03.html"><a href="s03.html#mapas-de-puntos"><i class="fa fa-check"></i><b>7.5.3</b> Mapas de puntos</a></li>
+<li class="chapter" data-level="7.5.4" data-path="s03.html"><a href="s03.html#otros-gráficos"><i class="fa fa-check"></i><b>7.5.4</b> Otros gráficos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="s04.html"><a href="s04.html"><i class="fa fa-check"></i><b>8</b> Análisis de componentes principales - Sesión 04</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="s04.html"><a href="s04.html#análisis-de-correlación"><i class="fa fa-check"></i><b>8.1</b> Análisis de correlación</a></li>
+<li class="chapter" data-level="8.2" data-path="s04.html"><a href="s04.html#test-de-esfericidad-de-bartlett"><i class="fa fa-check"></i><b>8.2</b> Test de esfericidad de Bartlett</a></li>
+<li class="chapter" data-level="8.3" data-path="s04.html"><a href="s04.html#análisis-de-componentes-principales"><i class="fa fa-check"></i><b>8.3</b> Análisis de componentes principales</a></li>
+<li class="chapter" data-level="8.4" data-path="s04.html"><a href="s04.html#resumen-de-resultados-1"><i class="fa fa-check"></i><b>8.4</b> Resumen de resultados</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="s04.html"><a href="s04.html#rotación-varimax-acp-psych"><i class="fa fa-check"></i><b>8.4.1</b> Rotación Varimax (ACP, psych)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="s04.html"><a href="s04.html#gráficos-del-análisis"><i class="fa fa-check"></i><b>8.5</b> Gráficos del análisis</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="s05.html"><a href="s05.html"><i class="fa fa-check"></i><b>9</b> Análisis de cluster - Sesión 05</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="s05.html"><a href="s05.html#cálculo-de-distancias"><i class="fa fa-check"></i><b>9.1</b> Cálculo de distancias</a></li>
+<li class="chapter" data-level="9.2" data-path="s05.html"><a href="s05.html#clúster-jerárquico"><i class="fa fa-check"></i><b>9.2</b> Clúster jerárquico</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="s05.html"><a href="s05.html#cálculo"><i class="fa fa-check"></i><b>9.2.1</b> Cálculo</a></li>
+<li class="chapter" data-level="9.2.2" data-path="s05.html"><a href="s05.html#creación-de-variables-de-grupo"><i class="fa fa-check"></i><b>9.2.2</b> Creación de variables de grupo</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="s05.html"><a href="s05.html#clúster-k-medias"><i class="fa fa-check"></i><b>9.3</b> Clúster K-medias</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="s05.html"><a href="s05.html#cálculo-1"><i class="fa fa-check"></i><b>9.3.1</b> Cálculo</a></li>
+<li class="chapter" data-level="9.3.2" data-path="s05.html"><a href="s05.html#creación-de-las-variables-de-grupo"><i class="fa fa-check"></i><b>9.3.2</b> Creación de las variables de grupo</a></li>
+<li class="chapter" data-level="9.3.3" data-path="s05.html"><a href="s05.html#perfil-de-los-grupos-contrastes-inferenciales"><i class="fa fa-check"></i><b>9.3.3</b> Perfil de los grupos, contrastes inferenciales</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="s06.html"><a href="s06.html"><i class="fa fa-check"></i><b>10</b> Análisis de regresión múltiple - Sesión 06</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="s06.html"><a href="s06.html#análisis-de-correlación-1"><i class="fa fa-check"></i><b>10.1</b> Análisis de correlación</a></li>
+<li class="chapter" data-level="10.2" data-path="s06.html"><a href="s06.html#modelo-de-regresión"><i class="fa fa-check"></i><b>10.2</b> Modelo de regresión</a></li>
+<li class="chapter" data-level="10.3" data-path="s06.html"><a href="s06.html#distancia-de-de-cook"><i class="fa fa-check"></i><b>10.3</b> Distancia de De Cook</a></li>
+<li class="chapter" data-level="10.4" data-path="s06.html"><a href="s06.html#fiabilidad-del-modelo"><i class="fa fa-check"></i><b>10.4</b> Fiabilidad del modelo</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="s06.html"><a href="s06.html#los-errores-deben-seguir-una-distribución-normal"><i class="fa fa-check"></i><b>10.4.1</b> 1: Los errores deben seguir una distribución normal</a></li>
+<li class="chapter" data-level="10.4.2" data-path="s06.html"><a href="s06.html#la-varianza-de-los-errores-es-constante.-se-hace-el-test-de-goldfeld-y-quandt."><i class="fa fa-check"></i><b>10.4.2</b> 2: La varianza de los errores es constante. Se hace el test de Goldfeld y Quandt.</a></li>
+<li class="chapter" data-level="10.4.3" data-path="s06.html"><a href="s06.html#la-independencia-de-los-errores"><i class="fa fa-check"></i><b>10.4.3</b> 3: La independencia de los errores</a></li>
+<li class="chapter" data-level="10.4.4" data-path="s06.html"><a href="s06.html#no-auto-correlación-de-los-términos-de-error."><i class="fa fa-check"></i><b>10.4.4</b> 4: No auto correlación de los términos de error.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>11</b> Conclusión</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://www.investigaonline.com" target="blank">InvestigaOnline.com</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">TMIM Compendio R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intro" class="section level1" number="2">
+<h1><span class="header-section-number">Parte 2</span> Introducción</h1>
+<p>El siguiente documento respalda los contenidos impartidos en la asignatura “Técnicas Multivariantes en Investigación de Mercados” y reproduce los cálculos estadísticos de las sesiones de SPSS organizadas dentro del máster oficial en Marketing e Investigación de mercados tal y como se trabajarían en R. Por ello, se aportan los <em>script</em> de R de todos los análisis realizados en las sesiones 1, 2, 3, 4, 5 y 6 de la asignatura replicando el trabajo con R y además se incluyen las dos sesiones complementarias realizadas con R al final del módulo.</p>
+<p>Así, este material ayuda a …</p>
+<ul>
+<li>introducir los conceptos básicos de R;</li>
+<li>ayudar a la carga de archivos;</li>
+<li>fija el horizonte en la reproducibilidad de la investigación (uso de <code>rmarkdown</code>);</li>
+<li>ayuda a la obtención de tablas marginales y cruzadas (uso de <code>expss</code>);</li>
+<li>ayuda a la obtención de gráficos (uso de <code>highcharter</code>).</li>
+</ul>
+<p>Este es un documento escrito en lenguaje <strong><strong>markdown</strong></strong> y compilado utilizando el paquete <em>rbookdown</em> de <span class="citation"><a href="#ref-R-bookdown" role="doc-biblioref">Xie</a> (<a href="#ref-R-bookdown" role="doc-biblioref">2021</a>)</span>.</p>
+<p>El lenguaje <em>markdown</em> combina texto con <em>script</em> que ejecutan procesos. Estos <em>script</em> se localizan dentro de unidades de código de ejecución que se llaman <em>chunk</em> y que si el autor lo desea, se publican con un fondo gris para que el usuario los reconozca como tales. Un <em>chunk</em> se inicia con <code>```{r}</code> al principio de la línea y se finaliza con <code>```</code> al principio de la línea también. Las líneas que quedan en medio de ambos marcadores (denominados <em>token</em>), forman el <em>script</em> de R. Los <em>token</em> (símbolos) de inicio y final del script, no se publican.</p>
+
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-R-bookdown" class="csl-entry">
+Xie, Yihui. 2021. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

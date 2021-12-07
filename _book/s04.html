@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Parte 8 Análisis de componentes principales - Sesión 04 | TMIM Compendio R</title>
+  <meta name="description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Parte 8 Análisis de componentes principales - Sesión 04 | TMIM Compendio R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Parte 8 Análisis de componentes principales - Sesión 04 | TMIM Compendio R" />
+  
+  <meta name="twitter:description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
+  
+
+<meta name="author" content="Roberto Gil" />
+
+
+<meta name="date" content="2021-12-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="s03.html"/>
+<link rel="next" href="s05.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/proj4js-2.3.15/proj4.js"></script>
+<link href="libs/highcharts-8.1.2/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-8.1.2/highcharts.js"></script>
+<script src="libs/highcharts-8.1.2/highcharts-3d.js"></script>
+<script src="libs/highcharts-8.1.2/highcharts-more.js"></script>
+<script src="libs/highcharts-8.1.2/modules/stock.js"></script>
+<script src="libs/highcharts-8.1.2/modules/map.js"></script>
+<script src="libs/highcharts-8.1.2/modules/annotations.js"></script>
+<script src="libs/highcharts-8.1.2/modules/data.js"></script>
+<script src="libs/highcharts-8.1.2/modules/drilldown.js"></script>
+<script src="libs/highcharts-8.1.2/modules/item-series.js"></script>
+<script src="libs/highcharts-8.1.2/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-8.1.2/modules/overlapping-datalabels.js"></script>
+<script src="libs/highcharts-8.1.2/modules/exporting.js"></script>
+<script src="libs/highcharts-8.1.2/modules/export-data.js"></script>
+<script src="libs/highcharts-8.1.2/modules/funnel.js"></script>
+<script src="libs/highcharts-8.1.2/modules/heatmap.js"></script>
+<script src="libs/highcharts-8.1.2/modules/treemap.js"></script>
+<script src="libs/highcharts-8.1.2/modules/sankey.js"></script>
+<script src="libs/highcharts-8.1.2/modules/dependency-wheel.js"></script>
+<script src="libs/highcharts-8.1.2/modules/organization.js"></script>
+<script src="libs/highcharts-8.1.2/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-8.1.2/modules/streamgraph.js"></script>
+<script src="libs/highcharts-8.1.2/modules/sunburst.js"></script>
+<script src="libs/highcharts-8.1.2/modules/vector.js"></script>
+<script src="libs/highcharts-8.1.2/modules/wordcloud.js"></script>
+<script src="libs/highcharts-8.1.2/modules/xrange.js"></script>
+<script src="libs/highcharts-8.1.2/modules/tilemap.js"></script>
+<script src="libs/highcharts-8.1.2/modules/venn.js"></script>
+<script src="libs/highcharts-8.1.2/modules/gantt.js"></script>
+<script src="libs/highcharts-8.1.2/modules/timeline.js"></script>
+<script src="libs/highcharts-8.1.2/modules/parallel-coordinates.js"></script>
+<script src="libs/highcharts-8.1.2/modules/bullet.js"></script>
+<script src="libs/highcharts-8.1.2/modules/coloraxis.js"></script>
+<script src="libs/highcharts-8.1.2/modules/dumbbell.js"></script>
+<script src="libs/highcharts-8.1.2/modules/lollipop.js"></script>
+<script src="libs/highcharts-8.1.2/modules/series-label.js"></script>
+<script src="libs/highcharts-8.1.2/plugins/motion.js"></script>
+<script src="libs/highcharts-8.1.2/custom/reset.js"></script>
+<script src="libs/highcharts-8.1.2/modules/boost.js"></script>
+<script src="libs/highchart-binding-0.8.2/highchart.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.20/datatables.js"></script>
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">TMIM Compendio R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Presentación</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#la-asignatura"><i class="fa fa-check"></i><b>1.1</b> La asignatura</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i><b>1.2</b> Objetivos</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introducción</a></li>
+<li class="chapter" data-level="3" data-path="r1.html"><a href="r1.html"><i class="fa fa-check"></i><b>3</b> Sesión R1</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r1.html"><a href="r1.html#introducción"><i class="fa fa-check"></i><b>3.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r1.html"><a href="r1.html#instalar-r"><i class="fa fa-check"></i><b>3.1.1</b> Instalar R</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r1.html"><a href="r1.html#instalar-rstudio"><i class="fa fa-check"></i><b>3.1.2</b> Instalar RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="r1.html"><a href="r1.html#preguntas-y-respuestas-antes-de-comenzar"><i class="fa fa-check"></i><b>3.2</b> Preguntas y respuestas antes de comenzar …</a></li>
+<li class="chapter" data-level="3.3" data-path="r1.html"><a href="r1.html#instalar-y-cargar-paquetes-básicos"><i class="fa fa-check"></i><b>3.3</b> Instalar y cargar paquetes básicos</a></li>
+<li class="chapter" data-level="3.4" data-path="r1.html"><a href="r1.html#practicando-el-scripting"><i class="fa fa-check"></i><b>3.4</b> Practicando el <em>scripting</em></a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r1.html"><a href="r1.html#ejercicio-script-01"><i class="fa fa-check"></i><b>3.4.1</b> Ejercicio: <em>script</em> 01</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r1.html"><a href="r1.html#ejercicio-script-02"><i class="fa fa-check"></i><b>3.4.2</b> Ejercicio: <em>script</em> 02</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r1.html"><a href="r1.html#ejercicio-script-03"><i class="fa fa-check"></i><b>3.4.3</b> Ejercicio: <em>script</em> 03</a></li>
+<li class="chapter" data-level="3.4.4" data-path="r1.html"><a href="r1.html#ejercicio-script-04"><i class="fa fa-check"></i><b>3.4.4</b> Ejercicio: <em>script</em> 04</a></li>
+<li class="chapter" data-level="3.4.5" data-path="r1.html"><a href="r1.html#ejercicio-script-05"><i class="fa fa-check"></i><b>3.4.5</b> Ejercicio: <em>script</em> 05</a></li>
+<li class="chapter" data-level="3.4.6" data-path="r1.html"><a href="r1.html#ejercicio-creación-de-un-script-rmarkdown"><i class="fa fa-check"></i><b>3.4.6</b> Ejercicio: Creación de un <em>script</em> <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="3.4.7" data-path="r1.html"><a href="r1.html#ejercicio-script-05a-y-05b"><i class="fa fa-check"></i><b>3.4.7</b> Ejercicio: <em>script</em> 05a y 05b</a></li>
+<li class="chapter" data-level="3.4.8" data-path="r1.html"><a href="r1.html#ejercicio-script-06"><i class="fa fa-check"></i><b>3.4.8</b> Ejercicio: <em>script</em> 06</a></li>
+<li class="chapter" data-level="3.4.9" data-path="r1.html"><a href="r1.html#ejercicio-script-07a"><i class="fa fa-check"></i><b>3.4.9</b> Ejercicio: <em>script</em> 07a</a></li>
+<li class="chapter" data-level="3.4.10" data-path="r1.html"><a href="r1.html#ejercicio-script-07b"><i class="fa fa-check"></i><b>3.4.10</b> Ejercicio: <em>script</em> 07b</a></li>
+<li class="chapter" data-level="3.4.11" data-path="r1.html"><a href="r1.html#ejercicio-script-08"><i class="fa fa-check"></i><b>3.4.11</b> Ejercicio: <em>script</em> 08</a></li>
+<li class="chapter" data-level="3.4.12" data-path="r1.html"><a href="r1.html#ejercicio-script-09"><i class="fa fa-check"></i><b>3.4.12</b> Ejercicio: <em>script</em> 09</a></li>
+<li class="chapter" data-level="3.4.13" data-path="r1.html"><a href="r1.html#ejercicio-script-10"><i class="fa fa-check"></i><b>3.4.13</b> Ejercicio: <em>script</em> 10</a></li>
+<li class="chapter" data-level="3.4.14" data-path="r1.html"><a href="r1.html#ejercicio-script-11"><i class="fa fa-check"></i><b>3.4.14</b> Ejercicio: <em>script</em> 11</a></li>
+<li class="chapter" data-level="3.4.15" data-path="r1.html"><a href="r1.html#ejercicio-script-12"><i class="fa fa-check"></i><b>3.4.15</b> Ejercicio: <em>script</em> 12</a></li>
+<li class="chapter" data-level="3.4.16" data-path="r1.html"><a href="r1.html#ejercicio-script-13"><i class="fa fa-check"></i><b>3.4.16</b> Ejercicio: <em>script</em> 13</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="r1.html"><a href="r1.html#conclusión"><i class="fa fa-check"></i><b>3.5</b> Conclusión</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r2.html"><a href="r2.html"><i class="fa fa-check"></i><b>4</b> Sesión R2</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r2.html"><a href="r2.html#proceso-de-datos-con-tablas-y-cuadros"><i class="fa fa-check"></i><b>4.1</b> Proceso de datos con tablas y cuadros</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="r2.html"><a href="r2.html#términos-básicos-de-proceso-de-datos"><i class="fa fa-check"></i><b>4.1.1</b> Términos básicos de proceso de datos</a></li>
+<li class="chapter" data-level="4.1.2" data-path="r2.html"><a href="r2.html#términos-básicos-de-tabulación"><i class="fa fa-check"></i><b>4.1.2</b> Términos básicos de tabulación</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="r2.html"><a href="r2.html#carga-de-datos-para-la-sesión"><i class="fa fa-check"></i><b>4.2</b> Carga de datos para la sesión</a></li>
+<li class="chapter" data-level="4.3" data-path="r2.html"><a href="r2.html#tse03"><i class="fa fa-check"></i><b>4.3</b> Tablas marginales</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="r2.html"><a href="r2.html#tablas-de-frecuencia"><i class="fa fa-check"></i><b>4.3.1</b> Tablas de frecuencia</a></li>
+<li class="chapter" data-level="4.3.2" data-path="r2.html"><a href="r2.html#estadísticos"><i class="fa fa-check"></i><b>4.3.2</b> Estadísticos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="r2.html"><a href="r2.html#tse04"><i class="fa fa-check"></i><b>4.4</b> Tablas cruzadas</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="r2.html"><a href="r2.html#básica-con-variables-simples"><i class="fa fa-check"></i><b>4.4.1</b> Básica con variables simples</a></li>
+<li class="chapter" data-level="4.4.2" data-path="r2.html"><a href="r2.html#básica-con-múltiples"><i class="fa fa-check"></i><b>4.4.2</b> Básica con múltiples</a></li>
+<li class="chapter" data-level="4.4.3" data-path="r2.html"><a href="r2.html#básica-con-estadísticos"><i class="fa fa-check"></i><b>4.4.3</b> Básica con estadísticos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="r2.html"><a href="r2.html#conclusión-1"><i class="fa fa-check"></i><b>4.5</b> Conclusión</a></li>
+<li class="chapter" data-level="4.6" data-path="r2.html"><a href="r2.html#tse07"><i class="fa fa-check"></i><b>4.6</b> Pruebas inferenciales</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="r2.html"><a href="r2.html#prueba-de-dependencia"><i class="fa fa-check"></i><b>4.6.1</b> Prueba de dependencia</a></li>
+<li class="chapter" data-level="4.6.2" data-path="r2.html"><a href="r2.html#pruebas-de-diferencias"><i class="fa fa-check"></i><b>4.6.2</b> Pruebas de diferencias</a></li>
+<li class="chapter" data-level="4.6.3" data-path="r2.html"><a href="r2.html#parámetros-posibles-en-las-pruebas-de-significación"><i class="fa fa-check"></i><b>4.6.3</b> Parámetros posibles en las pruebas de significación</a></li>
+<li class="chapter" data-level="4.6.4" data-path="r2.html"><a href="r2.html#conclusión-2"><i class="fa fa-check"></i><b>4.6.4</b> Conclusión</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="r2.html"><a href="r2.html#tse08"><i class="fa fa-check"></i><b>4.7</b> Visualización gráfica</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="r2.html"><a href="r2.html#highcharter-introducción"><i class="fa fa-check"></i><b>4.7.1</b> highcharteR, introducción</a></li>
+<li class="chapter" data-level="4.7.2" data-path="r2.html"><a href="r2.html#mi-primer-gráfico"><i class="fa fa-check"></i><b>4.7.2</b> Mi primer gráfico</a></li>
+<li class="chapter" data-level="4.7.3" data-path="r2.html"><a href="r2.html#gráfico-de-barras"><i class="fa fa-check"></i><b>4.7.3</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="4.7.4" data-path="r2.html"><a href="r2.html#gráfico-de-columna"><i class="fa fa-check"></i><b>4.7.4</b> Gráfico de columna</a></li>
+<li class="chapter" data-level="4.7.5" data-path="r2.html"><a href="r2.html#diagramas-de-secciones"><i class="fa fa-check"></i><b>4.7.5</b> Diagramas de secciones</a></li>
+<li class="chapter" data-level="4.7.6" data-path="r2.html"><a href="r2.html#gráfico-de-línea"><i class="fa fa-check"></i><b>4.7.6</b> Gráfico de línea</a></li>
+<li class="chapter" data-level="4.7.7" data-path="r2.html"><a href="r2.html#gráficos-de-columnas-o-barras-con-apilamiento"><i class="fa fa-check"></i><b>4.7.7</b> Gráficos de columnas o barras con apilamiento</a></li>
+<li class="chapter" data-level="4.7.8" data-path="r2.html"><a href="r2.html#gráfico-de-área"><i class="fa fa-check"></i><b>4.7.8</b> Gráfico de área</a></li>
+<li class="chapter" data-level="4.7.9" data-path="r2.html"><a href="r2.html#gráfico-de-puntos-o-scatterplot"><i class="fa fa-check"></i><b>4.7.9</b> Gráfico de puntos o <em>scatterplot</em></a></li>
+<li class="chapter" data-level="4.7.10" data-path="r2.html"><a href="r2.html#histograma-o-gráfico-de-densidad"><i class="fa fa-check"></i><b>4.7.10</b> Histograma o gráfico de densidad</a></li>
+<li class="chapter" data-level="4.7.11" data-path="r2.html"><a href="r2.html#gráficos-indicadores"><i class="fa fa-check"></i><b>4.7.11</b> Gráficos indicadores</a></li>
+<li class="chapter" data-level="4.7.12" data-path="r2.html"><a href="r2.html#gráfico-o-boxplot"><i class="fa fa-check"></i><b>4.7.12</b> Gráfico o <em>boxplot</em></a></li>
+<li class="chapter" data-level="4.7.13" data-path="r2.html"><a href="r2.html#gráfico-de-barras-de-error"><i class="fa fa-check"></i><b>4.7.13</b> Gráfico de barras de error</a></li>
+<li class="chapter" data-level="4.7.14" data-path="r2.html"><a href="r2.html#gráficos-de-transiciones"><i class="fa fa-check"></i><b>4.7.14</b> Gráficos de transiciones</a></li>
+<li class="chapter" data-level="4.7.15" data-path="r2.html"><a href="r2.html#conclusión-3"><i class="fa fa-check"></i><b>4.7.15</b> Conclusión</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="s01.html"><a href="s01.html"><i class="fa fa-check"></i><b>5</b> EDA (exploratory data analysis) - Sesiones 1 y 2</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="s01.html"><a href="s01.html#carga-de-paquetes"><i class="fa fa-check"></i><b>5.1</b> Carga de paquetes</a></li>
+<li class="chapter" data-level="5.2" data-path="s01.html"><a href="s01.html#carga-de-datos"><i class="fa fa-check"></i><b>5.2</b> Carga de datos</a></li>
+<li class="chapter" data-level="5.3" data-path="s01.html"><a href="s01.html#frecuencias-e-histogramas"><i class="fa fa-check"></i><b>5.3</b> Frecuencias e histogramas</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="s01.html"><a href="s01.html#frecuencias"><i class="fa fa-check"></i><b>5.3.1</b> Frecuencias</a></li>
+<li class="chapter" data-level="5.3.2" data-path="s01.html"><a href="s01.html#histogramas"><i class="fa fa-check"></i><b>5.3.2</b> Histogramas</a></li>
+<li class="chapter" data-level="5.3.3" data-path="s01.html"><a href="s01.html#datos-descriptivos-básicos"><i class="fa fa-check"></i><b>5.3.3</b> Datos descriptivos básicos</a></li>
+<li class="chapter" data-level="5.3.4" data-path="s01.html"><a href="s01.html#histogramas-y-cajas"><i class="fa fa-check"></i><b>5.3.4</b> Histogramas y cajas</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="s01.html"><a href="s01.html#análisis-de-normalidad"><i class="fa fa-check"></i><b>5.4</b> Análisis de normalidad</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="s01.html"><a href="s01.html#kolgomorov---smirnov"><i class="fa fa-check"></i><b>5.4.1</b> Kolgomorov - Smirnov</a></li>
+<li class="chapter" data-level="5.4.2" data-path="s01.html"><a href="s01.html#shapiro---wilk"><i class="fa fa-check"></i><b>5.4.2</b> Shapiro - Wilk</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="s01.html"><a href="s01.html#homogeneidad-de-varianzas-homoscedasticidad"><i class="fa fa-check"></i><b>5.5</b> Homogeneidad de varianzas (homoscedasticidad)</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="s01.html"><a href="s01.html#test-de-levene"><i class="fa fa-check"></i><b>5.5.1</b> Test de Levene</a></li>
+<li class="chapter" data-level="5.5.2" data-path="s01.html"><a href="s01.html#diagramas-de-caja"><i class="fa fa-check"></i><b>5.5.2</b> Diagramas de caja</a></li>
+<li class="chapter" data-level="5.5.3" data-path="s01.html"><a href="s01.html#ratio-de-varianzas"><i class="fa fa-check"></i><b>5.5.3</b> Ratio de varianzas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="s02.html"><a href="s02.html"><i class="fa fa-check"></i><b>6</b> Inferencia - Sesiones 1 y 2</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="s02.html"><a href="s02.html#inferencia-paramétrica"><i class="fa fa-check"></i><b>6.1</b> Inferencia paramétrica</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="s02.html"><a href="s02.html#test-t-student-para-la-media-de-una-muestra"><i class="fa fa-check"></i><b>6.1.1</b> Test t Student para la media de una muestra</a></li>
+<li class="chapter" data-level="6.1.2" data-path="s02.html"><a href="s02.html#test-t-student-para-la-media-de-una-muestra-en-grupos-independientes"><i class="fa fa-check"></i><b>6.1.2</b> Test t Student para la media de una muestra en grupos independientes</a></li>
+<li class="chapter" data-level="6.1.3" data-path="s02.html"><a href="s02.html#test-t-student-para-la-media-de-una-muestra-en-grupos-dependientes"><i class="fa fa-check"></i><b>6.1.3</b> Test t Student para la media de una muestra en grupos dependientes</a></li>
+<li class="chapter" data-level="6.1.4" data-path="s02.html"><a href="s02.html#correlación-paramétrica-de-pearson"><i class="fa fa-check"></i><b>6.1.4</b> Correlación paramétrica de Pearson</a></li>
+<li class="chapter" data-level="6.1.5" data-path="s02.html"><a href="s02.html#análisis-de-varianza-de-un-factor-vía"><i class="fa fa-check"></i><b>6.1.5</b> Análisis de varianza de un factor (vía)</a></li>
+<li class="chapter" data-level="6.1.6" data-path="s02.html"><a href="s02.html#análisis-de-varianza-de-dos-factores-vías"><i class="fa fa-check"></i><b>6.1.6</b> Análisis de varianza de dos factores (vías)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="s02.html"><a href="s02.html#inferencia-no-paramétrica"><i class="fa fa-check"></i><b>6.2</b> Inferencia no paramétrica</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="s02.html"><a href="s02.html#prueba-chi"><i class="fa fa-check"></i><b>6.2.1</b> Prueba Chi</a></li>
+<li class="chapter" data-level="6.2.2" data-path="s02.html"><a href="s02.html#correlaciones-no-paramétricas"><i class="fa fa-check"></i><b>6.2.2</b> Correlaciones no paramétricas</a></li>
+<li class="chapter" data-level="6.2.3" data-path="s02.html"><a href="s02.html#test-de-diferencias-de-una-muestra-en-grupos-independientes"><i class="fa fa-check"></i><b>6.2.3</b> Test de diferencias de una muestra en grupos independientes</a></li>
+<li class="chapter" data-level="6.2.4" data-path="s02.html"><a href="s02.html#test-de-diferencias-de-una-muestra-en-grupos-dependientes"><i class="fa fa-check"></i><b>6.2.4</b> Test de diferencias de una muestra en grupos dependientes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="s03.html"><a href="s03.html"><i class="fa fa-check"></i><b>7</b> Análisis de correspondencias - Sesión 03</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="s03.html"><a href="s03.html#introducción-a-la-técnica"><i class="fa fa-check"></i><b>7.1</b> Introducción a la técnica</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="s03.html"><a href="s03.html#transformación-de-datos-cuantitativos-a-cualitativos"><i class="fa fa-check"></i><b>7.1.1</b> Transformación de datos cuantitativos a cualitativos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="s03.html"><a href="s03.html#prueba-chi2-de-homogeneidad"><i class="fa fa-check"></i><b>7.2</b> Prueba Chi^2 de homogeneidad</a></li>
+<li class="chapter" data-level="7.3" data-path="s03.html"><a href="s03.html#nuestro-ejemplo"><i class="fa fa-check"></i><b>7.3</b> Nuestro ejemplo</a></li>
+<li class="chapter" data-level="7.4" data-path="s03.html"><a href="s03.html#análisis-de-correspondencias-simple-michael-greenacre"><i class="fa fa-check"></i><b>7.4</b> Análisis de correspondencias simple (Michael Greenacre)</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="s03.html"><a href="s03.html#resumen-de-resultados"><i class="fa fa-check"></i><b>7.4.1</b> Resumen de resultados</a></li>
+<li class="chapter" data-level="7.4.2" data-path="s03.html"><a href="s03.html#representación-gráfica-los-mapas-de-puntos"><i class="fa fa-check"></i><b>7.4.2</b> Representación gráfica: los mapas de puntos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="s03.html"><a href="s03.html#análisis-de-correspondencias-ca-de-factominer"><i class="fa fa-check"></i><b>7.5</b> Análisis de correspondencias (CA de FactoMineR)</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="s03.html"><a href="s03.html#resultados"><i class="fa fa-check"></i><b>7.5.1</b> Resultados</a></li>
+<li class="chapter" data-level="7.5.2" data-path="s03.html"><a href="s03.html#calidad"><i class="fa fa-check"></i><b>7.5.2</b> Calidad</a></li>
+<li class="chapter" data-level="7.5.3" data-path="s03.html"><a href="s03.html#mapas-de-puntos"><i class="fa fa-check"></i><b>7.5.3</b> Mapas de puntos</a></li>
+<li class="chapter" data-level="7.5.4" data-path="s03.html"><a href="s03.html#otros-gráficos"><i class="fa fa-check"></i><b>7.5.4</b> Otros gráficos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="s04.html"><a href="s04.html"><i class="fa fa-check"></i><b>8</b> Análisis de componentes principales - Sesión 04</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="s04.html"><a href="s04.html#análisis-de-correlación"><i class="fa fa-check"></i><b>8.1</b> Análisis de correlación</a></li>
+<li class="chapter" data-level="8.2" data-path="s04.html"><a href="s04.html#test-de-esfericidad-de-bartlett"><i class="fa fa-check"></i><b>8.2</b> Test de esfericidad de Bartlett</a></li>
+<li class="chapter" data-level="8.3" data-path="s04.html"><a href="s04.html#análisis-de-componentes-principales"><i class="fa fa-check"></i><b>8.3</b> Análisis de componentes principales</a></li>
+<li class="chapter" data-level="8.4" data-path="s04.html"><a href="s04.html#resumen-de-resultados-1"><i class="fa fa-check"></i><b>8.4</b> Resumen de resultados</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="s04.html"><a href="s04.html#rotación-varimax-acp-psych"><i class="fa fa-check"></i><b>8.4.1</b> Rotación Varimax (ACP, psych)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="s04.html"><a href="s04.html#gráficos-del-análisis"><i class="fa fa-check"></i><b>8.5</b> Gráficos del análisis</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="s05.html"><a href="s05.html"><i class="fa fa-check"></i><b>9</b> Análisis de cluster - Sesión 05</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="s05.html"><a href="s05.html#cálculo-de-distancias"><i class="fa fa-check"></i><b>9.1</b> Cálculo de distancias</a></li>
+<li class="chapter" data-level="9.2" data-path="s05.html"><a href="s05.html#clúster-jerárquico"><i class="fa fa-check"></i><b>9.2</b> Clúster jerárquico</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="s05.html"><a href="s05.html#cálculo"><i class="fa fa-check"></i><b>9.2.1</b> Cálculo</a></li>
+<li class="chapter" data-level="9.2.2" data-path="s05.html"><a href="s05.html#creación-de-variables-de-grupo"><i class="fa fa-check"></i><b>9.2.2</b> Creación de variables de grupo</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="s05.html"><a href="s05.html#clúster-k-medias"><i class="fa fa-check"></i><b>9.3</b> Clúster K-medias</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="s05.html"><a href="s05.html#cálculo-1"><i class="fa fa-check"></i><b>9.3.1</b> Cálculo</a></li>
+<li class="chapter" data-level="9.3.2" data-path="s05.html"><a href="s05.html#creación-de-las-variables-de-grupo"><i class="fa fa-check"></i><b>9.3.2</b> Creación de las variables de grupo</a></li>
+<li class="chapter" data-level="9.3.3" data-path="s05.html"><a href="s05.html#perfil-de-los-grupos-contrastes-inferenciales"><i class="fa fa-check"></i><b>9.3.3</b> Perfil de los grupos, contrastes inferenciales</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="s06.html"><a href="s06.html"><i class="fa fa-check"></i><b>10</b> Análisis de regresión múltiple - Sesión 06</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="s06.html"><a href="s06.html#análisis-de-correlación-1"><i class="fa fa-check"></i><b>10.1</b> Análisis de correlación</a></li>
+<li class="chapter" data-level="10.2" data-path="s06.html"><a href="s06.html#modelo-de-regresión"><i class="fa fa-check"></i><b>10.2</b> Modelo de regresión</a></li>
+<li class="chapter" data-level="10.3" data-path="s06.html"><a href="s06.html#distancia-de-de-cook"><i class="fa fa-check"></i><b>10.3</b> Distancia de De Cook</a></li>
+<li class="chapter" data-level="10.4" data-path="s06.html"><a href="s06.html#fiabilidad-del-modelo"><i class="fa fa-check"></i><b>10.4</b> Fiabilidad del modelo</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="s06.html"><a href="s06.html#los-errores-deben-seguir-una-distribución-normal"><i class="fa fa-check"></i><b>10.4.1</b> 1: Los errores deben seguir una distribución normal</a></li>
+<li class="chapter" data-level="10.4.2" data-path="s06.html"><a href="s06.html#la-varianza-de-los-errores-es-constante.-se-hace-el-test-de-goldfeld-y-quandt."><i class="fa fa-check"></i><b>10.4.2</b> 2: La varianza de los errores es constante. Se hace el test de Goldfeld y Quandt.</a></li>
+<li class="chapter" data-level="10.4.3" data-path="s06.html"><a href="s06.html#la-independencia-de-los-errores"><i class="fa fa-check"></i><b>10.4.3</b> 3: La independencia de los errores</a></li>
+<li class="chapter" data-level="10.4.4" data-path="s06.html"><a href="s06.html#no-auto-correlación-de-los-términos-de-error."><i class="fa fa-check"></i><b>10.4.4</b> 4: No auto correlación de los términos de error.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>11</b> Conclusión</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://www.investigaonline.com" target="blank">InvestigaOnline.com</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">TMIM Compendio R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="s04" class="section level1" number="8">
+<h1><span class="header-section-number">Parte 8</span> Análisis de componentes principales - Sesión 04</h1>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="s04.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sesion 04</span></span>
+<span id="cb461-2"><a href="s04.html#cb461-2" aria-hidden="true" tabindex="-1"></a>hbat <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/hbat.sav&quot;</span>))</span></code></pre></div>
+<pre><code>Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE</code></pre>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="s04.html#cb463-1" aria-hidden="true" tabindex="-1"></a>data00 <span class="ot">&lt;-</span> <span class="fu">subset</span>(hbat, <span class="at">select =</span> <span class="fu">c</span>(x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18))</span></code></pre></div>
+<div id="análisis-de-correlación" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Análisis de correlación</h2>
+<p>Calculamos la correlación. Si algún valor está en el MSA está por debajo de 0.5 lo eliminamos (por orden y solo uno en cada paso) y volvemos a hacer la correlación y cálculo de Kaiser-Meyer-Olkin; solo así quedarán las mejores variables.</p>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="s04.html#cb464-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(data00), <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<pre><code>       x6    x7    x8    x9   x10   x11   x12   x13   x14   x15   x16   x17   x18
+x6   1.00 -0.14  0.10  0.11 -0.05  0.48 -0.15 -0.40  0.09  0.03  0.10 -0.49  0.03
+x7  -0.14  1.00  0.00  0.14  0.43 -0.05  0.79  0.23  0.05 -0.03  0.16  0.27  0.19
+x8   0.10  0.00  1.00  0.10 -0.06  0.19  0.02 -0.27  0.80 -0.07  0.08 -0.19  0.03
+x9   0.11  0.14  0.10  1.00  0.20  0.56  0.23 -0.13  0.14  0.06  0.76  0.39  0.87
+x10 -0.05  0.43 -0.06  0.20  1.00 -0.01  0.54  0.13  0.01  0.08  0.18  0.33  0.28
+x11  0.48 -0.05  0.19  0.56 -0.01  1.00 -0.06 -0.49  0.27  0.05  0.42 -0.38  0.60
+x12 -0.15  0.79  0.02  0.23  0.54 -0.06  1.00  0.26  0.11  0.03  0.20  0.35  0.27
+x13 -0.40  0.23 -0.27 -0.13  0.13 -0.49  0.26  1.00 -0.24  0.02 -0.11  0.47 -0.07
+x14  0.09  0.05  0.80  0.14  0.01  0.27  0.11 -0.24  1.00  0.04  0.20 -0.17  0.11
+x15  0.03 -0.03 -0.07  0.06  0.08  0.05  0.03  0.02  0.04  1.00  0.07  0.09  0.11
+x16  0.10  0.16  0.08  0.76  0.18  0.42  0.20 -0.11  0.20  0.07  1.00  0.41  0.75
+x17 -0.49  0.27 -0.19  0.39  0.33 -0.38  0.35  0.47 -0.17  0.09  0.41  1.00  0.50
+x18  0.03  0.19  0.03  0.87  0.28  0.60  0.27 -0.07  0.11  0.11  0.75  0.50  1.00
+
+n= 100 
+
+
+P
+    x6     x7     x8     x9     x10    x11    x12    x13    x14    x15    x16    x17    x18   
+x6         0.1736 0.3441 0.2922 0.5972 0.0000 0.1316 0.0000 0.3823 0.7898 0.3017 0.0000 0.7843
+x7  0.1736        0.9932 0.1642 0.0000 0.6026 0.0000 0.0216 0.6081 0.7865 0.1208 0.0065 0.0561
+x8  0.3441 0.9932        0.3387 0.5343 0.0549 0.8668 0.0064 0.0000 0.4669 0.4282 0.0638 0.8016
+x9  0.2922 0.1642 0.3387        0.0496 0.0000 0.0215 0.2046 0.1635 0.5572 0.0000 0.0000 0.0000
+x10 0.5972 0.0000 0.5343 0.0496        0.9092 0.0000 0.1831 0.9151 0.4051 0.0665 0.0007 0.0055
+x11 0.0000 0.6026 0.0549 0.0000 0.9092        0.5445 0.0000 0.0060 0.6483 0.0000 0.0001 0.0000
+x12 0.1316 0.0000 0.8668 0.0215 0.0000 0.5445        0.0078 0.2873 0.7547 0.0517 0.0003 0.0063
+x13 0.0000 0.0216 0.0064 0.2046 0.1831 0.0000 0.0078        0.0140 0.8191 0.2564 0.0000 0.4712
+x14 0.3823 0.6081 0.0000 0.1635 0.9151 0.0060 0.2873 0.0140        0.7281 0.0494 0.0904 0.2786
+x15 0.7898 0.7865 0.4669 0.5572 0.4051 0.6483 0.7547 0.8191 0.7281        0.4980 0.3516 0.2950
+x16 0.3017 0.1208 0.4282 0.0000 0.0665 0.0000 0.0517 0.2564 0.0494 0.4980        0.0000 0.0000
+x17 0.0000 0.0065 0.0638 0.0000 0.0007 0.0001 0.0003 0.0000 0.0904 0.3516 0.0000        0.0000
+x18 0.7843 0.0561 0.8016 0.0000 0.0055 0.0000 0.0063 0.4712 0.2786 0.2950 0.0000 0.0000       </code></pre>
+<p>Calculamos Kaiser - Meyer - Olkin y MSA</p>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="s04.html#cb466-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(data00)</span></code></pre></div>
+<pre><code>Kaiser-Meyer-Olkin factor adequacy
+Call: KMO(r = data00)
+Overall MSA =  0.61
+MSA for each item = 
+  x6   x7   x8   x9  x10  x11  x12  x13  x14  x15  x16  x17  x18 
+0.87 0.62 0.53 0.89 0.81 0.45 0.59 0.88 0.53 0.31 0.86 0.44 0.53 </code></pre>
+<p>Quitamos X15, dado que su MSA es 0.31, y es el peor de todos los coeeficientes, estando por debajo de 0.5.</p>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="s04.html#cb468-1" aria-hidden="true" tabindex="-1"></a>data01 <span class="ot">&lt;-</span> <span class="fu">subset</span>(hbat, <span class="at">select =</span> <span class="fu">c</span>(x6, x7, x8, x9, x10, x11, x12, x13, x14, x16, x17, x18))</span>
+<span id="cb468-2"><a href="s04.html#cb468-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(data01), <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<pre><code>       x6    x7    x8    x9   x10   x11   x12   x13   x14   x16   x17   x18
+x6   1.00 -0.14  0.10  0.11 -0.05  0.48 -0.15 -0.40  0.09  0.10 -0.49  0.03
+x7  -0.14  1.00  0.00  0.14  0.43 -0.05  0.79  0.23  0.05  0.16  0.27  0.19
+x8   0.10  0.00  1.00  0.10 -0.06  0.19  0.02 -0.27  0.80  0.08 -0.19  0.03
+x9   0.11  0.14  0.10  1.00  0.20  0.56  0.23 -0.13  0.14  0.76  0.39  0.87
+x10 -0.05  0.43 -0.06  0.20  1.00 -0.01  0.54  0.13  0.01  0.18  0.33  0.28
+x11  0.48 -0.05  0.19  0.56 -0.01  1.00 -0.06 -0.49  0.27  0.42 -0.38  0.60
+x12 -0.15  0.79  0.02  0.23  0.54 -0.06  1.00  0.26  0.11  0.20  0.35  0.27
+x13 -0.40  0.23 -0.27 -0.13  0.13 -0.49  0.26  1.00 -0.24 -0.11  0.47 -0.07
+x14  0.09  0.05  0.80  0.14  0.01  0.27  0.11 -0.24  1.00  0.20 -0.17  0.11
+x16  0.10  0.16  0.08  0.76  0.18  0.42  0.20 -0.11  0.20  1.00  0.41  0.75
+x17 -0.49  0.27 -0.19  0.39  0.33 -0.38  0.35  0.47 -0.17  0.41  1.00  0.50
+x18  0.03  0.19  0.03  0.87  0.28  0.60  0.27 -0.07  0.11  0.75  0.50  1.00
+
+n= 100 
+
+
+P
+    x6     x7     x8     x9     x10    x11    x12    x13    x14    x16    x17    x18   
+x6         0.1736 0.3441 0.2922 0.5972 0.0000 0.1316 0.0000 0.3823 0.3017 0.0000 0.7843
+x7  0.1736        0.9932 0.1642 0.0000 0.6026 0.0000 0.0216 0.6081 0.1208 0.0065 0.0561
+x8  0.3441 0.9932        0.3387 0.5343 0.0549 0.8668 0.0064 0.0000 0.4282 0.0638 0.8016
+x9  0.2922 0.1642 0.3387        0.0496 0.0000 0.0215 0.2046 0.1635 0.0000 0.0000 0.0000
+x10 0.5972 0.0000 0.5343 0.0496        0.9092 0.0000 0.1831 0.9151 0.0665 0.0007 0.0055
+x11 0.0000 0.6026 0.0549 0.0000 0.9092        0.5445 0.0000 0.0060 0.0000 0.0001 0.0000
+x12 0.1316 0.0000 0.8668 0.0215 0.0000 0.5445        0.0078 0.2873 0.0517 0.0003 0.0063
+x13 0.0000 0.0216 0.0064 0.2046 0.1831 0.0000 0.0078        0.0140 0.2564 0.0000 0.4712
+x14 0.3823 0.6081 0.0000 0.1635 0.9151 0.0060 0.2873 0.0140        0.0494 0.0904 0.2786
+x16 0.3017 0.1208 0.4282 0.0000 0.0665 0.0000 0.0517 0.2564 0.0494        0.0000 0.0000
+x17 0.0000 0.0065 0.0638 0.0000 0.0007 0.0001 0.0003 0.0000 0.0904 0.0000        0.0000
+x18 0.7843 0.0561 0.8016 0.0000 0.0055 0.0000 0.0063 0.4712 0.2786 0.0000 0.0000       </code></pre>
+<p>Calculamos Kaiser - Meyer - Olkin y MSA</p>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="s04.html#cb470-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(data01)</span></code></pre></div>
+<pre><code>Kaiser-Meyer-Olkin factor adequacy
+Call: KMO(r = data01)
+Overall MSA =  0.61
+MSA for each item = 
+  x6   x7   x8   x9  x10  x11  x12  x13  x14  x16  x17  x18 
+0.88 0.62 0.53 0.89 0.80 0.45 0.59 0.88 0.53 0.86 0.44 0.53 </code></pre>
+<p>Quitamos X17, dado que su MSA es 0.44, y es el peor de todos los coeeficientes, estando por debajo de 0.5.</p>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="s04.html#cb472-1" aria-hidden="true" tabindex="-1"></a>data02 <span class="ot">&lt;-</span> <span class="fu">subset</span>(hbat, <span class="at">select =</span> <span class="fu">c</span>(x6, x7, x8, x9, x10, x11, x12, x13, x14, x16, x18))</span>
+<span id="cb472-2"><a href="s04.html#cb472-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(data02), <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<pre><code>       x6    x7    x8    x9   x10   x11   x12   x13   x14   x16   x18
+x6   1.00 -0.14  0.10  0.11 -0.05  0.48 -0.15 -0.40  0.09  0.10  0.03
+x7  -0.14  1.00  0.00  0.14  0.43 -0.05  0.79  0.23  0.05  0.16  0.19
+x8   0.10  0.00  1.00  0.10 -0.06  0.19  0.02 -0.27  0.80  0.08  0.03
+x9   0.11  0.14  0.10  1.00  0.20  0.56  0.23 -0.13  0.14  0.76  0.87
+x10 -0.05  0.43 -0.06  0.20  1.00 -0.01  0.54  0.13  0.01  0.18  0.28
+x11  0.48 -0.05  0.19  0.56 -0.01  1.00 -0.06 -0.49  0.27  0.42  0.60
+x12 -0.15  0.79  0.02  0.23  0.54 -0.06  1.00  0.26  0.11  0.20  0.27
+x13 -0.40  0.23 -0.27 -0.13  0.13 -0.49  0.26  1.00 -0.24 -0.11 -0.07
+x14  0.09  0.05  0.80  0.14  0.01  0.27  0.11 -0.24  1.00  0.20  0.11
+x16  0.10  0.16  0.08  0.76  0.18  0.42  0.20 -0.11  0.20  1.00  0.75
+x18  0.03  0.19  0.03  0.87  0.28  0.60  0.27 -0.07  0.11  0.75  1.00
+
+n= 100 
+
+
+P
+    x6     x7     x8     x9     x10    x11    x12    x13    x14    x16    x18   
+x6         0.1736 0.3441 0.2922 0.5972 0.0000 0.1316 0.0000 0.3823 0.3017 0.7843
+x7  0.1736        0.9932 0.1642 0.0000 0.6026 0.0000 0.0216 0.6081 0.1208 0.0561
+x8  0.3441 0.9932        0.3387 0.5343 0.0549 0.8668 0.0064 0.0000 0.4282 0.8016
+x9  0.2922 0.1642 0.3387        0.0496 0.0000 0.0215 0.2046 0.1635 0.0000 0.0000
+x10 0.5972 0.0000 0.5343 0.0496        0.9092 0.0000 0.1831 0.9151 0.0665 0.0055
+x11 0.0000 0.6026 0.0549 0.0000 0.9092        0.5445 0.0000 0.0060 0.0000 0.0000
+x12 0.1316 0.0000 0.8668 0.0215 0.0000 0.5445        0.0078 0.2873 0.0517 0.0063
+x13 0.0000 0.0216 0.0064 0.2046 0.1831 0.0000 0.0078        0.0140 0.2564 0.4712
+x14 0.3823 0.6081 0.0000 0.1635 0.9151 0.0060 0.2873 0.0140        0.0494 0.2786
+x16 0.3017 0.1208 0.4282 0.0000 0.0665 0.0000 0.0517 0.2564 0.0494        0.0000
+x18 0.7843 0.0561 0.8016 0.0000 0.0055 0.0000 0.0063 0.4712 0.2786 0.0000       </code></pre>
+<p>Calculamos Kaiser - Meyer - Olkin y MSA</p>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="s04.html#cb474-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(data02)</span></code></pre></div>
+<pre><code>Kaiser-Meyer-Olkin factor adequacy
+Call: KMO(r = data02)
+Overall MSA =  0.65
+MSA for each item = 
+  x6   x7   x8   x9  x10  x11  x12  x13  x14  x16  x18 
+0.51 0.63 0.52 0.79 0.78 0.62 0.62 0.75 0.51 0.76 0.67 </code></pre>
+<p>X11 que tenía un MSA de 0.45 y era candidato, ahora supera el 0.5 de MSA. Decidimos seguir con los siguientes pasos. Calculamos el test de esfericidad de Bartlett, donde la Ho es la igualdad de la matriz de correlaciones a la matriz identidad, es decir la ausencia de correlación entre las variables que conforman la estructura a analizar.</p>
+<p>Analizamos el test de esfericidad de Bartlett.</p>
+</div>
+<div id="test-de-esfericidad-de-bartlett" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Test de esfericidad de Bartlett</h2>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="s04.html#cb476-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(data02)</span></code></pre></div>
+<pre><code>
+    Bartlett test of homogeneity of variances
+
+data:  data02
+Bartlett&#39;s K-squared = 146.4, df = 10, p-value &lt; 2.2e-16</code></pre>
+<p>Dado que es correcto y rechazamos la hipótesis nula, continuamos con el análisis de componentes.</p>
+</div>
+<div id="análisis-de-componentes-principales" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Análisis de componentes principales</h2>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="s04.html#cb478-1" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">principal</span>(data02, <span class="at">nfactors=</span><span class="dv">4</span>, <span class="at">rotate=</span><span class="st">&quot;varimax&quot;</span>)</span>
+<span id="cb478-2"><a href="s04.html#cb478-2" aria-hidden="true" tabindex="-1"></a>output</span></code></pre></div>
+<pre><code>Principal Components Analysis
+Call: principal(r = data02, nfactors = 4, rotate = &quot;varimax&quot;)
+Standardized loadings (pattern matrix) based upon correlation matrix
+      RC1   RC2   RC3   RC4   h2    u2 com
+x6   0.00 -0.01 -0.03  0.88 0.77 0.232 1.0
+x7   0.06  0.87  0.05 -0.12 0.78 0.223 1.1
+x8   0.02 -0.02  0.94  0.10 0.89 0.107 1.0
+x9   0.93  0.12  0.05  0.09 0.88 0.119 1.1
+x10  0.14  0.74 -0.08  0.01 0.58 0.424 1.1
+x11  0.59 -0.06  0.15  0.64 0.79 0.213 2.1
+x12  0.13  0.90  0.08 -0.16 0.86 0.141 1.1
+x13 -0.09  0.23 -0.25 -0.72 0.64 0.359 1.5
+x14  0.11  0.05  0.93  0.10 0.89 0.108 1.1
+x16  0.86  0.11  0.08  0.04 0.77 0.234 1.1
+x18  0.94  0.18  0.00  0.05 0.91 0.086 1.1
+
+                       RC1  RC2  RC3  RC4
+SS loadings           2.89 2.23 1.86 1.77
+Proportion Var        0.26 0.20 0.17 0.16
+Cumulative Var        0.26 0.47 0.63 0.80
+Proportion Explained  0.33 0.26 0.21 0.20
+Cumulative Proportion 0.33 0.59 0.80 1.00
+
+Mean item complexity =  1.2
+Test of the hypothesis that 4 components are sufficient.
+
+The root mean square of the residuals (RMSR) is  0.06 
+ with the empirical chi square  39.02  with prob &lt;  0.0018 
+
+Fit based upon off diagonal values = 0.97</code></pre>
+<p>Analizamos las comunalidades continuando con la adecuación de los datos al análisis, vemos que tenemos que eliminar X11pues mantiene cargas cruzadas superiores a 0.5 en dos componentes (0.59 en RC1 y 0.64 en RC4). Eliminamos esa variable del set de datos, y volvemos a lanzar las pruebas preliminares al análisis de componentes principales.</p>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="s04.html#cb480-1" aria-hidden="true" tabindex="-1"></a>data03 <span class="ot">&lt;-</span> <span class="fu">subset</span>(hbat, <span class="at">select =</span> <span class="fu">c</span>(x6, x7, x8, x9, x10, x12, x13, x14, x16, x18))</span>
+<span id="cb480-2"><a href="s04.html#cb480-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(data03), <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<pre><code>       x6    x7    x8    x9   x10   x12   x13   x14   x16   x18
+x6   1.00 -0.14  0.10  0.11 -0.05 -0.15 -0.40  0.09  0.10  0.03
+x7  -0.14  1.00  0.00  0.14  0.43  0.79  0.23  0.05  0.16  0.19
+x8   0.10  0.00  1.00  0.10 -0.06  0.02 -0.27  0.80  0.08  0.03
+x9   0.11  0.14  0.10  1.00  0.20  0.23 -0.13  0.14  0.76  0.87
+x10 -0.05  0.43 -0.06  0.20  1.00  0.54  0.13  0.01  0.18  0.28
+x12 -0.15  0.79  0.02  0.23  0.54  1.00  0.26  0.11  0.20  0.27
+x13 -0.40  0.23 -0.27 -0.13  0.13  0.26  1.00 -0.24 -0.11 -0.07
+x14  0.09  0.05  0.80  0.14  0.01  0.11 -0.24  1.00  0.20  0.11
+x16  0.10  0.16  0.08  0.76  0.18  0.20 -0.11  0.20  1.00  0.75
+x18  0.03  0.19  0.03  0.87  0.28  0.27 -0.07  0.11  0.75  1.00
+
+n= 100 
+
+
+P
+    x6     x7     x8     x9     x10    x12    x13    x14    x16    x18   
+x6         0.1736 0.3441 0.2922 0.5972 0.1316 0.0000 0.3823 0.3017 0.7843
+x7  0.1736        0.9932 0.1642 0.0000 0.0000 0.0216 0.6081 0.1208 0.0561
+x8  0.3441 0.9932        0.3387 0.5343 0.8668 0.0064 0.0000 0.4282 0.8016
+x9  0.2922 0.1642 0.3387        0.0496 0.0215 0.2046 0.1635 0.0000 0.0000
+x10 0.5972 0.0000 0.5343 0.0496        0.0000 0.1831 0.9151 0.0665 0.0055
+x12 0.1316 0.0000 0.8668 0.0215 0.0000        0.0078 0.2873 0.0517 0.0063
+x13 0.0000 0.0216 0.0064 0.2046 0.1831 0.0078        0.0140 0.2564 0.4712
+x14 0.3823 0.6081 0.0000 0.1635 0.9151 0.2873 0.0140        0.0494 0.2786
+x16 0.3017 0.1208 0.4282 0.0000 0.0665 0.0517 0.2564 0.0494        0.0000
+x18 0.7843 0.0561 0.8016 0.0000 0.0055 0.0063 0.4712 0.2786 0.0000       </code></pre>
+<p>Analizamos Kaiser - Meyer - Olkin y MSA</p>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="s04.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(data03)</span></code></pre></div>
+<pre><code>Kaiser-Meyer-Olkin factor adequacy
+Call: KMO(r = data03)
+Overall MSA =  0.67
+MSA for each item = 
+  x6   x7   x8   x9  x10  x12  x13  x14  x16  x18 
+0.61 0.64 0.52 0.69 0.81 0.63 0.74 0.53 0.83 0.72 </code></pre>
+<p>Consiguiendo de nuevo valores válidos en este caso para continuar con el proceso, donde volvemos a recalcular Bartlett.</p>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="s04.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(data03)</span></code></pre></div>
+<pre><code>
+    Bartlett test of homogeneity of variances
+
+data:  data03
+Bartlett&#39;s K-squared = 142.71, df = 9, p-value &lt; 2.2e-16</code></pre>
+<p>Es óptimo y analizamos el resultado de componentes …</p>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="s04.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(data03)</span></code></pre></div>
+<pre><code>Kaiser-Meyer-Olkin factor adequacy
+Call: KMO(r = data03)
+Overall MSA =  0.67
+MSA for each item = 
+  x6   x7   x8   x9  x10  x12  x13  x14  x16  x18 
+0.61 0.64 0.52 0.69 0.81 0.63 0.74 0.53 0.83 0.72 </code></pre>
+</div>
+<div id="resumen-de-resultados-1" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Resumen de resultados</h2>
+<div id="rotación-varimax-acp-psych" class="section level3" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> Rotación Varimax (ACP, psych)</h3>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="s04.html#cb488-1" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">principal</span>(data03, <span class="at">nfactors=</span><span class="dv">4</span>, <span class="at">rotate=</span><span class="st">&quot;varimax&quot;</span>)</span>
+<span id="cb488-2"><a href="s04.html#cb488-2" aria-hidden="true" tabindex="-1"></a>output</span></code></pre></div>
+<pre><code>Principal Components Analysis
+Call: principal(r = data03, nfactors = 4, rotate = &quot;varimax&quot;)
+Standardized loadings (pattern matrix) based upon correlation matrix
+      RC1   RC2   RC3   RC4   h2   u2 com
+x6   0.03 -0.01 -0.02  0.89 0.80 0.20 1.0
+x7   0.06  0.87  0.05 -0.14 0.78 0.22 1.1
+x8   0.02 -0.02  0.94  0.10 0.89 0.11 1.0
+x9   0.93  0.10  0.06  0.08 0.89 0.11 1.0
+x10  0.16  0.74 -0.08  0.04 0.58 0.42 1.1
+x12  0.14  0.90  0.08 -0.17 0.86 0.14 1.1
+x13 -0.10  0.23 -0.26 -0.73 0.66 0.34 1.5
+x14  0.10  0.05  0.93  0.08 0.89 0.11 1.0
+x16  0.89  0.10  0.09  0.07 0.81 0.19 1.1
+x18  0.93  0.17  0.00  0.01 0.89 0.11 1.1
+
+                       RC1  RC2  RC3  RC4
+SS loadings           2.59 2.22 1.85 1.41
+Proportion Var        0.26 0.22 0.18 0.14
+Cumulative Var        0.26 0.48 0.67 0.81
+Proportion Explained  0.32 0.28 0.23 0.17
+Cumulative Proportion 0.32 0.60 0.83 1.00
+
+Mean item complexity =  1.1
+Test of the hypothesis that 4 components are sufficient.
+
+The root mean square of the residuals (RMSR) is  0.06 
+ with the empirical chi square  35.71  with prob &lt;  0.00019 
+
+Fit based upon off diagonal values = 0.96</code></pre>
+<p>La salida de la función print.psych muestra las cargas de los componentes (de la matriz del modelo), la h2 (comunalidades) la u2 (las singularidades [1-h2]) y la complejidad de las cargas de los componentes para esa variable (índice de Hoffman)</p>
+</div>
+</div>
+<div id="gráficos-del-análisis" class="section level2" number="8.5">
+<h2><span class="header-section-number">8.5</span> Gráficos del análisis</h2>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="s04.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot.psych</span>(output)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-214-1.png" width="1152" /></p>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="s04.html#cb491-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(output)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-214-2.png" width="1152" /></p>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="s04.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.plot</span>(output, <span class="at">numbers=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-214-3.png" width="1152" /></p>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="s04.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.diagram</span>(output)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-214-4.png" width="1152" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="s03.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="s05.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

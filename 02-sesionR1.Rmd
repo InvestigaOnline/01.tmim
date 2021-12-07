@@ -1,0 +1,507 @@
+# Sesión R1 {#r1}
+
+## Introducción
+
+En esta primera sesión, particularmente acometeremos el trabajo básico de:
+
+1.  instalar el software R;
+2.  instalar el software RStudio;
+3.  instalar los paquetes de trabajo;
+4.  cargar los bancos de datos necesarios para comenzar nuestro trabajo;
+5.  acercarnos al proceso de datos 'real', por medio de la tabulación.
+
+### Instalar R
+
+![Software R](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/100px-R_logo.svg.png)
+
+Acceder a la web del proyecto R y descargar e instalar [la versión indicada](https://cran.r-project.org/).
+
+### Instalar RStudio
+
+![Software RStudio](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/RStudio_logo_flat.svg/100px-RStudio_logo_flat.svg.png)
+
+Acceder a la web de RStudio y descargar e instalar [la versión indicada](https://rstudio.com/products/rstudio/download/#download).
+
+## Preguntas y respuestas antes de comenzar ...
+
+> **¿Qué es R?**
+
+R es un entorno y lenguaje de programación con un enfoque al análisis estadístico.
+
+R nació como una reimplementación de software libre del lenguaje S, adicionado con soporte para ámbito estático. Se trata de uno de los lenguajes de
+programación más utilizados en investigación científica, siendo además muy popular en los campos de aprendizaje automático (*machine learning*),
+minería de datos, investigación biomédica, bioinformática y matemáticas financieras. A esto contribuye la posibilidad de cargar diferentes bibliotecas
+o paquetes con funcionalidades de cálculo y de realización de gráficos.
+
+> **¿Qué es RStudio?**
+
+RStudio es un entorno de desarrollo integrado (IDE) para el lenguaje de programación R, dedicado a la computación estadística y gráficos. Incluye una
+consola, editor de sintaxis que apoya la ejecución de código, así como herramientas para el trazado, la depuración y la gestión del espacio de
+trabajo.
+
+RStudio está disponible para Windows, Mac y Linux o para navegadores conectados a RStudio Server o RStudio Server Pro (Debian / Ubuntu, RedHat /
+CentOS, y SUSE Linux). RStudio tiene la misión de proporcionar el entorno informático estadístico R. Permite un análisis y desarrollo para que
+cualquiera pueda analizar los datos con R.
+
+> **¿Qué es un *script* de R base (.R)?**
+
+Los *script* son documentos de texto con la extensión de archivo . R, por ejemplo mi *script*. R . Estos archivos son iguales a cualquier documentos
+de texto, pero R los puede leer y ejecutar el código que contienen.
+
+> **¿Qué es Markdown?**
+
+Markdown es un lenguaje de marcado ligero creado por John Gruber que trata de conseguir la máxima legibilidad y facilidad de publicación tanto en su
+forma de entrada como de salida, inspirándose en muchas convenciones existentes para marcar mensajes de correo electrónico usando texto plano.
+Markdown convierte el texto marcado en documentos XHTML utilizando `html2text` creado por Aaron Swartz. Te aconsejamos el [siguiente
+enlace](https://joedicastro.com/pages/markdown.html) para conocer los rudimentos del lenguaje.
+
+> **¿Qué es un *script* de rMarkdown (.Rmd)?**
+
+R Markdown es un formato que permite una fácil creación de documentos, presentaciones dinámicas y informes de R. Markdown es un formato de sintaxis
+simple en documento de texto para crear documentos en HTML, PDF, y Word.
+
+> **¿Qué es un archivo HTML self-contained?**
+
+Los ficheros HTML *self contained* son ficheros autónomos que residen en un solo archivo HTML. No puede incluir ningún otro archivo y deben funcionar
+sin una conexión de red. Un usuario debería poder guardar el archivo, abrirlo localmente y tener todo listo para trabajar.
+
+> **¿Qué es un vector?**
+
+Los vectores en R son objetos de una única dimensión que puede contener datos numéricos, cadena de caracteres o datos lógicos, entre otros.
+Esencialmente son uno de los elementos básicos en la estructura de los datos en R. Se crean con la estructura `c()`.
+
+> **¿Qué es una matriz?**
+
+Una matriz en R es un conjunto de elementos del mismo tipo (numérico, carácter, lógico, etc) organizado en filas y columnas. Las matrices en R se
+construyen con la función `matrix()`. Aunque con un ejemplo siempre es mucho más fácil comprender cómo funcionan las matrices.
+
+> **¿Qué es un dataframe?**
+
+Un *dataframe* es lo que conocemos como un fichero de datos. Son estructuras para trabajar con datos de diferentes tipos (cadena, lógicos,
+aritméticos). Utilizar una estructura de datos tabular (como una matriz) pero que permite manipular distintos tipos de datos por lo que podemos tener
+una columna con caracteres, otra con números y otra con variables lógicas. Son importante para hacer tablas, cuadros, gráficas, análisis y modelos que
+tienen muchas variables estadísticas. Se crean con la estructura `data.frame()`.
+
+> **¿Qué es un paquete / librería?**
+
+Un paquete (package) es una colección de funciones, datos y código R que se almacenan en una carpeta conforme a una estructura bien definida,
+fácilmente accesible para R. En la web de R se puede consultar la lista de paquetes disponibles.
+
+> **¿Qué es un objeto?**
+
+La información que manipulamos en R se estructura en forma de objetos. Para trabajar con R resulta importante conocer los principales tipos de objetos
+y sus propiedades básicas. En general, cada tipo de objeto viene definido por una serie de atributos. Las funciones genéricas (como por ejemplo
+`summary` o `plot`) reconocen estos atributos y llevan a cabo distintos tipos de acciones en función del tipo de objeto.
+
+> **¿Qué es un chunk?**
+
+Los trozos de código R o que se insertan en archivos markdown se denominan *chunk* y permiten hacer análisis estadísticos y mostrar los resultados en
+el documento final. Los *chunk* tienen diversas opciones que permiten una mayor flexibilidad en como se muestra el código y los resultados en el
+documento final.
+
+```{r}
+print('_aquí iría el código_')
+```
+
+> **¿Qué es inline code?**
+
+A diferencia de los *chunk*, el *inline code* se inserta en el texto del archivo, es de este modo como insertamos aquí la fecha: `r Sys.Date()`.
+
+## Instalar y cargar paquetes básicos
+
+Los paquetes necesarios son cargados seguidamente. Si alguno no estuviera disponible debería ser instalado con `install.packages()`. El paquete
+`fontawesome`, tiene una forma especial de instalación. Es por ello que se cita al final de forma específica.
+
+```{r}
+#install.packages(c('readr', 'readxl','tidyverse', 'kableExtra', 'igraph', 'plotly', 'highcharter', 'sparkline', 'expss'))
+#devtools::install_github("rstudio/fontawesome")
+suppressMessages(library('readr', quietly = TRUE))
+suppressMessages(library('readxl', quietly = TRUE))
+suppressMessages(library('tidyverse', quietly = TRUE))
+suppressMessages(library('kableExtra', quietly = TRUE))
+suppressMessages(library('igraph', quietly = TRUE))
+suppressMessages(library('plotly', quietly = TRUE))
+suppressMessages(library('highcharter', quietly = TRUE))
+suppressMessages(library('sparkline', quietly = TRUE))
+suppressMessages(library('expss', quietly = TRUE))
+suppressMessages(library('fontawesome', quietly = TRUE))
+options(highcharter.theme = hc_theme_hcrt(tooltip = list(valueDecimals = 2)))
+```
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+**MIM 2020 - 2021 - TECNICAS MULTIVARIANTES EN INVESTIGACION DE MERCADOS**
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Practicando el *scripting*
+
+### Ejercicio: *script* 01
+
+Un primer ejemplo para iniciarnos en R es crear el siguiente *script* donde:
+
+-   se crean dos vectores,
+-   se publica su contenido,
+-   se unen esos dos vectores creando un *dataframe*
+-   se publica el *dataframe*
+-   se muestra la estructura del *dataframe*
+-   calcularemos la media aritmética del vector
+-   calcularemos la media aritmética del campo en el *dataframe*
+
+```{r}
+# Primero creamos dos vectores
+x <- c(1,2,3,1,3,1,3,3,3)
+y <- c(2,1,3,4,1,2,4,1,1)
+
+# Publicamos su contenido
+x
+y
+
+# A continuación creamos un _dataframe_ con los dos vectores
+df1 <- data.frame(V1=x,V2=y)
+
+# Publicamos su contenido
+df1
+
+# Validamos su estructura
+str(df1)
+
+# Obtengamos un estadístico, por ejemplo la media
+mean(x) # obtenida del vector
+mean(df1$V1) # obtenida del _dataframe_; nótese la nomenclatura y el uso de $
+```
+
+### Ejercicio: *script* 02
+
+En este segundo caso, vamos a acercarnos a conocer la influencia de los valores perdidos (ausencias de valor en la información) y su efecto ante el
+cálculo de estimaciones estadísticas. En este caso ...
+
+-   crearemos los vectores de nuevo, añadiendo un valor perdido (*NA*),
+-   se publica su contenido,
+-   se unen esos dos vectores creando un *dataframe*,
+-   se publica el *dataframe*,
+-   realizaremos de nuevo los cálculos estadísticos anteriores con una leve modificación
+
+```{r}
+# Modificamos los dos vectores
+x <- c(1,2,3,1,3,1,3,3,3, NA) #alternativamente podríamos haber hecho x <- c(x,NA)
+y <- c(2,1,3,4,1,2,4,1,1, NA) #alternativamente podríamos haber hecho y <- c(y,NA)
+
+# Publicamos su contenido
+x
+y
+
+# A continuación creamos un dataframe con los dos vectores
+df1 <- data.frame(V1=x,V2=y)
+
+# Publicamos su contenido
+df1
+
+# Obtengamos un estadístico, por ejemplo la media
+mean(x) #obtenida del vector
+mean(df1$V1) #obtenida del dataframe
+mean(df1$V1, na.rm=TRUE) #obtenida del dataframe
+```
+
+### Ejercicio: *script* 03
+
+En este tercer caso, vamos a anticipar un gráfico muy simple hecho con la base de R y el mismo gráfico utilizando la librería `highcharter`, que será
+nuestra librería gráfica de referencia.
+
+El gráfico es obtenido usando el *dataframe* denominado *df* que fue cargado inicialmente.
+
+```{r}
+# Nuestro primer gráfico 
+plot(df1) 
+
+# Nuestro primer gráfico actual
+library(highcharter) # no haría falta si ya está cargado.
+hchart(df1, type='scatter', hcaes(x=V1, y=V2))
+```
+
+### Ejercicio: *script* 04
+
+En este cuarto ejercicio, añadiremos a nuestro *dataframe* un identificador de los casos, y para ello usaremos una función `LETTERS[]` de R que asigna
+letras a los valores. Como hay 10 casos, así lo indicamos a la función.
+
+Posteriormente, representamos el gráfico como un diagrama de barras para la variable `V2` del *dataframe* llamado `df1`, e ir completando.
+
+```{r}
+# Vamos a hacer otros gráficos de la forma completa
+# Añadimos un campo a df con el nombre de una letra(alumno, ciudad, ...) denominado name
+df1$name <- LETTERS[1:10]
+df1
+
+# hacemos el gráfico de barras (1)
+highchart() %>% 
+     hc_chart(type = 'bar') %>% 
+     hc_xAxis(categories = df1$name) %>% 
+     hc_add_series(df1$V2)
+
+# hacemos el gráfico de barras (2)
+highchart() %>% 
+     hc_chart(type = 'bar') %>% 
+     hc_xAxis(categories = df1$name) %>% 
+     hc_add_series(df1$V2, color='green')
+
+# hacemos el gráfico de barras (3)
+highchart() %>% 
+     hc_chart(type = 'bar') %>% 
+     hc_xAxis(categories = df1$name) %>% 
+     hc_add_series(df1$V2, color='green', name='Ingresos') %>% 
+     hc_add_series(df1$V1, color='red', name='Gastos')
+```
+
+### Ejercicio: *script* 05
+
+Por último, practiquemos la carga de datos. Aunque RStudio proporciona herramientas en su IDE para poder cargar datos desde archivos de texto, Excel ©
+o SPSS © preferimos que la carga del archivo se haga desde el mismo *script* de trabajo. Por ello, usaremos los paquetes `readr` para ficheros de
+texto, `readxl` para archivos xls o xlsx y `expss` para archivos SPSS. Las instrucciones serán muy simples. Para evitar repetir la carga en las
+diferentes secciones de este capítulo, cargamos inicialmente todos los archivos. Los paquetes mencionados deberán haber sido cargados previamente.
+
+#### Carga desde CSV
+
+El *script* que permitiría la lectura de un archivo denominado 'df.csv' (texto separado por comas)...
+
+```{r}
+require('readr')
+df <- suppressMessages(read_csv("https://drive.google.com/uc?export=download&id=1OStFMmg5fzIpfTZnzX9Ql8sefN7se5SW", col_names=TRUE)) #df.csv, archivo con su ruta en el disco
+df
+```
+
+#### Carga desde XLS, XLSX
+
+El *script* que permitiría la lectura de un archivo denominado 'df.xlsx' (archivo Excel ©)...
+
+```{r}
+#require('readxl')# se necesita el paquete readxl; si no está cargado, cárgalo
+#dfxls <- suppressMessages(read_excel("https://drive.google.com/uc?export=download&id=1JAm972XZeCHT2fQ2Sz_Sl_97o_Pa110U")) # df.xlsx, archivo con su ruta en el disco
+```
+
+#### Carga desde SPSS
+
+El *script* que permitiría la lectura de un archivo denominado '3192.sav' (archivo SPSS © etiquetado)...
+
+```{r}
+require('expss')# se necesita el paquete expss; si no está cargado, cárgalo
+data <- suppressMessages(read_spss("https://drive.google.com/uc?export=download&id=11q4pg2iWwWdV9mk5P44ejoAcj5CJEfJM")) # 3192.sav, archivo con su ruta en el disco
+head(data, 5)
+tail(data,5)
+```
+
+Nuestros *dataframe* `df` y `data` están cargados y listos para ser utilizados a lo largo de las sesiones.
+
+### Ejercicio: Creación de un *script* *rmarkdown*
+
+El ejercicio consistirá en utilizar las opciones de ejemplo para que el estudiante vea la diferencia entre trabajar con archivo .R y archivos .Rmd,
+con la particularidad de su salida a HTML, Diapositivas (ioslides) o PDF si se dispone de la utilidad adecuada instalada.
+
+-   File > New > New RMarkdown > Documentation > HTML
+-   File > New > New RMarkdown > Presentation > ioslides
+
+### Ejercicio: *script* 05a y 05b
+
+Obtención de una tabla de frecuencias estilo SPSS (Script 05a).
+
+Nótese que la tabla sale igual con las dos formas, pero mientras que en el primer caso se usa la nomenclatura estándar de R, y el campo se llama
+`data$P31`, es decir nombre del marco de datos en R (data) el símbolo del `$` que separa y nombre del campo en el marco de datos `P31` en la segunda
+al definir de inicio que se utilizará `data`ya se usa el nombre `P31`directamente, aunque debamos dar la orden de cálculo con el comando
+`calculate()`.
+
+```{r}
+library(expss)
+data <- suppressMessages(read_spss( "https://drive.google.com/uc?export=download&id=11q4pg2iWwWdV9mk5P44ejoAcj5CJEfJM"))
+fre(data$P31)
+```
+
+```{r}
+data %>%  
+  calculate(fre(P31))
+```
+
+### Ejercicio: *script* 06
+
+Para este script, indicaremos que usamos la fuente de datos cargado anteriormente. Redactamos pues nuestro script, donde identificamos el dataframe,
+el campo P31 del cual vamos a calcular el número de casos.
+
+```{r}
+# Script 6
+```
+
+```{r}
+data %>%
+  tab_cells(P31) %>%
+  tab_stat_cases() %>%
+  tab_pivot()
+```
+
+### Ejercicio: *script* 07a
+
+Realicemos ahora una pequeña pero importante variación en el cálculo del estadístico casos -frecuencias- y utilicemos la posibilidad de ubicar donde
+queramos el total de casos, así como su etiqueta. Ello lo hacemos con total_row_position = "above", label = "Casos" aplicado a la función
+tab_stat_cases().
+
+```{r}
+data %>% 
+  tab_cells(P31) %>% 
+  tab_stat_cases(total_row_position = "above", label = "Casos") %>%
+  tab_pivot()
+```
+
+### Ejercicio: *script* 07b
+
+Si en lugar de obtener casos (valores absolutos) queremos sacar valores porcentuales, el cambio es mínimo. Usaremos el comando tab_stat_cpct()para
+indicarlo.
+
+```{r}
+# Script 7b
+data %>% 
+  tab_cells(P31) %>% 
+  tab_stat_cpct(total_row_position = "above", label = "% casos") %>% 
+  tab_pivot()
+```
+
+### Ejercicio: *script* 08
+
+Cuando deseamos hacer combinaciones de frecuencias y porcentajes, la filosofía de trabajo es muy parecida. En nuestro caso vamos a hacer algo muy
+típico. Aunque creo que resulta más sencillo leer cada estadístico en su tabla, hay ocasiones en las que la comparativa es muy necesaria y por tanto
+es necesario unir los estadísticos en la misma tabla. Nótese la diferencia con el siguiente cuadro...
+
+```{r}
+# Script 8
+data %>% 
+  tab_cells(P31) %>% 
+  tab_stat_cases(total_row_position = "above", label = "Casos") %>%
+  tab_stat_cpct(label = "% casos") %>%
+  tab_pivot(stat_position = "inside_columns")
+```
+
+### Ejercicio: *script* 09
+
+Diferentes modalidades de cálculo de los porcentajes.
+
+```{r}
+# Script 9
+data %>% 
+  tab_cells(P31) %>% 
+  tab_stat_cases() %>%
+  tab_stat_cpct() %>%
+  tab_stat_rpct() %>%
+  tab_stat_tpct() %>%
+  tab_pivot()
+```
+
+### Ejercicio: *script* 10
+
+Efecto de los modificadores.
+
+```{r}
+# Script 10
+data %>% 
+  tab_cells(P31) %>% 
+  tab_stat_cases(total_row_position = "below", label = "N") %>%
+  tab_stat_cpct(label = "V% casos") %>%
+  tab_stat_rpct(label = "H% casos") %>%
+  tab_stat_tpct(label = "T% casos") %>%
+  tab_pivot(stat_position = "inside_columns")
+```
+
+### Ejercicio: *script* 11
+
+La función var_lab() nos permite manipular la etiqueta de una variable, un texto descriptivo de su significado.
+
+Prueba en tu consola a escribir `?expss::var_lab()`
+
+```{r}
+# Script 11
+
+var_lab(data$P31)
+
+var_lab(data$P31) <- 'Género del entrevistado'
+
+```
+
+### Ejercicio: *script* 12
+
+La función val_lab() nos permite manipular las etiquetas de una variable, definir las etiquetas de los códigos, factores o niveles.
+
+Prueba en tu consola a escribir `?expss::val_lab()`
+
+```{r}
+# Script 12
+
+val_lab(data$P31)
+
+val_lab(data$P31) <- 
+	c('masculino'=1, 'femenino'=2)
+
+```
+
+### Ejercicio: *script* 13
+
+Para cerrar esta primera sesión, vamos a abordar un ejercicio diferente. Vamos ahora a instalar (si no lo está ya) el paquete `gtrendsR`, y cargamos los paquetes necesarios ...
+
+```{r}
+# Script 13
+# instalar paquetes
+#install.packages("gtrendsR") quitar el # sino estuviera instalado
+library(gtrendsR)
+library(dplyr) 
+library(highcharter)
+```
+
+Obtenemos los datos de Google Trends, y los almacenamos en un *dataframe*, reteniendo solo los campos 1 y 2 del mismo.
+
+```{r}
+# manipular datos
+
+es_trends <-  gtrends(c("Universidad de Valencia"),geo = c("ES"),gprop = "web",time = "today 12-m")
+head(es_trends, 5)
+df1 <- es_trends$interest_over_time[, 1:2]
+```
+
+Si deseamos pedir ayuda, \# Pedir ayuda y ver \``?gtrends()`. Finalmente creamos el gráfico... veces que han salido en las noticias (datos de Google
+Trends) la Universitat de València.
+
+```{r}
+highchart() %>%
+  hc_chart(type = 'line') %>%
+  hc_xAxis(categories = as.Date(df1$date)) %>%
+  hc_add_series(df1$hits, name = 'hits UV') %>% #*** API
+  hc_credits(enabled = TRUE,text = 'InvestigaOnline.com',href = 'https://www.investigaonline.com') %>%
+  hc_exporting(enabled = TRUE)
+```
+
+¿Añadimos la Politécnica y la Complutense de Madrid?. Lo hacemos de un tirón, fíjate en las diferencias.
+
+```{r}
+#install.packages("gtrendsR")
+library(gtrendsR) 
+library(dplyr)
+library(highcharter)
+
+es_trends <- gtrends(c("Universitat de Valencia"),geo = c("ES"),gprop = "web",hl = "es",time = "today 12-m")
+es_trends_interest_over_time <- es_trends$interest_over_time[, 1:2]
+df1 <- es_trends_interest_over_time
+
+es_trends <-gtrends(c("Universidad Politecnica de Valencia"),geo = c("ES"),gprop = "web",hl = "es",time = "all")
+es_trends_interest_over_time <- es_trends$interest_over_time[, 1:2]
+df2 <- es_trends_interest_over_time
+
+es_trends <-gtrends(c("Universidad Complutense"),geo = c("ES"),gprop = "web",hl = "es",time = "all")
+es_trends_interest_over_time <- es_trends$interest_over_time[, 1:2]
+df3 <- es_trends_interest_over_time
+
+highchart() %>%
+  hc_chart(type = 'line') %>%
+  hc_xAxis(categories = as.Date(c(df1$date, df2$date, df3$date))) %>%
+  hc_add_series(df1$hits,name = 'hits UV',marker = list(enabled = FALSE),color = 'salmon') %>%
+  hc_add_series(df2$hits,name = 'hits UPV',marker = list(enabled = FALSE),color = 'cadetblue') %>%
+  hc_add_series(df3$hits,name = 'hits UCM',marker = list(enabled = FALSE),color = 'green') %>%
+  hc_credits(enabled = TRUE,text = 'InvestigaOnline.com',href = 'https://www.investigaonline.com') %>%
+  hc_exporting(enabled = TRUE)
+```
+
+## Conclusión
+
+Cerramos esta primera parte de las sesiones R, donde hemos comenzado a trabajar con pequeños trozos de código, diferenciando entre lo que es un *script* de tipo R, de un *script* de tipo *rmarkdown*. Hemos hecho una amplia revisión de conceptos y no en este documento, pero sí en la sesión presencial, hemos revisado materiales de trabajo para iniciarse en el conocimiento de R. Saber hasta dónde podemos llegar. La segunda sesión, nos meterá de forma mucho más concienzuda en el análisis de tablas y gráficos y la creación de un mini-dashboard.

@@ -1,0 +1,311 @@
+# EDA (exploratory data analysis) - Sesiones 1 y 2 {#s01}
+
+La sesión 01 (y la 02) de esta asignatura está dedicada a realizar una introducción a los procedimientos básicos de trabajo con datos provenientes de recogidas estructuradas de datos o de investigaciones de mercado, predominantemente de encuesta. En las sesiones 01 y 02 estudiaremos entre otras pruebas:
+
+* Exploración de los datos: introducción y herramientas básicas para la exploración de los datos.
+* Herramientas de exploración: comprobación de la linealidad, normalidad y homocedasticidad
+* Inferencia estadística paramétrica
+* Inferencia estadística no paramétrica
+
+El siguiente documento replica todos los cálculos estadísticos de la primera sesión de la asignatura "Técnicas Multivariantes en Investigación de Mercados" dentro del máster oficial en Marketing e Investigación de mercados realizados con SPSS. Este documento intenta ser una guía ilustrativa y demostrativa de como se trabaja con R, magnificando todas las virtudes de este software.
+
+En esta primera sesión, particularmente acometeremos el trabajo básico de:
+
+1. instalar el software R
+1. instalar el software RStudio
+1. subir los datos de la asignatura
+1. obtener el cálculo de frecuencias e histogramas
+1. obtener los descriptivos
+1. analizar la normalidad estadística
+1. analizar la homogeneidad de varianza
+
+## Carga de paquetes 
+
+Los paquetes aquí listados son específicos para estas siguientes sesiones. Ver la Parte [R1a](#r1a)) para resto de paquetes cargados esenciales.
+
+```{r}
+#install.packages(c('car','outliers', 'psych', 'nortest', 'Hmisc', 'vcd', 'ca', 'corrplot', 'factoextra', 'FactoMineR', 'gplots', 'DT', 'lmtest', 'sjstats', 'igraph'))
+suppressMessages(library('car', quietly = TRUE))
+suppressMessages(library('outliers', quietly = TRUE))
+suppressMessages(library('psych', quietly = TRUE))
+suppressMessages(library('nortest', quietly = TRUE))
+suppressMessages(library('Hmisc', quietly = TRUE))
+suppressMessages(library('vcd', quietly = TRUE))
+suppressMessages(library('ca', quietly = TRUE))
+suppressMessages(library('corrplot', quietly = TRUE))
+suppressMessages(library('factoextra', quietly = TRUE))
+suppressMessages(library('FactoMineR', quietly = TRUE))
+suppressMessages(library('gplots', quietly = TRUE))
+suppressMessages(library('DT', quietly = TRUE))
+suppressMessages(library('lmtest', quietly = TRUE))
+suppressMessages(library('sjstats', quietly = TRUE))
+suppressMessages(library('igraph', quietly=TRUE))
+```
+
+## Carga de datos
+
+En nuestro trabajo deberemos cargar datos provenientes de fuentes como archivo texto (paquete `readr`), archivos xls o xlsx (paquete `readr`) y archivos SPSS (paquete `expss`). Las instrucciones serán muy simples. Para evitar repetir la carga en diferentes secciones de este capítulo, cargamos inicialmente todos los archivos. Los paquetes mencionados deberán haber sido cargados previamente.
+
+```{r}
+#sesiones 01 y 02
+fib2 <- suppressMessages(read_spss("https://download.tesigandia.com/tmim/fib_2.sav"))
+gssnet1 <- suppressMessages(read_spss("https://download.tesigandia.com/tmim/gssnet1.sav"))
+hatco <- suppressMessages(read_spss("https://download.tesigandia.com/tmim/hatco.sav"))
+gssft1 <- suppressMessages(read_spss("http://download.tesigandia.com/tmim/gssft1.sav"))
+gssnet2 <- suppressMessages(read_spss("http://download.tesigandia.com/tmim/gssnet2.sav"))
+endorph1 <- suppressMessages(read_spss("http://download.tesigandia.com/tmim/endorph1.sav"))
+anxiety <- suppressMessages(read_spss("http://download.tesigandia.com/tmim/anxiety.sav"))
+hatco <- suppressMessages(read_spss("http://download.tesigandia.com/tmim/hatco.sav"))
+data2 <- suppressMessages(read_spss("http://download.tesigandia.com/tmim/manners1.sav"))
+grades <- suppressMessages(read_spss("http://download.tesigandia.com/tmim/grades1.sav"))
+bdi <- suppressMessages(read_spss("http://download.tesigandia.com/tmim/bdidrogas1.sav"))
+```
+
+## Frecuencias e histogramas
+
+Usaremos el paquete `expss`para obtener todos los cálculos que tengan que ver con el manejo de la
+estadística básica paramétrica y relacionados con los cálculos de frecuencia.
+
+### Frecuencias
+
+Calculamos las frecuencias de la variable AGE obteniendo una salida similar al SPSS. Las frecuencias son la base de trabajo del investigador, cuántas veces sucede un evento. El estilo SPSS muestra diferentes columnas con el valor absoluto y el relativo, poniendo como base todos los casos del banco de datos o todos los casos __válidos__ del banco de datos. 
+
+```{r frecuencias}
+# recuento de frecuencias
+fre(gssnet1$age) 
+```
+
+Si esa misma información la intentamos conseguir en forma de tabla marginal, disponemos de la función `cro_*()`de __crosstab__ que nos habilita para ello. La diferencia es que con `cro_*()` podemos indicar el tipo de dato deseado. Existen otras formas más completas de crear tablas de contingencia que se mostrarán más adelante con el paquete `expss`.
+
+```{r tabla cruzada}
+# tabla cruzada
+cro_cases(gssnet1$region, gssnet1$usenet) #modalidad básica
+cro_cpct(gssnet1$region, gssnet1$usenet) #modalidad básica pct
+cro_rpct(gssnet1$region, gssnet1$usenet) #modalidad básica pct
+cro_tpct(gssnet1$region, gssnet1$usenet) #modalidad básica pct
+```
+
+### Histogramas
+
+Para no tener que repetir muchas veces el nombre del campo , gssnet1$age, lo declaramos como una variable que denominamos x; más corto y simple. Posteriormente, calculamos el histograma de frecuencias del vector (variable) x.
+
+```{r histograma}
+x <- gssnet1$age
+h <- hist(x, freq = FALSE)
+h <- curve(dnorm(x, mean(x), sd(x)), col = 1, lty = 2, lwd = 2, add=TRUE)
+```
+## Descriptivos
+
+Calculamos todos los descriptivos de forma individual, auqnue también podemos utilizar comandos de paquetes variados que hacen los mismos `summary(x)`. la orden `summary(x)` usa el paquete base de R. Para una mejor organización, los guardamos en objetos y posteriormente imprimimos esos objetos en una tabla.
+
+### Datos descriptivos básicos
+
+```{r descriptivos}
+# para no tener que escribir cada vez fib2$dia1, le llamamos x
+x <- fib2$dia1
+
+# iniciamos cálculo
+summary(x)
+suma <- sum(x, na.rm = TRUE)
+media <- mean(x, na.rm = TRUE)
+media.recortada <- mean(x, na.rm = TRUE, trim = 0.05)
+mediana <- median(x, na.rm = TRUE)
+cuartiles <- quantile(x, na.rm = TRUE, c(0, 0.25, 0.5, 0.75, 1))
+deciles <- quantile(x, na.rm = TRUE, c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1))
+terciles <- quantile(x, na.rm = TRUE, c(0, 0.33, 0.66, 1))
+maximo <- max(x, na.rm = TRUE)
+minimo <- min(x, na.rm = TRUE)
+rango1 <- range(x, na.rm = TRUE)
+rango2 <- max(x, na.rm = TRUE) - min(x, na.rm = TRUE)
+recorrido <- IQR(x, na.rm = TRUE, type = 7)
+desviacion <- sd(x, na.rm = TRUE)
+varianza <- var(x, na.rm = TRUE)
+coefvar <- (sd(x, na.rm = TRUE) / mean(x, na.rm = TRUE)) * 100
+int90 <- t.test(x, na.rm = TRUE, conf.level = 0.9000)[["conf.int"]]
+int95 <- t.test(x, na.rm = TRUE, conf.level = 0.9545)[["conf.int"]]
+int99 <- t.test(x, na.rm = TRUE, conf.level = 0.9975)[["conf.int"]]
+esdmd <- sd(x, na.rm = TRUE) / sqrt((t.test(x, na.rm = TRUE, conf.level = 0.9545)[["parameter"]][["df"]]))
+funmoda <-
+    function(x) {
+        t <- table(x)
+        return(as.numeric(names(t)[t == max(t)]))
+    }
+moda <- funmoda(x)
+skewness <- skew(x, na.rm = TRUE)
+kurtosis <- kurtosi(x, na.rm = TRUE)
+```
+
+|Estadístico|Valor|
+|:----------|:----|
+|suma|`r suma`|
+|media aritmética|`r media`|
+|media recortada|`r media.recortada`|
+|mediana|`r mediana`|
+|cuartiles|`r cuartiles`|
+|deciles|`r deciles`|
+|terciles|`r terciles`|
+|máximo|`r maximo`|
+|mínimo|`r minimo`|
+|rango (1)|[`r rango1`]|
+|rango (2)|`r rango2`|
+|IQR (recorrido intercuartílico)|`r recorrido`|
+|desviación típica|`r desviacion`|
+|varianza|`r varianza`|
+|coeficiente de variación|`r coefvar`|
+|intervalo de confianza al 90%|`r int90`|
+|intervalo de confianza al 95%|`r int95`|
+|intervalo de confianza al 99%|`r int99`|
+|error estándar medio|`r esdmd`|
+|moda|`r moda`|
+|simetría|`r skewness`|
+|aplanamiento|`r kurtosis`|
+
+Otras opciones de cálculo son el `describe`del paquete `psych` y también el `info` del paquete expss. En ambos casos, no debemos hacer los mismo de calcular individualmente, pero tampoco podemos decidir por tanto que información nos obtiene. Con `info` de `expss`.
+
+```{r}
+t(info(x))
+```
+
+Con `describe` del paquete `psych`. Para que se vea mejor, le aplicamos la transposición de filas y columnas a la tabla por defecto `t()`.
+
+```{r}
+t(describe(x))
+```
+
+### Histogramas y cajas
+
+Siempre la parte gráfica es importante. Realizamos ahora un histograma y unos gráficos de caja para conocer gráficamente la distribución de nuestra variable (campo o vector). Estos últimos los hacemos con y sin outliers, que son impresos posteriormente.
+
+Primero el histograma ...
+
+```{r hyg}
+# grafico de histograma
+hist(x,
+    main="Histograma de frecuencias",
+    xlab = "Edad del entrevistado",
+    ylab = "Frecuencia",
+    axes = TRUE,
+    plot = TRUE,
+    labels = FALSE,
+    col = c("#eb6909"),
+    border = "white")
+```
+
+Después al gráfico de caja o 'Box-Whiskers' con outliers ...
+
+```{r}
+boxplot(x,
+    varwidth = TRUE,
+    notch = FALSE,
+    outline = TRUE,
+    border = TRUE,
+    main = "Diagrama de caja")
+```
+
+Y el mismo sin outliers ...
+
+```{r}
+boxplot(x,
+    varwidth = TRUE,
+    notch = FALSE,
+    outline = FALSE,
+    border = TRUE,
+    main = "Diagrama de caja")
+```
+
+## Análisis de normalidad
+
+Vamos a testar ahora la normalidad de la distribución con la prueba de Kolmogorov-Smirnov. Posteriormente corregiremos el dato con la prueba de Lilliefors y calcularemos también Shapiro-Wilk.
+
+### Kolgomorov - Smirnov
+
+```{r kolmogorov}
+# kolgomorov-smirnov
+ks.test(x,
+    pnorm,
+    mean(x),
+    sd(x),
+    alternative = "greater",
+    exact = NULL)
+```
+
+#### Corrección de Lilliefors
+
+Añadimos al test de la normalidad la corrección de Lilliefors.
+
+```{r lilliefors}
+lillie.test(x)
+```
+
+### Shapiro - Wilk
+
+Cuando la muestra es como máximo de tamaño 50 se puede contrastar la normalidad con la prueba de Shapiro-Wilk. 
+
+```{r shapiro}
+shapiro.test(x)
+```
+
+## Homogeneidad de varianzas (homoscedasticidad)
+
+### Test de Levene
+
+Por último, usamos el test de Levene para testar la __homogeneidad de la varianza__, sobre `hatco.sav`; este test necesita que la variable de grupos sea no numérica (lo que en R se llama `factor()`), por lo que creamos un factor para ella; sólo sería necesaria la transformación a `factor()` si se ha leído el archivo con `haven`; `foreign` ya crea factores. Aunque en nuestro caso la lectura se hace con `expss` que es derivado de `foreign`, aplicamos la transformación.
+
+```{r levene}
+x = hatco$x1
+y = factor(hatco$x8)
+leveneTest(x ~ y, center = mean)
+leveneTest(x ~ y, data = hatco, center = mean)
+leveneTest(x ~ y, data = hatco, center = median)
+leveneTest(x ~ y,data = hatco,center = mean, trim = 0.05)
+```
+
+### Diagramas de caja
+
+Este análisis se suele complementar con gráficos de caja, histogramas y calcularemos también los ratios de varianza que recordemos __no nos proporciona SPSS__. Se suele acompañar de los gráficos de caja (box-whiskers) e histogramas.
+
+```{r cajalevene}
+boxplot(x ~ y,
+    varwidth = TRUE,
+    notch = FALSE,
+    outline = TRUE,
+    border = TRUE,
+    main = "Diagrama de caja general")
+x1 <- hatco[hatco$x8 == "1", ]
+summary(x1$x1)
+hist(x1$x1,
+    breaks = seq(from=0, to=10, by=1),
+    xlab = "Rapidez de servicio (1-10",
+    ylab = "Frecuencia",
+    axes = TRUE,
+    plot = TRUE,
+    labels = TRUE,
+    col = c("#eb6909"),
+    border = "white",
+    main = "Diagrama de caja -> X8 = grande")
+x0 <- hatco[hatco$x8 == "0", ]
+summary(x0$x1)
+hist(x0$x1,
+    breaks = seq(from=0, to=10, by=1),
+    xlab = "texto extra de x",
+    ylab = "Frecuencia",
+    axes = TRUE,
+    plot = TRUE,
+    labels = TRUE,
+    col = c("#eb6909"),
+    border = "white",
+    main = "Diagrama de caja -> X8 = pequeña")
+```
+
+### Ratio de varianzas
+
+Para obtener el ratio de varianzas no existe una prueba directa, pero utilizamos el cálculo para poder hacerlo. Además condicionamos el cálculo para que nos ofrezca el mejor positivo.
+
+```{r ratio}
+if (var(x0$x1) > var(x1$x1))
+        (var(x0$x1) / var(x1$x1)) -> ratio.vrz
+if (var(x0$x1) < var(x1$x1))
+        (var(x1$x1) / var(x0$x1)) -> ratio.vrz
+```
+
+El ratio de varianzas es: `r ratio.vrz`

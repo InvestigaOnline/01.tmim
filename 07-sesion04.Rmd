@@ -1,0 +1,112 @@
+# Análisis de componentes principales - Sesión 04 {#s04}
+
+```{r}
+#sesion 04
+hbat <- suppressMessages(read_spss("http://download.tesigandia.com/tmim/hbat.sav"))
+data00 <- subset(hbat, select = c(x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18))
+```
+## Análisis de correlación
+
+Calculamos la correlación. Si algún valor está en el MSA está por debajo de 0.5 lo eliminamos (por orden y solo uno en cada paso) y volvemos a hacer la correlación y cálculo de Kaiser-Meyer-Olkin; solo así quedarán las mejores variables.
+
+```{r correlacion}
+rcorr(as.matrix(data00), type = "pearson")
+```
+
+Calculamos Kaiser - Meyer - Olkin y MSA
+
+```{r}
+KMO(data00)
+```
+
+Quitamos X15, dado que su MSA es 0.31, y es el peor de todos los coeeficientes, estando por debajo de 0.5.
+
+```{r}
+data01 <- subset(hbat, select = c(x6, x7, x8, x9, x10, x11, x12, x13, x14, x16, x17, x18))
+rcorr(as.matrix(data01), type = "pearson")
+```
+
+Calculamos Kaiser - Meyer - Olkin y MSA
+
+```{r}
+KMO(data01)
+```
+
+Quitamos X17, dado que su MSA es 0.44, y es el peor de todos los coeeficientes, estando por debajo de 0.5.
+
+```{r}
+data02 <- subset(hbat, select = c(x6, x7, x8, x9, x10, x11, x12, x13, x14, x16, x18))
+rcorr(as.matrix(data02), type = "pearson")
+```
+
+Calculamos Kaiser - Meyer - Olkin y MSA
+
+```{r}
+KMO(data02)
+```
+
+X11 que tenía un MSA de 0.45 y era candidato, ahora supera el 0.5 de MSA. Decidimos seguir con los siguientes pasos. Calculamos el test de esfericidad de Bartlett, donde la Ho es la igualdad de la matriz de correlaciones a la matriz identidad, es decir la ausencia de correlación entre las variables que conforman la estructura a analizar.
+
+Analizamos el test de esfericidad de Bartlett.
+
+## Test de esfericidad de Bartlett
+
+```{r}
+bartlett.test(data02)
+```
+
+Dado que es correcto y rechazamos la hipótesis nula, continuamos con el análisis de componentes.
+
+## Análisis de componentes principales
+
+```{r}
+output <- principal(data02, nfactors=4, rotate="varimax")
+output
+```
+
+Analizamos las comunalidades continuando con la adecuación de los datos al análisis, vemos que tenemos que eliminar X11pues mantiene cargas cruzadas superiores a 0.5 en dos componentes (0.59 en RC1 y 0.64 en RC4). Eliminamos esa variable del set de datos, y volvemos a lanzar las pruebas preliminares al análisis de componentes principales.
+
+```{r}
+data03 <- subset(hbat, select = c(x6, x7, x8, x9, x10, x12, x13, x14, x16, x18))
+rcorr(as.matrix(data03), type = "pearson")
+```
+
+Analizamos Kaiser - Meyer - Olkin y MSA
+
+```{r}
+KMO(data03)
+```
+
+Consiguiendo de nuevo valores válidos en este caso para continuar con el proceso, donde volvemos a recalcular Bartlett.
+
+```{r}
+bartlett.test(data03)
+```
+
+Es óptimo y analizamos el resultado de componentes ...
+
+```{r}
+KMO(data03)
+```
+
+## Resumen de resultados
+
+### Rotación Varimax (ACP, psych)
+
+```{r}
+output <- principal(data03, nfactors=4, rotate="varimax")
+output
+```
+
+La salida de la función print.psych muestra las cargas de los componentes (de la matriz del modelo), la h2 (comunalidades) la u2 (las singularidades [1-h2]) y la complejidad de las cargas de los componentes para esa variable (índice de Hoffman)
+
+
+
+## Gráficos del análisis
+
+```{r fig.width=12,fig.height=6}
+biplot.psych(output)
+plot(output)
+cor.plot(output, numbers=TRUE)
+fa.diagram(output)
+```

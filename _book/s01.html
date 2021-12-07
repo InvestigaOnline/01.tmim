@@ -1,0 +1,3161 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Parte 5 EDA (exploratory data analysis) - Sesiones 1 y 2 | TMIM Compendio R</title>
+  <meta name="description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Parte 5 EDA (exploratory data analysis) - Sesiones 1 y 2 | TMIM Compendio R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Parte 5 EDA (exploratory data analysis) - Sesiones 1 y 2 | TMIM Compendio R" />
+  
+  <meta name="twitter:description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
+  
+
+<meta name="author" content="Roberto Gil" />
+
+
+<meta name="date" content="2021-12-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r2.html"/>
+<link rel="next" href="s02.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="libs/proj4js-2.3.15/proj4.js"></script>
+<link href="libs/highcharts-8.1.2/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-8.1.2/highcharts.js"></script>
+<script src="libs/highcharts-8.1.2/highcharts-3d.js"></script>
+<script src="libs/highcharts-8.1.2/highcharts-more.js"></script>
+<script src="libs/highcharts-8.1.2/modules/stock.js"></script>
+<script src="libs/highcharts-8.1.2/modules/map.js"></script>
+<script src="libs/highcharts-8.1.2/modules/annotations.js"></script>
+<script src="libs/highcharts-8.1.2/modules/data.js"></script>
+<script src="libs/highcharts-8.1.2/modules/drilldown.js"></script>
+<script src="libs/highcharts-8.1.2/modules/item-series.js"></script>
+<script src="libs/highcharts-8.1.2/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-8.1.2/modules/overlapping-datalabels.js"></script>
+<script src="libs/highcharts-8.1.2/modules/exporting.js"></script>
+<script src="libs/highcharts-8.1.2/modules/export-data.js"></script>
+<script src="libs/highcharts-8.1.2/modules/funnel.js"></script>
+<script src="libs/highcharts-8.1.2/modules/heatmap.js"></script>
+<script src="libs/highcharts-8.1.2/modules/treemap.js"></script>
+<script src="libs/highcharts-8.1.2/modules/sankey.js"></script>
+<script src="libs/highcharts-8.1.2/modules/dependency-wheel.js"></script>
+<script src="libs/highcharts-8.1.2/modules/organization.js"></script>
+<script src="libs/highcharts-8.1.2/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-8.1.2/modules/streamgraph.js"></script>
+<script src="libs/highcharts-8.1.2/modules/sunburst.js"></script>
+<script src="libs/highcharts-8.1.2/modules/vector.js"></script>
+<script src="libs/highcharts-8.1.2/modules/wordcloud.js"></script>
+<script src="libs/highcharts-8.1.2/modules/xrange.js"></script>
+<script src="libs/highcharts-8.1.2/modules/tilemap.js"></script>
+<script src="libs/highcharts-8.1.2/modules/venn.js"></script>
+<script src="libs/highcharts-8.1.2/modules/gantt.js"></script>
+<script src="libs/highcharts-8.1.2/modules/timeline.js"></script>
+<script src="libs/highcharts-8.1.2/modules/parallel-coordinates.js"></script>
+<script src="libs/highcharts-8.1.2/modules/bullet.js"></script>
+<script src="libs/highcharts-8.1.2/modules/coloraxis.js"></script>
+<script src="libs/highcharts-8.1.2/modules/dumbbell.js"></script>
+<script src="libs/highcharts-8.1.2/modules/lollipop.js"></script>
+<script src="libs/highcharts-8.1.2/modules/series-label.js"></script>
+<script src="libs/highcharts-8.1.2/plugins/motion.js"></script>
+<script src="libs/highcharts-8.1.2/custom/reset.js"></script>
+<script src="libs/highcharts-8.1.2/modules/boost.js"></script>
+<script src="libs/highchart-binding-0.8.2/highchart.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.20/datatables.js"></script>
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">TMIM Compendio R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Presentación</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#la-asignatura"><i class="fa fa-check"></i><b>1.1</b> La asignatura</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#objetivos"><i class="fa fa-check"></i><b>1.2</b> Objetivos</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introducción</a></li>
+<li class="chapter" data-level="3" data-path="r1.html"><a href="r1.html"><i class="fa fa-check"></i><b>3</b> Sesión R1</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="r1.html"><a href="r1.html#introducción"><i class="fa fa-check"></i><b>3.1</b> Introducción</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r1.html"><a href="r1.html#instalar-r"><i class="fa fa-check"></i><b>3.1.1</b> Instalar R</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r1.html"><a href="r1.html#instalar-rstudio"><i class="fa fa-check"></i><b>3.1.2</b> Instalar RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="r1.html"><a href="r1.html#preguntas-y-respuestas-antes-de-comenzar"><i class="fa fa-check"></i><b>3.2</b> Preguntas y respuestas antes de comenzar …</a></li>
+<li class="chapter" data-level="3.3" data-path="r1.html"><a href="r1.html#instalar-y-cargar-paquetes-básicos"><i class="fa fa-check"></i><b>3.3</b> Instalar y cargar paquetes básicos</a></li>
+<li class="chapter" data-level="3.4" data-path="r1.html"><a href="r1.html#practicando-el-scripting"><i class="fa fa-check"></i><b>3.4</b> Practicando el <em>scripting</em></a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="r1.html"><a href="r1.html#ejercicio-script-01"><i class="fa fa-check"></i><b>3.4.1</b> Ejercicio: <em>script</em> 01</a></li>
+<li class="chapter" data-level="3.4.2" data-path="r1.html"><a href="r1.html#ejercicio-script-02"><i class="fa fa-check"></i><b>3.4.2</b> Ejercicio: <em>script</em> 02</a></li>
+<li class="chapter" data-level="3.4.3" data-path="r1.html"><a href="r1.html#ejercicio-script-03"><i class="fa fa-check"></i><b>3.4.3</b> Ejercicio: <em>script</em> 03</a></li>
+<li class="chapter" data-level="3.4.4" data-path="r1.html"><a href="r1.html#ejercicio-script-04"><i class="fa fa-check"></i><b>3.4.4</b> Ejercicio: <em>script</em> 04</a></li>
+<li class="chapter" data-level="3.4.5" data-path="r1.html"><a href="r1.html#ejercicio-script-05"><i class="fa fa-check"></i><b>3.4.5</b> Ejercicio: <em>script</em> 05</a></li>
+<li class="chapter" data-level="3.4.6" data-path="r1.html"><a href="r1.html#ejercicio-creación-de-un-script-rmarkdown"><i class="fa fa-check"></i><b>3.4.6</b> Ejercicio: Creación de un <em>script</em> <em>rmarkdown</em></a></li>
+<li class="chapter" data-level="3.4.7" data-path="r1.html"><a href="r1.html#ejercicio-script-05a-y-05b"><i class="fa fa-check"></i><b>3.4.7</b> Ejercicio: <em>script</em> 05a y 05b</a></li>
+<li class="chapter" data-level="3.4.8" data-path="r1.html"><a href="r1.html#ejercicio-script-06"><i class="fa fa-check"></i><b>3.4.8</b> Ejercicio: <em>script</em> 06</a></li>
+<li class="chapter" data-level="3.4.9" data-path="r1.html"><a href="r1.html#ejercicio-script-07a"><i class="fa fa-check"></i><b>3.4.9</b> Ejercicio: <em>script</em> 07a</a></li>
+<li class="chapter" data-level="3.4.10" data-path="r1.html"><a href="r1.html#ejercicio-script-07b"><i class="fa fa-check"></i><b>3.4.10</b> Ejercicio: <em>script</em> 07b</a></li>
+<li class="chapter" data-level="3.4.11" data-path="r1.html"><a href="r1.html#ejercicio-script-08"><i class="fa fa-check"></i><b>3.4.11</b> Ejercicio: <em>script</em> 08</a></li>
+<li class="chapter" data-level="3.4.12" data-path="r1.html"><a href="r1.html#ejercicio-script-09"><i class="fa fa-check"></i><b>3.4.12</b> Ejercicio: <em>script</em> 09</a></li>
+<li class="chapter" data-level="3.4.13" data-path="r1.html"><a href="r1.html#ejercicio-script-10"><i class="fa fa-check"></i><b>3.4.13</b> Ejercicio: <em>script</em> 10</a></li>
+<li class="chapter" data-level="3.4.14" data-path="r1.html"><a href="r1.html#ejercicio-script-11"><i class="fa fa-check"></i><b>3.4.14</b> Ejercicio: <em>script</em> 11</a></li>
+<li class="chapter" data-level="3.4.15" data-path="r1.html"><a href="r1.html#ejercicio-script-12"><i class="fa fa-check"></i><b>3.4.15</b> Ejercicio: <em>script</em> 12</a></li>
+<li class="chapter" data-level="3.4.16" data-path="r1.html"><a href="r1.html#ejercicio-script-13"><i class="fa fa-check"></i><b>3.4.16</b> Ejercicio: <em>script</em> 13</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="r1.html"><a href="r1.html#conclusión"><i class="fa fa-check"></i><b>3.5</b> Conclusión</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r2.html"><a href="r2.html"><i class="fa fa-check"></i><b>4</b> Sesión R2</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="r2.html"><a href="r2.html#proceso-de-datos-con-tablas-y-cuadros"><i class="fa fa-check"></i><b>4.1</b> Proceso de datos con tablas y cuadros</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="r2.html"><a href="r2.html#términos-básicos-de-proceso-de-datos"><i class="fa fa-check"></i><b>4.1.1</b> Términos básicos de proceso de datos</a></li>
+<li class="chapter" data-level="4.1.2" data-path="r2.html"><a href="r2.html#términos-básicos-de-tabulación"><i class="fa fa-check"></i><b>4.1.2</b> Términos básicos de tabulación</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="r2.html"><a href="r2.html#carga-de-datos-para-la-sesión"><i class="fa fa-check"></i><b>4.2</b> Carga de datos para la sesión</a></li>
+<li class="chapter" data-level="4.3" data-path="r2.html"><a href="r2.html#tse03"><i class="fa fa-check"></i><b>4.3</b> Tablas marginales</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="r2.html"><a href="r2.html#tablas-de-frecuencia"><i class="fa fa-check"></i><b>4.3.1</b> Tablas de frecuencia</a></li>
+<li class="chapter" data-level="4.3.2" data-path="r2.html"><a href="r2.html#estadísticos"><i class="fa fa-check"></i><b>4.3.2</b> Estadísticos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="r2.html"><a href="r2.html#tse04"><i class="fa fa-check"></i><b>4.4</b> Tablas cruzadas</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="r2.html"><a href="r2.html#básica-con-variables-simples"><i class="fa fa-check"></i><b>4.4.1</b> Básica con variables simples</a></li>
+<li class="chapter" data-level="4.4.2" data-path="r2.html"><a href="r2.html#básica-con-múltiples"><i class="fa fa-check"></i><b>4.4.2</b> Básica con múltiples</a></li>
+<li class="chapter" data-level="4.4.3" data-path="r2.html"><a href="r2.html#básica-con-estadísticos"><i class="fa fa-check"></i><b>4.4.3</b> Básica con estadísticos</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="r2.html"><a href="r2.html#conclusión-1"><i class="fa fa-check"></i><b>4.5</b> Conclusión</a></li>
+<li class="chapter" data-level="4.6" data-path="r2.html"><a href="r2.html#tse07"><i class="fa fa-check"></i><b>4.6</b> Pruebas inferenciales</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="r2.html"><a href="r2.html#prueba-de-dependencia"><i class="fa fa-check"></i><b>4.6.1</b> Prueba de dependencia</a></li>
+<li class="chapter" data-level="4.6.2" data-path="r2.html"><a href="r2.html#pruebas-de-diferencias"><i class="fa fa-check"></i><b>4.6.2</b> Pruebas de diferencias</a></li>
+<li class="chapter" data-level="4.6.3" data-path="r2.html"><a href="r2.html#parámetros-posibles-en-las-pruebas-de-significación"><i class="fa fa-check"></i><b>4.6.3</b> Parámetros posibles en las pruebas de significación</a></li>
+<li class="chapter" data-level="4.6.4" data-path="r2.html"><a href="r2.html#conclusión-2"><i class="fa fa-check"></i><b>4.6.4</b> Conclusión</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="r2.html"><a href="r2.html#tse08"><i class="fa fa-check"></i><b>4.7</b> Visualización gráfica</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="r2.html"><a href="r2.html#highcharter-introducción"><i class="fa fa-check"></i><b>4.7.1</b> highcharteR, introducción</a></li>
+<li class="chapter" data-level="4.7.2" data-path="r2.html"><a href="r2.html#mi-primer-gráfico"><i class="fa fa-check"></i><b>4.7.2</b> Mi primer gráfico</a></li>
+<li class="chapter" data-level="4.7.3" data-path="r2.html"><a href="r2.html#gráfico-de-barras"><i class="fa fa-check"></i><b>4.7.3</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="4.7.4" data-path="r2.html"><a href="r2.html#gráfico-de-columna"><i class="fa fa-check"></i><b>4.7.4</b> Gráfico de columna</a></li>
+<li class="chapter" data-level="4.7.5" data-path="r2.html"><a href="r2.html#diagramas-de-secciones"><i class="fa fa-check"></i><b>4.7.5</b> Diagramas de secciones</a></li>
+<li class="chapter" data-level="4.7.6" data-path="r2.html"><a href="r2.html#gráfico-de-línea"><i class="fa fa-check"></i><b>4.7.6</b> Gráfico de línea</a></li>
+<li class="chapter" data-level="4.7.7" data-path="r2.html"><a href="r2.html#gráficos-de-columnas-o-barras-con-apilamiento"><i class="fa fa-check"></i><b>4.7.7</b> Gráficos de columnas o barras con apilamiento</a></li>
+<li class="chapter" data-level="4.7.8" data-path="r2.html"><a href="r2.html#gráfico-de-área"><i class="fa fa-check"></i><b>4.7.8</b> Gráfico de área</a></li>
+<li class="chapter" data-level="4.7.9" data-path="r2.html"><a href="r2.html#gráfico-de-puntos-o-scatterplot"><i class="fa fa-check"></i><b>4.7.9</b> Gráfico de puntos o <em>scatterplot</em></a></li>
+<li class="chapter" data-level="4.7.10" data-path="r2.html"><a href="r2.html#histograma-o-gráfico-de-densidad"><i class="fa fa-check"></i><b>4.7.10</b> Histograma o gráfico de densidad</a></li>
+<li class="chapter" data-level="4.7.11" data-path="r2.html"><a href="r2.html#gráficos-indicadores"><i class="fa fa-check"></i><b>4.7.11</b> Gráficos indicadores</a></li>
+<li class="chapter" data-level="4.7.12" data-path="r2.html"><a href="r2.html#gráfico-o-boxplot"><i class="fa fa-check"></i><b>4.7.12</b> Gráfico o <em>boxplot</em></a></li>
+<li class="chapter" data-level="4.7.13" data-path="r2.html"><a href="r2.html#gráfico-de-barras-de-error"><i class="fa fa-check"></i><b>4.7.13</b> Gráfico de barras de error</a></li>
+<li class="chapter" data-level="4.7.14" data-path="r2.html"><a href="r2.html#gráficos-de-transiciones"><i class="fa fa-check"></i><b>4.7.14</b> Gráficos de transiciones</a></li>
+<li class="chapter" data-level="4.7.15" data-path="r2.html"><a href="r2.html#conclusión-3"><i class="fa fa-check"></i><b>4.7.15</b> Conclusión</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="s01.html"><a href="s01.html"><i class="fa fa-check"></i><b>5</b> EDA (exploratory data analysis) - Sesiones 1 y 2</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="s01.html"><a href="s01.html#carga-de-paquetes"><i class="fa fa-check"></i><b>5.1</b> Carga de paquetes</a></li>
+<li class="chapter" data-level="5.2" data-path="s01.html"><a href="s01.html#carga-de-datos"><i class="fa fa-check"></i><b>5.2</b> Carga de datos</a></li>
+<li class="chapter" data-level="5.3" data-path="s01.html"><a href="s01.html#frecuencias-e-histogramas"><i class="fa fa-check"></i><b>5.3</b> Frecuencias e histogramas</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="s01.html"><a href="s01.html#frecuencias"><i class="fa fa-check"></i><b>5.3.1</b> Frecuencias</a></li>
+<li class="chapter" data-level="5.3.2" data-path="s01.html"><a href="s01.html#histogramas"><i class="fa fa-check"></i><b>5.3.2</b> Histogramas</a></li>
+<li class="chapter" data-level="5.3.3" data-path="s01.html"><a href="s01.html#datos-descriptivos-básicos"><i class="fa fa-check"></i><b>5.3.3</b> Datos descriptivos básicos</a></li>
+<li class="chapter" data-level="5.3.4" data-path="s01.html"><a href="s01.html#histogramas-y-cajas"><i class="fa fa-check"></i><b>5.3.4</b> Histogramas y cajas</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="s01.html"><a href="s01.html#análisis-de-normalidad"><i class="fa fa-check"></i><b>5.4</b> Análisis de normalidad</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="s01.html"><a href="s01.html#kolgomorov---smirnov"><i class="fa fa-check"></i><b>5.4.1</b> Kolgomorov - Smirnov</a></li>
+<li class="chapter" data-level="5.4.2" data-path="s01.html"><a href="s01.html#shapiro---wilk"><i class="fa fa-check"></i><b>5.4.2</b> Shapiro - Wilk</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="s01.html"><a href="s01.html#homogeneidad-de-varianzas-homoscedasticidad"><i class="fa fa-check"></i><b>5.5</b> Homogeneidad de varianzas (homoscedasticidad)</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="s01.html"><a href="s01.html#test-de-levene"><i class="fa fa-check"></i><b>5.5.1</b> Test de Levene</a></li>
+<li class="chapter" data-level="5.5.2" data-path="s01.html"><a href="s01.html#diagramas-de-caja"><i class="fa fa-check"></i><b>5.5.2</b> Diagramas de caja</a></li>
+<li class="chapter" data-level="5.5.3" data-path="s01.html"><a href="s01.html#ratio-de-varianzas"><i class="fa fa-check"></i><b>5.5.3</b> Ratio de varianzas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="s02.html"><a href="s02.html"><i class="fa fa-check"></i><b>6</b> Inferencia - Sesiones 1 y 2</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="s02.html"><a href="s02.html#inferencia-paramétrica"><i class="fa fa-check"></i><b>6.1</b> Inferencia paramétrica</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="s02.html"><a href="s02.html#test-t-student-para-la-media-de-una-muestra"><i class="fa fa-check"></i><b>6.1.1</b> Test t Student para la media de una muestra</a></li>
+<li class="chapter" data-level="6.1.2" data-path="s02.html"><a href="s02.html#test-t-student-para-la-media-de-una-muestra-en-grupos-independientes"><i class="fa fa-check"></i><b>6.1.2</b> Test t Student para la media de una muestra en grupos independientes</a></li>
+<li class="chapter" data-level="6.1.3" data-path="s02.html"><a href="s02.html#test-t-student-para-la-media-de-una-muestra-en-grupos-dependientes"><i class="fa fa-check"></i><b>6.1.3</b> Test t Student para la media de una muestra en grupos dependientes</a></li>
+<li class="chapter" data-level="6.1.4" data-path="s02.html"><a href="s02.html#correlación-paramétrica-de-pearson"><i class="fa fa-check"></i><b>6.1.4</b> Correlación paramétrica de Pearson</a></li>
+<li class="chapter" data-level="6.1.5" data-path="s02.html"><a href="s02.html#análisis-de-varianza-de-un-factor-vía"><i class="fa fa-check"></i><b>6.1.5</b> Análisis de varianza de un factor (vía)</a></li>
+<li class="chapter" data-level="6.1.6" data-path="s02.html"><a href="s02.html#análisis-de-varianza-de-dos-factores-vías"><i class="fa fa-check"></i><b>6.1.6</b> Análisis de varianza de dos factores (vías)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="s02.html"><a href="s02.html#inferencia-no-paramétrica"><i class="fa fa-check"></i><b>6.2</b> Inferencia no paramétrica</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="s02.html"><a href="s02.html#prueba-chi"><i class="fa fa-check"></i><b>6.2.1</b> Prueba Chi</a></li>
+<li class="chapter" data-level="6.2.2" data-path="s02.html"><a href="s02.html#correlaciones-no-paramétricas"><i class="fa fa-check"></i><b>6.2.2</b> Correlaciones no paramétricas</a></li>
+<li class="chapter" data-level="6.2.3" data-path="s02.html"><a href="s02.html#test-de-diferencias-de-una-muestra-en-grupos-independientes"><i class="fa fa-check"></i><b>6.2.3</b> Test de diferencias de una muestra en grupos independientes</a></li>
+<li class="chapter" data-level="6.2.4" data-path="s02.html"><a href="s02.html#test-de-diferencias-de-una-muestra-en-grupos-dependientes"><i class="fa fa-check"></i><b>6.2.4</b> Test de diferencias de una muestra en grupos dependientes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="s03.html"><a href="s03.html"><i class="fa fa-check"></i><b>7</b> Análisis de correspondencias - Sesión 03</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="s03.html"><a href="s03.html#introducción-a-la-técnica"><i class="fa fa-check"></i><b>7.1</b> Introducción a la técnica</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="s03.html"><a href="s03.html#transformación-de-datos-cuantitativos-a-cualitativos"><i class="fa fa-check"></i><b>7.1.1</b> Transformación de datos cuantitativos a cualitativos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="s03.html"><a href="s03.html#prueba-chi2-de-homogeneidad"><i class="fa fa-check"></i><b>7.2</b> Prueba Chi^2 de homogeneidad</a></li>
+<li class="chapter" data-level="7.3" data-path="s03.html"><a href="s03.html#nuestro-ejemplo"><i class="fa fa-check"></i><b>7.3</b> Nuestro ejemplo</a></li>
+<li class="chapter" data-level="7.4" data-path="s03.html"><a href="s03.html#análisis-de-correspondencias-simple-michael-greenacre"><i class="fa fa-check"></i><b>7.4</b> Análisis de correspondencias simple (Michael Greenacre)</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="s03.html"><a href="s03.html#resumen-de-resultados"><i class="fa fa-check"></i><b>7.4.1</b> Resumen de resultados</a></li>
+<li class="chapter" data-level="7.4.2" data-path="s03.html"><a href="s03.html#representación-gráfica-los-mapas-de-puntos"><i class="fa fa-check"></i><b>7.4.2</b> Representación gráfica: los mapas de puntos</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="s03.html"><a href="s03.html#análisis-de-correspondencias-ca-de-factominer"><i class="fa fa-check"></i><b>7.5</b> Análisis de correspondencias (CA de FactoMineR)</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="s03.html"><a href="s03.html#resultados"><i class="fa fa-check"></i><b>7.5.1</b> Resultados</a></li>
+<li class="chapter" data-level="7.5.2" data-path="s03.html"><a href="s03.html#calidad"><i class="fa fa-check"></i><b>7.5.2</b> Calidad</a></li>
+<li class="chapter" data-level="7.5.3" data-path="s03.html"><a href="s03.html#mapas-de-puntos"><i class="fa fa-check"></i><b>7.5.3</b> Mapas de puntos</a></li>
+<li class="chapter" data-level="7.5.4" data-path="s03.html"><a href="s03.html#otros-gráficos"><i class="fa fa-check"></i><b>7.5.4</b> Otros gráficos</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="s04.html"><a href="s04.html"><i class="fa fa-check"></i><b>8</b> Análisis de componentes principales - Sesión 04</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="s04.html"><a href="s04.html#análisis-de-correlación"><i class="fa fa-check"></i><b>8.1</b> Análisis de correlación</a></li>
+<li class="chapter" data-level="8.2" data-path="s04.html"><a href="s04.html#test-de-esfericidad-de-bartlett"><i class="fa fa-check"></i><b>8.2</b> Test de esfericidad de Bartlett</a></li>
+<li class="chapter" data-level="8.3" data-path="s04.html"><a href="s04.html#análisis-de-componentes-principales"><i class="fa fa-check"></i><b>8.3</b> Análisis de componentes principales</a></li>
+<li class="chapter" data-level="8.4" data-path="s04.html"><a href="s04.html#resumen-de-resultados-1"><i class="fa fa-check"></i><b>8.4</b> Resumen de resultados</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="s04.html"><a href="s04.html#rotación-varimax-acp-psych"><i class="fa fa-check"></i><b>8.4.1</b> Rotación Varimax (ACP, psych)</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="s04.html"><a href="s04.html#gráficos-del-análisis"><i class="fa fa-check"></i><b>8.5</b> Gráficos del análisis</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="s05.html"><a href="s05.html"><i class="fa fa-check"></i><b>9</b> Análisis de cluster - Sesión 05</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="s05.html"><a href="s05.html#cálculo-de-distancias"><i class="fa fa-check"></i><b>9.1</b> Cálculo de distancias</a></li>
+<li class="chapter" data-level="9.2" data-path="s05.html"><a href="s05.html#clúster-jerárquico"><i class="fa fa-check"></i><b>9.2</b> Clúster jerárquico</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="s05.html"><a href="s05.html#cálculo"><i class="fa fa-check"></i><b>9.2.1</b> Cálculo</a></li>
+<li class="chapter" data-level="9.2.2" data-path="s05.html"><a href="s05.html#creación-de-variables-de-grupo"><i class="fa fa-check"></i><b>9.2.2</b> Creación de variables de grupo</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="s05.html"><a href="s05.html#clúster-k-medias"><i class="fa fa-check"></i><b>9.3</b> Clúster K-medias</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="s05.html"><a href="s05.html#cálculo-1"><i class="fa fa-check"></i><b>9.3.1</b> Cálculo</a></li>
+<li class="chapter" data-level="9.3.2" data-path="s05.html"><a href="s05.html#creación-de-las-variables-de-grupo"><i class="fa fa-check"></i><b>9.3.2</b> Creación de las variables de grupo</a></li>
+<li class="chapter" data-level="9.3.3" data-path="s05.html"><a href="s05.html#perfil-de-los-grupos-contrastes-inferenciales"><i class="fa fa-check"></i><b>9.3.3</b> Perfil de los grupos, contrastes inferenciales</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="s06.html"><a href="s06.html"><i class="fa fa-check"></i><b>10</b> Análisis de regresión múltiple - Sesión 06</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="s06.html"><a href="s06.html#análisis-de-correlación-1"><i class="fa fa-check"></i><b>10.1</b> Análisis de correlación</a></li>
+<li class="chapter" data-level="10.2" data-path="s06.html"><a href="s06.html#modelo-de-regresión"><i class="fa fa-check"></i><b>10.2</b> Modelo de regresión</a></li>
+<li class="chapter" data-level="10.3" data-path="s06.html"><a href="s06.html#distancia-de-de-cook"><i class="fa fa-check"></i><b>10.3</b> Distancia de De Cook</a></li>
+<li class="chapter" data-level="10.4" data-path="s06.html"><a href="s06.html#fiabilidad-del-modelo"><i class="fa fa-check"></i><b>10.4</b> Fiabilidad del modelo</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="s06.html"><a href="s06.html#los-errores-deben-seguir-una-distribución-normal"><i class="fa fa-check"></i><b>10.4.1</b> 1: Los errores deben seguir una distribución normal</a></li>
+<li class="chapter" data-level="10.4.2" data-path="s06.html"><a href="s06.html#la-varianza-de-los-errores-es-constante.-se-hace-el-test-de-goldfeld-y-quandt."><i class="fa fa-check"></i><b>10.4.2</b> 2: La varianza de los errores es constante. Se hace el test de Goldfeld y Quandt.</a></li>
+<li class="chapter" data-level="10.4.3" data-path="s06.html"><a href="s06.html#la-independencia-de-los-errores"><i class="fa fa-check"></i><b>10.4.3</b> 3: La independencia de los errores</a></li>
+<li class="chapter" data-level="10.4.4" data-path="s06.html"><a href="s06.html#no-auto-correlación-de-los-términos-de-error."><i class="fa fa-check"></i><b>10.4.4</b> 4: No auto correlación de los términos de error.</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>11</b> Conclusión</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://www.investigaonline.com" target="blank">InvestigaOnline.com</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">TMIM Compendio R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="s01" class="section level1" number="5">
+<h1><span class="header-section-number">Parte 5</span> EDA (exploratory data analysis) - Sesiones 1 y 2</h1>
+<p>La sesión 01 (y la 02) de esta asignatura está dedicada a realizar una introducción a los procedimientos básicos de trabajo con datos provenientes de recogidas estructuradas de datos o de investigaciones de mercado, predominantemente de encuesta. En las sesiones 01 y 02 estudiaremos entre otras pruebas:</p>
+<ul>
+<li>Exploración de los datos: introducción y herramientas básicas para la exploración de los datos.</li>
+<li>Herramientas de exploración: comprobación de la linealidad, normalidad y homocedasticidad</li>
+<li>Inferencia estadística paramétrica</li>
+<li>Inferencia estadística no paramétrica</li>
+</ul>
+<p>El siguiente documento replica todos los cálculos estadísticos de la primera sesión de la asignatura “Técnicas Multivariantes en Investigación de Mercados” dentro del máster oficial en Marketing e Investigación de mercados realizados con SPSS. Este documento intenta ser una guía ilustrativa y demostrativa de como se trabaja con R, magnificando todas las virtudes de este software.</p>
+<p>En esta primera sesión, particularmente acometeremos el trabajo básico de:</p>
+<ol style="list-style-type: decimal">
+<li>instalar el software R</li>
+<li>instalar el software RStudio</li>
+<li>subir los datos de la asignatura</li>
+<li>obtener el cálculo de frecuencias e histogramas</li>
+<li>obtener los descriptivos</li>
+<li>analizar la normalidad estadística</li>
+<li>analizar la homogeneidad de varianza</li>
+</ol>
+<div id="carga-de-paquetes" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Carga de paquetes</h2>
+<p>Los paquetes aquí listados son específicos para estas siguientes sesiones. Ver la Parte <a href="#r1a">R1a</a>) para resto de paquetes cargados esenciales.</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="s01.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(c(&#39;car&#39;,&#39;outliers&#39;, &#39;psych&#39;, &#39;nortest&#39;, &#39;Hmisc&#39;, &#39;vcd&#39;, &#39;ca&#39;, &#39;corrplot&#39;, &#39;factoextra&#39;, &#39;FactoMineR&#39;, &#39;gplots&#39;, &#39;DT&#39;, &#39;lmtest&#39;, &#39;sjstats&#39;, &#39;igraph&#39;))</span></span>
+<span id="cb198-2"><a href="s01.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;car&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb198-3"><a href="s01.html#cb198-3" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;outliers&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb198-4"><a href="s01.html#cb198-4" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;psych&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb198-5"><a href="s01.html#cb198-5" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;nortest&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb198-6"><a href="s01.html#cb198-6" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;Hmisc&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb198-7"><a href="s01.html#cb198-7" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;vcd&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb198-8"><a href="s01.html#cb198-8" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;ca&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb198-9"><a href="s01.html#cb198-9" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;corrplot&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb198-10"><a href="s01.html#cb198-10" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;factoextra&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb198-11"><a href="s01.html#cb198-11" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;FactoMineR&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb198-12"><a href="s01.html#cb198-12" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;gplots&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb198-13"><a href="s01.html#cb198-13" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;DT&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb198-14"><a href="s01.html#cb198-14" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;lmtest&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb198-15"><a href="s01.html#cb198-15" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;sjstats&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb198-16"><a href="s01.html#cb198-16" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;igraph&#39;</span>, <span class="at">quietly=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+</div>
+<div id="carga-de-datos" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Carga de datos</h2>
+<p>En nuestro trabajo deberemos cargar datos provenientes de fuentes como archivo texto (paquete <code>readr</code>), archivos xls o xlsx (paquete <code>readr</code>) y archivos SPSS (paquete <code>expss</code>). Las instrucciones serán muy simples. Para evitar repetir la carga en diferentes secciones de este capítulo, cargamos inicialmente todos los archivos. Los paquetes mencionados deberán haber sido cargados previamente.</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="s01.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sesiones 01 y 02</span></span>
+<span id="cb199-2"><a href="s01.html#cb199-2" aria-hidden="true" tabindex="-1"></a>fib2 <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;https://download.tesigandia.com/tmim/fib_2.sav&quot;</span>))</span>
+<span id="cb199-3"><a href="s01.html#cb199-3" aria-hidden="true" tabindex="-1"></a>gssnet1 <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;https://download.tesigandia.com/tmim/gssnet1.sav&quot;</span>))</span></code></pre></div>
+<pre><code>Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE</code></pre>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="s01.html#cb201-1" aria-hidden="true" tabindex="-1"></a>hatco <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;https://download.tesigandia.com/tmim/hatco.sav&quot;</span>))</span></code></pre></div>
+<pre><code>Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE</code></pre>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="s01.html#cb203-1" aria-hidden="true" tabindex="-1"></a>gssft1 <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/gssft1.sav&quot;</span>))</span></code></pre></div>
+<pre><code>Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE</code></pre>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="s01.html#cb205-1" aria-hidden="true" tabindex="-1"></a>gssnet2 <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/gssnet2.sav&quot;</span>))</span></code></pre></div>
+<pre><code>Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE</code></pre>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="s01.html#cb207-1" aria-hidden="true" tabindex="-1"></a>endorph1 <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/endorph1.sav&quot;</span>))</span>
+<span id="cb207-2"><a href="s01.html#cb207-2" aria-hidden="true" tabindex="-1"></a>anxiety <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/anxiety.sav&quot;</span>))</span></code></pre></div>
+<pre><code>Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE</code></pre>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="s01.html#cb209-1" aria-hidden="true" tabindex="-1"></a>hatco <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/hatco.sav&quot;</span>))</span></code></pre></div>
+<pre><code>Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE</code></pre>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="s01.html#cb211-1" aria-hidden="true" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/manners1.sav&quot;</span>))</span></code></pre></div>
+<pre><code>Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE</code></pre>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="s01.html#cb213-1" aria-hidden="true" tabindex="-1"></a>grades <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/grades1.sav&quot;</span>))</span></code></pre></div>
+<pre><code>Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE
+
+Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="s01.html#cb215-1" aria-hidden="true" tabindex="-1"></a>bdi <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/bdidrogas1.sav&quot;</span>))</span></code></pre></div>
+<pre><code>Warning in type.convert.default(val_labs, numerals = &quot;no.loss&quot;): &#39;as.is&#39; should be specified by the caller; using TRUE</code></pre>
+</div>
+<div id="frecuencias-e-histogramas" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Frecuencias e histogramas</h2>
+<p>Usaremos el paquete <code>expss</code>para obtener todos los cálculos que tengan que ver con el manejo de la
+estadística básica paramétrica y relacionados con los cálculos de frecuencia.</p>
+<div id="frecuencias" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Frecuencias</h3>
+<p>Calculamos las frecuencias de la variable AGE obteniendo una salida similar al SPSS. Las frecuencias son la base de trabajo del investigador, cuántas veces sucede un evento. El estilo SPSS muestra diferentes columnas con el valor absoluto y el relativo, poniendo como base todos los casos del banco de datos o todos los casos <strong>válidos</strong> del banco de datos.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="s01.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recuento de frecuencias</span></span>
+<span id="cb217-2"><a href="s01.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fre</span>(gssnet1<span class="sc">$</span>age) </span></code></pre></div>
+<table class="gmisc_table" style="border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;">
+<thead>
+<tr>
+<th style="border-bottom: 1px solid grey; font-weight: 900; border-top: 2px solid grey; text-align: center;">
+Age of respondent
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+ Count 
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+ Valid percent 
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+ Percent 
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+ Responses, % 
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+ Cumulative responses, % 
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">
+ 18 
+</td>
+<td style="text-align: right;">
+10
+</td>
+<td style="text-align: right;">
+1.0
+</td>
+<td style="text-align: right;">
+1.0
+</td>
+<td style="text-align: right;">
+1.0
+</td>
+<td style="text-align: right;">
+1.0
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 19 
+</td>
+<td style="text-align: right;">
+10
+</td>
+<td style="text-align: right;">
+1.0
+</td>
+<td style="text-align: right;">
+1.0
+</td>
+<td style="text-align: right;">
+1.0
+</td>
+<td style="text-align: right;">
+2.0
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 20 
+</td>
+<td style="text-align: right;">
+6
+</td>
+<td style="text-align: right;">
+0.6
+</td>
+<td style="text-align: right;">
+0.6
+</td>
+<td style="text-align: right;">
+0.6
+</td>
+<td style="text-align: right;">
+2.6
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 21 
+</td>
+<td style="text-align: right;">
+13
+</td>
+<td style="text-align: right;">
+1.3
+</td>
+<td style="text-align: right;">
+1.3
+</td>
+<td style="text-align: right;">
+1.3
+</td>
+<td style="text-align: right;">
+4.0
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 22 
+</td>
+<td style="text-align: right;">
+9
+</td>
+<td style="text-align: right;">
+0.9
+</td>
+<td style="text-align: right;">
+0.9
+</td>
+<td style="text-align: right;">
+0.9
+</td>
+<td style="text-align: right;">
+4.9
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 23 
+</td>
+<td style="text-align: right;">
+18
+</td>
+<td style="text-align: right;">
+1.8
+</td>
+<td style="text-align: right;">
+1.8
+</td>
+<td style="text-align: right;">
+1.8
+</td>
+<td style="text-align: right;">
+6.7
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 24 
+</td>
+<td style="text-align: right;">
+26
+</td>
+<td style="text-align: right;">
+2.6
+</td>
+<td style="text-align: right;">
+2.6
+</td>
+<td style="text-align: right;">
+2.6
+</td>
+<td style="text-align: right;">
+9.3
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 25 
+</td>
+<td style="text-align: right;">
+21
+</td>
+<td style="text-align: right;">
+2.1
+</td>
+<td style="text-align: right;">
+2.1
+</td>
+<td style="text-align: right;">
+2.1
+</td>
+<td style="text-align: right;">
+11.5
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 26 
+</td>
+<td style="text-align: right;">
+20
+</td>
+<td style="text-align: right;">
+2.0
+</td>
+<td style="text-align: right;">
+2.0
+</td>
+<td style="text-align: right;">
+2.0
+</td>
+<td style="text-align: right;">
+13.5
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 27 
+</td>
+<td style="text-align: right;">
+17
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+15.2
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 28 
+</td>
+<td style="text-align: right;">
+22
+</td>
+<td style="text-align: right;">
+2.2
+</td>
+<td style="text-align: right;">
+2.2
+</td>
+<td style="text-align: right;">
+2.2
+</td>
+<td style="text-align: right;">
+17.5
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 29 
+</td>
+<td style="text-align: right;">
+12
+</td>
+<td style="text-align: right;">
+1.2
+</td>
+<td style="text-align: right;">
+1.2
+</td>
+<td style="text-align: right;">
+1.2
+</td>
+<td style="text-align: right;">
+18.7
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 30 
+</td>
+<td style="text-align: right;">
+19
+</td>
+<td style="text-align: right;">
+1.9
+</td>
+<td style="text-align: right;">
+1.9
+</td>
+<td style="text-align: right;">
+1.9
+</td>
+<td style="text-align: right;">
+20.6
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 31 
+</td>
+<td style="text-align: right;">
+17
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+22.4
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 32 
+</td>
+<td style="text-align: right;">
+19
+</td>
+<td style="text-align: right;">
+1.9
+</td>
+<td style="text-align: right;">
+1.9
+</td>
+<td style="text-align: right;">
+1.9
+</td>
+<td style="text-align: right;">
+24.3
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 33 
+</td>
+<td style="text-align: right;">
+23
+</td>
+<td style="text-align: right;">
+2.3
+</td>
+<td style="text-align: right;">
+2.3
+</td>
+<td style="text-align: right;">
+2.3
+</td>
+<td style="text-align: right;">
+26.6
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 34 
+</td>
+<td style="text-align: right;">
+24
+</td>
+<td style="text-align: right;">
+2.4
+</td>
+<td style="text-align: right;">
+2.4
+</td>
+<td style="text-align: right;">
+2.4
+</td>
+<td style="text-align: right;">
+29.1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 35 
+</td>
+<td style="text-align: right;">
+24
+</td>
+<td style="text-align: right;">
+2.4
+</td>
+<td style="text-align: right;">
+2.4
+</td>
+<td style="text-align: right;">
+2.4
+</td>
+<td style="text-align: right;">
+31.5
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 36 
+</td>
+<td style="text-align: right;">
+12
+</td>
+<td style="text-align: right;">
+1.2
+</td>
+<td style="text-align: right;">
+1.2
+</td>
+<td style="text-align: right;">
+1.2
+</td>
+<td style="text-align: right;">
+32.7
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 37 
+</td>
+<td style="text-align: right;">
+13
+</td>
+<td style="text-align: right;">
+1.3
+</td>
+<td style="text-align: right;">
+1.3
+</td>
+<td style="text-align: right;">
+1.3
+</td>
+<td style="text-align: right;">
+34.0
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 38 
+</td>
+<td style="text-align: right;">
+22
+</td>
+<td style="text-align: right;">
+2.2
+</td>
+<td style="text-align: right;">
+2.2
+</td>
+<td style="text-align: right;">
+2.2
+</td>
+<td style="text-align: right;">
+36.3
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 39 
+</td>
+<td style="text-align: right;">
+13
+</td>
+<td style="text-align: right;">
+1.3
+</td>
+<td style="text-align: right;">
+1.3
+</td>
+<td style="text-align: right;">
+1.3
+</td>
+<td style="text-align: right;">
+37.6
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 40 
+</td>
+<td style="text-align: right;">
+27
+</td>
+<td style="text-align: right;">
+2.7
+</td>
+<td style="text-align: right;">
+2.7
+</td>
+<td style="text-align: right;">
+2.7
+</td>
+<td style="text-align: right;">
+40.3
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 41 
+</td>
+<td style="text-align: right;">
+17
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+42.1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 42 
+</td>
+<td style="text-align: right;">
+17
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+43.8
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 43 
+</td>
+<td style="text-align: right;">
+19
+</td>
+<td style="text-align: right;">
+1.9
+</td>
+<td style="text-align: right;">
+1.9
+</td>
+<td style="text-align: right;">
+1.9
+</td>
+<td style="text-align: right;">
+45.7
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 44 
+</td>
+<td style="text-align: right;">
+24
+</td>
+<td style="text-align: right;">
+2.4
+</td>
+<td style="text-align: right;">
+2.4
+</td>
+<td style="text-align: right;">
+2.4
+</td>
+<td style="text-align: right;">
+48.2
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 45 
+</td>
+<td style="text-align: right;">
+19
+</td>
+<td style="text-align: right;">
+1.9
+</td>
+<td style="text-align: right;">
+1.9
+</td>
+<td style="text-align: right;">
+1.9
+</td>
+<td style="text-align: right;">
+50.1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 46 
+</td>
+<td style="text-align: right;">
+26
+</td>
+<td style="text-align: right;">
+2.6
+</td>
+<td style="text-align: right;">
+2.6
+</td>
+<td style="text-align: right;">
+2.6
+</td>
+<td style="text-align: right;">
+52.7
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 47 
+</td>
+<td style="text-align: right;">
+21
+</td>
+<td style="text-align: right;">
+2.1
+</td>
+<td style="text-align: right;">
+2.1
+</td>
+<td style="text-align: right;">
+2.1
+</td>
+<td style="text-align: right;">
+54.9
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 48 
+</td>
+<td style="text-align: right;">
+24
+</td>
+<td style="text-align: right;">
+2.4
+</td>
+<td style="text-align: right;">
+2.4
+</td>
+<td style="text-align: right;">
+2.4
+</td>
+<td style="text-align: right;">
+57.3
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 49 
+</td>
+<td style="text-align: right;">
+26
+</td>
+<td style="text-align: right;">
+2.6
+</td>
+<td style="text-align: right;">
+2.6
+</td>
+<td style="text-align: right;">
+2.6
+</td>
+<td style="text-align: right;">
+60.0
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 50 
+</td>
+<td style="text-align: right;">
+26
+</td>
+<td style="text-align: right;">
+2.6
+</td>
+<td style="text-align: right;">
+2.6
+</td>
+<td style="text-align: right;">
+2.6
+</td>
+<td style="text-align: right;">
+62.6
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 51 
+</td>
+<td style="text-align: right;">
+18
+</td>
+<td style="text-align: right;">
+1.8
+</td>
+<td style="text-align: right;">
+1.8
+</td>
+<td style="text-align: right;">
+1.8
+</td>
+<td style="text-align: right;">
+64.4
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 52 
+</td>
+<td style="text-align: right;">
+18
+</td>
+<td style="text-align: right;">
+1.8
+</td>
+<td style="text-align: right;">
+1.8
+</td>
+<td style="text-align: right;">
+1.8
+</td>
+<td style="text-align: right;">
+66.3
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 53 
+</td>
+<td style="text-align: right;">
+10
+</td>
+<td style="text-align: right;">
+1.0
+</td>
+<td style="text-align: right;">
+1.0
+</td>
+<td style="text-align: right;">
+1.0
+</td>
+<td style="text-align: right;">
+67.3
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 54 
+</td>
+<td style="text-align: right;">
+17
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+69.0
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 55 
+</td>
+<td style="text-align: right;">
+15
+</td>
+<td style="text-align: right;">
+1.5
+</td>
+<td style="text-align: right;">
+1.5
+</td>
+<td style="text-align: right;">
+1.5
+</td>
+<td style="text-align: right;">
+70.5
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 56 
+</td>
+<td style="text-align: right;">
+21
+</td>
+<td style="text-align: right;">
+2.1
+</td>
+<td style="text-align: right;">
+2.1
+</td>
+<td style="text-align: right;">
+2.1
+</td>
+<td style="text-align: right;">
+72.7
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 57 
+</td>
+<td style="text-align: right;">
+18
+</td>
+<td style="text-align: right;">
+1.8
+</td>
+<td style="text-align: right;">
+1.8
+</td>
+<td style="text-align: right;">
+1.8
+</td>
+<td style="text-align: right;">
+74.5
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 58 
+</td>
+<td style="text-align: right;">
+13
+</td>
+<td style="text-align: right;">
+1.3
+</td>
+<td style="text-align: right;">
+1.3
+</td>
+<td style="text-align: right;">
+1.3
+</td>
+<td style="text-align: right;">
+75.8
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 59 
+</td>
+<td style="text-align: right;">
+14
+</td>
+<td style="text-align: right;">
+1.4
+</td>
+<td style="text-align: right;">
+1.4
+</td>
+<td style="text-align: right;">
+1.4
+</td>
+<td style="text-align: right;">
+77.2
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 60 
+</td>
+<td style="text-align: right;">
+17
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+1.7
+</td>
+<td style="text-align: right;">
+79.0
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 61 
+</td>
+<td style="text-align: right;">
+14
+</td>
+<td style="text-align: right;">
+1.4
+</td>
+<td style="text-align: right;">
+1.4
+</td>
+<td style="text-align: right;">
+1.4
+</td>
+<td style="text-align: right;">
+80.4
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 62 
+</td>
+<td style="text-align: right;">
+19
+</td>
+<td style="text-align: right;">
+1.9
+</td>
+<td style="text-align: right;">
+1.9
+</td>
+<td style="text-align: right;">
+1.9
+</td>
+<td style="text-align: right;">
+82.3
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 63 
+</td>
+<td style="text-align: right;">
+9
+</td>
+<td style="text-align: right;">
+0.9
+</td>
+<td style="text-align: right;">
+0.9
+</td>
+<td style="text-align: right;">
+0.9
+</td>
+<td style="text-align: right;">
+83.2
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 64 
+</td>
+<td style="text-align: right;">
+10
+</td>
+<td style="text-align: right;">
+1.0
+</td>
+<td style="text-align: right;">
+1.0
+</td>
+<td style="text-align: right;">
+1.0
+</td>
+<td style="text-align: right;">
+84.2
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 65 
+</td>
+<td style="text-align: right;">
+7
+</td>
+<td style="text-align: right;">
+0.7
+</td>
+<td style="text-align: right;">
+0.7
+</td>
+<td style="text-align: right;">
+0.7
+</td>
+<td style="text-align: right;">
+85.0
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 66 
+</td>
+<td style="text-align: right;">
+11
+</td>
+<td style="text-align: right;">
+1.1
+</td>
+<td style="text-align: right;">
+1.1
+</td>
+<td style="text-align: right;">
+1.1
+</td>
+<td style="text-align: right;">
+86.1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 67 
+</td>
+<td style="text-align: right;">
+12
+</td>
+<td style="text-align: right;">
+1.2
+</td>
+<td style="text-align: right;">
+1.2
+</td>
+<td style="text-align: right;">
+1.2
+</td>
+<td style="text-align: right;">
+87.3
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 68 
+</td>
+<td style="text-align: right;">
+7
+</td>
+<td style="text-align: right;">
+0.7
+</td>
+<td style="text-align: right;">
+0.7
+</td>
+<td style="text-align: right;">
+0.7
+</td>
+<td style="text-align: right;">
+88.0
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 69 
+</td>
+<td style="text-align: right;">
+8
+</td>
+<td style="text-align: right;">
+0.8
+</td>
+<td style="text-align: right;">
+0.8
+</td>
+<td style="text-align: right;">
+0.8
+</td>
+<td style="text-align: right;">
+88.8
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 70 
+</td>
+<td style="text-align: right;">
+11
+</td>
+<td style="text-align: right;">
+1.1
+</td>
+<td style="text-align: right;">
+1.1
+</td>
+<td style="text-align: right;">
+1.1
+</td>
+<td style="text-align: right;">
+89.9
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 71 
+</td>
+<td style="text-align: right;">
+8
+</td>
+<td style="text-align: right;">
+0.8
+</td>
+<td style="text-align: right;">
+0.8
+</td>
+<td style="text-align: right;">
+0.8
+</td>
+<td style="text-align: right;">
+90.8
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 72 
+</td>
+<td style="text-align: right;">
+8
+</td>
+<td style="text-align: right;">
+0.8
+</td>
+<td style="text-align: right;">
+0.8
+</td>
+<td style="text-align: right;">
+0.8
+</td>
+<td style="text-align: right;">
+91.6
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 73 
+</td>
+<td style="text-align: right;">
+7
+</td>
+<td style="text-align: right;">
+0.7
+</td>
+<td style="text-align: right;">
+0.7
+</td>
+<td style="text-align: right;">
+0.7
+</td>
+<td style="text-align: right;">
+92.3
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 74 
+</td>
+<td style="text-align: right;">
+11
+</td>
+<td style="text-align: right;">
+1.1
+</td>
+<td style="text-align: right;">
+1.1
+</td>
+<td style="text-align: right;">
+1.1
+</td>
+<td style="text-align: right;">
+93.4
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 75 
+</td>
+<td style="text-align: right;">
+7
+</td>
+<td style="text-align: right;">
+0.7
+</td>
+<td style="text-align: right;">
+0.7
+</td>
+<td style="text-align: right;">
+0.7
+</td>
+<td style="text-align: right;">
+94.1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 76 
+</td>
+<td style="text-align: right;">
+5
+</td>
+<td style="text-align: right;">
+0.5
+</td>
+<td style="text-align: right;">
+0.5
+</td>
+<td style="text-align: right;">
+0.5
+</td>
+<td style="text-align: right;">
+94.6
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 77 
+</td>
+<td style="text-align: right;">
+2
+</td>
+<td style="text-align: right;">
+0.2
+</td>
+<td style="text-align: right;">
+0.2
+</td>
+<td style="text-align: right;">
+0.2
+</td>
+<td style="text-align: right;">
+94.8
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 78 
+</td>
+<td style="text-align: right;">
+8
+</td>
+<td style="text-align: right;">
+0.8
+</td>
+<td style="text-align: right;">
+0.8
+</td>
+<td style="text-align: right;">
+0.8
+</td>
+<td style="text-align: right;">
+95.6
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 79 
+</td>
+<td style="text-align: right;">
+7
+</td>
+<td style="text-align: right;">
+0.7
+</td>
+<td style="text-align: right;">
+0.7
+</td>
+<td style="text-align: right;">
+0.7
+</td>
+<td style="text-align: right;">
+96.3
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 80 
+</td>
+<td style="text-align: right;">
+2
+</td>
+<td style="text-align: right;">
+0.2
+</td>
+<td style="text-align: right;">
+0.2
+</td>
+<td style="text-align: right;">
+0.2
+</td>
+<td style="text-align: right;">
+96.5
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 81 
+</td>
+<td style="text-align: right;">
+4
+</td>
+<td style="text-align: right;">
+0.4
+</td>
+<td style="text-align: right;">
+0.4
+</td>
+<td style="text-align: right;">
+0.4
+</td>
+<td style="text-align: right;">
+97.0
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 82 
+</td>
+<td style="text-align: right;">
+4
+</td>
+<td style="text-align: right;">
+0.4
+</td>
+<td style="text-align: right;">
+0.4
+</td>
+<td style="text-align: right;">
+0.4
+</td>
+<td style="text-align: right;">
+97.4
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 83 
+</td>
+<td style="text-align: right;">
+4
+</td>
+<td style="text-align: right;">
+0.4
+</td>
+<td style="text-align: right;">
+0.4
+</td>
+<td style="text-align: right;">
+0.4
+</td>
+<td style="text-align: right;">
+97.8
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 84 
+</td>
+<td style="text-align: right;">
+3
+</td>
+<td style="text-align: right;">
+0.3
+</td>
+<td style="text-align: right;">
+0.3
+</td>
+<td style="text-align: right;">
+0.3
+</td>
+<td style="text-align: right;">
+98.1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 85 
+</td>
+<td style="text-align: right;">
+4
+</td>
+<td style="text-align: right;">
+0.4
+</td>
+<td style="text-align: right;">
+0.4
+</td>
+<td style="text-align: right;">
+0.4
+</td>
+<td style="text-align: right;">
+98.5
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 86 
+</td>
+<td style="text-align: right;">
+3
+</td>
+<td style="text-align: right;">
+0.3
+</td>
+<td style="text-align: right;">
+0.3
+</td>
+<td style="text-align: right;">
+0.3
+</td>
+<td style="text-align: right;">
+98.8
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 87 
+</td>
+<td style="text-align: right;">
+1
+</td>
+<td style="text-align: right;">
+0.1
+</td>
+<td style="text-align: right;">
+0.1
+</td>
+<td style="text-align: right;">
+0.1
+</td>
+<td style="text-align: right;">
+98.9
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 88 
+</td>
+<td style="text-align: right;">
+2
+</td>
+<td style="text-align: right;">
+0.2
+</td>
+<td style="text-align: right;">
+0.2
+</td>
+<td style="text-align: right;">
+0.2
+</td>
+<td style="text-align: right;">
+99.1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 89 
+</td>
+<td style="text-align: right;">
+5
+</td>
+<td style="text-align: right;">
+0.5
+</td>
+<td style="text-align: right;">
+0.5
+</td>
+<td style="text-align: right;">
+0.5
+</td>
+<td style="text-align: right;">
+99.6
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ 99 
+</td>
+<td style="text-align: right;">
+4
+</td>
+<td style="text-align: right;">
+0.4
+</td>
+<td style="text-align: right;">
+0.4
+</td>
+<td style="text-align: right;">
+0.4
+</td>
+<td style="text-align: right;">
+100.0
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+ #Total 
+</td>
+<td style="text-align: right;">
+984
+</td>
+<td style="text-align: right;">
+100
+</td>
+<td style="text-align: right;">
+100
+</td>
+<td style="text-align: right;">
+100
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="border-bottom: 2px solid grey; text-align: left;">
+ &lt;NA&gt; 
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+0
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+0.0
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+</td>
+</tr>
+</tbody>
+</table>
+<p>Si esa misma información la intentamos conseguir en forma de tabla marginal, disponemos de la función <code>cro_*()</code>de <strong>crosstab</strong> que nos habilita para ello. La diferencia es que con <code>cro_*()</code> podemos indicar el tipo de dato deseado. Existen otras formas más completas de crear tablas de contingencia que se mostrarán más adelante con el paquete <code>expss</code>.</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="s01.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tabla cruzada</span></span>
+<span id="cb218-2"><a href="s01.html#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cro_cases</span>(gssnet1<span class="sc">$</span>region, gssnet1<span class="sc">$</span>usenet) <span class="co">#modalidad básica</span></span></code></pre></div>
+<table class="gmisc_table" style="border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;">
+<thead>
+<tr>
+<th style="border-top: 2px solid grey;">
+</th>
+<th colspan="3" style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+ Use internet ? 
+</th>
+</tr>
+<tr>
+<th style="border-bottom: 1px solid grey; font-weight: 900; text-align: center;">
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; text-align: center;">
+ No 
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; text-align: center;">
+ Yes 
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; text-align: center;">
+ Unknown 
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="4" style="font-weight: 900;">
+ Region of interview 
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   Not assigned 
+</td>
+<td style="text-align: right;">
+</td>
+<td style="text-align: right;">
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   New England 
+</td>
+<td style="text-align: right;">
+6
+</td>
+<td style="text-align: right;">
+21
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   Middle Atlantic 
+</td>
+<td style="text-align: right;">
+24
+</td>
+<td style="text-align: right;">
+102
+</td>
+<td style="text-align: right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E. Nor. Central 
+</td>
+<td style="text-align: right;">
+44
+</td>
+<td style="text-align: right;">
+135
+</td>
+<td style="text-align: right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   W. Nor. Central 
+</td>
+<td style="text-align: right;">
+25
+</td>
+<td style="text-align: right;">
+41
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   South Atlantic 
+</td>
+<td style="text-align: right;">
+64
+</td>
+<td style="text-align: right;">
+146
+</td>
+<td style="text-align: right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E. South Central 
+</td>
+<td style="text-align: right;">
+14
+</td>
+<td style="text-align: right;">
+43
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   West South Central 
+</td>
+<td style="text-align: right;">
+37
+</td>
+<td style="text-align: right;">
+73
+</td>
+<td style="text-align: right;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   Mountain 
+</td>
+<td style="text-align: right;">
+11
+</td>
+<td style="text-align: right;">
+56
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   Pacific 
+</td>
+<td style="text-align: right;">
+30
+</td>
+<td style="text-align: right;">
+106
+</td>
+<td style="text-align: right;">
+1
+</td>
+</tr>
+<tr>
+<td style="border-bottom: 2px solid grey; text-align: left;">
+   #Total cases 
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+255
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+723
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+6
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="s01.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cro_cpct</span>(gssnet1<span class="sc">$</span>region, gssnet1<span class="sc">$</span>usenet) <span class="co">#modalidad básica pct</span></span></code></pre></div>
+<table class="gmisc_table" style="border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;">
+<thead>
+<tr>
+<th style="border-top: 2px solid grey;">
+</th>
+<th colspan="3" style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+ Use internet ? 
+</th>
+</tr>
+<tr>
+<th style="border-bottom: 1px solid grey; font-weight: 900; text-align: center;">
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; text-align: center;">
+ No 
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; text-align: center;">
+ Yes 
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; text-align: center;">
+ Unknown 
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="4" style="font-weight: 900;">
+ Region of interview 
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   Not assigned 
+</td>
+<td style="text-align: right;">
+</td>
+<td style="text-align: right;">
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   New England 
+</td>
+<td style="text-align: right;">
+2.4
+</td>
+<td style="text-align: right;">
+2.9
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   Middle Atlantic 
+</td>
+<td style="text-align: right;">
+9.4
+</td>
+<td style="text-align: right;">
+14.1
+</td>
+<td style="text-align: right;">
+16.7
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E. Nor. Central 
+</td>
+<td style="text-align: right;">
+17.3
+</td>
+<td style="text-align: right;">
+18.7
+</td>
+<td style="text-align: right;">
+16.7
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   W. Nor. Central 
+</td>
+<td style="text-align: right;">
+9.8
+</td>
+<td style="text-align: right;">
+5.7
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   South Atlantic 
+</td>
+<td style="text-align: right;">
+25.1
+</td>
+<td style="text-align: right;">
+20.2
+</td>
+<td style="text-align: right;">
+16.7
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E. South Central 
+</td>
+<td style="text-align: right;">
+5.5
+</td>
+<td style="text-align: right;">
+5.9
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   West South Central 
+</td>
+<td style="text-align: right;">
+14.5
+</td>
+<td style="text-align: right;">
+10.1
+</td>
+<td style="text-align: right;">
+33.3
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   Mountain 
+</td>
+<td style="text-align: right;">
+4.3
+</td>
+<td style="text-align: right;">
+7.7
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   Pacific 
+</td>
+<td style="text-align: right;">
+11.8
+</td>
+<td style="text-align: right;">
+14.7
+</td>
+<td style="text-align: right;">
+16.7
+</td>
+</tr>
+<tr>
+<td style="border-bottom: 2px solid grey; text-align: left;">
+   #Total cases 
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+255
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+723
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+6
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="s01.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cro_rpct</span>(gssnet1<span class="sc">$</span>region, gssnet1<span class="sc">$</span>usenet) <span class="co">#modalidad básica pct</span></span></code></pre></div>
+<table class="gmisc_table" style="border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;">
+<thead>
+<tr>
+<th style="border-top: 2px solid grey;">
+</th>
+<th colspan="3" style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+ Use internet ? 
+</th>
+</tr>
+<tr>
+<th style="border-bottom: 1px solid grey; font-weight: 900; text-align: center;">
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; text-align: center;">
+ No 
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; text-align: center;">
+ Yes 
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; text-align: center;">
+ Unknown 
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="4" style="font-weight: 900;">
+ Region of interview 
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   Not assigned 
+</td>
+<td style="text-align: right;">
+</td>
+<td style="text-align: right;">
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   New England 
+</td>
+<td style="text-align: right;">
+22.2
+</td>
+<td style="text-align: right;">
+77.8
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   Middle Atlantic 
+</td>
+<td style="text-align: right;">
+18.9
+</td>
+<td style="text-align: right;">
+80.3
+</td>
+<td style="text-align: right;">
+0.8
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E. Nor. Central 
+</td>
+<td style="text-align: right;">
+24.4
+</td>
+<td style="text-align: right;">
+75.0
+</td>
+<td style="text-align: right;">
+0.6
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   W. Nor. Central 
+</td>
+<td style="text-align: right;">
+37.9
+</td>
+<td style="text-align: right;">
+62.1
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   South Atlantic 
+</td>
+<td style="text-align: right;">
+30.3
+</td>
+<td style="text-align: right;">
+69.2
+</td>
+<td style="text-align: right;">
+0.5
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E. South Central 
+</td>
+<td style="text-align: right;">
+24.6
+</td>
+<td style="text-align: right;">
+75.4
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   West South Central 
+</td>
+<td style="text-align: right;">
+33.0
+</td>
+<td style="text-align: right;">
+65.2
+</td>
+<td style="text-align: right;">
+1.8
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   Mountain 
+</td>
+<td style="text-align: right;">
+16.4
+</td>
+<td style="text-align: right;">
+83.6
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   Pacific 
+</td>
+<td style="text-align: right;">
+21.9
+</td>
+<td style="text-align: right;">
+77.4
+</td>
+<td style="text-align: right;">
+0.7
+</td>
+</tr>
+<tr>
+<td style="border-bottom: 2px solid grey; text-align: left;">
+   #Total cases 
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+255
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+723
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+6
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="s01.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cro_tpct</span>(gssnet1<span class="sc">$</span>region, gssnet1<span class="sc">$</span>usenet) <span class="co">#modalidad básica pct</span></span></code></pre></div>
+<table class="gmisc_table" style="border-collapse: collapse; margin-top: 1em; margin-bottom: 1em;">
+<thead>
+<tr>
+<th style="border-top: 2px solid grey;">
+</th>
+<th colspan="3" style="font-weight: 900; border-bottom: 1px solid grey; border-top: 2px solid grey; text-align: center;">
+ Use internet ? 
+</th>
+</tr>
+<tr>
+<th style="border-bottom: 1px solid grey; font-weight: 900; text-align: center;">
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; text-align: center;">
+ No 
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; text-align: center;">
+ Yes 
+</th>
+<th style="font-weight: 900; border-bottom: 1px solid grey; text-align: center;">
+ Unknown 
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td colspan="4" style="font-weight: 900;">
+ Region of interview 
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   Not assigned 
+</td>
+<td style="text-align: right;">
+</td>
+<td style="text-align: right;">
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   New England 
+</td>
+<td style="text-align: right;">
+0.6
+</td>
+<td style="text-align: right;">
+2.1
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   Middle Atlantic 
+</td>
+<td style="text-align: right;">
+2.4
+</td>
+<td style="text-align: right;">
+10.4
+</td>
+<td style="text-align: right;">
+0.1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E. Nor. Central 
+</td>
+<td style="text-align: right;">
+4.5
+</td>
+<td style="text-align: right;">
+13.7
+</td>
+<td style="text-align: right;">
+0.1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   W. Nor. Central 
+</td>
+<td style="text-align: right;">
+2.5
+</td>
+<td style="text-align: right;">
+4.2
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   South Atlantic 
+</td>
+<td style="text-align: right;">
+6.5
+</td>
+<td style="text-align: right;">
+14.8
+</td>
+<td style="text-align: right;">
+0.1
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   E. South Central 
+</td>
+<td style="text-align: right;">
+1.4
+</td>
+<td style="text-align: right;">
+4.4
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   West South Central 
+</td>
+<td style="text-align: right;">
+3.8
+</td>
+<td style="text-align: right;">
+7.4
+</td>
+<td style="text-align: right;">
+0.2
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   Mountain 
+</td>
+<td style="text-align: right;">
+1.1
+</td>
+<td style="text-align: right;">
+5.7
+</td>
+<td style="text-align: right;">
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+   Pacific 
+</td>
+<td style="text-align: right;">
+3.0
+</td>
+<td style="text-align: right;">
+10.8
+</td>
+<td style="text-align: right;">
+0.1
+</td>
+</tr>
+<tr>
+<td style="border-bottom: 2px solid grey; text-align: left;">
+   #Total cases 
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+255
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+723
+</td>
+<td style="border-bottom: 2px solid grey; text-align: right;">
+6
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="histogramas" class="section level3" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Histogramas</h3>
+<p>Para no tener que repetir muchas veces el nombre del campo , gssnet1$age, lo declaramos como una variable que denominamos x; más corto y simple. Posteriormente, calculamos el histograma de frecuencias del vector (variable) x.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="s01.html#cb222-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> gssnet1<span class="sc">$</span>age</span>
+<span id="cb222-2"><a href="s01.html#cb222-2" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">hist</span>(x, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb222-3"><a href="s01.html#cb222-3" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="fu">mean</span>(x), <span class="fu">sd</span>(x)), <span class="at">col =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/histograma-1.png" width="672" />
+## Descriptivos</p>
+<p>Calculamos todos los descriptivos de forma individual, auqnue también podemos utilizar comandos de paquetes variados que hacen los mismos <code>summary(x)</code>. la orden <code>summary(x)</code> usa el paquete base de R. Para una mejor organización, los guardamos en objetos y posteriormente imprimimos esos objetos en una tabla.</p>
+</div>
+<div id="datos-descriptivos-básicos" class="section level3" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Datos descriptivos básicos</h3>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="s01.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="co"># para no tener que escribir cada vez fib2$dia1, le llamamos x</span></span>
+<span id="cb223-2"><a href="s01.html#cb223-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> fib2<span class="sc">$</span>dia1</span>
+<span id="cb223-3"><a href="s01.html#cb223-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb223-4"><a href="s01.html#cb223-4" aria-hidden="true" tabindex="-1"></a><span class="co"># iniciamos cálculo</span></span>
+<span id="cb223-5"><a href="s01.html#cb223-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x)</span></code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.020   1.312   1.790   1.771   2.230   3.690 </code></pre>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="s01.html#cb225-1" aria-hidden="true" tabindex="-1"></a>suma <span class="ot">&lt;-</span> <span class="fu">sum</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb225-2"><a href="s01.html#cb225-2" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb225-3"><a href="s01.html#cb225-3" aria-hidden="true" tabindex="-1"></a>media.recortada <span class="ot">&lt;-</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">trim =</span> <span class="fl">0.05</span>)</span>
+<span id="cb225-4"><a href="s01.html#cb225-4" aria-hidden="true" tabindex="-1"></a>mediana <span class="ot">&lt;-</span> <span class="fu">median</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb225-5"><a href="s01.html#cb225-5" aria-hidden="true" tabindex="-1"></a>cuartiles <span class="ot">&lt;-</span> <span class="fu">quantile</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>, <span class="dv">1</span>))</span>
+<span id="cb225-6"><a href="s01.html#cb225-6" aria-hidden="true" tabindex="-1"></a>deciles <span class="ot">&lt;-</span> <span class="fu">quantile</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.4</span>, <span class="fl">0.5</span>, <span class="fl">0.6</span>, <span class="fl">0.7</span>, <span class="fl">0.8</span>, <span class="fl">0.9</span>, <span class="dv">1</span>))</span>
+<span id="cb225-7"><a href="s01.html#cb225-7" aria-hidden="true" tabindex="-1"></a>terciles <span class="ot">&lt;-</span> <span class="fu">quantile</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.33</span>, <span class="fl">0.66</span>, <span class="dv">1</span>))</span>
+<span id="cb225-8"><a href="s01.html#cb225-8" aria-hidden="true" tabindex="-1"></a>maximo <span class="ot">&lt;-</span> <span class="fu">max</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb225-9"><a href="s01.html#cb225-9" aria-hidden="true" tabindex="-1"></a>minimo <span class="ot">&lt;-</span> <span class="fu">min</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb225-10"><a href="s01.html#cb225-10" aria-hidden="true" tabindex="-1"></a>rango1 <span class="ot">&lt;-</span> <span class="fu">range</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb225-11"><a href="s01.html#cb225-11" aria-hidden="true" tabindex="-1"></a>rango2 <span class="ot">&lt;-</span> <span class="fu">max</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb225-12"><a href="s01.html#cb225-12" aria-hidden="true" tabindex="-1"></a>recorrido <span class="ot">&lt;-</span> <span class="fu">IQR</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">type =</span> <span class="dv">7</span>)</span>
+<span id="cb225-13"><a href="s01.html#cb225-13" aria-hidden="true" tabindex="-1"></a>desviacion <span class="ot">&lt;-</span> <span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb225-14"><a href="s01.html#cb225-14" aria-hidden="true" tabindex="-1"></a>varianza <span class="ot">&lt;-</span> <span class="fu">var</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb225-15"><a href="s01.html#cb225-15" aria-hidden="true" tabindex="-1"></a>coefvar <span class="ot">&lt;-</span> (<span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb225-16"><a href="s01.html#cb225-16" aria-hidden="true" tabindex="-1"></a>int90 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.9000</span>)[[<span class="st">&quot;conf.int&quot;</span>]]</span>
+<span id="cb225-17"><a href="s01.html#cb225-17" aria-hidden="true" tabindex="-1"></a>int95 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.9545</span>)[[<span class="st">&quot;conf.int&quot;</span>]]</span>
+<span id="cb225-18"><a href="s01.html#cb225-18" aria-hidden="true" tabindex="-1"></a>int99 <span class="ot">&lt;-</span> <span class="fu">t.test</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.9975</span>)[[<span class="st">&quot;conf.int&quot;</span>]]</span>
+<span id="cb225-19"><a href="s01.html#cb225-19" aria-hidden="true" tabindex="-1"></a>esdmd <span class="ot">&lt;-</span> <span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">/</span> <span class="fu">sqrt</span>((<span class="fu">t.test</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.9545</span>)[[<span class="st">&quot;parameter&quot;</span>]][[<span class="st">&quot;df&quot;</span>]]))</span>
+<span id="cb225-20"><a href="s01.html#cb225-20" aria-hidden="true" tabindex="-1"></a>funmoda <span class="ot">&lt;-</span></span>
+<span id="cb225-21"><a href="s01.html#cb225-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">function</span>(x) {</span>
+<span id="cb225-22"><a href="s01.html#cb225-22" aria-hidden="true" tabindex="-1"></a>        t <span class="ot">&lt;-</span> <span class="fu">table</span>(x)</span>
+<span id="cb225-23"><a href="s01.html#cb225-23" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(<span class="fu">as.numeric</span>(<span class="fu">names</span>(t)[t <span class="sc">==</span> <span class="fu">max</span>(t)]))</span>
+<span id="cb225-24"><a href="s01.html#cb225-24" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb225-25"><a href="s01.html#cb225-25" aria-hidden="true" tabindex="-1"></a>moda <span class="ot">&lt;-</span> <span class="fu">funmoda</span>(x)</span>
+<span id="cb225-26"><a href="s01.html#cb225-26" aria-hidden="true" tabindex="-1"></a>skewness <span class="ot">&lt;-</span> <span class="fu">skew</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb225-27"><a href="s01.html#cb225-27" aria-hidden="true" tabindex="-1"></a>kurtosis <span class="ot">&lt;-</span> <span class="fu">kurtosi</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<table>
+<colgroup>
+<col width="68%" />
+<col width="31%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Estadístico</th>
+<th align="left">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">suma</td>
+<td align="left">1434.62</td>
+</tr>
+<tr class="even">
+<td align="left">media aritmética</td>
+<td align="left">1.7711358</td>
+</tr>
+<tr class="odd">
+<td align="left">media recortada</td>
+<td align="left">1.7699041</td>
+</tr>
+<tr class="even">
+<td align="left">mediana</td>
+<td align="left">1.79</td>
+</tr>
+<tr class="odd">
+<td align="left">cuartiles</td>
+<td align="left">0.02, 1.3125, 1.79, 2.23, 3.69</td>
+</tr>
+<tr class="even">
+<td align="left">deciles</td>
+<td align="left">0.02, 0.849, 1.14, 1.42, 1.58, 1.79, 1.982, 2.17, 2.35, 2.67, 3.69</td>
+</tr>
+<tr class="odd">
+<td align="left">terciles</td>
+<td align="left">0.02, 1.47, 2.05, 3.69</td>
+</tr>
+<tr class="even">
+<td align="left">máximo</td>
+<td align="left">3.69</td>
+</tr>
+<tr class="odd">
+<td align="left">mínimo</td>
+<td align="left">0.02</td>
+</tr>
+<tr class="even">
+<td align="left">rango (1)</td>
+<td align="left">[0.02, 3.69]</td>
+</tr>
+<tr class="odd">
+<td align="left">rango (2)</td>
+<td align="left">3.67</td>
+</tr>
+<tr class="even">
+<td align="left">IQR (recorrido intercuartílico)</td>
+<td align="left">0.9175</td>
+</tr>
+<tr class="odd">
+<td align="left">desviación típica</td>
+<td align="left">0.6935389</td>
+</tr>
+<tr class="even">
+<td align="left">varianza</td>
+<td align="left">0.4809962</td>
+</tr>
+<tr class="odd">
+<td align="left">coeficiente de variación</td>
+<td align="left">39.1578625</td>
+</tr>
+<tr class="even">
+<td align="left">intervalo de confianza al 90%</td>
+<td align="left">1.7310073, 1.8112643</td>
+</tr>
+<tr class="odd">
+<td align="left">intervalo de confianza al 95%</td>
+<td align="left">1.7223234, 1.8199482</td>
+</tr>
+<tr class="even">
+<td align="left">intervalo de confianza al 99%</td>
+<td align="left">1.69723, 1.8450416</td>
+</tr>
+<tr class="odd">
+<td align="left">error estándar medio</td>
+<td align="left">0.0243835</td>
+</tr>
+<tr class="even">
+<td align="left">moda</td>
+<td align="left">2</td>
+</tr>
+<tr class="odd">
+<td align="left">simetría</td>
+<td align="left">-0.0044284</td>
+</tr>
+<tr class="even">
+<td align="left">aplanamiento</td>
+<td align="left">-0.4215941</td>
+</tr>
+</tbody>
+</table>
+<p>Otras opciones de cálculo son el <code>describe</code>del paquete <code>psych</code> y también el <code>info</code> del paquete expss. En ambos casos, no debemos hacer los mismo de calcular individualmente, pero tampoco podemos decidir por tanto que información nos obtiene. Con <code>info</code> de <code>expss</code>.</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="s01.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(<span class="fu">info</span>(x))</span></code></pre></div>
+<pre><code>            [,1]                                                                                                    
+Name        &quot;x&quot;                                                                                                     
+Class       &quot;labelled,numeric&quot;                                                                                      
+Length      &quot;810&quot;                                                                                                   
+NotNA       &quot;810&quot;                                                                                                   
+NA          &quot;0&quot;                                                                                                     
+Distincts   &quot;199&quot;                                                                                                   
+Label       &quot;Valoración de la higiene dia 1&quot;                                                                        
+ValueLabels NA                                                                                                      
+Min.        &quot;0.02&quot;                                                                                                  
+1st Qu.     &quot;1.3125&quot;                                                                                                
+Median      &quot;1.79&quot;                                                                                                  
+Mean        &quot;1.771136&quot;                                                                                              
+3rd Qu.     &quot;2.23&quot;                                                                                                  
+Max.        &quot;3.69&quot;                                                                                                  
+Frequency   &quot;2=19, 1.47=17, 2.02=16, 1.58=15, 2.17=15, 1.5=14, 1.85=14, 1.94=14, 2.05=14, 2.23=14, Other values=658&quot;</code></pre>
+<p>Con <code>describe</code> del paquete <code>psych</code>. Para que se vea mejor, le aplicamos la transposición de filas y columnas a la tabla por defecto <code>t()</code>.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="s01.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(<span class="fu">describe</span>(x))</span></code></pre></div>
+<pre><code> 
+NULL</code></pre>
+</div>
+<div id="histogramas-y-cajas" class="section level3" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Histogramas y cajas</h3>
+<p>Siempre la parte gráfica es importante. Realizamos ahora un histograma y unos gráficos de caja para conocer gráficamente la distribución de nuestra variable (campo o vector). Estos últimos los hacemos con y sin outliers, que son impresos posteriormente.</p>
+<p>Primero el histograma …</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="s01.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="co"># grafico de histograma</span></span>
+<span id="cb230-2"><a href="s01.html#cb230-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x,</span>
+<span id="cb230-3"><a href="s01.html#cb230-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">main=</span><span class="st">&quot;Histograma de frecuencias&quot;</span>,</span>
+<span id="cb230-4"><a href="s01.html#cb230-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">&quot;Edad del entrevistado&quot;</span>,</span>
+<span id="cb230-5"><a href="s01.html#cb230-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>,</span>
+<span id="cb230-6"><a href="s01.html#cb230-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">axes =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb230-7"><a href="s01.html#cb230-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb230-8"><a href="s01.html#cb230-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb230-9"><a href="s01.html#cb230-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#eb6909&quot;</span>),</span>
+<span id="cb230-10"><a href="s01.html#cb230-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">border =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/hyg-1.png" width="672" /></p>
+<p>Después al gráfico de caja o ‘Box-Whiskers’ con outliers …</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="s01.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(x,</span>
+<span id="cb231-2"><a href="s01.html#cb231-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">varwidth =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb231-3"><a href="s01.html#cb231-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">notch =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb231-4"><a href="s01.html#cb231-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">outline =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb231-5"><a href="s01.html#cb231-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">border =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb231-6"><a href="s01.html#cb231-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;Diagrama de caja&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
+<p>Y el mismo sin outliers …</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="s01.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(x,</span>
+<span id="cb232-2"><a href="s01.html#cb232-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">varwidth =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb232-3"><a href="s01.html#cb232-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">notch =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb232-4"><a href="s01.html#cb232-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">outline =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb232-5"><a href="s01.html#cb232-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">border =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb232-6"><a href="s01.html#cb232-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;Diagrama de caja&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
+</div>
+</div>
+<div id="análisis-de-normalidad" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Análisis de normalidad</h2>
+<p>Vamos a testar ahora la normalidad de la distribución con la prueba de Kolmogorov-Smirnov. Posteriormente corregiremos el dato con la prueba de Lilliefors y calcularemos también Shapiro-Wilk.</p>
+<div id="kolgomorov---smirnov" class="section level3" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Kolgomorov - Smirnov</h3>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="s01.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="co"># kolgomorov-smirnov</span></span>
+<span id="cb233-2"><a href="s01.html#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x,</span>
+<span id="cb233-3"><a href="s01.html#cb233-3" aria-hidden="true" tabindex="-1"></a>    pnorm,</span>
+<span id="cb233-4"><a href="s01.html#cb233-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(x),</span>
+<span id="cb233-5"><a href="s01.html#cb233-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sd</span>(x),</span>
+<span id="cb233-6"><a href="s01.html#cb233-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>,</span>
+<span id="cb233-7"><a href="s01.html#cb233-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">exact =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<pre><code>Warning in ks.test(x, pnorm, mean(x), sd(x), alternative = &quot;greater&quot;, exact = NULL): ties should not be present for the Kolmogorov-Smirnov test</code></pre>
+<pre><code>
+    One-sample Kolmogorov-Smirnov test
+
+data:  x
+D^+ = 0.024455, p-value = 0.3795
+alternative hypothesis: the CDF of x lies above the null hypothesis</code></pre>
+<div id="corrección-de-lilliefors" class="section level4" number="5.4.1.1">
+<h4><span class="header-section-number">5.4.1.1</span> Corrección de Lilliefors</h4>
+<p>Añadimos al test de la normalidad la corrección de Lilliefors.</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="s01.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lillie.test</span>(x)</span></code></pre></div>
+<pre><code>
+    Lilliefors (Kolmogorov-Smirnov) normality test
+
+data:  x
+D = 0.029298, p-value = 0.09694</code></pre>
+</div>
+</div>
+<div id="shapiro---wilk" class="section level3" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> Shapiro - Wilk</h3>
+<p>Cuando la muestra es como máximo de tamaño 50 se puede contrastar la normalidad con la prueba de Shapiro-Wilk.</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="s01.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(x)</span></code></pre></div>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  x
+W = 0.99592, p-value = 0.03198</code></pre>
+</div>
+</div>
+<div id="homogeneidad-de-varianzas-homoscedasticidad" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Homogeneidad de varianzas (homoscedasticidad)</h2>
+<div id="test-de-levene" class="section level3" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> Test de Levene</h3>
+<p>Por último, usamos el test de Levene para testar la <strong>homogeneidad de la varianza</strong>, sobre <code>hatco.sav</code>; este test necesita que la variable de grupos sea no numérica (lo que en R se llama <code>factor()</code>), por lo que creamos un factor para ella; sólo sería necesaria la transformación a <code>factor()</code> si se ha leído el archivo con <code>haven</code>; <code>foreign</code> ya crea factores. Aunque en nuestro caso la lectura se hace con <code>expss</code> que es derivado de <code>foreign</code>, aplicamos la transformación.</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="s01.html#cb240-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> hatco<span class="sc">$</span>x1</span>
+<span id="cb240-2"><a href="s01.html#cb240-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">factor</span>(hatco<span class="sc">$</span>x8)</span>
+<span id="cb240-3"><a href="s01.html#cb240-3" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(x <span class="sc">~</span> y, <span class="at">center =</span> mean)</span></code></pre></div>
+<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = mean)
+      Df F value Pr(&gt;F)
+group  1  0.9342 0.3362
+      98               </code></pre>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="s01.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(x <span class="sc">~</span> y, <span class="at">data =</span> hatco, <span class="at">center =</span> mean)</span></code></pre></div>
+<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = mean)
+      Df F value Pr(&gt;F)
+group  1  0.9342 0.3362
+      98               </code></pre>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="s01.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(x <span class="sc">~</span> y, <span class="at">data =</span> hatco, <span class="at">center =</span> median)</span></code></pre></div>
+<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = median)
+      Df F value Pr(&gt;F)
+group  1   0.993 0.3215
+      98               </code></pre>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="s01.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(x <span class="sc">~</span> y,<span class="at">data =</span> hatco,<span class="at">center =</span> mean, <span class="at">trim =</span> <span class="fl">0.05</span>)</span></code></pre></div>
+<pre><code>Levene&#39;s Test for Homogeneity of Variance (center = mean: 0.05)
+      Df F value Pr(&gt;F)
+group  1  0.9341 0.3362
+      98               </code></pre>
+</div>
+<div id="diagramas-de-caja" class="section level3" number="5.5.2">
+<h3><span class="header-section-number">5.5.2</span> Diagramas de caja</h3>
+<p>Este análisis se suele complementar con gráficos de caja, histogramas y calcularemos también los ratios de varianza que recordemos <strong>no nos proporciona SPSS</strong>. Se suele acompañar de los gráficos de caja (box-whiskers) e histogramas.</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="s01.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(x <span class="sc">~</span> y,</span>
+<span id="cb248-2"><a href="s01.html#cb248-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">varwidth =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb248-3"><a href="s01.html#cb248-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">notch =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb248-4"><a href="s01.html#cb248-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">outline =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb248-5"><a href="s01.html#cb248-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">border =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb248-6"><a href="s01.html#cb248-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;Diagrama de caja general&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/cajalevene-1.png" width="672" /></p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="s01.html#cb249-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> hatco[hatco<span class="sc">$</span>x8 <span class="sc">==</span> <span class="st">&quot;1&quot;</span>, ]</span>
+<span id="cb249-2"><a href="s01.html#cb249-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x1<span class="sc">$</span>x1)</span></code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  0.000   1.900   2.400   2.500   3.025   4.900 </code></pre>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="s01.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x1<span class="sc">$</span>x1,</span>
+<span id="cb251-2"><a href="s01.html#cb251-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">10</span>, <span class="at">by=</span><span class="dv">1</span>),</span>
+<span id="cb251-3"><a href="s01.html#cb251-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">&quot;Rapidez de servicio (1-10&quot;</span>,</span>
+<span id="cb251-4"><a href="s01.html#cb251-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>,</span>
+<span id="cb251-5"><a href="s01.html#cb251-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">axes =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb251-6"><a href="s01.html#cb251-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb251-7"><a href="s01.html#cb251-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb251-8"><a href="s01.html#cb251-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#eb6909&quot;</span>),</span>
+<span id="cb251-9"><a href="s01.html#cb251-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">border =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb251-10"><a href="s01.html#cb251-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;Diagrama de caja -&gt; X8 = grande&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/cajalevene-2.png" width="672" /></p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="s01.html#cb252-1" aria-hidden="true" tabindex="-1"></a>x0 <span class="ot">&lt;-</span> hatco[hatco<span class="sc">$</span>x8 <span class="sc">==</span> <span class="st">&quot;0&quot;</span>, ]</span>
+<span id="cb252-2"><a href="s01.html#cb252-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x0<span class="sc">$</span>x1)</span></code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  2.100   3.375   4.150   4.192   5.100   6.100 </code></pre>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="s01.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x0<span class="sc">$</span>x1,</span>
+<span id="cb254-2"><a href="s01.html#cb254-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">10</span>, <span class="at">by=</span><span class="dv">1</span>),</span>
+<span id="cb254-3"><a href="s01.html#cb254-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">&quot;texto extra de x&quot;</span>,</span>
+<span id="cb254-4"><a href="s01.html#cb254-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>,</span>
+<span id="cb254-5"><a href="s01.html#cb254-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">axes =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb254-6"><a href="s01.html#cb254-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb254-7"><a href="s01.html#cb254-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb254-8"><a href="s01.html#cb254-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#eb6909&quot;</span>),</span>
+<span id="cb254-9"><a href="s01.html#cb254-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">border =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb254-10"><a href="s01.html#cb254-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;Diagrama de caja -&gt; X8 = pequeña&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/cajalevene-3.png" width="672" /></p>
+</div>
+<div id="ratio-de-varianzas" class="section level3" number="5.5.3">
+<h3><span class="header-section-number">5.5.3</span> Ratio de varianzas</h3>
+<p>Para obtener el ratio de varianzas no existe una prueba directa, pero utilizamos el cálculo para poder hacerlo. Además condicionamos el cálculo para que nos ofrezca el mejor positivo.</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="s01.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">var</span>(x0<span class="sc">$</span>x1) <span class="sc">&gt;</span> <span class="fu">var</span>(x1<span class="sc">$</span>x1))</span>
+<span id="cb255-2"><a href="s01.html#cb255-2" aria-hidden="true" tabindex="-1"></a>        (<span class="fu">var</span>(x0<span class="sc">$</span>x1) <span class="sc">/</span> <span class="fu">var</span>(x1<span class="sc">$</span>x1)) <span class="ot">-&gt;</span> ratio.vrz</span>
+<span id="cb255-3"><a href="s01.html#cb255-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">var</span>(x0<span class="sc">$</span>x1) <span class="sc">&lt;</span> <span class="fu">var</span>(x1<span class="sc">$</span>x1))</span>
+<span id="cb255-4"><a href="s01.html#cb255-4" aria-hidden="true" tabindex="-1"></a>        (<span class="fu">var</span>(x1<span class="sc">$</span>x1) <span class="sc">/</span> <span class="fu">var</span>(x0<span class="sc">$</span>x1)) <span class="ot">-&gt;</span> ratio.vrz</span></code></pre></div>
+<p>El ratio de varianzas es: 1.0365045</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="s02.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

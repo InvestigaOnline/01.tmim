@@ -1,0 +1,74 @@
+--- 
+title: "TMIM Compendio R"
+author: "Roberto Gil"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+description: |
+  Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes.
+link-citations: yes
+---
+
+# Presentación
+
+## La asignatura
+
+Esta documentación ha sido preparada como guía de alumno en la asignatura Técnicas Estadísticas Multivariantes en Investigación de Mercados del Máster Oficial en Marketing e Investigación de Mercados de la Universitat de València.
+
+## Objetivos
+
+El objetivo de esta guía es ilustrar al alumno, a la vez que comenzar el camino de sustitución del software SPSS por R y RStudio, reproduciendo todos los análisis realizados en la asignatura en este entorno. Del mismo modo, las sesiones R1 y R2 permiten al estudiante, acercarse al trabajo con *scripting* con el objetivo final de la reproducibilidad de la investigación.
+
+Para seguir este documento, se asume que ya se han recibido las sesiones teóricas 1 a 6 con SPSS y se han explicado en clase presencial los conceptos teóricos. Aún así, se integra en la medida de lo posible la teoría también con los *script* correspondientes de la práctica. Del mismo modo, y por coherencia con los contenidos, las sesiones 7 y 8 se han incluido en esta documentación por delante de las sesiones de SPSS, como sesión R1 y sesión R2 respectivamente.
+
+Esperamos que al alumno que utilice esta documentación, le sea de ayuda y le aporte un inicial conocimiento a desarrollar con su exploración en el futuro.
+
+```{r echo=FALSE, include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(
+    c(
+        .packages(),
+        'bookdown',
+        'rmarkdown',
+        'expss',
+        'car',
+        'outliers',
+        'psych',
+        'nortest',
+        'Hmisc',
+        'vcd',
+        'ca',
+        'corrplot',
+        'factoextra',
+        'FactoMineR',
+        'readr',
+        'gplots',
+        'DT',
+        'lmtest',
+        'sjstats',
+        'kableExtra',
+        'dplyr',
+        'purrr',
+        'fontawesome',
+        'stringr',
+        'lubridate',
+        'igraph',
+        'plotly',
+        'sparkline',
+        'highcharter',
+        'tidyverse',
+        'readxl'
+    ),
+    'packages.bib'
+)
+knitr::opts_chunk$set(
+    echo = TRUE,
+    comment = NA,
+    message = FALSE,
+    fig.pos = "H"
+)
+options(width = 9999)
+```
+
+![](https://drive.google.com/uc?export=view&id=1eWn18vXwbm_8sr-YDmkiEjfdhsglDoaZ)

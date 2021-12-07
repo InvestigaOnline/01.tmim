@@ -1,0 +1,15 @@
+# Introducción {#intro}
+
+El siguiente documento respalda los contenidos impartidos en la asignatura "Técnicas Multivariantes en Investigación de Mercados" y reproduce los cálculos estadísticos de las sesiones de SPSS organizadas dentro del máster oficial en Marketing e Investigación de mercados tal y como se trabajarían en R. Por ello, se aportan los _script_ de R de todos los análisis realizados en las sesiones 1, 2, 3, 4, 5 y 6 de la asignatura replicando el trabajo con R y además se incluyen las dos sesiones complementarias realizadas con R al final del módulo.
+
+Así, este material ayuda a ...
+
+* introducir los conceptos básicos de R;
+* ayudar a la carga de archivos;
+* fija el horizonte en la reproducibilidad de la investigación (uso de `rmarkdown`);
+* ayuda a la obtención de tablas marginales y cruzadas (uso de `expss`);
+* ayuda a la obtención de gráficos (uso de `highcharter`).
+
+Este es un documento escrito en lenguaje __**markdown**__ y compilado utilizando el paquete _rbookdown_ de @R-bookdown. 
+
+El lenguaje _markdown_ combina texto con _script_ que ejecutan procesos. Estos _script_ se localizan dentro de unidades de código de ejecución que se llaman _chunk_ y que si el autor lo desea, se publican con un fondo gris para que el usuario los reconozca como tales. Un _chunk_ se inicia con ` ```{r} ` al principio de la línea y se finaliza con ` ``` ` al principio de la línea también. Las líneas que quedan en medio de ambos marcadores (denominados _token_), forman el _script_ de R. Los _token_ (símbolos) de inicio y final del script, no se publican.

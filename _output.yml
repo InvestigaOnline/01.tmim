@@ -1,0 +1,8 @@
+bookdown::gitbook:
+  css: style.css
+  config:
+    toc:
+      before: |
+        <li><a href="./">TMIM Compendio R</a></li>
+      after: |
+        <li><a href="https://www.investigaonline.com" target="blank">InvestigaOnline.com</a></li>

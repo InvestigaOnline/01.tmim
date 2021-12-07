@@ -1,0 +1,80 @@
+# Análisis de regresión múltiple - Sesión 06 {#s06}
+
+Cargamos los paquetes necesarios y los datos del archivo institutoschicago.sav
+
+```{r}
+data <- read_spss("http://download.tesigandia.com/tmim/institutoschicago.sav")
+```
+
+## Análisis de correlación
+
+Calculamos la matriz de correlaciones para validar la linealidad d ela relación entre la variable dependiente y cualquiera de las independientes
+
+```{r}
+rcorr(as.matrix(subset(data, select = c(selectivo, asistencia, rentabaja, extranjero, tamclase))))
+pairs(subset(data, select = c(selectivo, asistencia, rentabaja, extranjero, tamclase)))
+```
+
+## Modelo  de regresión
+
+Mostramos el modelo de regresión lineal múltiple.
+
+```{r}
+modelo1 <- lm(selectivo ~ asistencia + rentabaja + extranjero + tamclase, data = data)
+summary(modelo1)
+```
+
+## Distancia de De Cook
+
+Se comprueba la existencia de outliers con el cálculo distancias.
+
+```{r}
+de.cook <- cooks.distance(modelo1)
+summary(de.cook)
+```
+
+## Fiabilidad del modelo
+
+Para que este modelo sea fiable debemos realizar un ANALISIS DE RESIDUOS
+
+### 1: Los errores deben seguir una distribución normal
+```{r}
+residuos <- rstandard(modelo1) # residuos estándares del modelo ajustado (completo) 
+hist(residuos) # histograma de los residuos estandarizados 
+boxplot(residuos) # diagrama de cajas de los residuos estandarizados 
+qqnorm(residuos) # gráfico de cuantiles de los residuos estandarizados 
+residuosest <- rstudent(modelo1) # residuos estándares del modelo ajustado (completo) 
+hist(residuosest) # histograma de los residuos estandarizados 
+boxplot(residuosest) # diagrama de cajas de los residuos estandarizados 
+qqnorm(residuosest) # gráfico de cuantiles de los residuos estandarizados 
+
+```
+
+### 2: La varianza de los errores  es constante. Se hace el test de Goldfeld y Quandt.
+
+```{r}
+gqtest(selectivo ~ asistencia + rentabaja + extranjero + tamclase, data = data)
+plot(fitted.values(modelo1),rstandard(modelo1), xlab="Valores ajustados", ylab="Residuos estandarizados")
+abline(h=0) # dibuja la recta en cero
+plot(fitted.values(modelo1),rstudent(modelo1), xlab="Valores ajustados", ylab="Residuos estudentizados")
+abline(h=0) # dibuja la recta en cero
+```
+
+### 3: La independencia de los errores
+
+```{r}
+plot(modelo1[["model"]][["asistencia"]], rstandard(modelo1), xlab = "Asistencia a clase", ylab = "Residuos estandarizados")
+plot(modelo1[["model"]][["rentabaja"]], rstandard(modelo1), xlab = "Renta baja", ylab = "Residuos estandarizados")
+plot(modelo1[["model"]][["extranjero"]], rstandard(modelo1), xlab = "Número de extranjeros", ylab = "Residuos estandarizados")
+plot(modelo1[["model"]][["tamclase"]], rstandard(modelo1), xlab = "Tamaño medio de la clase", ylab = "Residuos estandarizados")
+plot(modelo1[["model"]][["asistencia"]], rstudent(modelo1), xlab = "Asistencia a clase", ylab = "Residuos estudentizados")
+plot(modelo1[["model"]][["rentabaja"]], rstudent(modelo1), xlab = "Renta baja", ylab = "Residuos estudentizados")
+plot(modelo1[["model"]][["extranjero"]], rstudent(modelo1), xlab = "Número de extranjeros", ylab = "Residuos estudentizados")
+plot(modelo1[["model"]][["tamclase"]], rstudent(modelo1), xlab = "Tamaño medio de la clase", ylab = "Residuos estudentizados")
+```
+
+### 4: No auto correlación de los términos de error.
+
+```{r}
+dwtest(selectivo ~ asistencia + rentabaja + extranjero + tamclase, data = data)
+```

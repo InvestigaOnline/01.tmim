@@ -1,0 +1,519 @@
+# Análisis de correspondencias - Sesión 03 {#s03}
+
+
+## Introducción a la técnica
+
+El análisis de correspondencias es una técnica de interdependencia cuyo objetivo es la representación de las relaciones bidimensionales derivadas de la relación entre dos variables o de un conjunto matricial de datos ordenados. Trabaja con variables no métricas aunque el contenido medido sea métrico (frecuencias, sumas, medias), pues realmente nos importan sus categorías o niveles, siendo posible utilizar la recodificación para obtener niveles de medida con los que trabajar. Se muestra para visualizar los diferentes niveles de medidas no métricas por lo que a menudo se le conoce como el análisis de representación de tablas de contingencia trabajando con el concepto de frecuencias relativas y distancias.
+
+### Transformación de datos cuantitativos a cualitativos
+
+En muchos casos se hace necesario obtener la tabla de frecuencias de partida utilizando algunas estrategias de cálculo, disponiendo de esta forma adecuada los datos:
+
+1. Cálculos de dicotomías
+1. Clasificación en intervalos
+1. Establecimiento de condiciones de corte
+
+Nuestro objetivo será la obtención de una tabla de doble entrada; en ocasiones la fuente de datos es ya elaborada de forma ajena a nuestro trabajo, es una tabla de un periódico o libro y se debe introducir al software usado. Para hacer esto, podemos crear un fichero con tres variables: variable fila, variable columna y peso en SPSS (ver siguiente) o la lectura de de la tabla o matriz de datos en R desde fichero texto, utilizando por ejemplo el paquete `readr`.
+
+Este es el método por el que optamos.
+
+```{r }
+#lectura de datos
+tabla.hatco <- suppressMessages(read_csv("http://download.tesigandia.com/tmim/tabla.hatco.anacor.csv"))
+
+#eliminamos la primera columna (específico de paquete `ca` con el que trabajaremos que necesita `rownames`)
+tabla.hatco.ca <- subset(tabla.hatco, select = -1)
+
+#asignamos los nombres de fila con la propiedad rownames, pues así lo necesita el paquete `ca`.
+rownames(tabla.hatco.ca) = c("x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8")
+```
+
+El análisis de correspondencias no es exigente con las propiedades estadísticas de los datos. Como ya indicamos, utiliza variables no métricas en su forma más simple (tabla de contingencia), pero sin embargo hay que ser cuidadoso respecto al sentido del análisis en función de la representación de los datos. 
+
+En nuestro ejemplo pensemos que …
+
+1. Los poseedores de los atributos son comparables respecto a esos atributos.
+1. Confirmar que las empresas A,B, ..., I son efectivamente competidoras de HATCO.
+1. Que basan su diferenciación en los atributos X1 a X8.
+1. El listado de atributos debe ser exhaustivo y no dejamos ninguno relevante para la caracterización de las empresas.
+
+Comenzamos por ver la relevancia de la tabla, validar si realmente hay un cierto nivel de dependencia entre las categorías de fila y las categorías de columna. Para ello utilizamos la prueba Chi^2.
+
+## Prueba Chi^2 de homogeneidad
+
+Para disponer de un indicador del ajuste de dependencia u homogeneidad, utilizamos la prueba de Chi^2 que la vimos en anteriores análisis. Cuánto mayor es el valor de Chi^2 mayores son las discrepancias entre observado y esperado.  Sin embargo, sólo somos capaces de dimensionar en valor relativo cuando vemos otros indicadores como Phi o V de Cramer, que también serían posibles si el objeto fuera tabla calculada, pero en nuestro caso es leída directa, por lo que aplicamos las transformaciones de fichero a `matrix` y de matriz a `table`. No calculamos Phi porque no es una tabla de 2*2.
+
+```{r fig.width=12,fig.height=7.058, comment=NA}
+tabla.hatco.ca <- as.table(as.matrix(tabla.hatco.ca))
+crosstable_statistics(tabla.hatco.ca)
+```
+
+## Nuestro ejemplo
+
+HATCO quiere identificar a sus principales competidores:
+
+* Quiere hacerlo en función de su posición respecto a las principales variables de competencia:
+    * X1 Rapidez del servicio 
+    * X2 Nivel de precios
+    * X3 Flexibilidad de precios 
+    * X4 Imagen del fabricante 
+    * X5 Calidad del servicio
+    * X6 Imagen de los vendedores 
+    * X7 Calidad del producto
+    * X8 Tamaño de la empresa
+* La medida que se utiliza es la asociación de la característica con el competidor. Para ello se ha utilizado una transformación de la medición original a una caracterización (0/1).
+* En nuestro ejemplo: en la tabla de contingencia, una frecuencia de 1 implica que ese competidor se ha señalado como “que dispone de la característica competitiva” en la característica o atributo de fila.
+
+## Análisis de correspondencias simple (Michael Greenacre)
+
+Calculamos utilizando el paquete `ca` de Michael Greenacre. Sus resultados son semejantes a SPSS pero el mapa sale invertido en cuadrantes, lo que no implica distinta interpretación.
+
+### Resumen de resultados
+
+Obtenemos los resultados más característicos con la función `ca()`. Almacenamos el objeto para ir mostrando después más completos sus resultados
+
+```{r}
+res <- ca(tabla.hatco.ca)
+res
+```
+
+Para poder representar gráficamente los datos de la tabla, se debe reducir la dimensionalidad, puesto que solo vamos a ser capaces de ver los datos en mapas de dos dimensiones, o como mucho en tres.
+El mapa explica en sus dos primeras dimensiones el 86,3% de la información original (suma de las dos primeras dimensiones).
+
+Podemos luego combinar para otras dimensiones, 1-3, 2-5 pero es muy poco habitual, dado que la pérdida de información (y por tanto la dificultad de explicación) es muy alta.
+
+Analicemos ahora poco a poco los elementos que componen el análisis.
+
+Algunos datos relevantes son:
+
+* Llamamos perfil al vector formado por los elementos de columna y/o fila.
+* Llamamos perfil medio al perfil total de columna y/o al perfil total de columna.
+
+Otra forma de verlo: 
+
+    * Las coordenadas en el mapa se calculan utilizando algunos conceptos típicos en el análisis multivariante:
+    * La inercia total, o medida de dispersión entre los perfiles y el perfil promedio, es un indicador de la dispersión o falta de correspondencia entre un punto fila y/o columna. Se calcula como el valor de Chi-cuadrado cociente con el total de casos.
+* La hipótesis nula es una transformación de la estándar, **el perfil medio sería la homogeneidad de los perfiles (Ho en Chi-cuadrado es la independencia)**.
+    * Homogeneidad = Independencia.
+    * Heterogeneidad = Dependencia.
+
+
+##### Valor singular
+
+```{r}
+res[["sv"]] #extraemos el elemento llamado sv
+```
+
+#### Análisis de las filas
+
+##### Nombre de las filas (atributos)
+
+```{r}
+res[["rownames"]]
+```
+
+##### Masa de las filas (perfil)
+
+Perfiles de las filas, son los porcentajes horizontales, aunque no se llaman así porque en muchos casos las columnas y/o filas de la tabla no son realmente categorías de una misma variable (frecuencias relativas). Llamados masa, es el cálculo de los porcentajes marginales (sin contar con la otra variable), denominado en algunos casos el perfil medio o también centroide o baricentro. Es decir el peso del atributo o de la empresa en el total marginal.
+
+```{r}
+res[["rowmass"]]
+```
+
+##### Distancia de las filas
+
+La representación de los datos de la tabla en el mapa se hace atendiendo al cálculo de distancias. El concepto de distancia, en este caso la distancia Chi-cuadrado o cálculo de la distancia euclídea entre los vectores fila y su masa de fila.
+
+```{r}
+res[["rowdist"]]
+```
+
+##### Inercia de las filas
+
+La inercia de cada perfil se calcula como producto de la masa por el cuadrado de la distancia chi-cuadrado de ese perfil al promedio. La inercia mide lo lejos que se hallan los perfiles fila o columna de su perfil medio.
+
+```{r}
+res[["rowinertia"]]
+```
+
+##### Coordenadas de las filas
+
+Punto de ubicación en el mapa de cada punto fila.
+
+```{r}
+res[["rowcoord"]]
+```
+
+#### Análisis de las columnas
+
+##### Nombre de las columnas (las marcas)
+
+```{r}
+res[["colnames"]]
+```
+
+##### Masa de las columnas (perfil)
+
+Perfiles de las columnas, son los porcentajes verticales, aunque no se llaman así porque en muchos casos las columnas y/o filas de la tabla no son realmente categorías de una misma variable (frecuencias relativas). Llamados masa, es el cálculo de los porcentajes marginales (sin contar con la otra variable), denominado en algunos casos el perfil medio o también centroide o baricentro. Es decir el peso del atributo o de la empresa en el total marginal.
+
+```{r}
+res[["colmass"]]
+```
+
+##### Distancia de las columnas
+
+La representación de los datos de la tabla en el mapa se hace atendiendo al cálculo de distancias. El concepto de distancia, en este caso la distancia Chi-cuadrado o cálculo de la distancia euclídea entre los vectores columna y su masa de columna.
+
+```{r}
+res[["coldist"]]
+```
+
+##### Inercia de las columnas
+
+La inercia de cada perfil se calcula como producto de la masa por el cuadrado de la distancia chi-cuadrado de ese perfil al promedio. La inercia mide lo lejos que se hallan los perfiles fila o columna de su perfil medio.
+
+```{r}
+res[["colinertia"]]
+```
+
+##### Coordenadas de las columnas
+
+Punto de ubicación en el mapa de cada punto columna.
+
+```{r}
+res[["colcoord"]]
+```
+
+### Representación gráfica: los mapas de puntos
+
+```{r}
+plot(res)
+plot(res, lines=TRUE)
+plot(res, arrows=c(TRUE, TRUE))
+```
+
+## Análisis de correspondencias (CA de FactoMineR)
+
+Ahora hacemos el cálculo con el algoritmo `CA` (nótese diferencia por mayúsculas) del paquete `FactoMineR`. Generamos una salida de tabla en modo gráfico, donde visualmente el diámetro de la circunferencia es mayor cuanto mayor sea el valor de la celda
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+dtmatrix <- as.matrix(tabla.hatco.ca)
+dttable <- as.table(dtmatrix)
+balloonplot(t(dttable),main = "Empresa * Atributo",xlab = "Empresa",ylab = "Atributo",label = TRUE,show.margins = TRUE)
+```
+
+### Resultados
+
+Calculamos el análisis de correspondencias del paquete `FactoMineR`. Se usa la tabla original.
+
+**Gráfico básico**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+res.ca <- CA(tabla.hatco.ca, graph = TRUE)
+```
+
+**Valores propios**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+res.ca[["eig"]]
+```
+
+**Masa de las columnas**
+
+``` {r fig.width=12, fig.height=7.058, comment=NA}
+round(res.ca[["call"]][["marge.col"]], 3)
+```
+
+**Masa de las filas**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+round(res.ca[["call"]][["marge.row"]], 3)
+```
+
+**Coordenadas de las filas**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+round(res.ca[["row"]][["coord"]], 3)
+```
+
+**Contribuciones de las filas**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+round(res.ca[["row"]][["contrib"]], 3)
+```
+
+**Calidad de las filas**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+round(res.ca[["row"]][["cos2"]], 3)
+```
+
+**Inercia de las filas**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+round(res.ca[["row"]][["inertia"]], 3)
+```
+
+**Coordenadas de las columnas**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+round(res.ca[["col"]][["coord"]], 3)
+```
+
+**Contribuciones de las columnas**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+round(res.ca[["col"]][["contrib"]], 3)
+```
+
+**Calidad de las columnas**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+round(res.ca[["col"]][["cos2"]], 3)
+```
+
+**Inercia de las columnas**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+round(res.ca[["col"]][["inertia"]], 3)
+```
+
+### Calidad
+
+Calculamos el gráfico de las calidad de la varianza explicada por las dimensiones, descendente por representación.
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+fviz_eig(
+    res.ca,
+    choice = c("variance", "eigenvalue"),
+    geom = c("bar", "line"),
+    barfill = "grey",
+    barcolor = "grey",
+    linecolor = "red",
+    addlabels = TRUE,
+    hjust = 0,
+    main = "análisis de correspondencias",
+    xlab = "Dimensiones",
+    ylab = "% varianza",
+    ggtheme = theme_minimal(),
+    ylim = c(0, 100),
+    repel = FALSE
+)
+```
+
+### Mapas de puntos
+
+Calculamos el mapa de filas y columnas en el mismo plano y los mapas conjuntos (mapa clásico y relacionados)
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+fviz_ca_biplot(
+    res.ca,
+    map = "symmetric",
+    title = "análisis de correspondencias: simétrico",
+    arrow = c(TRUE, TRUE),
+    repel = TRUE
+)
+fviz_ca_biplot(
+    res.ca,
+    map = "rowprincipal",
+    title = "análisis de correspondencias: fila",
+    arrow = c(TRUE, TRUE),
+    repel = TRUE
+)
+fviz_ca_biplot(
+    res.ca,
+    map = "colprincipal",
+    title = "análisis de correspondencias: columna",
+    arrow = c(TRUE, TRUE),
+    repel = TRUE
+)
+fviz_ca_biplot(
+    res.ca,
+    map = "rowgreen",
+    title = "análisis de correspondencias: puntos fila más representativos",
+    arrow = c(TRUE, TRUE),
+    repel = TRUE
+)
+fviz_ca_biplot(
+    res.ca,
+    map = "colgreen",
+    title = "análisis de correspondencias: puntos columna más representativos",
+    arrow = c(TRUE, TRUE),
+    repel = TRUE
+)
+fviz_ca_biplot(
+    res.ca,
+    map = "symbiplot",
+    title = "análisis de correspondencias: simétrico sin preservar métrica de filas y/o columnas",
+    arrow = c(TRUE, TRUE),
+    repel = TRUE
+)
+fviz_ca_biplot(
+    res.ca,
+    map = "rowgab",
+    title = "análisis de correspondencias: asimétrico filas",
+    arrow = c(TRUE, TRUE),
+    repel = TRUE
+)
+fviz_ca_biplot(
+    res.ca,
+    map = "colgab",
+    title = "análisis de correspondencias: asimétrico columnas",
+    arrow = c(TRUE, TRUE),
+    repel = TRUE
+)
+```
+
+### Otros gráficos
+
+Calculamos otros gráficos de soporte a la comprensión del análisis
+
+**Mapa de filas**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+fviz_ca_row(res.ca, repel = TRUE, col.row = "blue")
+```
+
+**Mapa de columnas**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+fviz_ca_col(res.ca, repel = TRUE, col.col = "red")
+```
+
+**Calidad de puntos columna**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+fviz_ca_row(
+    res.ca,
+    col.row = "cos2",
+    gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+    repel = TRUE
+)
+```
+
+**Calidad de puntos fila**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+fviz_ca_col(
+    res.ca,
+    col.col = "cos2",
+    gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+    repel = TRUE
+)
+```
+
+**Creamos un mapa de correlación entre calidad filas/columnas y dimensiones**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+corrplot(res.ca[["row"]][["cos2"]], is.corr = FALSE)
+```
+
+**Calidad de representación**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+corrplot(res.ca[["col"]][["cos2"]], is.corr = FALSE)
+```
+
+**Calidad de filas**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+fviz_cos2(res.ca, choice = "row", axes = 1:2)
+```
+
+**Calidad de columnas**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+fviz_cos2(res.ca, choice = "col", axes = 1:2)
+```
+
+**Correlación filas en dimensiones**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+corrplot(res.ca[["row"]][["contrib"]], is.corr = FALSE)
+```
+
+**Correlación columnas en dimensiones**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+corrplot(res.ca[["col"]][["contrib"]], is.corr = FALSE)
+```
+
+**Contribuciones de las filas a la primera dimensión**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+fviz_contrib(res.ca,
+    choice = "row",
+    axes = 1,
+    top = 10)
+```
+
+**Contribuciones de las filas a la segunda dimensión**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+fviz_contrib(res.ca,
+    choice = "row",
+    axes = 2,
+    top = 10)
+```
+
+**Contribuciones de las columnas a la primera dimensión**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+fviz_contrib(res.ca,
+    choice = "col",
+    axes = 1,
+    top = 10)
+```
+
+**Contribuciones de las columnas a la segunda dimensión**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+fviz_contrib(res.ca,
+    choice = "col",
+    axes = 2,
+    top = 10)
+```
+
+**Contribuciones de fila con gradiente**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+fviz_ca_row(
+    res.ca,
+    col.row = "contrib",
+    gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+    repel = TRUE
+)
+```
+
+**Calidad de fila con gradiente**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+fviz_ca_row(
+    res.ca,
+    col.row = "cos2",
+    gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+    repel = TRUE
+)
+```
+
+**Contribuciones de columna con gradiente**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+fviz_ca_col(
+    res.ca,
+    col.col = "contrib",
+    gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+    repel = TRUE
+)
+```
+
+**Calidad de columna con gradiente**
+
+``` {r fig.width=12,fig.height=7.058, comment=NA}
+fviz_ca_col(
+    res.ca,
+    col.col = "cos2",
+    gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
+    repel = TRUE
+)
+```
