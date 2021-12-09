@@ -37,11 +37,11 @@ En nuestro ejemplo pensemos que …
 1. Que basan su diferenciación en los atributos X1 a X8.
 1. El listado de atributos debe ser exhaustivo y no dejamos ninguno relevante para la caracterización de las empresas.
 
-Comenzamos por ver la relevancia de la tabla, validar si realmente hay un cierto nivel de dependencia entre las categorías de fila y las categorías de columna. Para ello utilizamos la prueba Chi^2.
+Comenzamos por ver la relevancia de la tabla, validar si realmente hay un cierto nivel de dependencia entre las categorías de fila y las categorías de columna. Para ello utilizamos la prueba Chi<sup>2</sup>.
 
-## Prueba Chi^2 de homogeneidad
+## Prueba Chi<sup>2</sup> de homogeneidad
 
-Para disponer de un indicador del ajuste de dependencia u homogeneidad, utilizamos la prueba de Chi^2 que la vimos en anteriores análisis. Cuánto mayor es el valor de Chi^2 mayores son las discrepancias entre observado y esperado.  Sin embargo, sólo somos capaces de dimensionar en valor relativo cuando vemos otros indicadores como Phi o V de Cramer, que también serían posibles si el objeto fuera tabla calculada, pero en nuestro caso es leída directa, por lo que aplicamos las transformaciones de fichero a `matrix` y de matriz a `table`. No calculamos Phi porque no es una tabla de 2*2.
+Para disponer de un indicador del ajuste de dependencia u homogeneidad, utilizamos la prueba de Chi<sup>2</sup> que la vimos en anteriores análisis. Cuánto mayor es el valor de Chi<sup>2</sup> mayores son las discrepancias entre observado y esperado.  Sin embargo, sólo somos capaces de dimensionar en valor relativo cuando vemos otros indicadores como Phi o V de Cramer, que también serían posibles si el objeto fuera tabla calculada, pero en nuestro caso es leída directa, por lo que aplicamos las transformaciones de fichero a `matrix` y de matriz a `table`. No calculamos Phi porque no es una tabla de 2*2.
 
 ```{r fig.width=12,fig.height=7.058, comment=NA}
 tabla.hatco.ca <- as.table(as.matrix(tabla.hatco.ca))

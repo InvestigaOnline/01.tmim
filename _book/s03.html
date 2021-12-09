@@ -338,7 +338,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.1.1" data-path="s03.html"><a href="s03.html#transformación-de-datos-cuantitativos-a-cualitativos"><i class="fa fa-check"></i><b>7.1.1</b> Transformación de datos cuantitativos a cualitativos</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="s03.html"><a href="s03.html#prueba-chi2-de-homogeneidad"><i class="fa fa-check"></i><b>7.2</b> Prueba Chi^2 de homogeneidad</a></li>
+<li class="chapter" data-level="7.2" data-path="s03.html"><a href="s03.html#prueba-chi2-de-homogeneidad"><i class="fa fa-check"></i><b>7.2</b> Prueba Chi<sup>2</sup> de homogeneidad</a></li>
 <li class="chapter" data-level="7.3" data-path="s03.html"><a href="s03.html#nuestro-ejemplo"><i class="fa fa-check"></i><b>7.3</b> Nuestro ejemplo</a></li>
 <li class="chapter" data-level="7.4" data-path="s03.html"><a href="s03.html#análisis-de-correspondencias-simple-michael-greenacre"><i class="fa fa-check"></i><b>7.4</b> Análisis de correspondencias simple (Michael Greenacre)</a>
 <ul>
@@ -444,12 +444,12 @@ div.csl-indent {
 <li>Que basan su diferenciación en los atributos X1 a X8.</li>
 <li>El listado de atributos debe ser exhaustivo y no dejamos ninguno relevante para la caracterización de las empresas.</li>
 </ol>
-<p>Comenzamos por ver la relevancia de la tabla, validar si realmente hay un cierto nivel de dependencia entre las categorías de fila y las categorías de columna. Para ello utilizamos la prueba Chi^2.</p>
+<p>Comenzamos por ver la relevancia de la tabla, validar si realmente hay un cierto nivel de dependencia entre las categorías de fila y las categorías de columna. Para ello utilizamos la prueba Chi<sup>2</sup>.</p>
 </div>
 </div>
 <div id="prueba-chi2-de-homogeneidad" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> Prueba Chi^2 de homogeneidad</h2>
-<p>Para disponer de un indicador del ajuste de dependencia u homogeneidad, utilizamos la prueba de Chi^2 que la vimos en anteriores análisis. Cuánto mayor es el valor de Chi^2 mayores son las discrepancias entre observado y esperado. Sin embargo, sólo somos capaces de dimensionar en valor relativo cuando vemos otros indicadores como Phi o V de Cramer, que también serían posibles si el objeto fuera tabla calculada, pero en nuestro caso es leída directa, por lo que aplicamos las transformaciones de fichero a <code>matrix</code> y de matriz a <code>table</code>. No calculamos Phi porque no es una tabla de 2*2.</p>
+<h2><span class="header-section-number">7.2</span> Prueba Chi<sup>2</sup> de homogeneidad</h2>
+<p>Para disponer de un indicador del ajuste de dependencia u homogeneidad, utilizamos la prueba de Chi<sup>2</sup> que la vimos en anteriores análisis. Cuánto mayor es el valor de Chi<sup>2</sup> mayores son las discrepancias entre observado y esperado. Sin embargo, sólo somos capaces de dimensionar en valor relativo cuando vemos otros indicadores como Phi o V de Cramer, que también serían posibles si el objeto fuera tabla calculada, pero en nuestro caso es leída directa, por lo que aplicamos las transformaciones de fichero a <code>matrix</code> y de matriz a <code>table</code>. No calculamos Phi porque no es una tabla de 2*2.</p>
 <div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="s03.html#cb339-1" aria-hidden="true" tabindex="-1"></a>tabla.hatco.ca <span class="ot">&lt;-</span> <span class="fu">as.table</span>(<span class="fu">as.matrix</span>(tabla.hatco.ca))</span>
 <span id="cb339-2"><a href="s03.html#cb339-2" aria-hidden="true" tabindex="-1"></a><span class="fu">crosstable_statistics</span>(tabla.hatco.ca)</span></code></pre></div>
 <pre><code>
