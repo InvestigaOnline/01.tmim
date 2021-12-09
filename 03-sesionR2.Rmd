@@ -1,5 +1,16 @@
 # Sesión R2 {#r2}
 
+## Ejercicio: Creación de un _script_ *_rmarkdown_*
+
+Para iniciar esta segunda sesión, vamos a hacer un nuevo experimento. Anteriormente, trabajamos con archivos de scripting _normal_ y ahora vamos a hacerlo con el llamado scripting _markdown_ que es el que nos permitirá crear informes reproducibles. 
+
+El ejercicio consistirá en utilizar las opciones de ejemplo para que el estudiante vea la diferencia entre trabajar con archivo .R y archivos .Rmd,con la particularidad de su salida a HTML, Diapositivas (ioslides) o PDF si se dispone de la utilidad adecuada instalada.
+
+-   File > New > New RMarkdown > Documentation > HTML
+-   File > New > New RMarkdown > Presentation > ioslides
+
+> Practicando con Rmarkdown ...
+
 ## Proceso de datos con tablas y cuadros
 
 En esta documentación acerca de R, mostramos un conjunto de términos que serán habitualmente utilizados en los sucesivos capítulos que se presentan en
@@ -17,7 +28,7 @@ tratados en sus respectivas funcionalidades.
 4.  **dimensiones**, valores de los que se pretende calcular frecuencias y/o porcentajes.
 5.  **factores**, niveles, códigos, etiquetas de variable.
 6.  **NA**, es como R representa los valores nulos o ausentes.
-7.  **valores** perdidos, missing values, valores ausentes; tal como hemos indicado en el término NA, así es como R representa este tipo de valores.
+7.  **valores** perdidos, _missing values_, valores ausentes; tal como hemos indicado en el término NA, así es como R representa este tipo de valores.
 
 ### Términos básicos de tabulación
 
@@ -206,11 +217,11 @@ sería `mrset_f(P01_)`y con eso procesaría las tres variables de forma conjunta
 -   mrset(P01_1,P01_2,P01_3)
 
 Cualquiera de ellas sería también válida, pero nótese que en estas últimas listadas, es necesario saber donde empieza y acaba la múltiple y esto puede
-variar sobretodo si creamos los \_script_s antes de acabar el campo. Al acabar el campo, pudiera haber algún nuevo caso que tuviera más menciones que
+variar sobretodo si creamos los _scripts_ antes de acabar el campo. Al acabar el campo, pudiera haber algún nuevo caso que tuviera más menciones que
 3 y por tanto existirían también \_4, \_5 o, \_n.
 
 Como hemos indicado, no olvides que existe otra forma de trabajar las múltiples, utilizando variables dicotómicas o binarias (así es como están en
-nuestro banco de datos del CIS). En este caso, serviría todo lo afirmado anterioremnte, pero en lugar de `mrset_f()`, usaríamos `mdset_f()`.
+nuestro banco de datos del CIS). En este caso, serviría todo lo afirmado anteriormente, pero en lugar de `mrset_f()`, usaríamos `mdset_f()`.
 
 ##### Tablas de frecuencias absolutas
 

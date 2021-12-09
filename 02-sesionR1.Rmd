@@ -291,14 +291,6 @@ tail(data,5)
 
 Nuestros *dataframe* `df` y `data` están cargados y listos para ser utilizados a lo largo de las sesiones.
 
-### Ejercicio: Creación de un *script* *rmarkdown*
-
-El ejercicio consistirá en utilizar las opciones de ejemplo para que el estudiante vea la diferencia entre trabajar con archivo .R y archivos .Rmd,
-con la particularidad de su salida a HTML, Diapositivas (ioslides) o PDF si se dispone de la utilidad adecuada instalada.
-
--   File > New > New RMarkdown > Documentation > HTML
--   File > New > New RMarkdown > Presentation > ioslides
-
 ### Ejercicio: *script* 05a y 05b
 
 Obtención de una tabla de frecuencias estilo SPSS (Script 05a).
@@ -439,7 +431,7 @@ val_lab(data$P31) <-
 
 ### Ejercicio: *script* 13
 
-Para cerrar esta primera sesión, vamos a abordar un ejercicio diferente. Vamos ahora a instalar (si no lo está ya) el paquete `gtrendsR`, y cargamos los paquetes necesarios ...
+Para casi cerrar esta primera sesión, vamos a abordar un ejercicio diferente. Vamos ahora a instalar (si no lo está ya) el paquete `gtrendsR`, y cargamos los paquetes necesarios ...
 
 ```{r}
 # Script 13
