@@ -128,12 +128,6 @@ suppressMessages(library('fontawesome', quietly = TRUE))
 options(highcharter.theme = hc_theme_hcrt(tooltip = list(valueDecimals = 2)))
 ```
 
-------------------------------------------------------------------------------------------------------------------------------------------------------
-
-**MIM 2020 - 2021 - TECNICAS MULTIVARIANTES EN INVESTIGACION DE MERCADOS**
-
-------------------------------------------------------------------------------------------------------------------------------------------------------
-
 ## Practicando el *scripting*
 
 ### Ejercicio: *script* 01
