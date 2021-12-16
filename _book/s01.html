@@ -24,7 +24,7 @@
 <meta name="author" content="Roberto Gil-Saura" />
 
 
-<meta name="date" content="2021-12-10" />
+<meta name="date" content="2021-12-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -451,7 +451,8 @@ div.csl-indent {
 <span id="cb192-13"><a href="s01.html#cb192-13" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;DT&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb192-14"><a href="s01.html#cb192-14" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;lmtest&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb192-15"><a href="s01.html#cb192-15" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;sjstats&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb192-16"><a href="s01.html#cb192-16" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;igraph&#39;</span>, <span class="at">quietly=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<span id="cb192-16"><a href="s01.html#cb192-16" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;igraph&#39;</span>, <span class="at">quietly=</span><span class="cn">TRUE</span>))</span>
+<span id="cb192-17"><a href="s01.html#cb192-17" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;expss&#39;</span>, <span class="at">quietly=</span><span class="cn">TRUE</span>))</span></code></pre></div>
 </div>
 <div id="carga-de-datos" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Carga de datos</h2>
@@ -2886,9 +2887,12 @@ Mean        &quot;1.771136&quot;
 Max.        &quot;3.69&quot;                                                                                                  
 Frequency   &quot;2=19, 1.47=17, 2.02=16, 1.58=15, 2.17=15, 1.5=14, 1.85=14, 1.94=14, 2.05=14, 2.23=14, Other values=658&quot;</code></pre>
 <p>Con <code>describe</code> del paquete <code>psych</code>. Para que se vea mejor, le aplicamos la transposición de filas y columnas a la tabla por defecto <code>t()</code>.</p>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="s01.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(<span class="fu">describe</span>(x))</span></code></pre></div>
-<pre><code> 
-NULL</code></pre>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="s01.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(x)</span></code></pre></div>
+<pre><code>x : Valoración de la higiene dia 1 
+       n  missing distinct     Info     Mean      Gmd      .05      .10      .25      .50      .75      .90      .95 
+     810        0      199        1    1.771   0.7896   0.5945   0.8490   1.3125   1.7900   2.2300   2.6700   2.9055 
+
+lowest : 0.02 0.05 0.11 0.23 0.26, highest: 3.38 3.41 3.44 3.58 3.69</code></pre>
 </div>
 <div id="histogramas-y-cajas" class="section level3" number="5.3.4">
 <h3><span class="header-section-number">5.3.4</span> Histogramas y cajas</h3>

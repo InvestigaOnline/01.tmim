@@ -40,6 +40,7 @@ suppressMessages(library('DT', quietly = TRUE))
 suppressMessages(library('lmtest', quietly = TRUE))
 suppressMessages(library('sjstats', quietly = TRUE))
 suppressMessages(library('igraph', quietly=TRUE))
+suppressMessages(library('expss', quietly=TRUE))
 ```
 
 ## Carga de datos
@@ -169,7 +170,7 @@ t(info(x))
 Con `describe` del paquete `psych`. Para que se vea mejor, le aplicamos la transposición de filas y columnas a la tabla por defecto `t()`.
 
 ```{r}
-t(describe(x))
+describe(x)
 ```
 
 ### Histogramas y cajas
