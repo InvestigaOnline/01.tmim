@@ -13,6 +13,9 @@ ejercicio-script-01
 ejercicio-script-02
 ejercicio-script-03
 ejercicio-script-04
+conclusión
+r2
+ejercicio-creación-de-un-script-rmarkdown
 ejercicio-script-05
 carga-desde-csv
 carga-desde-xls-xlsx
@@ -27,10 +30,7 @@ ejercicio-script-10
 ejercicio-script-11
 ejercicio-script-12
 ejercicio-script-13
-conclusión
-r2
-ejercicio-creación-de-un-script-rmarkdown
-proceso-de-datos-con-tablas-y-cuadros
+a-fondo-con-el-proceso-de-datos-con-tablas-y-cuadros-hasta-donde-lleguemos
 términos-básicos-de-proceso-de-datos
 términos-básicos-de-tabulación
 carga-de-datos-para-la-sesión
