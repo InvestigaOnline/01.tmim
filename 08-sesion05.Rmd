@@ -5,6 +5,7 @@ Cargamos los paquetes necesarios y los datos del archivo hatco.sav
 ```{r}
 options(scipen=9,width=80)
 data <- read_spss("http://download.tesigandia.com/tmim/hatco.sav")
+colnames(data) <- tolower(colnames(data))
 ```
 
 No retenemos todo el archivo, sino que hacemos un subfichero con las 7 variables de trabajo y el identificador del registro.

@@ -113,14 +113,13 @@ Los paquetes necesarios son cargados seguidamente. Si alguno no estuviera dispon
 `fontawesome`, tiene una forma especial de instalación. Es por ello que se cita al final de forma específica.
 
 ```{r}
-#install.packages(c('readr', 'readxl','tidyverse', 'kableExtra', 'igraph', 'plotly', 'highcharter', 'sparkline', 'expss'))
+#install.packages(c('readr', 'readxl','tidyverse', 'kableExtra', 'igraph', 'highcharter', 'sparkline', 'expss'))
 #devtools::install_github("rstudio/fontawesome")
 suppressMessages(library('readr', quietly = TRUE))
 suppressMessages(library('readxl', quietly = TRUE))
 suppressMessages(library('tidyverse', quietly = TRUE))
 suppressMessages(library('kableExtra', quietly = TRUE))
 suppressMessages(library('igraph', quietly = TRUE))
-suppressMessages(library('plotly', quietly = TRUE))
 suppressMessages(library('highcharter', quietly = TRUE))
 suppressMessages(library('sparkline', quietly = TRUE))
 suppressMessages(library('expss', quietly = TRUE))

@@ -253,8 +253,8 @@ shapiro.test(x)
 Por último, usamos el test de Levene para testar la __homogeneidad de la varianza__, sobre `hatco.sav`; este test necesita que la variable de grupos sea no numérica (lo que en R se llama `factor()`), por lo que creamos un factor para ella; sólo sería necesaria la transformación a `factor()` si se ha leído el archivo con `haven`; `foreign` ya crea factores. Aunque en nuestro caso la lectura se hace con `expss` que es derivado de `foreign`, aplicamos la transformación.
 
 ```{r levene}
-x = hatco$x1
-y = factor(hatco$x8)
+x = hatco$X1
+y = factor(hatco$X8)
 leveneTest(x ~ y, center = mean)
 leveneTest(x ~ y, data = hatco, center = mean)
 leveneTest(x ~ y, data = hatco, center = median)
@@ -272,9 +272,9 @@ boxplot(x ~ y,
     outline = TRUE,
     border = TRUE,
     main = "Diagrama de caja general")
-x1 <- hatco[hatco$x8 == "1", ]
+x1 <- hatco[hatco$X8 == "1", ]
 summary(x1$x1)
-hist(x1$x1,
+hist(x1$X1,
     breaks = seq(from=0, to=10, by=1),
     xlab = "Rapidez de servicio (1-10",
     ylab = "Frecuencia",
@@ -284,9 +284,9 @@ hist(x1$x1,
     col = c("#eb6909"),
     border = "white",
     main = "Diagrama de caja -> X8 = grande")
-x0 <- hatco[hatco$x8 == "0", ]
+x0 <- hatco[hatco$X8 == "0", ]
 summary(x0$x1)
-hist(x0$x1,
+hist(x0$X1,
     breaks = seq(from=0, to=10, by=1),
     xlab = "texto extra de x",
     ylab = "Frecuencia",
@@ -303,10 +303,10 @@ hist(x0$x1,
 Para obtener el ratio de varianzas no existe una prueba directa, pero utilizamos el cálculo para poder hacerlo. Además condicionamos el cálculo para que nos ofrezca el mejor positivo.
 
 ```{r ratio}
-if (var(x0$x1) > var(x1$x1))
-        (var(x0$x1) / var(x1$x1)) -> ratio.vrz
-if (var(x0$x1) < var(x1$x1))
-        (var(x1$x1) / var(x0$x1)) -> ratio.vrz
+if (var(x0$X1) > var(x1$X1))
+        (var(x0$X1) / var(x1$X1)) -> ratio.vrz
+if (var(x0$X1) < var(x1$X1))
+        (var(x1$X1) / var(x0$X1)) -> ratio.vrz
 ```
 
 El ratio de varianzas es: `r ratio.vrz`

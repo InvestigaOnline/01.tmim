@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Parte 10 Análisis de regresión múltiple - Sesión 06 | TMIM Compendio R</title>
   <meta name="description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Parte 10 Análisis de regresión múltiple - Sesión 06 | TMIM Compendio R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Roberto Gil-Saura" />
 
 
-<meta name="date" content="2021-12-17" />
+<meta name="date" content="2022-11-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="s05.html"/>
 <link rel="next" href="conclusion.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,55 +49,56 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/proj4js-2.3.15/proj4.js"></script>
-<link href="libs/highcharts-8.1.2/css/motion.css" rel="stylesheet" />
-<script src="libs/highcharts-8.1.2/highcharts.js"></script>
-<script src="libs/highcharts-8.1.2/highcharts-3d.js"></script>
-<script src="libs/highcharts-8.1.2/highcharts-more.js"></script>
-<script src="libs/highcharts-8.1.2/modules/stock.js"></script>
-<script src="libs/highcharts-8.1.2/modules/map.js"></script>
-<script src="libs/highcharts-8.1.2/modules/annotations.js"></script>
-<script src="libs/highcharts-8.1.2/modules/data.js"></script>
-<script src="libs/highcharts-8.1.2/modules/drilldown.js"></script>
-<script src="libs/highcharts-8.1.2/modules/item-series.js"></script>
-<script src="libs/highcharts-8.1.2/modules/offline-exporting.js"></script>
-<script src="libs/highcharts-8.1.2/modules/overlapping-datalabels.js"></script>
-<script src="libs/highcharts-8.1.2/modules/exporting.js"></script>
-<script src="libs/highcharts-8.1.2/modules/export-data.js"></script>
-<script src="libs/highcharts-8.1.2/modules/funnel.js"></script>
-<script src="libs/highcharts-8.1.2/modules/heatmap.js"></script>
-<script src="libs/highcharts-8.1.2/modules/treemap.js"></script>
-<script src="libs/highcharts-8.1.2/modules/sankey.js"></script>
-<script src="libs/highcharts-8.1.2/modules/dependency-wheel.js"></script>
-<script src="libs/highcharts-8.1.2/modules/organization.js"></script>
-<script src="libs/highcharts-8.1.2/modules/solid-gauge.js"></script>
-<script src="libs/highcharts-8.1.2/modules/streamgraph.js"></script>
-<script src="libs/highcharts-8.1.2/modules/sunburst.js"></script>
-<script src="libs/highcharts-8.1.2/modules/vector.js"></script>
-<script src="libs/highcharts-8.1.2/modules/wordcloud.js"></script>
-<script src="libs/highcharts-8.1.2/modules/xrange.js"></script>
-<script src="libs/highcharts-8.1.2/modules/tilemap.js"></script>
-<script src="libs/highcharts-8.1.2/modules/venn.js"></script>
-<script src="libs/highcharts-8.1.2/modules/gantt.js"></script>
-<script src="libs/highcharts-8.1.2/modules/timeline.js"></script>
-<script src="libs/highcharts-8.1.2/modules/parallel-coordinates.js"></script>
-<script src="libs/highcharts-8.1.2/modules/bullet.js"></script>
-<script src="libs/highcharts-8.1.2/modules/coloraxis.js"></script>
-<script src="libs/highcharts-8.1.2/modules/dumbbell.js"></script>
-<script src="libs/highcharts-8.1.2/modules/lollipop.js"></script>
-<script src="libs/highcharts-8.1.2/modules/series-label.js"></script>
-<script src="libs/highcharts-8.1.2/plugins/motion.js"></script>
-<script src="libs/highcharts-8.1.2/custom/reset.js"></script>
-<script src="libs/highcharts-8.1.2/modules/boost.js"></script>
-<script src="libs/highchart-binding-0.8.2/highchart.js"></script>
+<link href="libs/highcharts-9.3.1/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-9.3.1/highcharts.js"></script>
+<script src="libs/highcharts-9.3.1/highcharts-3d.js"></script>
+<script src="libs/highcharts-9.3.1/highcharts-more.js"></script>
+<script src="libs/highcharts-9.3.1/modules/stock.js"></script>
+<script src="libs/highcharts-9.3.1/modules/map.js"></script>
+<script src="libs/highcharts-9.3.1/modules/data.js"></script>
+<script src="libs/highcharts-9.3.1/modules/exporting.js"></script>
+<script src="libs/highcharts-9.3.1/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-9.3.1/modules/drilldown.js"></script>
+<script src="libs/highcharts-9.3.1/modules/item-series.js"></script>
+<script src="libs/highcharts-9.3.1/modules/overlapping-datalabels.js"></script>
+<script src="libs/highcharts-9.3.1/modules/annotations.js"></script>
+<script src="libs/highcharts-9.3.1/modules/export-data.js"></script>
+<script src="libs/highcharts-9.3.1/modules/funnel.js"></script>
+<script src="libs/highcharts-9.3.1/modules/heatmap.js"></script>
+<script src="libs/highcharts-9.3.1/modules/treemap.js"></script>
+<script src="libs/highcharts-9.3.1/modules/sankey.js"></script>
+<script src="libs/highcharts-9.3.1/modules/dependency-wheel.js"></script>
+<script src="libs/highcharts-9.3.1/modules/organization.js"></script>
+<script src="libs/highcharts-9.3.1/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-9.3.1/modules/streamgraph.js"></script>
+<script src="libs/highcharts-9.3.1/modules/sunburst.js"></script>
+<script src="libs/highcharts-9.3.1/modules/vector.js"></script>
+<script src="libs/highcharts-9.3.1/modules/wordcloud.js"></script>
+<script src="libs/highcharts-9.3.1/modules/xrange.js"></script>
+<script src="libs/highcharts-9.3.1/modules/tilemap.js"></script>
+<script src="libs/highcharts-9.3.1/modules/venn.js"></script>
+<script src="libs/highcharts-9.3.1/modules/gantt.js"></script>
+<script src="libs/highcharts-9.3.1/modules/timeline.js"></script>
+<script src="libs/highcharts-9.3.1/modules/parallel-coordinates.js"></script>
+<script src="libs/highcharts-9.3.1/modules/bullet.js"></script>
+<script src="libs/highcharts-9.3.1/modules/coloraxis.js"></script>
+<script src="libs/highcharts-9.3.1/modules/dumbbell.js"></script>
+<script src="libs/highcharts-9.3.1/modules/lollipop.js"></script>
+<script src="libs/highcharts-9.3.1/modules/series-label.js"></script>
+<script src="libs/highcharts-9.3.1/plugins/motion.js"></script>
+<script src="libs/highcharts-9.3.1/custom/reset.js"></script>
+<script src="libs/highcharts-9.3.1/modules/boost.js"></script>
+<script src="libs/highchart-binding-0.9.4/highchart.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.20/datatables.js"></script>
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="libs/datatables-binding-0.26/datatables.js"></script>
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
@@ -142,7 +141,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -155,7 +154,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -415,12 +414,13 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="s06" class="section level1" number="10">
-<h1><span class="header-section-number">Parte 10</span> Análisis de regresión múltiple - Sesión 06</h1>
+<div id="s06" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Parte 10</span> Análisis de regresión múltiple - Sesión 06<a href="s06.html#s06" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Cargamos los paquetes necesarios y los datos del archivo institutoschicago.sav</p>
-<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="s06.html#cb502-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/institutoschicago.sav&quot;</span>)</span></code></pre></div>
-<div id="análisis-de-correlación-1" class="section level2" number="10.1">
-<h2><span class="header-section-number">10.1</span> Análisis de correlación</h2>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="s06.html#cb502-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_spss</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/institutoschicago.sav&quot;</span>)</span>
+<span id="cb502-2"><a href="s06.html#cb502-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(data) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">colnames</span>(data))</span></code></pre></div>
+<div id="análisis-de-correlación-1" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Análisis de correlación<a href="s06.html#análisis-de-correlación-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Calculamos la matriz de correlaciones para validar la linealidad d ela relación entre la variable dependiente y cualquiera de las independientes</p>
 <div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="s06.html#cb503-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(<span class="fu">subset</span>(data, <span class="at">select =</span> <span class="fu">c</span>(selectivo, asistencia, rentabaja, extranjero, tamclase))))</span></code></pre></div>
 <pre><code>           selectivo asistencia rentabaja extranjero tamclase
@@ -448,8 +448,8 @@ tamclase   0.0000    0.0000     0.0000    0.5222             </code></pre>
 <div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="s06.html#cb505-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="fu">subset</span>(data, <span class="at">select =</span> <span class="fu">c</span>(selectivo, asistencia, rentabaja, extranjero, tamclase)))</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
 </div>
-<div id="modelo-de-regresión" class="section level2" number="10.2">
-<h2><span class="header-section-number">10.2</span> Modelo de regresión</h2>
+<div id="modelo-de-regresión" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Modelo de regresión<a href="s06.html#modelo-de-regresión" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Mostramos el modelo de regresión lineal múltiple.</p>
 <div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="s06.html#cb506-1" aria-hidden="true" tabindex="-1"></a>modelo1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(selectivo <span class="sc">~</span> asistencia <span class="sc">+</span> rentabaja <span class="sc">+</span> extranjero <span class="sc">+</span> tamclase, <span class="at">data =</span> data)</span>
 <span id="cb506-2"><a href="s06.html#cb506-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo1)</span></code></pre></div>
@@ -478,19 +478,19 @@ Residual standard error: 12.86 on 75 degrees of freedom
 Multiple R-squared:  0.6839,    Adjusted R-squared:  0.6671 
 F-statistic: 40.57 on 4 and 75 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div id="distancia-de-de-cook" class="section level2" number="10.3">
-<h2><span class="header-section-number">10.3</span> Distancia de De Cook</h2>
+<div id="distancia-de-de-cook" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Distancia de De Cook<a href="s06.html#distancia-de-de-cook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Se comprueba la existencia de outliers con el cálculo distancias.</p>
 <div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="s06.html#cb508-1" aria-hidden="true" tabindex="-1"></a>de.cook <span class="ot">&lt;-</span> <span class="fu">cooks.distance</span>(modelo1)</span>
 <span id="cb508-2"><a href="s06.html#cb508-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(de.cook)</span></code></pre></div>
 <pre><code>      Min.    1st Qu.     Median       Mean    3rd Qu.       Max. 
 0.00000043 0.00065550 0.00364650 0.01192072 0.01133593 0.09615295 </code></pre>
 </div>
-<div id="fiabilidad-del-modelo" class="section level2" number="10.4">
-<h2><span class="header-section-number">10.4</span> Fiabilidad del modelo</h2>
+<div id="fiabilidad-del-modelo" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> Fiabilidad del modelo<a href="s06.html#fiabilidad-del-modelo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Para que este modelo sea fiable debemos realizar un ANALISIS DE RESIDUOS</p>
-<div id="los-errores-deben-seguir-una-distribución-normal" class="section level3" number="10.4.1">
-<h3><span class="header-section-number">10.4.1</span> 1: Los errores deben seguir una distribución normal</h3>
+<div id="los-errores-deben-seguir-una-distribución-normal" class="section level3 hasAnchor" number="10.4.1">
+<h3><span class="header-section-number">10.4.1</span> 1: Los errores deben seguir una distribución normal<a href="s06.html#los-errores-deben-seguir-una-distribución-normal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="s06.html#cb510-1" aria-hidden="true" tabindex="-1"></a>residuos <span class="ot">&lt;-</span> <span class="fu">rstandard</span>(modelo1) <span class="co"># residuos estándares del modelo ajustado (completo) </span></span>
 <span id="cb510-2"><a href="s06.html#cb510-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(residuos) <span class="co"># histograma de los residuos estandarizados </span></span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
@@ -506,8 +506,8 @@ F-statistic: 40.57 on 4 and 75 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="s06.html#cb515-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(residuosest) <span class="co"># gráfico de cuantiles de los residuos estandarizados </span></span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-235-6.png" width="672" /></p>
 </div>
-<div id="la-varianza-de-los-errores-es-constante.-se-hace-el-test-de-goldfeld-y-quandt." class="section level3" number="10.4.2">
-<h3><span class="header-section-number">10.4.2</span> 2: La varianza de los errores es constante. Se hace el test de Goldfeld y Quandt.</h3>
+<div id="la-varianza-de-los-errores-es-constante.-se-hace-el-test-de-goldfeld-y-quandt." class="section level3 hasAnchor" number="10.4.2">
+<h3><span class="header-section-number">10.4.2</span> 2: La varianza de los errores es constante. Se hace el test de Goldfeld y Quandt.<a href="s06.html#la-varianza-de-los-errores-es-constante.-se-hace-el-test-de-goldfeld-y-quandt." class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="s06.html#cb516-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gqtest</span>(selectivo <span class="sc">~</span> asistencia <span class="sc">+</span> rentabaja <span class="sc">+</span> extranjero <span class="sc">+</span> tamclase, <span class="at">data =</span> data)</span></code></pre></div>
 <pre><code>
     Goldfeld-Quandt test
@@ -522,8 +522,8 @@ alternative hypothesis: variance increases from segment 1 to 2</code></pre>
 <span id="cb519-2"><a href="s06.html#cb519-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>) <span class="co"># dibuja la recta en cero</span></span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-236-2.png" width="672" /></p>
 </div>
-<div id="la-independencia-de-los-errores" class="section level3" number="10.4.3">
-<h3><span class="header-section-number">10.4.3</span> 3: La independencia de los errores</h3>
+<div id="la-independencia-de-los-errores" class="section level3 hasAnchor" number="10.4.3">
+<h3><span class="header-section-number">10.4.3</span> 3: La independencia de los errores<a href="s06.html#la-independencia-de-los-errores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="s06.html#cb520-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modelo1[[<span class="st">&quot;model&quot;</span>]][[<span class="st">&quot;asistencia&quot;</span>]], <span class="fu">rstandard</span>(modelo1), <span class="at">xlab =</span> <span class="st">&quot;Asistencia a clase&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Residuos estandarizados&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-237-1.png" width="672" /></p>
 <div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="s06.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modelo1[[<span class="st">&quot;model&quot;</span>]][[<span class="st">&quot;rentabaja&quot;</span>]], <span class="fu">rstandard</span>(modelo1), <span class="at">xlab =</span> <span class="st">&quot;Renta baja&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Residuos estandarizados&quot;</span>)</span></code></pre></div>
@@ -541,8 +541,8 @@ alternative hypothesis: variance increases from segment 1 to 2</code></pre>
 <div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="s06.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modelo1[[<span class="st">&quot;model&quot;</span>]][[<span class="st">&quot;tamclase&quot;</span>]], <span class="fu">rstudent</span>(modelo1), <span class="at">xlab =</span> <span class="st">&quot;Tamaño medio de la clase&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Residuos estudentizados&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-237-8.png" width="672" /></p>
 </div>
-<div id="no-auto-correlación-de-los-términos-de-error." class="section level3" number="10.4.4">
-<h3><span class="header-section-number">10.4.4</span> 4: No auto correlación de los términos de error.</h3>
+<div id="no-auto-correlación-de-los-términos-de-error." class="section level3 hasAnchor" number="10.4.4">
+<h3><span class="header-section-number">10.4.4</span> 4: No auto correlación de los términos de error.<a href="s06.html#no-auto-correlación-de-los-términos-de-error." class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="s06.html#cb528-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dwtest</span>(selectivo <span class="sc">~</span> asistencia <span class="sc">+</span> rentabaja <span class="sc">+</span> extranjero <span class="sc">+</span> tamclase, <span class="at">data =</span> data)</span></code></pre></div>
 <pre><code>
     Durbin-Watson test

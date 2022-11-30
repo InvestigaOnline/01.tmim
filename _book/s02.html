@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Parte 6 Inferencia - Sesiones 1 y 2 | TMIM Compendio R</title>
   <meta name="description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Parte 6 Inferencia - Sesiones 1 y 2 | TMIM Compendio R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Roberto Gil-Saura" />
 
 
-<meta name="date" content="2021-12-17" />
+<meta name="date" content="2022-11-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="s01.html"/>
 <link rel="next" href="s03.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,55 +49,56 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/proj4js-2.3.15/proj4.js"></script>
-<link href="libs/highcharts-8.1.2/css/motion.css" rel="stylesheet" />
-<script src="libs/highcharts-8.1.2/highcharts.js"></script>
-<script src="libs/highcharts-8.1.2/highcharts-3d.js"></script>
-<script src="libs/highcharts-8.1.2/highcharts-more.js"></script>
-<script src="libs/highcharts-8.1.2/modules/stock.js"></script>
-<script src="libs/highcharts-8.1.2/modules/map.js"></script>
-<script src="libs/highcharts-8.1.2/modules/annotations.js"></script>
-<script src="libs/highcharts-8.1.2/modules/data.js"></script>
-<script src="libs/highcharts-8.1.2/modules/drilldown.js"></script>
-<script src="libs/highcharts-8.1.2/modules/item-series.js"></script>
-<script src="libs/highcharts-8.1.2/modules/offline-exporting.js"></script>
-<script src="libs/highcharts-8.1.2/modules/overlapping-datalabels.js"></script>
-<script src="libs/highcharts-8.1.2/modules/exporting.js"></script>
-<script src="libs/highcharts-8.1.2/modules/export-data.js"></script>
-<script src="libs/highcharts-8.1.2/modules/funnel.js"></script>
-<script src="libs/highcharts-8.1.2/modules/heatmap.js"></script>
-<script src="libs/highcharts-8.1.2/modules/treemap.js"></script>
-<script src="libs/highcharts-8.1.2/modules/sankey.js"></script>
-<script src="libs/highcharts-8.1.2/modules/dependency-wheel.js"></script>
-<script src="libs/highcharts-8.1.2/modules/organization.js"></script>
-<script src="libs/highcharts-8.1.2/modules/solid-gauge.js"></script>
-<script src="libs/highcharts-8.1.2/modules/streamgraph.js"></script>
-<script src="libs/highcharts-8.1.2/modules/sunburst.js"></script>
-<script src="libs/highcharts-8.1.2/modules/vector.js"></script>
-<script src="libs/highcharts-8.1.2/modules/wordcloud.js"></script>
-<script src="libs/highcharts-8.1.2/modules/xrange.js"></script>
-<script src="libs/highcharts-8.1.2/modules/tilemap.js"></script>
-<script src="libs/highcharts-8.1.2/modules/venn.js"></script>
-<script src="libs/highcharts-8.1.2/modules/gantt.js"></script>
-<script src="libs/highcharts-8.1.2/modules/timeline.js"></script>
-<script src="libs/highcharts-8.1.2/modules/parallel-coordinates.js"></script>
-<script src="libs/highcharts-8.1.2/modules/bullet.js"></script>
-<script src="libs/highcharts-8.1.2/modules/coloraxis.js"></script>
-<script src="libs/highcharts-8.1.2/modules/dumbbell.js"></script>
-<script src="libs/highcharts-8.1.2/modules/lollipop.js"></script>
-<script src="libs/highcharts-8.1.2/modules/series-label.js"></script>
-<script src="libs/highcharts-8.1.2/plugins/motion.js"></script>
-<script src="libs/highcharts-8.1.2/custom/reset.js"></script>
-<script src="libs/highcharts-8.1.2/modules/boost.js"></script>
-<script src="libs/highchart-binding-0.8.2/highchart.js"></script>
+<link href="libs/highcharts-9.3.1/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-9.3.1/highcharts.js"></script>
+<script src="libs/highcharts-9.3.1/highcharts-3d.js"></script>
+<script src="libs/highcharts-9.3.1/highcharts-more.js"></script>
+<script src="libs/highcharts-9.3.1/modules/stock.js"></script>
+<script src="libs/highcharts-9.3.1/modules/map.js"></script>
+<script src="libs/highcharts-9.3.1/modules/data.js"></script>
+<script src="libs/highcharts-9.3.1/modules/exporting.js"></script>
+<script src="libs/highcharts-9.3.1/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-9.3.1/modules/drilldown.js"></script>
+<script src="libs/highcharts-9.3.1/modules/item-series.js"></script>
+<script src="libs/highcharts-9.3.1/modules/overlapping-datalabels.js"></script>
+<script src="libs/highcharts-9.3.1/modules/annotations.js"></script>
+<script src="libs/highcharts-9.3.1/modules/export-data.js"></script>
+<script src="libs/highcharts-9.3.1/modules/funnel.js"></script>
+<script src="libs/highcharts-9.3.1/modules/heatmap.js"></script>
+<script src="libs/highcharts-9.3.1/modules/treemap.js"></script>
+<script src="libs/highcharts-9.3.1/modules/sankey.js"></script>
+<script src="libs/highcharts-9.3.1/modules/dependency-wheel.js"></script>
+<script src="libs/highcharts-9.3.1/modules/organization.js"></script>
+<script src="libs/highcharts-9.3.1/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-9.3.1/modules/streamgraph.js"></script>
+<script src="libs/highcharts-9.3.1/modules/sunburst.js"></script>
+<script src="libs/highcharts-9.3.1/modules/vector.js"></script>
+<script src="libs/highcharts-9.3.1/modules/wordcloud.js"></script>
+<script src="libs/highcharts-9.3.1/modules/xrange.js"></script>
+<script src="libs/highcharts-9.3.1/modules/tilemap.js"></script>
+<script src="libs/highcharts-9.3.1/modules/venn.js"></script>
+<script src="libs/highcharts-9.3.1/modules/gantt.js"></script>
+<script src="libs/highcharts-9.3.1/modules/timeline.js"></script>
+<script src="libs/highcharts-9.3.1/modules/parallel-coordinates.js"></script>
+<script src="libs/highcharts-9.3.1/modules/bullet.js"></script>
+<script src="libs/highcharts-9.3.1/modules/coloraxis.js"></script>
+<script src="libs/highcharts-9.3.1/modules/dumbbell.js"></script>
+<script src="libs/highcharts-9.3.1/modules/lollipop.js"></script>
+<script src="libs/highcharts-9.3.1/modules/series-label.js"></script>
+<script src="libs/highcharts-9.3.1/plugins/motion.js"></script>
+<script src="libs/highcharts-9.3.1/custom/reset.js"></script>
+<script src="libs/highcharts-9.3.1/modules/boost.js"></script>
+<script src="libs/highchart-binding-0.9.4/highchart.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.20/datatables.js"></script>
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="libs/datatables-binding-0.26/datatables.js"></script>
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
@@ -142,7 +141,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -155,7 +154,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -415,15 +414,15 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="s02" class="section level1" number="6">
-<h1><span class="header-section-number">Parte 6</span> Inferencia - Sesiones 1 y 2</h1>
+<div id="s02" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Parte 6</span> Inferencia - Sesiones 1 y 2<a href="s02.html#s02" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>El siguiente documento muestra todos los cálculos estadísticos que entre la primera y la segunda sesión de la asignatura <em>Técnicas multivariantes en Investigación de Mercados</em> dentro del máster oficial en Marketing e Investigación de mercados se observan. Este documento intenta ser una guía ilustrativa y demostrativa de como se trabaja con R, magnificando todas las virtudes de este software.</p>
 <div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="s02.html#cb232-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> gssft1<span class="sc">$</span>hrs1 <span class="do">## asociamos a vector para no repetir el nombre de variable</span></span></code></pre></div>
-<div id="inferencia-paramétrica" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> Inferencia paramétrica</h2>
+<div id="inferencia-paramétrica" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Inferencia paramétrica<a href="s02.html#inferencia-paramétrica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Pruebas inferenciales realizadas con variables que cumplen los crirerios de nromalidad y/o homoscedasticidad.</p>
-<div id="test-t-student-para-la-media-de-una-muestra" class="section level3" number="6.1.1">
-<h3><span class="header-section-number">6.1.1</span> Test t Student para la media de una muestra</h3>
+<div id="test-t-student-para-la-media-de-una-muestra" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Test t Student para la media de una muestra<a href="s02.html#test-t-student-para-la-media-de-una-muestra" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="s02.html#cb233-1" aria-hidden="true" tabindex="-1"></a>test_t <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
 <span id="cb233-2"><a href="s02.html#cb233-2" aria-hidden="true" tabindex="-1"></a>    x,</span>
 <span id="cb233-3"><a href="s02.html#cb233-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mu =</span> <span class="dv">40</span>, <span class="do">##  debe ser un parámetro abierto, es el valor de control</span></span>
@@ -445,16 +444,16 @@ sample estimates:
 mean of x 
  47.23235 </code></pre>
 </div>
-<div id="test-t-student-para-la-media-de-una-muestra-en-grupos-independientes" class="section level3" number="6.1.2">
-<h3><span class="header-section-number">6.1.2</span> Test t Student para la media de una muestra en grupos independientes</h3>
+<div id="test-t-student-para-la-media-de-una-muestra-en-grupos-independientes" class="section level3 hasAnchor" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Test t Student para la media de una muestra en grupos independientes<a href="s02.html#test-t-student-para-la-media-de-una-muestra-en-grupos-independientes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>El test puede hacerse con varianzas iguales o diferentes, x con z, varianzas iguales / diferentes; para saber si optamos por una u otra opción hacemos el test de Levene; este test necesita que la variable de grupos sea no numérica, por lo que creamos un factor para ella.</p>
 <ul>
 <li>si la probabilidad es mayor que 0.05, escogemos la prueba t de varianzas iguales;</li>
 <li>si la probabilidad es menor o igual que 0.05, escogemos la prueba t de varianzas distintas;</li>
 <li>atención si el nivel de confianza es 0.95, el valor de comparación de Levene es 1-0.95=0.05</li>
 </ul>
-<div id="varianzas-iguales" class="section level4" number="6.1.2.1">
-<h4><span class="header-section-number">6.1.2.1</span> Varianzas iguales</h4>
+<div id="varianzas-iguales" class="section level4 hasAnchor" number="6.1.2.1">
+<h4><span class="header-section-number">6.1.2.1</span> Varianzas iguales<a href="s02.html#varianzas-iguales" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="s02.html#cb235-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> gssnet2<span class="sc">$</span>emailhrs</span>
 <span id="cb235-2"><a href="s02.html#cb235-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> gssnet2<span class="sc">$</span>webhrs</span>
 <span id="cb235-3"><a href="s02.html#cb235-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> gssnet2<span class="sc">$</span>sex</span>
@@ -496,8 +495,8 @@ mean in group hombre  mean in group mujer
 <span id="cb243-2"><a href="s02.html#cb243-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(effect.size.true)</span></code></pre></div>
 <pre><code>[1] 0.006647606</code></pre>
 </div>
-<div id="varianzas-no-iguales" class="section level4" number="6.1.2.2">
-<h4><span class="header-section-number">6.1.2.2</span> Varianzas no iguales</h4>
+<div id="varianzas-no-iguales" class="section level4 hasAnchor" number="6.1.2.2">
+<h4><span class="header-section-number">6.1.2.2</span> Varianzas no iguales<a href="s02.html#varianzas-no-iguales" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="s02.html#cb245-1" aria-hidden="true" tabindex="-1"></a>test_false <span class="ot">&lt;-</span> <span class="fu">t.test</span>(</span>
 <span id="cb245-2"><a href="s02.html#cb245-2" aria-hidden="true" tabindex="-1"></a>        x <span class="sc">~</span> z,</span>
 <span id="cb245-3"><a href="s02.html#cb245-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">na.rm =</span> <span class="cn">TRUE</span>,</span>
@@ -529,8 +528,8 @@ mean in group hombre  mean in group mujer
 <pre><code>[1] 0.00691741</code></pre>
 </div>
 </div>
-<div id="test-t-student-para-la-media-de-una-muestra-en-grupos-dependientes" class="section level3" number="6.1.3">
-<h3><span class="header-section-number">6.1.3</span> Test t Student para la media de una muestra en grupos dependientes</h3>
+<div id="test-t-student-para-la-media-de-una-muestra-en-grupos-dependientes" class="section level3 hasAnchor" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Test t Student para la media de una muestra en grupos dependientes<a href="s02.html#test-t-student-para-la-media-de-una-muestra-en-grupos-dependientes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="s02.html#cb253-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> endorph1<span class="sc">$</span>before</span>
 <span id="cb253-2"><a href="s02.html#cb253-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> endorph1<span class="sc">$</span>after</span>
 <span id="cb253-3"><a href="s02.html#cb253-3" aria-hidden="true" tabindex="-1"></a>media <span class="ot">&lt;-</span> <span class="fu">mean</span>(x <span class="sc">-</span> y, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
@@ -589,12 +588,12 @@ W = 0.96441, p-value = 0.8252</code></pre>
 
 data:  x and y
 t = -7.4602, df = 10, p-value = 2.159e-05
-alternative hypothesis: true difference in means is not equal to 0
+alternative hypothesis: true mean difference is not equal to 0
 95 percent confidence interval:
  -24.33236 -13.14037
 sample estimates:
-mean of the differences 
-              -18.73636 </code></pre>
+mean difference 
+      -18.73636 </code></pre>
 <div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="s02.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="do">##  cálculo del efecto tamaño</span></span>
 <span id="cb273-2"><a href="s02.html#cb273-2" aria-hidden="true" tabindex="-1"></a>t3 <span class="ot">&lt;-</span> test[[<span class="st">&quot;statistic&quot;</span>]][[<span class="st">&quot;t&quot;</span>]]</span>
 <span id="cb273-3"><a href="s02.html#cb273-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(t3)</span></code></pre></div>
@@ -606,17 +605,17 @@ mean of the differences
 <span id="cb277-2"><a href="s02.html#cb277-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(effect_size3)</span></code></pre></div>
 <pre><code>[1] 0.9206995</code></pre>
 </div>
-<div id="correlación-paramétrica-de-pearson" class="section level3" number="6.1.4">
-<h3><span class="header-section-number">6.1.4</span> Correlación paramétrica de Pearson</h3>
+<div id="correlación-paramétrica-de-pearson" class="section level3 hasAnchor" number="6.1.4">
+<h3><span class="header-section-number">6.1.4</span> Correlación paramétrica de Pearson<a href="s02.html#correlación-paramétrica-de-pearson" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="s02.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="do">##  correlaciones</span></span>
-<span id="cb279-2"><a href="s02.html#cb279-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> anxiety<span class="sc">$</span>horas</span>
-<span id="cb279-3"><a href="s02.html#cb279-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> anxiety<span class="sc">$</span>nota</span>
-<span id="cb279-4"><a href="s02.html#cb279-4" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> anxiety<span class="sc">$</span>ansiedad</span>
+<span id="cb279-2"><a href="s02.html#cb279-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> anxiety<span class="sc">$</span>TIEMPO</span>
+<span id="cb279-3"><a href="s02.html#cb279-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> anxiety<span class="sc">$</span>NOTA</span>
+<span id="cb279-4"><a href="s02.html#cb279-4" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> anxiety<span class="sc">$</span>ANSIEDAD</span>
 <span id="cb279-5"><a href="s02.html#cb279-5" aria-hidden="true" tabindex="-1"></a>pearson<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(</span>
 <span id="cb279-6"><a href="s02.html#cb279-6" aria-hidden="true" tabindex="-1"></a>        x,</span>
 <span id="cb279-7"><a href="s02.html#cb279-7" aria-hidden="true" tabindex="-1"></a>        y,</span>
-<span id="cb279-8"><a href="s02.html#cb279-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,<span class="do">##  alternativas cerradas: &quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;</span></span>
-<span id="cb279-9"><a href="s02.html#cb279-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>,<span class="do">##  alternativas cerradas: &quot;pearson&quot;, &quot;kendall&quot;, &quot;spearman&quot;</span></span>
+<span id="cb279-8"><a href="s02.html#cb279-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="do">##  alternativas cerradas: &quot;two.sided&quot;, &quot;less&quot;, &quot;greater&quot;</span></span>
+<span id="cb279-9"><a href="s02.html#cb279-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>, <span class="do">##  alternativas cerradas: &quot;pearson&quot;, &quot;kendall&quot;, &quot;spearman&quot;</span></span>
 <span id="cb279-10"><a href="s02.html#cb279-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">exact =</span> <span class="cn">NULL</span>,</span>
 <span id="cb279-11"><a href="s02.html#cb279-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
 <span id="cb279-12"><a href="s02.html#cb279-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">continuity =</span> <span class="cn">FALSE</span>)</span>
@@ -632,44 +631,44 @@ alternative hypothesis: true correlation is not equal to 0
 sample estimates:
       cor 
 0.3967207 </code></pre>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="s02.html#cb281-1" aria-hidden="true" tabindex="-1"></a>anxiety.filter <span class="ot">&lt;-</span> <span class="fu">select</span>(anxiety, horas, nota, ansiedad)</span>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="s02.html#cb281-1" aria-hidden="true" tabindex="-1"></a>anxiety.filter <span class="ot">&lt;-</span> <span class="fu">select</span>(anxiety, TIEMPO, NOTA, ANSIEDAD)</span>
 <span id="cb281-2"><a href="s02.html#cb281-2" aria-hidden="true" tabindex="-1"></a><span class="do">## p.coef &lt;-cor(anxiety.filter, use = &quot;complete.obs&quot;, method = &quot;pearson&quot;)</span></span>
 <span id="cb281-3"><a href="s02.html#cb281-3" aria-hidden="true" tabindex="-1"></a><span class="do">## p.cor &lt;- cor(anxiety.filter, use = &quot;pairwise.complete.obs&quot;) </span></span>
 <span id="cb281-4"><a href="s02.html#cb281-4" aria-hidden="true" tabindex="-1"></a>p.pvalue <span class="ot">&lt;-</span> <span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(anxiety.filter), <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>) <span class="do">## se obtiene la matriz de correlación</span></span>
 <span id="cb281-5"><a href="s02.html#cb281-5" aria-hidden="true" tabindex="-1"></a>p.pvalue[[<span class="st">&quot;r&quot;</span>]] <span class="do">##  matriz de correlación</span></span></code></pre></div>
-<pre><code>              horas       nota   ansiedad
-horas     1.0000000  0.3967207 -0.7092493
-nota      0.3967207  1.0000000 -0.4409934
-ansiedad -0.7092493 -0.4409934  1.0000000</code></pre>
+<pre><code>             TIEMPO       NOTA   ANSIEDAD
+TIEMPO    1.0000000  0.3967207 -0.7092493
+NOTA      0.3967207  1.0000000 -0.4409934
+ANSIEDAD -0.7092493 -0.4409934  1.0000000</code></pre>
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="s02.html#cb283-1" aria-hidden="true" tabindex="-1"></a>p.pvalue[[<span class="st">&quot;n&quot;</span>]] <span class="do">##  pares analizados</span></span></code></pre></div>
-<pre><code>         horas nota ansiedad
-horas      103  103      103
-nota       103  103      103
-ansiedad   103  103      103</code></pre>
+<pre><code>         TIEMPO NOTA ANSIEDAD
+TIEMPO      103  103      103
+NOTA        103  103      103
+ANSIEDAD    103  103      103</code></pre>
 <div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="s02.html#cb285-1" aria-hidden="true" tabindex="-1"></a>p.pvalue[[<span class="st">&quot;P&quot;</span>]] <span class="do">##  pvalue de los coeficientes</span></span></code></pre></div>
-<pre><code>                horas         nota     ansiedad
-horas              NA 3.343451e-05 0.000000e+00
-nota     3.343451e-05           NA 3.127873e-06
-ansiedad 0.000000e+00 3.127873e-06           NA</code></pre>
+<pre><code>               TIEMPO         NOTA     ANSIEDAD
+TIEMPO             NA 3.343451e-05 0.000000e+00
+NOTA     3.343451e-05           NA 3.127873e-06
+ANSIEDAD 0.000000e+00 3.127873e-06           NA</code></pre>
 <div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="s02.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(anxiety.filter) <span class="do">## se obtiene el gráfico de dispersión</span></span></code></pre></div>
 <p><img src="_main_files/figure-html/correlaciones-1.png" width="672" /></p>
 </div>
-<div id="análisis-de-varianza-de-un-factor-vía" class="section level3" number="6.1.5">
-<h3><span class="header-section-number">6.1.5</span> Análisis de varianza de un factor (vía)</h3>
+<div id="análisis-de-varianza-de-un-factor-vía" class="section level3 hasAnchor" number="6.1.5">
+<h3><span class="header-section-number">6.1.5</span> Análisis de varianza de un factor (vía)<a href="s02.html#análisis-de-varianza-de-un-factor-vía" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Nota: la variable de grupos ha de ser factor; si no es así no funciona el análisis.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="s02.html#cb288-1" aria-hidden="true" tabindex="-1"></a>hatco<span class="sc">$</span>x14f <span class="ot">&lt;-</span> <span class="fu">factor</span>(hatco<span class="sc">$</span>x14, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;nueva&quot;</span>, <span class="st">&quot;recompra modificada&quot;</span>, <span class="st">&quot;recompra&quot;</span>))</span>
-<span id="cb288-2"><a href="s02.html#cb288-2" aria-hidden="true" tabindex="-1"></a>hatco<span class="sc">$</span>x13f <span class="ot">&lt;-</span> <span class="fu">factor</span>(hatco<span class="sc">$</span>x13, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;tipo 1&quot;</span>, <span class="st">&quot;tipo2&quot;</span>))</span>
-<span id="cb288-3"><a href="s02.html#cb288-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(hatco<span class="sc">$</span>x10 <span class="sc">~</span> hatco<span class="sc">$</span>x14f, <span class="at">col =</span> <span class="st">&quot;lightgray&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="s02.html#cb288-1" aria-hidden="true" tabindex="-1"></a>hatco<span class="sc">$</span>X14f <span class="ot">&lt;-</span> <span class="fu">factor</span>(hatco<span class="sc">$</span>X14, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;nueva&quot;</span>, <span class="st">&quot;recompra modificada&quot;</span>, <span class="st">&quot;recompra&quot;</span>))</span>
+<span id="cb288-2"><a href="s02.html#cb288-2" aria-hidden="true" tabindex="-1"></a>hatco<span class="sc">$</span>X13f <span class="ot">&lt;-</span> <span class="fu">factor</span>(hatco<span class="sc">$</span>X13, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;tipo 1&quot;</span>, <span class="st">&quot;tipo2&quot;</span>))</span>
+<span id="cb288-3"><a href="s02.html#cb288-3" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(hatco<span class="sc">$</span>X10 <span class="sc">~</span> hatco<span class="sc">$</span>X14f, <span class="at">col =</span> <span class="st">&quot;lightgray&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/anova1-1.png" width="672" /></p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="s02.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(hatco<span class="sc">$</span>x10 <span class="sc">~</span> hatco<span class="sc">$</span>x13f, <span class="at">col =</span> <span class="st">&quot;lightgray&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="s02.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(hatco<span class="sc">$</span>X10 <span class="sc">~</span> hatco<span class="sc">$</span>X13f, <span class="at">col =</span> <span class="st">&quot;lightgray&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/anova1-2.png" width="672" /></p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="s02.html#cb290-1" aria-hidden="true" tabindex="-1"></a>anova1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(hatco<span class="sc">$</span>x10 <span class="sc">~</span> hatco<span class="sc">$</span>x14f)</span>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="s02.html#cb290-1" aria-hidden="true" tabindex="-1"></a>anova1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(hatco<span class="sc">$</span>X10 <span class="sc">~</span> hatco<span class="sc">$</span>X14f)</span>
 <span id="cb290-2"><a href="s02.html#cb290-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova1)</span></code></pre></div>
 <pre><code>Call:
-   aov(formula = hatco$x10 ~ hatco$x14f)
+   aov(formula = hatco$X10 ~ hatco$X14f)
 
 Terms:
-                hatco$x14f Residuals
+                hatco$X14f Residuals
 Sum of Squares     39.0068   33.4591
 Deg. of Freedom          2        97
 
@@ -677,7 +676,7 @@ Residual standard error: 0.5873152
 Estimated effects may be unbalanced</code></pre>
 <div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="s02.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova1)</span></code></pre></div>
 <pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)    
-hatco$x14f   2  39.01  19.503   56.54 &lt;2e-16 ***
+hatco$X14f   2  39.01  19.503   56.54 &lt;2e-16 ***
 Residuals   97  33.46   0.345                   
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
@@ -687,20 +686,20 @@ Grand mean
       
 4.771 
 
- hatco$x14f 
+ hatco$X14f 
      nueva recompra modificada recompra
      3.929               5.003    5.394
 rep 34.000              32.000   34.000</code></pre>
 </div>
-<div id="análisis-de-varianza-de-dos-factores-vías" class="section level3" number="6.1.6">
-<h3><span class="header-section-number">6.1.6</span> Análisis de varianza de dos factores (vías)</h3>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="s02.html#cb296-1" aria-hidden="true" tabindex="-1"></a>anova2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(hatco<span class="sc">$</span>x10 <span class="sc">~</span> hatco<span class="sc">$</span>x14f <span class="sc">+</span> hatco<span class="sc">$</span>x13f)</span>
+<div id="análisis-de-varianza-de-dos-factores-vías" class="section level3 hasAnchor" number="6.1.6">
+<h3><span class="header-section-number">6.1.6</span> Análisis de varianza de dos factores (vías)<a href="s02.html#análisis-de-varianza-de-dos-factores-vías" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="s02.html#cb296-1" aria-hidden="true" tabindex="-1"></a>anova2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(hatco<span class="sc">$</span>X10 <span class="sc">~</span> hatco<span class="sc">$</span>X14f <span class="sc">+</span> hatco<span class="sc">$</span>X13f)</span>
 <span id="cb296-2"><a href="s02.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(anova2)</span></code></pre></div>
 <pre><code>Call:
-   aov(formula = hatco$x10 ~ hatco$x14f + hatco$x13f)
+   aov(formula = hatco$X10 ~ hatco$X14f + hatco$X13f)
 
 Terms:
-                hatco$x14f hatco$x13f Residuals
+                hatco$X14f hatco$X13f Residuals
 Sum of Squares    39.00680    0.85383  32.60527
 Deg. of Freedom          2          1        96
 
@@ -708,8 +707,8 @@ Residual standard error: 0.5827849
 Estimated effects may be unbalanced</code></pre>
 <div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="s02.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova2)</span></code></pre></div>
 <pre><code>            Df Sum Sq Mean Sq F value Pr(&gt;F)    
-hatco$x14f   2  39.01  19.503  57.424 &lt;2e-16 ***
-hatco$x13f   1   0.85   0.854   2.514  0.116    
+hatco$X14f   2  39.01  19.503  57.424 &lt;2e-16 ***
+hatco$X13f   1   0.85   0.854   2.514  0.116    
 Residuals   96  32.61   0.340                   
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
@@ -719,23 +718,23 @@ Grand mean
       
 4.771 
 
- hatco$x14f 
+ hatco$X14f 
      nueva recompra modificada recompra
      3.929               5.003    5.394
 rep 34.000              32.000   34.000
 
- hatco$x13f 
+ hatco$X13f 
     tipo 1  tipo2
      4.863  4.679
 rep 50.000 50.000</code></pre>
 </div>
 </div>
-<div id="inferencia-no-paramétrica" class="section level2" number="6.2">
-<h2><span class="header-section-number">6.2</span> Inferencia no paramétrica</h2>
-<div id="prueba-chi" class="section level3" number="6.2.1">
-<h3><span class="header-section-number">6.2.1</span> Prueba Chi</h3>
-<div id="prueba-chi2-de-una-muestra" class="section level4" number="6.2.1.1">
-<h4><span class="header-section-number">6.2.1.1</span> Prueba Chi2 de una muestra</h4>
+<div id="inferencia-no-paramétrica" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Inferencia no paramétrica<a href="s02.html#inferencia-no-paramétrica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="prueba-chi" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Prueba Chi<a href="s02.html#prueba-chi" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="prueba-chi2-de-una-muestra" class="section level4 hasAnchor" number="6.2.1.1">
+<h4><span class="header-section-number">6.2.1.1</span> Prueba Chi2 de una muestra<a href="s02.html#prueba-chi2-de-una-muestra" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>El test chi2 para una muestra, compara los resultados de una distribución marginal con los resultados proporcionados de forma externa.</p>
 <div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="s02.html#cb302-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">28</span>, <span class="dv">47</span>, <span class="dv">80</span>, <span class="dv">82</span>, <span class="dv">47</span>, <span class="dv">35</span>)</span>
 <span id="cb302-2"><a href="s02.html#cb302-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">50</span>, <span class="dv">75</span>, <span class="dv">75</span>, <span class="dv">50</span>, <span class="dv">30</span>)</span>
@@ -747,8 +746,8 @@ rep 50.000 50.000</code></pre>
 data:  x
 X-squared = 1.9941, df = 5, p-value = 0.85</code></pre>
 </div>
-<div id="prueba-chi2-de-una-tabla" class="section level4" number="6.2.1.2">
-<h4><span class="header-section-number">6.2.1.2</span> Prueba Chi2 de una tabla</h4>
+<div id="prueba-chi2-de-una-tabla" class="section level4 hasAnchor" number="6.2.1.2">
+<h4><span class="header-section-number">6.2.1.2</span> Prueba Chi2 de una tabla<a href="s02.html#prueba-chi2-de-una-tabla" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="s02.html#cb304-1" aria-hidden="true" tabindex="-1"></a>tabla001 <span class="ot">&lt;-</span>  <span class="fu">table</span>(data2<span class="sc">$</span>freedman, data2<span class="sc">$</span>sex)</span>
 <span id="cb304-2"><a href="s02.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tabla001)</span></code></pre></div>
 <pre><code>                                                            
@@ -772,8 +771,8 @@ X-squared = 14.951, df = 3, p-value = 0.001859</code></pre>
 data:  tabla001
 X-squared = 14.951, df = 3, p-value = 0.001859</code></pre>
 </div>
-<div id="otros-test-derivados" class="section level4" number="6.2.1.3">
-<h4><span class="header-section-number">6.2.1.3</span> Otros test derivados</h4>
+<div id="otros-test-derivados" class="section level4 hasAnchor" number="6.2.1.3">
+<h4><span class="header-section-number">6.2.1.3</span> Otros test derivados<a href="s02.html#otros-test-derivados" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="s02.html#cb310-1" aria-hidden="true" tabindex="-1"></a>otros <span class="ot">&lt;-</span> <span class="fu">assocstats</span>(tabla001)</span>
 <span id="cb310-2"><a href="s02.html#cb310-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(otros)</span></code></pre></div>
 <pre><code>                    X^2 df  P(&gt; X^2)
@@ -785,10 +784,10 @@ Contingency Coeff.: 0.121
 Cramer&#39;s V        : 0.122 </code></pre>
 </div>
 </div>
-<div id="correlaciones-no-paramétricas" class="section level3" number="6.2.2">
-<h3><span class="header-section-number">6.2.2</span> Correlaciones no paramétricas</h3>
-<div id="correlación-de-spearman" class="section level4" number="6.2.2.1">
-<h4><span class="header-section-number">6.2.2.1</span> Correlación de Spearman</h4>
+<div id="correlaciones-no-paramétricas" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Correlaciones no paramétricas<a href="s02.html#correlaciones-no-paramétricas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="correlación-de-spearman" class="section level4 hasAnchor" number="6.2.2.1">
+<h4><span class="header-section-number">6.2.2.1</span> Correlación de Spearman<a href="s02.html#correlación-de-spearman" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="s02.html#cb312-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> grades<span class="sc">$</span>Estadística</span>
 <span id="cb312-2"><a href="s02.html#cb312-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> grades<span class="sc">$</span>Selectivo</span>
 <span id="cb312-3"><a href="s02.html#cb312-3" aria-hidden="true" tabindex="-1"></a>spearman<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(</span>
@@ -800,8 +799,8 @@ Cramer&#39;s V        : 0.122 </code></pre>
 <span id="cb312-9"><a href="s02.html#cb312-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">conf.level =</span> <span class="fl">0.95</span>,</span>
 <span id="cb312-10"><a href="s02.html#cb312-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">continuity =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
-<div id="correlación-de-kendall" class="section level4" number="6.2.2.2">
-<h4><span class="header-section-number">6.2.2.2</span> Correlación de Kendall</h4>
+<div id="correlación-de-kendall" class="section level4 hasAnchor" number="6.2.2.2">
+<h4><span class="header-section-number">6.2.2.2</span> Correlación de Kendall<a href="s02.html#correlación-de-kendall" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="s02.html#cb313-1" aria-hidden="true" tabindex="-1"></a>tau.b.kendall<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(</span>
 <span id="cb313-2"><a href="s02.html#cb313-2" aria-hidden="true" tabindex="-1"></a>        x,</span>
 <span id="cb313-3"><a href="s02.html#cb313-3" aria-hidden="true" tabindex="-1"></a>        y,</span>
@@ -812,11 +811,11 @@ Cramer&#39;s V        : 0.122 </code></pre>
 <span id="cb313-8"><a href="s02.html#cb313-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">continuity =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 </div>
-<div id="test-de-diferencias-de-una-muestra-en-grupos-independientes" class="section level3" number="6.2.3">
-<h3><span class="header-section-number">6.2.3</span> Test de diferencias de una muestra en grupos independientes</h3>
+<div id="test-de-diferencias-de-una-muestra-en-grupos-independientes" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> Test de diferencias de una muestra en grupos independientes<a href="s02.html#test-de-diferencias-de-una-muestra-en-grupos-independientes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Probamos la normalidad de los grupos a comparar. Probamos la normalidad de cada grupo en cada variable y una vez probado que existen problemas de normalidad en algunos de los grupos, calculamos la prueba W de Wilcoxon.</p>
-<div id="lilliefors-y-shapiro-wilk" class="section level4" number="6.2.3.1">
-<h4><span class="header-section-number">6.2.3.1</span> Lilliefors y Shapiro-Wilk</h4>
+<div id="lilliefors-y-shapiro-wilk" class="section level4 hasAnchor" number="6.2.3.1">
+<h4><span class="header-section-number">6.2.3.1</span> Lilliefors y Shapiro-Wilk<a href="s02.html#lilliefors-y-shapiro-wilk" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="s02.html#cb314-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> bdi<span class="sc">$</span>sunbdi</span>
 <span id="cb314-2"><a href="s02.html#cb314-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> bdi<span class="sc">$</span>wedbdi</span>
 <span id="cb314-3"><a href="s02.html#cb314-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> bdi<span class="sc">$</span>droga</span>
@@ -892,8 +891,8 @@ D = 0.30502, p-value = 0.00894</code></pre>
 data:  aw
 W = 0.75347, p-value = 0.003933</code></pre>
 </div>
-<div id="prueba-w-de-wilcoxon---u-mann-withney" class="section level4" number="6.2.3.2">
-<h4><span class="header-section-number">6.2.3.2</span> Prueba W de Wilcoxon - U Mann-Withney</h4>
+<div id="prueba-w-de-wilcoxon---u-mann-withney" class="section level4 hasAnchor" number="6.2.3.2">
+<h4><span class="header-section-number">6.2.3.2</span> Prueba W de Wilcoxon - U Mann-Withney<a href="s02.html#prueba-w-de-wilcoxon---u-mann-withney" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Aunque la probabilidad no es exactamente la misma, es muy aproximada.</p>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="s02.html#cb330-1" aria-hidden="true" tabindex="-1"></a>wilcox.test<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(as, es, <span class="at">paired =</span> <span class="cn">FALSE</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">conf.int =</span> <span class="fl">0.95</span>)</span>
 <span id="cb330-2"><a href="s02.html#cb330-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wilcox.test<span class="fl">.1</span>)</span></code></pre></div>
@@ -923,10 +922,10 @@ difference in location
              -23.50122 </code></pre>
 </div>
 </div>
-<div id="test-de-diferencias-de-una-muestra-en-grupos-dependientes" class="section level3" number="6.2.4">
-<h3><span class="header-section-number">6.2.4</span> Test de diferencias de una muestra en grupos dependientes</h3>
-<div id="prueba-v-de-wilcoxon" class="section level4" number="6.2.4.1">
-<h4><span class="header-section-number">6.2.4.1</span> Prueba V de Wilcoxon</h4>
+<div id="test-de-diferencias-de-una-muestra-en-grupos-dependientes" class="section level3 hasAnchor" number="6.2.4">
+<h3><span class="header-section-number">6.2.4</span> Test de diferencias de una muestra en grupos dependientes<a href="s02.html#test-de-diferencias-de-una-muestra-en-grupos-dependientes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="prueba-v-de-wilcoxon" class="section level4 hasAnchor" number="6.2.4.1">
+<h4><span class="header-section-number">6.2.4.1</span> Prueba V de Wilcoxon<a href="s02.html#prueba-v-de-wilcoxon" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Atención, resultado de la prueba es suma de rangos negativos. no es el mismo resultado que SPSS el valor, pero si la probabilidad aproximada.</p>
 <div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="s02.html#cb334-1" aria-hidden="true" tabindex="-1"></a>wilcox.test<span class="fl">.3</span> <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(es, ew, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>, <span class="at">mu =</span> <span class="dv">0</span>, <span class="at">conf.int =</span> <span class="fl">0.99</span>)</span>
 <span id="cb334-2"><a href="s02.html#cb334-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(wilcox.test<span class="fl">.3</span>)</span></code></pre></div>

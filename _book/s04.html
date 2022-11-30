@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Parte 8 Análisis de componentes principales - Sesión 04 | TMIM Compendio R</title>
   <meta name="description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Parte 8 Análisis de componentes principales - Sesión 04 | TMIM Compendio R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Roberto Gil-Saura" />
 
 
-<meta name="date" content="2021-12-17" />
+<meta name="date" content="2022-11-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="s03.html"/>
 <link rel="next" href="s05.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,55 +49,56 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/proj4js-2.3.15/proj4.js"></script>
-<link href="libs/highcharts-8.1.2/css/motion.css" rel="stylesheet" />
-<script src="libs/highcharts-8.1.2/highcharts.js"></script>
-<script src="libs/highcharts-8.1.2/highcharts-3d.js"></script>
-<script src="libs/highcharts-8.1.2/highcharts-more.js"></script>
-<script src="libs/highcharts-8.1.2/modules/stock.js"></script>
-<script src="libs/highcharts-8.1.2/modules/map.js"></script>
-<script src="libs/highcharts-8.1.2/modules/annotations.js"></script>
-<script src="libs/highcharts-8.1.2/modules/data.js"></script>
-<script src="libs/highcharts-8.1.2/modules/drilldown.js"></script>
-<script src="libs/highcharts-8.1.2/modules/item-series.js"></script>
-<script src="libs/highcharts-8.1.2/modules/offline-exporting.js"></script>
-<script src="libs/highcharts-8.1.2/modules/overlapping-datalabels.js"></script>
-<script src="libs/highcharts-8.1.2/modules/exporting.js"></script>
-<script src="libs/highcharts-8.1.2/modules/export-data.js"></script>
-<script src="libs/highcharts-8.1.2/modules/funnel.js"></script>
-<script src="libs/highcharts-8.1.2/modules/heatmap.js"></script>
-<script src="libs/highcharts-8.1.2/modules/treemap.js"></script>
-<script src="libs/highcharts-8.1.2/modules/sankey.js"></script>
-<script src="libs/highcharts-8.1.2/modules/dependency-wheel.js"></script>
-<script src="libs/highcharts-8.1.2/modules/organization.js"></script>
-<script src="libs/highcharts-8.1.2/modules/solid-gauge.js"></script>
-<script src="libs/highcharts-8.1.2/modules/streamgraph.js"></script>
-<script src="libs/highcharts-8.1.2/modules/sunburst.js"></script>
-<script src="libs/highcharts-8.1.2/modules/vector.js"></script>
-<script src="libs/highcharts-8.1.2/modules/wordcloud.js"></script>
-<script src="libs/highcharts-8.1.2/modules/xrange.js"></script>
-<script src="libs/highcharts-8.1.2/modules/tilemap.js"></script>
-<script src="libs/highcharts-8.1.2/modules/venn.js"></script>
-<script src="libs/highcharts-8.1.2/modules/gantt.js"></script>
-<script src="libs/highcharts-8.1.2/modules/timeline.js"></script>
-<script src="libs/highcharts-8.1.2/modules/parallel-coordinates.js"></script>
-<script src="libs/highcharts-8.1.2/modules/bullet.js"></script>
-<script src="libs/highcharts-8.1.2/modules/coloraxis.js"></script>
-<script src="libs/highcharts-8.1.2/modules/dumbbell.js"></script>
-<script src="libs/highcharts-8.1.2/modules/lollipop.js"></script>
-<script src="libs/highcharts-8.1.2/modules/series-label.js"></script>
-<script src="libs/highcharts-8.1.2/plugins/motion.js"></script>
-<script src="libs/highcharts-8.1.2/custom/reset.js"></script>
-<script src="libs/highcharts-8.1.2/modules/boost.js"></script>
-<script src="libs/highchart-binding-0.8.2/highchart.js"></script>
+<link href="libs/highcharts-9.3.1/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-9.3.1/highcharts.js"></script>
+<script src="libs/highcharts-9.3.1/highcharts-3d.js"></script>
+<script src="libs/highcharts-9.3.1/highcharts-more.js"></script>
+<script src="libs/highcharts-9.3.1/modules/stock.js"></script>
+<script src="libs/highcharts-9.3.1/modules/map.js"></script>
+<script src="libs/highcharts-9.3.1/modules/data.js"></script>
+<script src="libs/highcharts-9.3.1/modules/exporting.js"></script>
+<script src="libs/highcharts-9.3.1/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-9.3.1/modules/drilldown.js"></script>
+<script src="libs/highcharts-9.3.1/modules/item-series.js"></script>
+<script src="libs/highcharts-9.3.1/modules/overlapping-datalabels.js"></script>
+<script src="libs/highcharts-9.3.1/modules/annotations.js"></script>
+<script src="libs/highcharts-9.3.1/modules/export-data.js"></script>
+<script src="libs/highcharts-9.3.1/modules/funnel.js"></script>
+<script src="libs/highcharts-9.3.1/modules/heatmap.js"></script>
+<script src="libs/highcharts-9.3.1/modules/treemap.js"></script>
+<script src="libs/highcharts-9.3.1/modules/sankey.js"></script>
+<script src="libs/highcharts-9.3.1/modules/dependency-wheel.js"></script>
+<script src="libs/highcharts-9.3.1/modules/organization.js"></script>
+<script src="libs/highcharts-9.3.1/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-9.3.1/modules/streamgraph.js"></script>
+<script src="libs/highcharts-9.3.1/modules/sunburst.js"></script>
+<script src="libs/highcharts-9.3.1/modules/vector.js"></script>
+<script src="libs/highcharts-9.3.1/modules/wordcloud.js"></script>
+<script src="libs/highcharts-9.3.1/modules/xrange.js"></script>
+<script src="libs/highcharts-9.3.1/modules/tilemap.js"></script>
+<script src="libs/highcharts-9.3.1/modules/venn.js"></script>
+<script src="libs/highcharts-9.3.1/modules/gantt.js"></script>
+<script src="libs/highcharts-9.3.1/modules/timeline.js"></script>
+<script src="libs/highcharts-9.3.1/modules/parallel-coordinates.js"></script>
+<script src="libs/highcharts-9.3.1/modules/bullet.js"></script>
+<script src="libs/highcharts-9.3.1/modules/coloraxis.js"></script>
+<script src="libs/highcharts-9.3.1/modules/dumbbell.js"></script>
+<script src="libs/highcharts-9.3.1/modules/lollipop.js"></script>
+<script src="libs/highcharts-9.3.1/modules/series-label.js"></script>
+<script src="libs/highcharts-9.3.1/plugins/motion.js"></script>
+<script src="libs/highcharts-9.3.1/custom/reset.js"></script>
+<script src="libs/highcharts-9.3.1/modules/boost.js"></script>
+<script src="libs/highchart-binding-0.9.4/highchart.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.20/datatables.js"></script>
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="libs/datatables-binding-0.26/datatables.js"></script>
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
@@ -142,7 +141,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -155,7 +154,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -415,13 +414,13 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="s04" class="section level1" number="8">
-<h1><span class="header-section-number">Parte 8</span> Análisis de componentes principales - Sesión 04</h1>
+<div id="s04" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Parte 8</span> Análisis de componentes principales - Sesión 04<a href="s04.html#s04" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="s04.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sesion 04</span></span>
 <span id="cb420-2"><a href="s04.html#cb420-2" aria-hidden="true" tabindex="-1"></a>hbat <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/hbat.sav&quot;</span>))</span>
 <span id="cb420-3"><a href="s04.html#cb420-3" aria-hidden="true" tabindex="-1"></a>data00 <span class="ot">&lt;-</span> <span class="fu">subset</span>(hbat, <span class="at">select =</span> <span class="fu">c</span>(x6, x7, x8, x9, x10, x11, x12, x13, x14, x15, x16, x17, x18))</span></code></pre></div>
-<div id="análisis-de-correlación" class="section level2" number="8.1">
-<h2><span class="header-section-number">8.1</span> Análisis de correlación</h2>
+<div id="análisis-de-correlación" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Análisis de correlación<a href="s04.html#análisis-de-correlación" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Calculamos la correlación. Si algún valor está en el MSA está por debajo de 0.5 lo eliminamos (por orden y solo uno en cada paso) y volvemos a hacer la correlación y cálculo de Kaiser-Meyer-Olkin; solo así quedarán las mejores variables.</p>
 <div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="s04.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rcorr</span>(<span class="fu">as.matrix</span>(data00), <span class="at">type =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
 <pre><code>       x6    x7    x8    x9   x10   x11   x12   x13   x14   x15   x16   x17   x18
@@ -550,8 +549,8 @@ MSA for each item =
 <p>X11 que tenía un MSA de 0.45 y era candidato, ahora supera el 0.5 de MSA. Decidimos seguir con los siguientes pasos. Calculamos el test de esfericidad de Bartlett, donde la Ho es la igualdad de la matriz de correlaciones a la matriz identidad, es decir la ausencia de correlación entre las variables que conforman la estructura a analizar.</p>
 <p>Analizamos el test de esfericidad de Bartlett.</p>
 </div>
-<div id="test-de-esfericidad-de-bartlett" class="section level2" number="8.2">
-<h2><span class="header-section-number">8.2</span> Test de esfericidad de Bartlett</h2>
+<div id="test-de-esfericidad-de-bartlett" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Test de esfericidad de Bartlett<a href="s04.html#test-de-esfericidad-de-bartlett" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="s04.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(data02)</span></code></pre></div>
 <pre><code>
     Bartlett test of homogeneity of variances
@@ -560,8 +559,8 @@ data:  data02
 Bartlett&#39;s K-squared = 146.4, df = 10, p-value &lt; 2.2e-16</code></pre>
 <p>Dado que es correcto y rechazamos la hipótesis nula, continuamos con el análisis de componentes.</p>
 </div>
-<div id="análisis-de-componentes-principales" class="section level2" number="8.3">
-<h2><span class="header-section-number">8.3</span> Análisis de componentes principales</h2>
+<div id="análisis-de-componentes-principales" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Análisis de componentes principales<a href="s04.html#análisis-de-componentes-principales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="s04.html#cb435-1" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">principal</span>(data02, <span class="at">nfactors=</span><span class="dv">4</span>, <span class="at">rotate=</span><span class="st">&quot;varimax&quot;</span>)</span>
 <span id="cb435-2"><a href="s04.html#cb435-2" aria-hidden="true" tabindex="-1"></a>output</span></code></pre></div>
 <pre><code>Principal Components Analysis
@@ -648,10 +647,10 @@ MSA for each item =
   x6   x7   x8   x9  x10  x12  x13  x14  x16  x18 
 0.61 0.64 0.52 0.69 0.81 0.63 0.74 0.53 0.83 0.72 </code></pre>
 </div>
-<div id="resumen-de-resultados-1" class="section level2" number="8.4">
-<h2><span class="header-section-number">8.4</span> Resumen de resultados</h2>
-<div id="rotación-varimax-acp-psych" class="section level3" number="8.4.1">
-<h3><span class="header-section-number">8.4.1</span> Rotación Varimax (ACP, psych)</h3>
+<div id="resumen-de-resultados-1" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Resumen de resultados<a href="s04.html#resumen-de-resultados-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="rotación-varimax-acp-psych" class="section level3 hasAnchor" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> Rotación Varimax (ACP, psych)<a href="s04.html#rotación-varimax-acp-psych" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="s04.html#cb445-1" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">principal</span>(data03, <span class="at">nfactors=</span><span class="dv">4</span>, <span class="at">rotate=</span><span class="st">&quot;varimax&quot;</span>)</span>
 <span id="cb445-2"><a href="s04.html#cb445-2" aria-hidden="true" tabindex="-1"></a>output</span></code></pre></div>
 <pre><code>Principal Components Analysis
@@ -686,8 +685,8 @@ Fit based upon off diagonal values = 0.96</code></pre>
 <p>La salida de la función print.psych muestra las cargas de los componentes (de la matriz del modelo), la h2 (comunalidades) la u2 (las singularidades [1-h2]) y la complejidad de las cargas de los componentes para esa variable (índice de Hoffman)</p>
 </div>
 </div>
-<div id="gráficos-del-análisis" class="section level2" number="8.5">
-<h2><span class="header-section-number">8.5</span> Gráficos del análisis</h2>
+<div id="gráficos-del-análisis" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Gráficos del análisis<a href="s04.html#gráficos-del-análisis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="s04.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="fu">biplot.psych</span>(output)</span></code></pre></div>
 <p><img src="_main_files/figure-html/unnamed-chunk-214-1.png" width="1152" /></p>
 <div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="s04.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(output)</span></code></pre></div>

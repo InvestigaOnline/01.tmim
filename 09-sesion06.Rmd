@@ -4,6 +4,7 @@ Cargamos los paquetes necesarios y los datos del archivo institutoschicago.sav
 
 ```{r}
 data <- read_spss("http://download.tesigandia.com/tmim/institutoschicago.sav")
+colnames(data) <- tolower(colnames(data))
 ```
 
 ## Análisis de correlación

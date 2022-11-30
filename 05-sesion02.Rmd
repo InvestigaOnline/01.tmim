@@ -123,19 +123,19 @@ print(effect_size3)
 
 ```{r correlaciones}
 ##  correlaciones
-x <- anxiety$horas
-y <- anxiety$nota
-z <- anxiety$ansiedad
+x <- anxiety$TIEMPO
+y <- anxiety$NOTA
+z <- anxiety$ANSIEDAD
 pearson.1 <- cor.test(
         x,
         y,
-        alternative = "two.sided",##  alternativas cerradas: "two.sided", "less", "greater"
-        method = "pearson",##  alternativas cerradas: "pearson", "kendall", "spearman"
+        alternative = "two.sided", ##  alternativas cerradas: "two.sided", "less", "greater"
+        method = "pearson", ##  alternativas cerradas: "pearson", "kendall", "spearman"
         exact = NULL,
         conf.level = 0.95,
         continuity = FALSE)
 print(pearson.1)
-anxiety.filter <- select(anxiety, horas, nota, ansiedad)
+anxiety.filter <- select(anxiety, TIEMPO, NOTA, ANSIEDAD)
 ## p.coef <-cor(anxiety.filter, use = "complete.obs", method = "pearson")
 ## p.cor <- cor(anxiety.filter, use = "pairwise.complete.obs") 
 p.pvalue <- rcorr(as.matrix(anxiety.filter), type = "pearson") ## se obtiene la matriz de correlación
@@ -150,11 +150,11 @@ plot(anxiety.filter) ## se obtiene el gráfico de dispersión
 Nota: la variable de grupos ha de ser factor; si no es así no funciona el análisis.
 
 ```{r anova1}
-hatco$x14f <- factor(hatco$x14, labels = c("nueva", "recompra modificada", "recompra"))
-hatco$x13f <- factor(hatco$x13, labels = c("tipo 1", "tipo2"))
-boxplot(hatco$x10 ~ hatco$x14f, col = "lightgray")
-boxplot(hatco$x10 ~ hatco$x13f, col = "lightgray")
-anova1 <- aov(hatco$x10 ~ hatco$x14f)
+hatco$X14f <- factor(hatco$X14, labels = c("nueva", "recompra modificada", "recompra"))
+hatco$X13f <- factor(hatco$X13, labels = c("tipo 1", "tipo2"))
+boxplot(hatco$X10 ~ hatco$X14f, col = "lightgray")
+boxplot(hatco$X10 ~ hatco$X13f, col = "lightgray")
+anova1 <- aov(hatco$X10 ~ hatco$X14f)
 print(anova1)
 summary(anova1)
 model.tables(anova1, "means")
@@ -163,7 +163,7 @@ model.tables(anova1, "means")
 ### Análisis de varianza de dos factores (vías)
 
 ```{r anova2}
-anova2 <- aov(hatco$x10 ~ hatco$x14f + hatco$x13f)
+anova2 <- aov(hatco$X10 ~ hatco$X14f + hatco$X13f)
 print(anova2)
 summary(anova2)
 model.tables(anova2, "means")

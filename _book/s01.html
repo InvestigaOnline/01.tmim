@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Parte 5 EDA (exploratory data analysis) - Sesiones 1 y 2 | TMIM Compendio R</title>
   <meta name="description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
-  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Parte 5 EDA (exploratory data analysis) - Sesiones 1 y 2 | TMIM Compendio R" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Este es un compendio de las dos sesiones de R y las sesiones 1 a 6 con código R para aprendizaje y archivo de los estudiantes." />
   
@@ -24,7 +23,7 @@
 <meta name="author" content="Roberto Gil-Saura" />
 
 
-<meta name="date" content="2021-12-17" />
+<meta name="date" content="2022-11-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +32,6 @@
   
 <link rel="prev" href="r2.html"/>
 <link rel="next" href="s02.html"/>
-<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,55 +49,56 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <script src="libs/proj4js-2.3.15/proj4.js"></script>
-<link href="libs/highcharts-8.1.2/css/motion.css" rel="stylesheet" />
-<script src="libs/highcharts-8.1.2/highcharts.js"></script>
-<script src="libs/highcharts-8.1.2/highcharts-3d.js"></script>
-<script src="libs/highcharts-8.1.2/highcharts-more.js"></script>
-<script src="libs/highcharts-8.1.2/modules/stock.js"></script>
-<script src="libs/highcharts-8.1.2/modules/map.js"></script>
-<script src="libs/highcharts-8.1.2/modules/annotations.js"></script>
-<script src="libs/highcharts-8.1.2/modules/data.js"></script>
-<script src="libs/highcharts-8.1.2/modules/drilldown.js"></script>
-<script src="libs/highcharts-8.1.2/modules/item-series.js"></script>
-<script src="libs/highcharts-8.1.2/modules/offline-exporting.js"></script>
-<script src="libs/highcharts-8.1.2/modules/overlapping-datalabels.js"></script>
-<script src="libs/highcharts-8.1.2/modules/exporting.js"></script>
-<script src="libs/highcharts-8.1.2/modules/export-data.js"></script>
-<script src="libs/highcharts-8.1.2/modules/funnel.js"></script>
-<script src="libs/highcharts-8.1.2/modules/heatmap.js"></script>
-<script src="libs/highcharts-8.1.2/modules/treemap.js"></script>
-<script src="libs/highcharts-8.1.2/modules/sankey.js"></script>
-<script src="libs/highcharts-8.1.2/modules/dependency-wheel.js"></script>
-<script src="libs/highcharts-8.1.2/modules/organization.js"></script>
-<script src="libs/highcharts-8.1.2/modules/solid-gauge.js"></script>
-<script src="libs/highcharts-8.1.2/modules/streamgraph.js"></script>
-<script src="libs/highcharts-8.1.2/modules/sunburst.js"></script>
-<script src="libs/highcharts-8.1.2/modules/vector.js"></script>
-<script src="libs/highcharts-8.1.2/modules/wordcloud.js"></script>
-<script src="libs/highcharts-8.1.2/modules/xrange.js"></script>
-<script src="libs/highcharts-8.1.2/modules/tilemap.js"></script>
-<script src="libs/highcharts-8.1.2/modules/venn.js"></script>
-<script src="libs/highcharts-8.1.2/modules/gantt.js"></script>
-<script src="libs/highcharts-8.1.2/modules/timeline.js"></script>
-<script src="libs/highcharts-8.1.2/modules/parallel-coordinates.js"></script>
-<script src="libs/highcharts-8.1.2/modules/bullet.js"></script>
-<script src="libs/highcharts-8.1.2/modules/coloraxis.js"></script>
-<script src="libs/highcharts-8.1.2/modules/dumbbell.js"></script>
-<script src="libs/highcharts-8.1.2/modules/lollipop.js"></script>
-<script src="libs/highcharts-8.1.2/modules/series-label.js"></script>
-<script src="libs/highcharts-8.1.2/plugins/motion.js"></script>
-<script src="libs/highcharts-8.1.2/custom/reset.js"></script>
-<script src="libs/highcharts-8.1.2/modules/boost.js"></script>
-<script src="libs/highchart-binding-0.8.2/highchart.js"></script>
+<link href="libs/highcharts-9.3.1/css/motion.css" rel="stylesheet" />
+<script src="libs/highcharts-9.3.1/highcharts.js"></script>
+<script src="libs/highcharts-9.3.1/highcharts-3d.js"></script>
+<script src="libs/highcharts-9.3.1/highcharts-more.js"></script>
+<script src="libs/highcharts-9.3.1/modules/stock.js"></script>
+<script src="libs/highcharts-9.3.1/modules/map.js"></script>
+<script src="libs/highcharts-9.3.1/modules/data.js"></script>
+<script src="libs/highcharts-9.3.1/modules/exporting.js"></script>
+<script src="libs/highcharts-9.3.1/modules/offline-exporting.js"></script>
+<script src="libs/highcharts-9.3.1/modules/drilldown.js"></script>
+<script src="libs/highcharts-9.3.1/modules/item-series.js"></script>
+<script src="libs/highcharts-9.3.1/modules/overlapping-datalabels.js"></script>
+<script src="libs/highcharts-9.3.1/modules/annotations.js"></script>
+<script src="libs/highcharts-9.3.1/modules/export-data.js"></script>
+<script src="libs/highcharts-9.3.1/modules/funnel.js"></script>
+<script src="libs/highcharts-9.3.1/modules/heatmap.js"></script>
+<script src="libs/highcharts-9.3.1/modules/treemap.js"></script>
+<script src="libs/highcharts-9.3.1/modules/sankey.js"></script>
+<script src="libs/highcharts-9.3.1/modules/dependency-wheel.js"></script>
+<script src="libs/highcharts-9.3.1/modules/organization.js"></script>
+<script src="libs/highcharts-9.3.1/modules/solid-gauge.js"></script>
+<script src="libs/highcharts-9.3.1/modules/streamgraph.js"></script>
+<script src="libs/highcharts-9.3.1/modules/sunburst.js"></script>
+<script src="libs/highcharts-9.3.1/modules/vector.js"></script>
+<script src="libs/highcharts-9.3.1/modules/wordcloud.js"></script>
+<script src="libs/highcharts-9.3.1/modules/xrange.js"></script>
+<script src="libs/highcharts-9.3.1/modules/tilemap.js"></script>
+<script src="libs/highcharts-9.3.1/modules/venn.js"></script>
+<script src="libs/highcharts-9.3.1/modules/gantt.js"></script>
+<script src="libs/highcharts-9.3.1/modules/timeline.js"></script>
+<script src="libs/highcharts-9.3.1/modules/parallel-coordinates.js"></script>
+<script src="libs/highcharts-9.3.1/modules/bullet.js"></script>
+<script src="libs/highcharts-9.3.1/modules/coloraxis.js"></script>
+<script src="libs/highcharts-9.3.1/modules/dumbbell.js"></script>
+<script src="libs/highcharts-9.3.1/modules/lollipop.js"></script>
+<script src="libs/highcharts-9.3.1/modules/series-label.js"></script>
+<script src="libs/highcharts-9.3.1/plugins/motion.js"></script>
+<script src="libs/highcharts-9.3.1/custom/reset.js"></script>
+<script src="libs/highcharts-9.3.1/modules/boost.js"></script>
+<script src="libs/highchart-binding-0.9.4/highchart.js"></script>
 <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="libs/datatables-binding-0.20/datatables.js"></script>
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="libs/datatables-binding-0.26/datatables.js"></script>
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.12.1/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.12.1/js/jquery.dataTables.min.js"></script>
 <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
 
@@ -142,7 +141,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -155,7 +154,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -415,8 +414,8 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="s01" class="section level1" number="5">
-<h1><span class="header-section-number">Parte 5</span> EDA (exploratory data analysis) - Sesiones 1 y 2</h1>
+<div id="s01" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Parte 5</span> EDA (exploratory data analysis) - Sesiones 1 y 2<a href="s01.html#s01" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>La sesión 01 (y la 02) de esta asignatura está dedicada a realizar una introducción a los procedimientos básicos de trabajo con datos provenientes de recogidas estructuradas de datos o de investigaciones de mercado, predominantemente de encuesta. En las sesiones 01 y 02 estudiaremos entre otras pruebas:</p>
 <ul>
 <li>Exploración de los datos: introducción y herramientas básicas para la exploración de los datos.</li>
@@ -435,8 +434,8 @@ div.csl-indent {
 <li>analizar la normalidad estadística</li>
 <li>analizar la homogeneidad de varianza</li>
 </ol>
-<div id="carga-de-paquetes" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Carga de paquetes</h2>
+<div id="carga-de-paquetes" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Carga de paquetes<a href="s01.html#carga-de-paquetes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Los paquetes aquí listados son específicos para estas siguientes sesiones. Ver la Parte <a href="#r1a">R1a</a>) para resto de paquetes cargados esenciales.</p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="s01.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(c(&#39;car&#39;,&#39;outliers&#39;, &#39;psych&#39;, &#39;nortest&#39;, &#39;Hmisc&#39;, &#39;vcd&#39;, &#39;ca&#39;, &#39;corrplot&#39;, &#39;factoextra&#39;, &#39;FactoMineR&#39;, &#39;gplots&#39;, &#39;DT&#39;, &#39;lmtest&#39;, &#39;sjstats&#39;, &#39;igraph&#39;))</span></span>
 <span id="cb192-2"><a href="s01.html#cb192-2" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;car&#39;</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>))</span>
@@ -456,8 +455,8 @@ div.csl-indent {
 <span id="cb192-16"><a href="s01.html#cb192-16" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;igraph&#39;</span>, <span class="at">quietly=</span><span class="cn">TRUE</span>))</span>
 <span id="cb192-17"><a href="s01.html#cb192-17" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressMessages</span>(<span class="fu">library</span>(<span class="st">&#39;expss&#39;</span>, <span class="at">quietly=</span><span class="cn">TRUE</span>))</span></code></pre></div>
 </div>
-<div id="carga-de-datos" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> Carga de datos</h2>
+<div id="carga-de-datos" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Carga de datos<a href="s01.html#carga-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>En nuestro trabajo deberemos cargar datos provenientes de fuentes como archivo texto (paquete <code>readr</code>), archivos xls o xlsx (paquete <code>readr</code>) y archivos SPSS (paquete <code>expss</code>). Las instrucciones serán muy simples. Para evitar repetir la carga en diferentes secciones de este capítulo, cargamos inicialmente todos los archivos. Los paquetes mencionados deberán haber sido cargados previamente.</p>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="s01.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co">#sesiones 01 y 02</span></span>
 <span id="cb193-2"><a href="s01.html#cb193-2" aria-hidden="true" tabindex="-1"></a>fib2 <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;https://download.tesigandia.com/tmim/fib_2.sav&quot;</span>))</span>
@@ -472,12 +471,12 @@ div.csl-indent {
 <span id="cb193-11"><a href="s01.html#cb193-11" aria-hidden="true" tabindex="-1"></a>grades <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/grades1.sav&quot;</span>))</span>
 <span id="cb193-12"><a href="s01.html#cb193-12" aria-hidden="true" tabindex="-1"></a>bdi <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_spss</span>(<span class="st">&quot;http://download.tesigandia.com/tmim/bdidrogas1.sav&quot;</span>))</span></code></pre></div>
 </div>
-<div id="frecuencias-e-histogramas" class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> Frecuencias e histogramas</h2>
+<div id="frecuencias-e-histogramas" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Frecuencias e histogramas<a href="s01.html#frecuencias-e-histogramas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Usaremos el paquete <code>expss</code>para obtener todos los cálculos que tengan que ver con el manejo de la
 estadística básica paramétrica y relacionados con los cálculos de frecuencia.</p>
-<div id="frecuencias" class="section level3" number="5.3.1">
-<h3><span class="header-section-number">5.3.1</span> Frecuencias</h3>
+<div id="frecuencias" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Frecuencias<a href="s01.html#frecuencias" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Calculamos las frecuencias de la variable AGE obteniendo una salida similar al SPSS. Las frecuencias son la base de trabajo del investigador, cuántas veces sucede un evento. El estilo SPSS muestra diferentes columnas con el valor absoluto y el relativo, poniendo como base todos los casos del banco de datos o todos los casos <strong>válidos</strong> del banco de datos.</p>
 <div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="s01.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recuento de frecuencias</span></span>
 <span id="cb194-2"><a href="s01.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fre</span>(gssnet1<span class="sc">$</span>age) </span></code></pre></div>
@@ -2722,8 +2721,8 @@ Age of respondent
 </tbody>
 </table>
 </div>
-<div id="histogramas" class="section level3" number="5.3.2">
-<h3><span class="header-section-number">5.3.2</span> Histogramas</h3>
+<div id="histogramas" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Histogramas<a href="s01.html#histogramas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Para no tener que repetir muchas veces el nombre del campo , gssnet1$age, lo declaramos como una variable que denominamos x; más corto y simple. Posteriormente, calculamos el histograma de frecuencias del vector (variable) x.</p>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="s01.html#cb199-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> gssnet1<span class="sc">$</span>age</span>
 <span id="cb199-2"><a href="s01.html#cb199-2" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">hist</span>(x, <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
@@ -2732,8 +2731,8 @@ Age of respondent
 ## Descriptivos</p>
 <p>Calculamos todos los descriptivos de forma individual, auqnue también podemos utilizar comandos de paquetes variados que hacen los mismos <code>summary(x)</code>. la orden <code>summary(x)</code> usa el paquete base de R. Para una mejor organización, los guardamos en objetos y posteriormente imprimimos esos objetos en una tabla.</p>
 </div>
-<div id="datos-descriptivos-básicos" class="section level3" number="5.3.3">
-<h3><span class="header-section-number">5.3.3</span> Datos descriptivos básicos</h3>
+<div id="datos-descriptivos-básicos" class="section level3 hasAnchor" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Datos descriptivos básicos<a href="s01.html#datos-descriptivos-básicos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="s01.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># para no tener que escribir cada vez fib2$dia1, le llamamos x</span></span>
 <span id="cb200-2"><a href="s01.html#cb200-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> fib2<span class="sc">$</span>dia1</span>
 <span id="cb200-3"><a href="s01.html#cb200-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2896,8 +2895,8 @@ Frequency   &quot;2=19, 1.47=17, 2.02=16, 1.58=15, 2.17=15, 1.5=14, 1.85=14, 1.9
 
 lowest : 0.02 0.05 0.11 0.23 0.26, highest: 3.38 3.41 3.44 3.58 3.69</code></pre>
 </div>
-<div id="histogramas-y-cajas" class="section level3" number="5.3.4">
-<h3><span class="header-section-number">5.3.4</span> Histogramas y cajas</h3>
+<div id="histogramas-y-cajas" class="section level3 hasAnchor" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Histogramas y cajas<a href="s01.html#histogramas-y-cajas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Siempre la parte gráfica es importante. Realizamos ahora un histograma y unos gráficos de caja para conocer gráficamente la distribución de nuestra variable (campo o vector). Estos últimos los hacemos con y sin outliers, que son impresos posteriormente.</p>
 <p>Primero el histograma …</p>
 <div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="s01.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co"># grafico de histograma</span></span>
@@ -2929,11 +2928,11 @@ lowest : 0.02 0.05 0.11 0.23 0.26, highest: 3.38 3.41 3.44 3.58 3.69</code></pre
 <p><img src="_main_files/figure-html/unnamed-chunk-152-1.png" width="672" /></p>
 </div>
 </div>
-<div id="análisis-de-normalidad" class="section level2" number="5.4">
-<h2><span class="header-section-number">5.4</span> Análisis de normalidad</h2>
+<div id="análisis-de-normalidad" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Análisis de normalidad<a href="s01.html#análisis-de-normalidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Vamos a testar ahora la normalidad de la distribución con la prueba de Kolmogorov-Smirnov. Posteriormente corregiremos el dato con la prueba de Lilliefors y calcularemos también Shapiro-Wilk.</p>
-<div id="kolgomorov---smirnov" class="section level3" number="5.4.1">
-<h3><span class="header-section-number">5.4.1</span> Kolgomorov - Smirnov</h3>
+<div id="kolgomorov---smirnov" class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Kolgomorov - Smirnov<a href="s01.html#kolgomorov---smirnov" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="s01.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="co"># kolgomorov-smirnov</span></span>
 <span id="cb210-2"><a href="s01.html#cb210-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ks.test</span>(x,</span>
 <span id="cb210-3"><a href="s01.html#cb210-3" aria-hidden="true" tabindex="-1"></a>    pnorm,</span>
@@ -2942,13 +2941,13 @@ lowest : 0.02 0.05 0.11 0.23 0.26, highest: 3.38 3.41 3.44 3.58 3.69</code></pre
 <span id="cb210-6"><a href="s01.html#cb210-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>,</span>
 <span id="cb210-7"><a href="s01.html#cb210-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">exact =</span> <span class="cn">NULL</span>)</span></code></pre></div>
 <pre><code>
-    One-sample Kolmogorov-Smirnov test
+    Asymptotic one-sample Kolmogorov-Smirnov test
 
 data:  x
 D^+ = 0.024455, p-value = 0.3795
 alternative hypothesis: the CDF of x lies above the null hypothesis</code></pre>
-<div id="corrección-de-lilliefors" class="section level4" number="5.4.1.1">
-<h4><span class="header-section-number">5.4.1.1</span> Corrección de Lilliefors</h4>
+<div id="corrección-de-lilliefors" class="section level4 hasAnchor" number="5.4.1.1">
+<h4><span class="header-section-number">5.4.1.1</span> Corrección de Lilliefors<a href="s01.html#corrección-de-lilliefors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Añadimos al test de la normalidad la corrección de Lilliefors.</p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="s01.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lillie.test</span>(x)</span></code></pre></div>
 <pre><code>
@@ -2958,8 +2957,8 @@ data:  x
 D = 0.029298, p-value = 0.09694</code></pre>
 </div>
 </div>
-<div id="shapiro---wilk" class="section level3" number="5.4.2">
-<h3><span class="header-section-number">5.4.2</span> Shapiro - Wilk</h3>
+<div id="shapiro---wilk" class="section level3 hasAnchor" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> Shapiro - Wilk<a href="s01.html#shapiro---wilk" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Cuando la muestra es como máximo de tamaño 50 se puede contrastar la normalidad con la prueba de Shapiro-Wilk.</p>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="s01.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(x)</span></code></pre></div>
 <pre><code>
@@ -2969,13 +2968,13 @@ data:  x
 W = 0.99592, p-value = 0.03198</code></pre>
 </div>
 </div>
-<div id="homogeneidad-de-varianzas-homoscedasticidad" class="section level2" number="5.5">
-<h2><span class="header-section-number">5.5</span> Homogeneidad de varianzas (homoscedasticidad)</h2>
-<div id="test-de-levene" class="section level3" number="5.5.1">
-<h3><span class="header-section-number">5.5.1</span> Test de Levene</h3>
+<div id="homogeneidad-de-varianzas-homoscedasticidad" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Homogeneidad de varianzas (homoscedasticidad)<a href="s01.html#homogeneidad-de-varianzas-homoscedasticidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="test-de-levene" class="section level3 hasAnchor" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> Test de Levene<a href="s01.html#test-de-levene" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Por último, usamos el test de Levene para testar la <strong>homogeneidad de la varianza</strong>, sobre <code>hatco.sav</code>; este test necesita que la variable de grupos sea no numérica (lo que en R se llama <code>factor()</code>), por lo que creamos un factor para ella; sólo sería necesaria la transformación a <code>factor()</code> si se ha leído el archivo con <code>haven</code>; <code>foreign</code> ya crea factores. Aunque en nuestro caso la lectura se hace con <code>expss</code> que es derivado de <code>foreign</code>, aplicamos la transformación.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="s01.html#cb216-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> hatco<span class="sc">$</span>x1</span>
-<span id="cb216-2"><a href="s01.html#cb216-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">factor</span>(hatco<span class="sc">$</span>x8)</span>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="s01.html#cb216-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> hatco<span class="sc">$</span>X1</span>
+<span id="cb216-2"><a href="s01.html#cb216-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">factor</span>(hatco<span class="sc">$</span>X8)</span>
 <span id="cb216-3"><a href="s01.html#cb216-3" aria-hidden="true" tabindex="-1"></a><span class="fu">leveneTest</span>(x <span class="sc">~</span> y, <span class="at">center =</span> mean)</span></code></pre></div>
 <pre><code>Levene&#39;s Test for Homogeneity of Variance (center = mean)
       Df F value Pr(&gt;F)
@@ -2997,8 +2996,8 @@ group  1   0.993 0.3215
 group  1  0.9341 0.3362
       98               </code></pre>
 </div>
-<div id="diagramas-de-caja" class="section level3" number="5.5.2">
-<h3><span class="header-section-number">5.5.2</span> Diagramas de caja</h3>
+<div id="diagramas-de-caja" class="section level3 hasAnchor" number="5.5.2">
+<h3><span class="header-section-number">5.5.2</span> Diagramas de caja<a href="s01.html#diagramas-de-caja" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Este análisis se suele complementar con gráficos de caja, histogramas y calcularemos también los ratios de varianza que recordemos <strong>no nos proporciona SPSS</strong>. Se suele acompañar de los gráficos de caja (box-whiskers) e histogramas.</p>
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="s01.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(x <span class="sc">~</span> y,</span>
 <span id="cb224-2"><a href="s01.html#cb224-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">varwidth =</span> <span class="cn">TRUE</span>,</span>
@@ -3007,11 +3006,11 @@ group  1  0.9341 0.3362
 <span id="cb224-5"><a href="s01.html#cb224-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">border =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb224-6"><a href="s01.html#cb224-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;Diagrama de caja general&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/cajalevene-1.png" width="672" /></p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="s01.html#cb225-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> hatco[hatco<span class="sc">$</span>x8 <span class="sc">==</span> <span class="st">&quot;1&quot;</span>, ]</span>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="s01.html#cb225-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> hatco[hatco<span class="sc">$</span>X8 <span class="sc">==</span> <span class="st">&quot;1&quot;</span>, ]</span>
 <span id="cb225-2"><a href="s01.html#cb225-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x1<span class="sc">$</span>x1)</span></code></pre></div>
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  0.000   1.900   2.400   2.500   3.025   4.900 </code></pre>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="s01.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x1<span class="sc">$</span>x1,</span>
+<pre><code>Length  Class   Mode 
+     0   NULL   NULL </code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="s01.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x1<span class="sc">$</span>X1,</span>
 <span id="cb227-2"><a href="s01.html#cb227-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">10</span>, <span class="at">by=</span><span class="dv">1</span>),</span>
 <span id="cb227-3"><a href="s01.html#cb227-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">&quot;Rapidez de servicio (1-10&quot;</span>,</span>
 <span id="cb227-4"><a href="s01.html#cb227-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>,</span>
@@ -3022,11 +3021,11 @@ group  1  0.9341 0.3362
 <span id="cb227-9"><a href="s01.html#cb227-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">border =</span> <span class="st">&quot;white&quot;</span>,</span>
 <span id="cb227-10"><a href="s01.html#cb227-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;Diagrama de caja -&gt; X8 = grande&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/cajalevene-2.png" width="672" /></p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="s01.html#cb228-1" aria-hidden="true" tabindex="-1"></a>x0 <span class="ot">&lt;-</span> hatco[hatco<span class="sc">$</span>x8 <span class="sc">==</span> <span class="st">&quot;0&quot;</span>, ]</span>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="s01.html#cb228-1" aria-hidden="true" tabindex="-1"></a>x0 <span class="ot">&lt;-</span> hatco[hatco<span class="sc">$</span>X8 <span class="sc">==</span> <span class="st">&quot;0&quot;</span>, ]</span>
 <span id="cb228-2"><a href="s01.html#cb228-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(x0<span class="sc">$</span>x1)</span></code></pre></div>
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  2.100   3.375   4.150   4.192   5.100   6.100 </code></pre>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="s01.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x0<span class="sc">$</span>x1,</span>
+<pre><code>Length  Class   Mode 
+     0   NULL   NULL </code></pre>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="s01.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x0<span class="sc">$</span>X1,</span>
 <span id="cb230-2"><a href="s01.html#cb230-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">10</span>, <span class="at">by=</span><span class="dv">1</span>),</span>
 <span id="cb230-3"><a href="s01.html#cb230-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlab =</span> <span class="st">&quot;texto extra de x&quot;</span>,</span>
 <span id="cb230-4"><a href="s01.html#cb230-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>,</span>
@@ -3038,13 +3037,13 @@ group  1  0.9341 0.3362
 <span id="cb230-10"><a href="s01.html#cb230-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;Diagrama de caja -&gt; X8 = pequeña&quot;</span>)</span></code></pre></div>
 <p><img src="_main_files/figure-html/cajalevene-3.png" width="672" /></p>
 </div>
-<div id="ratio-de-varianzas" class="section level3" number="5.5.3">
-<h3><span class="header-section-number">5.5.3</span> Ratio de varianzas</h3>
+<div id="ratio-de-varianzas" class="section level3 hasAnchor" number="5.5.3">
+<h3><span class="header-section-number">5.5.3</span> Ratio de varianzas<a href="s01.html#ratio-de-varianzas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Para obtener el ratio de varianzas no existe una prueba directa, pero utilizamos el cálculo para poder hacerlo. Además condicionamos el cálculo para que nos ofrezca el mejor positivo.</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="s01.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">var</span>(x0<span class="sc">$</span>x1) <span class="sc">&gt;</span> <span class="fu">var</span>(x1<span class="sc">$</span>x1))</span>
-<span id="cb231-2"><a href="s01.html#cb231-2" aria-hidden="true" tabindex="-1"></a>        (<span class="fu">var</span>(x0<span class="sc">$</span>x1) <span class="sc">/</span> <span class="fu">var</span>(x1<span class="sc">$</span>x1)) <span class="ot">-&gt;</span> ratio.vrz</span>
-<span id="cb231-3"><a href="s01.html#cb231-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">var</span>(x0<span class="sc">$</span>x1) <span class="sc">&lt;</span> <span class="fu">var</span>(x1<span class="sc">$</span>x1))</span>
-<span id="cb231-4"><a href="s01.html#cb231-4" aria-hidden="true" tabindex="-1"></a>        (<span class="fu">var</span>(x1<span class="sc">$</span>x1) <span class="sc">/</span> <span class="fu">var</span>(x0<span class="sc">$</span>x1)) <span class="ot">-&gt;</span> ratio.vrz</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="s01.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">var</span>(x0<span class="sc">$</span>X1) <span class="sc">&gt;</span> <span class="fu">var</span>(x1<span class="sc">$</span>X1))</span>
+<span id="cb231-2"><a href="s01.html#cb231-2" aria-hidden="true" tabindex="-1"></a>        (<span class="fu">var</span>(x0<span class="sc">$</span>X1) <span class="sc">/</span> <span class="fu">var</span>(x1<span class="sc">$</span>X1)) <span class="ot">-&gt;</span> ratio.vrz</span>
+<span id="cb231-3"><a href="s01.html#cb231-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">var</span>(x0<span class="sc">$</span>X1) <span class="sc">&lt;</span> <span class="fu">var</span>(x1<span class="sc">$</span>X1))</span>
+<span id="cb231-4"><a href="s01.html#cb231-4" aria-hidden="true" tabindex="-1"></a>        (<span class="fu">var</span>(x1<span class="sc">$</span>X1) <span class="sc">/</span> <span class="fu">var</span>(x0<span class="sc">$</span>X1)) <span class="ot">-&gt;</span> ratio.vrz</span></code></pre></div>
 <p>El ratio de varianzas es: 1.0365045</p>
 
 </div>
